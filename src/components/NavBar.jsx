@@ -28,7 +28,7 @@ function NavBar() {
   ]
   return (
     <div className='flex justify-between items-center w-full h-20 text-white fixed   bg-stone-900 px-4'>
-    <h1 className='text-4xl  font-header  '>KELVIN</h1>
+    <h1 className='text-4xl  font-header  '>EDMUND BLESSING</h1>
     <div>
     <ul className=' hidden md:flex'>
       {links.map(links =>(

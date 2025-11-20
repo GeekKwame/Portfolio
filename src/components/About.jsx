@@ -8,10 +8,11 @@ function About() {
           <p className='text-4xl font-bold '>About</p>
         </div>
         <p className=' text-mdl '>
-   My name is kelvin Ackah,a full stack web developer .I am a student of the Kwame Nkrumah University of Science and technology offering computer science.
-   I believe  web design can be more diverse and inspiring.
-   I am very passionate about what i do and i work hard to bring cutting-edge,pixel perfect and  beautiful interfaces to my 
-   clients 
+  I’m Blessing Edmund Kwame Dogbe, a Junior Full-Stack Developer with a strong foundation in both frontend and backend development. I build modern, responsive, and user-focused web applications using HTML, CSS, JavaScript, React, Django, Tailwind CSS, and Git.
+
+With a background in Applied Mathematics from KNUST, I bring analytical thinking, problem-solving, and precision into every project I work on. I’m passionate about creating clean interfaces, smooth user experiences, and scalable backend systems.
+
+I’m always learning, improving, and pushing myself to build impactful digital solutions that blend creativity with solid engineering.
 </p>
 <br/>
 <p className='text-md'>
