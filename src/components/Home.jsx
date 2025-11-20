@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import {MdOutlineArrowForwardIos} from "react-icons/md"
-import { FaDownload } from "react-icons/fa"
 import laptop from "../assets/109028-react-and-node-development-mobile-first.json"
 import { Player  } from '@lottiefiles/react-lottie-player';
 import { Link } from 'react-scroll';
