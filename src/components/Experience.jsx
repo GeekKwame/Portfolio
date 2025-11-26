@@ -44,37 +44,37 @@ function Experience() {
     {
       id:1,
      src:first,
-     name:"HTML",
+     name:"HTML5",
      style:"shadow-orange-500",
-     level:90
+     level:95
     },
     {
       id:2,
      src:second,
-     name:"Javascript",
+     name:"JavaScript",
      style:"shadow-yellow-500",
-     level:85
+     level:88
     },
     {
       id:3,
      src:third,
      name:"React",
      style:"shadow-blue-500",
-     level:80
+     level:85
     },
     {
       id:4,
      src:fourth,
-     name:"CSS",
+     name:"CSS3",
      style:"shadow-sky-500",
-     level:88
+     level:90
     },
     {
       id:5,
      src:sixth,
      name:"Python",
      style:"shadow-blue-500",
-     level:75
+     level:82
     },
   ]
   return (
@@ -84,7 +84,7 @@ function Experience() {
           <p className='text-4xl md:text-5xl font-bold mb-4'>
             Experience
           </p>
-          <p className='py-4 text-gray-300 text-lg'>These are the Technologies I've Worked With</p>
+          <p className='py-4 text-gray-300 text-lg'>Technologies I work with to build modern, scalable applications</p>
         </div>
         <div className='w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 text-center px-4 sm:px-0'>
         {

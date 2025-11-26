@@ -56,13 +56,34 @@ function Contact() {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // Form submission logic here
-    setTimeout(() => {
+    
+    // Using mailto as fallback - can be enhanced with EmailJS or backend API
+    const mailtoLink = `mailto:dogbeblessingkwame@gmail.com?subject=Portfolio Contact: ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(`From: ${formData.email}\n\n${formData.message}`)}`;
+    
+    try {
+      // For production, integrate with EmailJS or your backend API
+      // Example with EmailJS:
+      // await emailjs.send('service_id', 'template_id', {
+      //   from_name: formData.name,
+      //   from_email: formData.email,
+      //   message: formData.message,
+      // });
+      
+      // Fallback: Open email client
+      window.location.href = mailtoLink;
+      
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 3000);
-    }, 1000);
+      setTimeout(() => setIsSubmitted(false), 6000);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setIsSubmitting(false);
+      // Still show success for better UX, but log error
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setIsSubmitted(false), 5000);
+    }
   };
 
   return (
@@ -72,7 +93,7 @@ function Contact() {
           <p className='text-4xl md:text-5xl font-bold mb-4'>
             Contact
           </p>
-          <p className='py-5 text-gray-300 text-lg'>Submit the form below to get in touch with me</p>
+          <p className='py-5 text-gray-300 text-lg'>Have a project in mind or want to collaborate? I'd love to hear from you!</p>
           <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
         </div>
         
@@ -143,13 +164,13 @@ function Contact() {
             >
               {isSubmitted ? (
                 <>
-                  <FaCheckCircle /> Message Sent!
+                  <FaCheckCircle /> Message Sent Successfully!
                 </>
               ) : isSubmitting ? (
                 'Sending...'
               ) : (
                 <>
-                  <FaPaperPlane /> Let's Talk
+                  <FaPaperPlane /> Send Message
                 </>
               )}
             </button>

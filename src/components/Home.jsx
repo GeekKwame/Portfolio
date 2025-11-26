@@ -39,16 +39,16 @@ const Home = () => {
               Hi There, <span className='animate-bounce inline-block'>👋</span>
             </h1>
             <h2 className='text-4xl sm:text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>
-              I am a {displayText}
+              I'm a {displayText}
               {isTyping && <span className='animate-pulse'>|</span>}
             </h2>
           </div>
           <p className='text-gray-300 text-base md:text-lg mb-6 max-w-lg leading-relaxed'>
-            I build and design modern web applications using React
-            for the frontend and Python/Django for the backend. 
-            I'm currently focused on improving my skills as a 
-            full-stack developer and creating clean, responsive, 
-            and user-friendly interfaces with tools like Tailwind CSS.
+            I'm a passionate Full Stack Developer specializing in building scalable, 
+            modern web applications. With expertise in React, Django, and Python, 
+            I transform complex ideas into elegant, user-friendly digital solutions. 
+            I'm dedicated to writing clean code, implementing best practices, and 
+            delivering exceptional user experiences that drive business value.
           </p>
           
           <div className='flex flex-col sm:flex-row gap-4'>
@@ -70,6 +70,14 @@ const Home = () => {
               Get In Touch
               <MdOutlineArrowForwardIos className='group-hover:translate-x-1 ml-2 duration-200'/>
             </Link>
+            <a 
+              href="/resume.pdf" 
+              download="Edmund_Blessing_Resume.pdf"
+              className='group w-fit px-6 py-3 flex items-center rounded-lg bg-transparent border-2 border-gray-500 text-gray-300 cursor-pointer text-lg font-semibold hover:bg-gray-700 hover:text-white hover:border-gray-400 duration-300 hover:scale-105 transition-all'
+            >
+              Download Resume
+              <MdOutlineArrowForwardIos className='group-hover:translate-x-1 ml-2 duration-200'/>
+            </a>
           </div>
         </div>
         

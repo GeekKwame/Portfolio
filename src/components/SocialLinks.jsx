@@ -9,27 +9,30 @@ function SocialLinks() {
       child: (
         <> LinkedIn<FaLinkedin size={30}/> </>
       ),
-      href: "https://www.linkedin.com/in/kelvin-ackah-9045a0235/",
+      href: "https://www.linkedin.com/in/edmund-blessing/",
       style: "rounded-tr-md",
-      color: "hover:bg-blue-600"
+      color: "hover:bg-blue-600",
+      label: "Connect on LinkedIn"
     },
     {
       id: 2,
       child: (
         <> Github<FaGithub size={30}/> </>
       ),
-      href: "http://github.com/ackahkelvin45",
+      href: "https://github.com/GeekKwame",
       style: "",
-      color: "hover:bg-gray-800"
+      color: "hover:bg-gray-800",
+      label: "View my GitHub"
     },
     {
       id: 3,
       child: (
         <> Mail<HiOutlineMail size={30}/> </>
       ),
-      href: "mailto:ackahkevin455@gmail.com",
+      href: "mailto:dogbeblessingkwame@gmail.com",
       style: "rounded-br-md",
-      color: "hover:bg-red-600"
+      color: "hover:bg-red-600",
+      label: "Send me an email"
     },
   ]
 
@@ -46,7 +49,8 @@ function SocialLinks() {
               className='flex justify-between items-center w-full text-sm font-medium group-hover:scale-105 transition-transform duration-300' 
               target="_blank" 
               rel="noreferrer"
-              aria-label={link.child.props.children[0]}
+              aria-label={link.label || link.child.props.children[0]}
+              title={link.label}
             > 
               {link.child} 
             </a>

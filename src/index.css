@@ -75,3 +75,36 @@
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #0891b2, #2563eb);
 }
+
+/* Additional professional enhancements */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent;
+  }
+  
+  .glass-effect {
+    @apply bg-gray-800/50 backdrop-blur-sm border border-gray-700/50;
+  }
+}
+
+/* Smooth focus transitions */
+*:focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Improved selection colors */
+::selection {
+  background-color: #06b6d4;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #06b6d4;
+  color: white;
+}

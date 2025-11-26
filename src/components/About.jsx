@@ -27,10 +27,10 @@ function About() {
   }, []);
 
   const skills = [
-    { icon: <FaCode />, title: 'Frontend Development', desc: 'React, JavaScript, HTML, CSS, Tailwind CSS' },
-    { icon: <FaServer />, title: 'Backend Development', desc: 'Python, Django, REST APIs, Database Design' },
-    { icon: <FaPalette />, title: 'UI/UX Design', desc: 'Responsive Design, Modern Interfaces, User Experience' },
-    { icon: <FaGraduationCap />, title: 'Education', desc: 'Applied Mathematics from KNUST' }
+    { icon: <FaCode />, title: 'Frontend Development', desc: 'React, JavaScript, TypeScript, HTML5, CSS3, Tailwind CSS, Responsive Design' },
+    { icon: <FaServer />, title: 'Backend Development', desc: 'Python, Django, REST APIs, Database Design, API Integration, Authentication' },
+    { icon: <FaPalette />, title: 'UI/UX Design', desc: 'Responsive Design, Modern Interfaces, User Experience, Accessibility, Performance Optimization' },
+    { icon: <FaGraduationCap />, title: 'Education & Skills', desc: 'BSc Applied Mathematics (KNUST), Problem Solving, Algorithm Design, Data Structures' }
   ];
 
   return (
@@ -44,13 +44,26 @@ function About() {
         <div className='grid md:grid-cols-2 gap-8 mb-12'>
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
             <p className='text-lg md:text-xl text-gray-300 leading-relaxed mb-4'>
-              I'm Blessing Edmund Kwame Dogbe, a Junior Full-Stack Developer with a strong foundation in both frontend and backend development. I build modern, responsive, and user-focused web applications using HTML, CSS, JavaScript, React, Django, Tailwind CSS, and Git.
+              I'm Blessing Edmund Kwame Dogbe, a dedicated Full-Stack Developer with a passion for creating 
+              innovative web solutions. I specialize in building modern, responsive, and user-focused applications 
+              using cutting-edge technologies including React, JavaScript, Python, Django, Tailwind CSS, and Git.
             </p>
             <p className='text-lg md:text-xl text-gray-300 leading-relaxed mb-4'>
-              With a background in Applied Mathematics from KNUST, I bring analytical thinking, problem-solving, and precision into every project I work on. I'm passionate about creating clean interfaces, smooth user experiences, and scalable backend systems.
+              With a strong foundation in Applied Mathematics from KNUST, I bring analytical thinking, 
+              systematic problem-solving, and mathematical precision to every project. My approach combines 
+              creative design with robust engineering principles to deliver scalable, maintainable, and 
+              high-performance applications.
+            </p>
+            <p className='text-lg md:text-xl text-gray-300 leading-relaxed mb-4'>
+              I'm committed to continuous learning and staying current with industry best practices. 
+              Whether it's implementing complex algorithms, optimizing database queries, or crafting 
+              intuitive user interfaces, I strive to exceed expectations and deliver solutions that 
+              make a meaningful impact.
             </p>
             <p className='text-lg md:text-xl text-gray-300 leading-relaxed'>
-              I'm always learning, improving, and pushing myself to build impactful digital solutions that blend creativity with solid engineering.
+              When I'm not coding, I enjoy contributing to open-source projects, exploring new technologies, 
+              and sharing knowledge with the developer community. I'm always open to collaborating on 
+              exciting projects and opportunities to grow as a developer.
             </p>
           </div>
           
@@ -70,8 +83,14 @@ function About() {
         </div>
 
         <div className={`mt-8 p-6 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl border border-cyan-500/20 backdrop-blur-sm transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <p className='text-md md:text-lg text-gray-300 mb-3'>
+            <span className='font-semibold text-cyan-400'>Core Tech Stack:</span> I leverage Python's Django framework for robust backend development, 
+            React for dynamic frontend experiences, and Tailwind CSS for modern, responsive designs. 
+            JavaScript/ES6+ powers interactive features, while Git ensures version control and collaborative workflows.
+          </p>
           <p className='text-md md:text-lg text-gray-300'>
-            <span className='font-semibold text-cyan-400'>Tech Stack:</span> I use Python's Django framework for backend development and React with Tailwind CSS for frontend design. JavaScript powers the interactive features of my websites, creating seamless user experiences.
+            <span className='font-semibold text-cyan-400'>Additional Tools:</span> Postman, VS Code, Chrome DevTools, 
+            npm/yarn, RESTful API design, Database management (SQL), and deployment platforms (Netlify, Vercel, PythonAnywhere).
           </p>
         </div>
       </div>

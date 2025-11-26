@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
-import Espot from "../assets/images/Espot.jpg"
-import unidate from "../assets/images/unidtae.jpg"
-import weather from "../assets/images/weather.jpg"
+import { FaCode, FaRocket, FaGithub } from 'react-icons/fa'
+import { Link } from 'react-scroll'
 
 function Portfolio() {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,94 +27,78 @@ function Portfolio() {
     };
   }, []);
 
-  const portfolios=[
-    {
-      id:1,
-      src:Espot,
-      title:"Espot E-commerce",
-      description:"A full-stack e-commerce platform built with Django and React",
-      link1:"http://ackahkelvin.pythonanywhere.com",
-      link2:"https://github.com/Ackahkelvin45/Espot-Ecommernce-",
-      tags:["React", "Django", "E-commerce"]
-    },
-    {
-      id:2,
-      src:unidate,
-      title:"UniDate",
-      description:"A social networking platform for university students",
-      link1:"",
-      link2:"https://github.com/Ackahkelvin45/unidate",
-      tags:["React", "Django", "Social"]
-    },
-    {
-      id:3,
-      src:weather,
-      title:"Weather App",
-      description:"Real-time weather information application",
-      link1:"",
-      link2:"https://github.com/Ackahkelvin45/WeatherAPP",
-      tags:["React", "API", "Weather"]
-    }
-  ]
   return (
     <div name="portfolio" ref={sectionRef} className='bg-gradient-to-b from-stone-900 to-gray-800 w-full min-h-screen py-20'>
       <div className='max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full'>
-      <div className={`mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <p className='text-4xl md:text-5xl font-bold mb-4'>
-          Portfolio
-        </p>
-        <p className='py-4 text-gray-300 text-lg'>Check out some of my work here</p>
-      </div>
-      
-      <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:px-0 justify-center'>
-        {
-          portfolios.map(({id,src,title,description,link1,link2,tags}, index)=>(
-            <div 
-              key={id}
-              className={`group relative shadow-xl shadow-gray-900/50 rounded-xl overflow-hidden bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: `${index * 150}ms` }}
-            >
-              <div className='relative overflow-hidden'>
-                <img src={src} alt={title} className='w-full h-48 object-cover group-hover:scale-110 duration-500 transition-transform' />
-                <div className='absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
-              </div>
-              <div className='p-6'>
-                <h3 className='text-xl font-bold mb-2 text-white'>{title}</h3>
-                <p className='text-gray-400 text-sm mb-4'>{description}</p>
-                <div className='flex flex-wrap gap-2 mb-4'>
-                  {tags.map((tag, i) => (
-                    <span key={i} className='px-2 py-1 bg-cyan-500/20 text-cyan-400 text-xs rounded-md border border-cyan-500/30'>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className='flex items-center justify-center gap-4'>
-                  {link1 && (
-                    <a 
-                      href={link1} 
-                      target="_blank" 
-                      rel="noreferrer"
-                      className='flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50'
-                    >
-                      <FaExternalLinkAlt /> Demo
-                    </a>
-                  )}
-                  <a 
-                    href={link2} 
-                    target="_blank"
-                    rel="noreferrer"
-                    className='flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 border border-gray-600'
-                  >
-                    <FaGithub /> Code
-                  </a>
+        <div className={`mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <p className='text-4xl md:text-5xl font-bold mb-4 text-white'>
+            Portfolio
+          </p>
+          <p className='py-4 text-gray-300 text-lg'>Explore my projects and see how I bring ideas to life</p>
+          <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
+        </div>
+        
+        <div className={`flex flex-col items-center justify-center min-h-[500px] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className='text-center max-w-2xl mx-auto'>
+            {/* Icon Animation */}
+            <div className='mb-8 flex justify-center'>
+              <div className='relative'>
+                <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-2xl opacity-30 animate-pulse'></div>
+                <div className='relative bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-full border-2 border-cyan-500/50'>
+                  <FaCode className='text-6xl text-cyan-400' />
                 </div>
               </div>
             </div>
-          ))
-        }
-      </div>
+
+            {/* Coming Soon Message */}
+            <h3 className='text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>
+              Projects Coming Soon!
+            </h3>
+            <p className='text-gray-300 text-lg md:text-xl mb-6 leading-relaxed'>
+              I'm currently working on exciting personal projects that showcase my skills in 
+              React, Django, and modern web development. Check back soon to see what I've been building!
+            </p>
+            <p className='text-gray-400 text-base mb-8'>
+              In the meantime, feel free to explore my GitHub profile to see my learning journey and contributions.
+            </p>
+
+            {/* Action Buttons */}
+            <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
+              <a 
+                href="https://github.com/GeekKwame" 
+                target="_blank"
+                rel="noreferrer"
+                className='group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50'
+              >
+                <FaGithub /> View My GitHub
+              </a>
+              <Link 
+                to='contact' 
+                smooth 
+                duration={500}
+                className='group flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 cursor-pointer'
+              >
+                <FaRocket /> Get In Touch
+              </Link>
+            </div>
+
+            {/* Tech Stack Preview */}
+            <div className='mt-12 pt-8 border-t border-gray-700'>
+              <p className='text-gray-400 text-sm mb-4'>Technologies I'm working with:</p>
+              <div className='flex flex-wrap justify-center gap-3'>
+                {['React', 'Django', 'Python', 'JavaScript', 'Tailwind CSS', 'REST APIs'].map((tech, index) => (
+                  <span 
+                    key={index}
+                    className='px-4 py-2 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-cyan-500/30 rounded-lg text-cyan-400 text-sm font-medium hover:border-cyan-500 hover:bg-cyan-500/10 transition-all duration-300'
+                    style={{ transitionDelay: `${index * 50}ms` }}
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
