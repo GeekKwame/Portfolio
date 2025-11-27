@@ -32,13 +32,13 @@ const Home = () => {
         <div className='absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse' style={{animationDelay: '1s'}}></div>
       </div>
       
-      <div className='flex flex-col justify-center items-start min-h-screen mx-auto w-full max-w-screen-lg text-white px-4 md:px-8 lg:flex-row lg:justify-between relative z-10 py-20 lg:py-0'>
-        <div className='justify-center w-full lg:max-w-xl animate-fade-in'>
-          <div className='mb-4 w-full'>
+      <div className='flex flex-col justify-center items-start min-h-screen mx-auto w-full max-w-screen-xl text-white px-4 md:px-8 lg:flex-row lg:justify-between relative z-10 py-20 lg:py-0'>
+        <div className='justify-center w-full lg:max-w-2xl animate-fade-in overflow-visible pr-2'>
+          <div className='mb-4 w-full overflow-visible'>
             <h1 className='text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-2'>
               Hi There, <span className='animate-bounce inline-block'>👋</span>
             </h1>
-            <h2 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight'>
+            <h2 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight break-words'>
               <span className='text-white'>I'm a </span>
               <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>
                 {displayText || 'Full Stack Developer'}
@@ -54,9 +54,9 @@ const Home = () => {
             delivering exceptional user experiences that drive business value.
           </p>
           
-          <div className='flex flex-col sm:flex-row gap-3 sm:gap-4 flex-wrap'>
+          <div className='flex flex-col sm:flex-row gap-3 sm:gap-3 md:gap-4 flex-wrap w-full'>
             <Link 
-              className='group w-full sm:w-fit px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 cursor-pointer text-base sm:text-lg font-semibold hover:from-blue-500 hover:to-cyan-500 duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50 transition-all' 
+              className='group w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 cursor-pointer text-base sm:text-lg font-semibold hover:from-blue-500 hover:to-cyan-500 duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50 transition-all whitespace-nowrap' 
               to='portfolio' 
               smooth 
               duration={500}
@@ -65,7 +65,7 @@ const Home = () => {
               <MdOutlineArrowForwardIos className='group-hover:translate-x-1 ml-2 duration-200'/>
             </Link>
             <Link 
-              className='group w-full sm:w-fit px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-cyan-500 text-cyan-400 cursor-pointer text-base sm:text-lg font-semibold hover:bg-cyan-500 hover:text-white duration-300 hover:scale-105 transition-all' 
+              className='group w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-cyan-500 text-cyan-400 cursor-pointer text-base sm:text-lg font-semibold hover:bg-cyan-500 hover:text-white duration-300 hover:scale-105 transition-all whitespace-nowrap' 
               to='contact' 
               smooth 
               duration={500}
@@ -76,7 +76,7 @@ const Home = () => {
             <a 
               href="/resume.pdf" 
               download="Edmund_Blessing_Resume.pdf"
-              className='group w-full sm:w-fit px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-gray-500 text-gray-300 cursor-pointer text-base sm:text-lg font-semibold hover:bg-gray-700 hover:text-white hover:border-gray-400 duration-300 hover:scale-105 transition-all'
+              className='group w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-gray-500 text-gray-300 cursor-pointer text-base sm:text-lg font-semibold hover:bg-gray-700 hover:text-white hover:border-gray-400 duration-300 hover:scale-105 transition-all whitespace-nowrap'
             >
               Download Resume
               <MdOutlineArrowForwardIos className='group-hover:translate-x-1 ml-2 duration-200'/>
