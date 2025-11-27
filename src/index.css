@@ -8,10 +8,17 @@
   html {
     font-family: 'Raleway', sans-serif;
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   
   body {
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  * {
+    box-sizing: border-box;
   }
 }
 

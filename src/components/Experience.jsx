@@ -78,35 +78,35 @@ function Experience() {
     },
   ]
   return (
-  <div name="experience" ref={sectionRef} className='bg-gradient-to-b from-gray-800 to-stone-800 w-full min-h-screen py-20'>
-      <div className='max-w-screen-lg mx-auto p-4 flex flex-col justify-center w-full h-full text-white'>
-        <div className={`mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <p className='text-4xl md:text-5xl font-bold mb-4'>
+  <div name="experience" ref={sectionRef} className='bg-gradient-to-b from-gray-800 to-stone-800 w-full min-h-screen py-12 md:py-20'>
+      <div className='max-w-screen-lg mx-auto p-4 sm:p-6 flex flex-col justify-center w-full h-full text-white'>
+        <div className={`mb-8 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4'>
             Experience
           </p>
-          <p className='py-4 text-gray-300 text-lg'>Technologies I work with to build modern, scalable applications</p>
+          <p className='py-2 md:py-4 text-gray-300 text-base sm:text-lg'>Technologies I work with to build modern, scalable applications</p>
         </div>
-        <div className='w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 text-center px-4 sm:px-0'>
+        <div className='w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 text-center'>
         {
           experencies.map(({id,src,name,style,level}, index)=>(
             <div 
               key={id}
-              className={`group shadow-md hover:shadow-xl hover:scale-110 duration-500 rounded-xl p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 backdrop-blur-sm border border-gray-600/50 transition-all ${style} ${
+              className={`group shadow-md hover:shadow-xl hover:scale-110 duration-500 rounded-xl p-4 sm:p-5 md:p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 backdrop-blur-sm border border-gray-600/50 transition-all ${style} ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-            <div className='flex justify-center items-center mb-4'>
-              <img src={src} alt={name} className='mx-auto w-16 h-16 md:w-20 md:h-20 object-contain group-hover:scale-110 transition-transform duration-300' />
+            <div className='flex justify-center items-center mb-3 md:mb-4'>
+              <img src={src} alt={name} className='mx-auto w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain group-hover:scale-110 transition-transform duration-300' />
             </div>
-            <p className='mt-3 text-sm md:text-base font-semibold'>{name}</p>
-            <div className='mt-4 w-full bg-gray-700 rounded-full h-2 overflow-hidden'>
+            <p className='mt-2 md:mt-3 text-xs sm:text-sm md:text-base font-semibold'>{name}</p>
+            <div className='mt-3 md:mt-4 w-full bg-gray-700 rounded-full h-1.5 md:h-2 overflow-hidden'>
               <div 
                 className={`h-full bg-gradient-to-r ${getGradientClass(style)} transition-all duration-1000 ease-out`}
                 style={{ width: isVisible ? `${level}%` : '0%', transitionDelay: `${(index * 100) + 300}ms` }}
               ></div>
             </div>
-            <p className='text-xs text-gray-400 mt-2'>{level}%</p>
+            <p className='text-xs text-gray-400 mt-1 md:mt-2'>{level}%</p>
           </div>
           ))
         }

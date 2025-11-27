@@ -28,7 +28,7 @@ function NavBar() {
       scrolled ? 'bg-stone-900/95 backdrop-blur-md shadow-lg' : 'bg-stone-900'
     }`}>
       <Link to="home" smooth duration={500} className='cursor-pointer'>
-        <h1 className='text-2xl md:text-4xl font-header bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300'>
+        <h1 className='text-lg sm:text-xl md:text-2xl lg:text-4xl font-header bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 break-words'>
           EDMUND BLESSING
         </h1>
       </Link>

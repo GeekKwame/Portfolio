@@ -87,20 +87,20 @@ function Contact() {
   };
 
   return (
-    <div name="contact" ref={sectionRef} className='bg-gradient-to-b from-stone-800 to-gray-800 min-h-screen w-full text-white py-20'>
-      <div className='flex flex-col p-4 justify-center max-w-screen-lg mx-auto h-full'>
-        <div className={`mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <p className='text-4xl md:text-5xl font-bold mb-4'>
+    <div name="contact" ref={sectionRef} className='bg-gradient-to-b from-stone-800 to-gray-800 min-h-screen w-full text-white py-12 md:py-20'>
+      <div className='flex flex-col p-4 sm:p-6 justify-center max-w-screen-lg mx-auto h-full'>
+        <div className={`mb-8 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4'>
             Contact
           </p>
-          <p className='py-5 text-gray-300 text-lg'>Have a project in mind or want to collaborate? I'd love to hear from you!</p>
+          <p className='py-3 md:py-5 text-gray-300 text-base sm:text-lg'>Have a project in mind or want to collaborate? I'd love to hear from you!</p>
           <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
         </div>
         
         <div className={`flex justify-center items-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <form 
             onSubmit={handleSubmit}
-            className='flex flex-col w-full md:w-2/3 lg:w-1/2 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm p-8 rounded-xl border border-gray-700/50 shadow-2xl'
+            className='flex flex-col w-full md:w-2/3 lg:w-1/2 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-xl border border-gray-700/50 shadow-2xl'
           >
             <div className='mb-4'>
               <label htmlFor='name' className='block text-sm font-semibold mb-2 text-cyan-400'>

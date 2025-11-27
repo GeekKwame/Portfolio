@@ -32,18 +32,18 @@ const Home = () => {
         <div className='absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse' style={{animationDelay: '1s'}}></div>
       </div>
       
-      <div className='flex flex-col justify-center items-center h-full mx-auto w-screen md:max-w-screen-lg text-white md:ml-0 lg:flex-row md:justify-between relative z-10'>
-        <div className='justify-center mt-24 lg:ml-20 ml-3 md:mt-44 lg:mt-20 w-auto animate-fade-in'>
+      <div className='flex flex-col justify-center items-center h-full mx-auto w-full max-w-screen-lg text-white px-4 md:px-8 lg:flex-row lg:justify-between relative z-10'>
+        <div className='justify-center mt-20 md:mt-24 lg:ml-20 lg:mt-20 w-full lg:w-auto animate-fade-in'>
           <div className='mb-4'>
-            <h1 className='text-2xl md:text-3xl mb-2'>
+            <h1 className='text-xl sm:text-2xl md:text-3xl mb-2'>
               Hi There, <span className='animate-bounce inline-block'>👋</span>
             </h1>
-            <h2 className='text-4xl sm:text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>
+            <h2 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent break-words'>
               I'm a {displayText}
               {isTyping && <span className='animate-pulse'>|</span>}
             </h2>
           </div>
-          <p className='text-gray-300 text-base md:text-lg mb-6 max-w-lg leading-relaxed'>
+          <p className='text-gray-300 text-sm sm:text-base md:text-lg mb-6 max-w-lg leading-relaxed'>
             I'm a passionate Full Stack Developer specializing in building scalable, 
             modern web applications. With expertise in React, Django, and Python, 
             I transform complex ideas into elegant, user-friendly digital solutions. 
@@ -51,9 +51,9 @@ const Home = () => {
             delivering exceptional user experiences that drive business value.
           </p>
           
-          <div className='flex flex-col sm:flex-row gap-4'>
+          <div className='flex flex-col sm:flex-row gap-3 sm:gap-4 flex-wrap'>
             <Link 
-              className='group w-fit px-6 py-3 flex items-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 cursor-pointer text-lg font-semibold hover:from-blue-500 hover:to-cyan-500 duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50 transition-all' 
+              className='group w-full sm:w-fit px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 cursor-pointer text-base sm:text-lg font-semibold hover:from-blue-500 hover:to-cyan-500 duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50 transition-all' 
               to='portfolio' 
               smooth 
               duration={500}
@@ -62,7 +62,7 @@ const Home = () => {
               <MdOutlineArrowForwardIos className='group-hover:translate-x-1 ml-2 duration-200'/>
             </Link>
             <Link 
-              className='group w-fit px-6 py-3 flex items-center rounded-lg bg-transparent border-2 border-cyan-500 text-cyan-400 cursor-pointer text-lg font-semibold hover:bg-cyan-500 hover:text-white duration-300 hover:scale-105 transition-all' 
+              className='group w-full sm:w-fit px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-cyan-500 text-cyan-400 cursor-pointer text-base sm:text-lg font-semibold hover:bg-cyan-500 hover:text-white duration-300 hover:scale-105 transition-all' 
               to='contact' 
               smooth 
               duration={500}
@@ -73,7 +73,7 @@ const Home = () => {
             <a 
               href="/resume.pdf" 
               download="Edmund_Blessing_Resume.pdf"
-              className='group w-fit px-6 py-3 flex items-center rounded-lg bg-transparent border-2 border-gray-500 text-gray-300 cursor-pointer text-lg font-semibold hover:bg-gray-700 hover:text-white hover:border-gray-400 duration-300 hover:scale-105 transition-all'
+              className='group w-full sm:w-fit px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-gray-500 text-gray-300 cursor-pointer text-base sm:text-lg font-semibold hover:bg-gray-700 hover:text-white hover:border-gray-400 duration-300 hover:scale-105 transition-all'
             >
               Download Resume
               <MdOutlineArrowForwardIos className='group-hover:translate-x-1 ml-2 duration-200'/>
@@ -81,11 +81,11 @@ const Home = () => {
           </div>
         </div>
         
-        <div className='hidden md:flex animate-float'>
+        <div className='hidden md:flex animate-float mt-8 lg:mt-0'>
           <Player autoplay loop src={laptop} style={{width:'500px',height:"500px"}} />
         </div>
-        <div className='flex md:hidden mr-16 animate-float'>
-          <Player autoplay loop src={laptop} style={{width:'300px',height:"300px"}} />
+        <div className='flex md:hidden animate-float mt-6'>
+          <Player autoplay loop src={laptop} style={{width:'250px',height:"250px"}} />
         </div>
       </div>
     </div>
