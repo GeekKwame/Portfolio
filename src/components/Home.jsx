@@ -32,18 +32,18 @@ const Home = () => {
         <div className='absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse' style={{animationDelay: '1s'}}></div>
       </div>
       
-      <div className='flex flex-col justify-center items-start min-h-screen mx-auto w-full max-w-screen-xl text-white px-4 md:px-8 lg:flex-row lg:justify-between relative z-10 py-20 lg:py-0'>
-        <div className='justify-center w-full lg:max-w-2xl animate-fade-in overflow-visible pr-2'>
-          <div className='mb-4 w-full overflow-visible'>
+      <div className='flex flex-col justify-center items-start min-h-screen mx-auto w-full max-w-screen-xl text-white px-4 md:px-8 lg:flex-row lg:items-center lg:justify-between relative z-10 py-20 lg:py-0'>
+        <div className='justify-center w-full lg:w-auto lg:flex-1 lg:min-w-0 animate-fade-in'>
+          <div className='mb-4 w-full'>
             <h1 className='text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-2'>
               Hi There, <span className='animate-bounce inline-block'>👋</span>
             </h1>
-            <h2 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight break-words'>
-              <span className='text-white'>I'm a </span>
-              <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>
+            <h2 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight w-full'>
+              <span className='text-white block sm:inline'>I'm a </span>
+              <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent block sm:inline'>
                 {displayText || 'Full Stack Developer'}
               </span>
-              {isTyping && <span className='animate-pulse text-cyan-400 ml-1'>|</span>}
+              {isTyping && <span className='animate-pulse text-cyan-400 ml-1 inline-block'>|</span>}
             </h2>
           </div>
           <p className='text-gray-300 text-sm sm:text-base md:text-lg mb-6 max-w-lg leading-relaxed w-full'>
@@ -84,7 +84,7 @@ const Home = () => {
           </div>
         </div>
         
-        <div className='hidden lg:flex animate-float mt-8 lg:mt-0 lg:flex-shrink-0 lg:ml-8'>
+        <div className='hidden lg:flex animate-float mt-8 lg:mt-0 lg:flex-shrink-0 lg:ml-8 xl:ml-12'>
           <Player autoplay loop src={laptop} style={{width:'500px',height:"500px", maxWidth:'100%'}} />
         </div>
         <div className='flex lg:hidden animate-float mt-4 sm:mt-6 flex-shrink-0 justify-center w-full'>
