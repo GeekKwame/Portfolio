@@ -33,9 +33,9 @@ const Home = () => {
       </div>
       
       <div className='flex flex-col justify-center items-start min-h-screen mx-auto w-full max-w-screen-xl text-white px-4 md:px-8 lg:flex-row lg:items-center lg:justify-between relative z-10 py-20 lg:py-0'>
-        <div className='justify-center w-full lg:w-auto lg:flex-1 lg:min-w-0 animate-fade-in'>
+        <div className='justify-center w-full lg:w-auto lg:flex-1 lg:min-w-0 animate-fade-in relative z-20'>
           <div className='mb-4 w-full'>
-            <h1 className='text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-2'>
+            <h1 className='text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-2 text-white relative z-10'>
               Hi There, <span className='animate-bounce inline-block'>👋</span>
             </h1>
             <h2 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight w-full'>
