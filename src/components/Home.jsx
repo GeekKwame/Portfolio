@@ -32,8 +32,8 @@ const Home = () => {
         <div className='absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse' style={{animationDelay: '1s'}}></div>
       </div>
       
-      <div className='flex flex-col justify-center items-start min-h-screen mx-auto w-full max-w-screen-xl text-white px-4 md:px-8 lg:flex-row lg:items-center lg:justify-between relative z-10 py-20 lg:py-0'>
-        <div className='justify-center w-full lg:w-auto lg:flex-1 lg:min-w-0 animate-fade-in relative z-20'>
+      <div className='flex flex-col justify-start lg:justify-center items-start min-h-screen mx-auto w-full max-w-screen-xl text-white px-4 md:px-8 lg:flex-row lg:items-center lg:justify-between relative z-10 pt-24 pb-20 lg:py-0'>
+        <div className='justify-center w-full lg:w-auto lg:flex-1 lg:min-w-0 animate-fade-in relative z-20 mt-4 lg:mt-0'>
           <div className='mb-4 w-full'>
             <h1 className='text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-2 text-white relative z-10'>
               Hi There, <span className='animate-bounce inline-block'>👋</span>
