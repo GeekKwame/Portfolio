@@ -71,12 +71,15 @@ function About() {
             {skills.map((skill, index) => (
               <div 
                 key={index}
-                className='p-4 md:p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-600/50 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-105'
+                className='group relative p-4 md:p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-600/50 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 hover:scale-105 overflow-hidden'
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className='text-2xl md:text-3xl text-cyan-400 mb-2 md:mb-3'>{skill.icon}</div>
-                <h3 className='text-base md:text-lg font-bold mb-1 md:mb-2'>{skill.title}</h3>
-                <p className='text-xs sm:text-sm text-gray-400'>{skill.desc}</p>
+                <div className='absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
+                <div className='relative z-10'>
+                  <div className='text-2xl md:text-3xl text-cyan-400 mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300'>{skill.icon}</div>
+                  <h3 className='text-base md:text-lg font-bold mb-1 md:mb-2 group-hover:text-cyan-400 transition-colors duration-300'>{skill.title}</h3>
+                  <p className='text-xs sm:text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300'>{skill.desc}</p>
+                </div>
               </div>
             ))}
           </div>

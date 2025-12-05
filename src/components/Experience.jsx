@@ -91,22 +91,27 @@ function Experience() {
           experencies.map(({id,src,name,style,level}, index)=>(
             <div 
               key={id}
-              className={`group shadow-md hover:shadow-xl hover:scale-110 duration-500 rounded-xl p-4 sm:p-5 md:p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 backdrop-blur-sm border border-gray-600/50 transition-all ${style} ${
+              className={`group relative shadow-md hover:shadow-2xl hover:scale-110 duration-500 rounded-xl p-4 sm:p-5 md:p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 backdrop-blur-sm border border-gray-600/50 transition-all overflow-hidden ${style} ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-            <div className='flex justify-center items-center mb-3 md:mb-4'>
-              <img src={src} alt={name} className='mx-auto w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain group-hover:scale-110 transition-transform duration-300' />
+              <div className='absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
+            <div className='relative z-10 flex justify-center items-center mb-3 md:mb-4'>
+              <div className='p-2 rounded-lg bg-gray-800/50 group-hover:bg-gray-700/50 transition-colors duration-300'>
+                <img src={src} alt={name} className='mx-auto w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain group-hover:scale-110 group-hover:rotate-3 transition-all duration-300' />
+              </div>
             </div>
-            <p className='mt-2 md:mt-3 text-xs sm:text-sm md:text-base font-semibold'>{name}</p>
-            <div className='mt-3 md:mt-4 w-full bg-gray-700 rounded-full h-1.5 md:h-2 overflow-hidden'>
+            <p className='relative z-10 mt-2 md:mt-3 text-xs sm:text-sm md:text-base font-semibold group-hover:text-cyan-400 transition-colors duration-300'>{name}</p>
+            <div className='relative z-10 mt-3 md:mt-4 w-full bg-gray-700 rounded-full h-1.5 md:h-2 overflow-hidden shadow-inner'>
               <div 
-                className={`h-full bg-gradient-to-r ${getGradientClass(style)} transition-all duration-1000 ease-out`}
+                className={`h-full bg-gradient-to-r ${getGradientClass(style)} transition-all duration-1000 ease-out shadow-lg`}
                 style={{ width: isVisible ? `${level}%` : '0%', transitionDelay: `${(index * 100) + 300}ms` }}
-              ></div>
+              >
+                <div className='h-full w-full bg-white/20 animate-shimmer'></div>
+              </div>
             </div>
-            <p className='text-xs text-gray-400 mt-1 md:mt-2'>{level}%</p>
+            <p className='relative z-10 text-xs text-gray-400 mt-1 md:mt-2 group-hover:text-cyan-400 transition-colors duration-300'>{level}%</p>
           </div>
           ))
         }

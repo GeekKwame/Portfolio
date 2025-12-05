@@ -42,10 +42,10 @@ function Portfolio() {
           <div className='text-center max-w-2xl mx-auto px-4'>
             {/* Icon Animation */}
             <div className='mb-6 md:mb-8 flex justify-center'>
-              <div className='relative'>
-                <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-2xl opacity-30 animate-pulse'></div>
-                <div className='relative bg-gradient-to-br from-gray-800 to-gray-900 p-6 md:p-8 rounded-full border-2 border-cyan-500/50'>
-                  <FaCode className='text-4xl md:text-6xl text-cyan-400' />
+              <div className='relative group'>
+                <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-2xl opacity-30 animate-pulse group-hover:opacity-50 transition-opacity duration-300'></div>
+                <div className='relative bg-gradient-to-br from-gray-800 to-gray-900 p-6 md:p-8 rounded-full border-2 border-cyan-500/50 group-hover:border-cyan-500 group-hover:scale-110 transition-all duration-300'>
+                  <FaCode className='text-4xl md:text-6xl text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300' />
                 </div>
               </div>
             </div>
@@ -89,10 +89,11 @@ function Portfolio() {
                 {['React', 'Django', 'Python', 'JavaScript', 'Tailwind CSS', 'REST APIs'].map((tech, index) => (
                   <span 
                     key={index}
-                    className='px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-cyan-500/30 rounded-lg text-cyan-400 text-xs sm:text-sm font-medium hover:border-cyan-500 hover:bg-cyan-500/10 transition-all duration-300'
+                    className='group relative px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-cyan-500/30 rounded-lg text-cyan-400 text-xs sm:text-sm font-medium hover:border-cyan-500 hover:bg-cyan-500/10 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 cursor-default'
                     style={{ transitionDelay: `${index * 50}ms` }}
                   >
-                    {tech}
+                    <span className='relative z-10'>{tech}</span>
+                    <span className='absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
                   </span>
                 ))}
               </div>

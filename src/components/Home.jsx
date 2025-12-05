@@ -26,10 +26,13 @@ const Home = () => {
 
   return (
     <div name="home" className='min-h-screen w-full bg-gradient-to-b from-stone-900 via-gray-800 to-stone-900 relative overflow-x-hidden'>
-      {/* Animated background elements */}
+      {/* Enhanced animated background elements */}
       <div className='absolute inset-0 overflow-hidden pointer-events-none'>
         <div className='absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse'></div>
         <div className='absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse' style={{animationDelay: '1s'}}></div>
+        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl animate-pulse' style={{animationDelay: '2s'}}></div>
+        {/* Grid pattern overlay */}
+        <div className='absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]'></div>
       </div>
       
       <div className='flex flex-col justify-start lg:justify-center items-start min-h-screen mx-auto w-full max-w-screen-xl text-white px-4 md:px-8 lg:flex-row lg:items-center lg:justify-between relative z-10 pt-24 pb-20 lg:py-0'>
@@ -56,30 +59,39 @@ const Home = () => {
           
           <div className='flex flex-col sm:flex-row gap-3 sm:gap-3 md:gap-4 flex-wrap w-full'>
             <Link 
-              className='group w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 cursor-pointer text-base sm:text-lg font-semibold hover:from-blue-500 hover:to-cyan-500 duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50 transition-all whitespace-nowrap' 
+              className='group relative w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 cursor-pointer text-base sm:text-lg font-semibold hover:from-blue-500 hover:to-cyan-500 duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50 transition-all whitespace-nowrap overflow-hidden focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-800' 
               to='portfolio' 
               smooth 
               duration={500}
             >
-              View Portfolio 
-              <MdOutlineArrowForwardIos className='group-hover:translate-x-1 ml-2 duration-200'/>
+              <span className='relative z-10 flex items-center'>
+                View Portfolio 
+                <MdOutlineArrowForwardIos className='group-hover:translate-x-1 ml-2 duration-200'/>
+              </span>
+              <span className='absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
             </Link>
             <Link 
-              className='group w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-cyan-500 text-cyan-400 cursor-pointer text-base sm:text-lg font-semibold hover:bg-cyan-500 hover:text-white duration-300 hover:scale-105 transition-all whitespace-nowrap' 
+              className='group relative w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-cyan-500 text-cyan-400 cursor-pointer text-base sm:text-lg font-semibold hover:bg-cyan-500 hover:text-white duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30 transition-all whitespace-nowrap overflow-hidden focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-800' 
               to='contact' 
               smooth 
               duration={500}
             >
-              Get In Touch
-              <MdOutlineArrowForwardIos className='group-hover:translate-x-1 ml-2 duration-200'/>
+              <span className='relative z-10 flex items-center'>
+                Get In Touch
+                <MdOutlineArrowForwardIos className='group-hover:translate-x-1 ml-2 duration-200'/>
+              </span>
+              <span className='absolute inset-0 bg-cyan-500/10 scale-0 group-hover:scale-100 transition-transform duration-300 origin-center rounded-lg'></span>
             </Link>
             <a 
               href="/resume.pdf" 
               download="Edmund_Blessing_Resume.pdf"
-              className='group w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-gray-500 text-gray-300 cursor-pointer text-base sm:text-lg font-semibold hover:bg-gray-700 hover:text-white hover:border-gray-400 duration-300 hover:scale-105 transition-all whitespace-nowrap'
+              className='group relative w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-gray-500 text-gray-300 cursor-pointer text-base sm:text-lg font-semibold hover:bg-gray-700 hover:text-white hover:border-gray-400 hover:shadow-lg hover:shadow-gray-500/20 duration-300 hover:scale-105 transition-all whitespace-nowrap overflow-hidden focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-800'
             >
-              Download Resume
-              <MdOutlineArrowForwardIos className='group-hover:translate-x-1 ml-2 duration-200'/>
+              <span className='relative z-10 flex items-center'>
+                Download Resume
+                <MdOutlineArrowForwardIos className='group-hover:translate-x-1 ml-2 duration-200'/>
+              </span>
+              <span className='absolute inset-0 bg-gray-700/50 scale-0 group-hover:scale-100 transition-transform duration-300 origin-center rounded-lg'></span>
             </a>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { FaPaperPlane, FaCheckCircle } from 'react-icons/fa'
+import { FaPaperPlane, FaCheckCircle, FaSpinner } from 'react-icons/fa'
 
 function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -46,8 +46,15 @@ function Contact() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+    // Real-time validation for email
+    if (name === 'email' && value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setErrors(prev => ({ ...prev, email: 'Please enter a valid email' }));
+    } else if (name === 'email' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setErrors(prev => ({ ...prev, email: '' }));
     }
   };
 
@@ -100,28 +107,35 @@ function Contact() {
         <div className={`flex justify-center items-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <form 
             onSubmit={handleSubmit}
-            className='flex flex-col w-full md:w-2/3 lg:w-1/2 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-xl border border-gray-700/50 shadow-2xl'
+            className='flex flex-col w-full md:w-2/3 lg:w-1/2 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-xl border border-gray-700/50 shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300'
           >
             <div className='mb-4'>
               <label htmlFor='name' className='block text-sm font-semibold mb-2 text-cyan-400'>
-                Name
+                Name <span className='text-red-400'>*</span>
               </label>
               <input 
                 id='name'
                 name='name' 
                 value={formData.name}
                 onChange={handleChange}
-                className={`w-full bg-gray-900/50 p-3 rounded-lg border-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all ${
-                  errors.name ? 'border-red-500' : 'border-gray-600 focus:border-cyan-500'
+                onBlur={() => {
+                  if (!formData.name.trim()) {
+                    setErrors(prev => ({ ...prev, name: 'Name is required' }));
+                  }
+                }}
+                className={`w-full bg-gray-900/50 p-3 rounded-lg border-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-gray-500 ${
+                  errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-600 focus:border-cyan-500'
                 }`}
                 placeholder='Enter your name'
+                aria-invalid={errors.name ? 'true' : 'false'}
+                aria-describedby={errors.name ? 'name-error' : undefined}
               />
-              {errors.name && <p className='text-red-400 text-sm mt-1'>{errors.name}</p>}
+              {errors.name && <p id="name-error" className='text-red-400 text-sm mt-1 animate-fade-in' role="alert">{errors.name}</p>}
             </div>
 
             <div className='mb-4'>
               <label htmlFor='email' className='block text-sm font-semibold mb-2 text-cyan-400'>
-                Email
+                Email <span className='text-red-400'>*</span>
               </label>
               <input 
                 id='email'
@@ -129,45 +143,74 @@ function Contact() {
                 type='email'
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full bg-gray-900/50 p-3 rounded-lg border-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all ${
-                  errors.email ? 'border-red-500' : 'border-gray-600 focus:border-cyan-500'
+                onBlur={() => {
+                  if (!formData.email.trim()) {
+                    setErrors(prev => ({ ...prev, email: 'Email is required' }));
+                  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+                    setErrors(prev => ({ ...prev, email: 'Please enter a valid email' }));
+                  }
+                }}
+                className={`w-full bg-gray-900/50 p-3 rounded-lg border-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-gray-500 ${
+                  errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-600 focus:border-cyan-500'
                 }`}
                 placeholder='Enter your email'
+                aria-invalid={errors.email ? 'true' : 'false'}
+                aria-describedby={errors.email ? 'email-error' : undefined}
               />
-              {errors.email && <p className='text-red-400 text-sm mt-1'>{errors.email}</p>}
+              {errors.email && <p id="email-error" className='text-red-400 text-sm mt-1 animate-fade-in' role="alert">{errors.email}</p>}
             </div>
 
             <div className='mb-6'>
-              <label htmlFor='message' className='block text-sm font-semibold mb-2 text-cyan-400'>
-                Message
-              </label>
+              <div className='flex justify-between items-center mb-2'>
+                <label htmlFor='message' className='block text-sm font-semibold text-cyan-400'>
+                  Message <span className='text-red-400'>*</span>
+                </label>
+                <span className={`text-xs ${formData.message.length > 500 ? 'text-red-400' : 'text-gray-400'}`}>
+                  {formData.message.length}/1000
+                </span>
+              </div>
               <textarea 
                 id='message'
                 rows={8} 
                 name='message' 
                 value={formData.message}
                 onChange={handleChange}
-                className={`w-full bg-gray-900/50 p-3 rounded-lg border-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all resize-none ${
-                  errors.message ? 'border-red-500' : 'border-gray-600 focus:border-cyan-500'
+                onBlur={() => {
+                  if (!formData.message.trim()) {
+                    setErrors(prev => ({ ...prev, message: 'Message is required' }));
+                  }
+                }}
+                maxLength={1000}
+                className={`w-full bg-gray-900/50 p-3 rounded-lg border-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all resize-none hover:border-gray-500 ${
+                  errors.message ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-600 focus:border-cyan-500'
                 }`}
-                placeholder='Enter your message'
+                placeholder='Enter your message (max 1000 characters)'
+                aria-invalid={errors.message ? 'true' : 'false'}
+                aria-describedby={errors.message ? 'message-error' : undefined}
               />
-              {errors.message && <p className='text-red-400 text-sm mt-1'>{errors.message}</p>}
+              {errors.message && <p id="message-error" className='text-red-400 text-sm mt-1 animate-fade-in' role="alert">{errors.message}</p>}
             </div>
 
             <button 
               type='submit'
               disabled={isSubmitting || isSubmitted}
-              className={`bg-gradient-to-r from-cyan-500 to-blue-500 py-3 px-6 mx-auto flex items-center justify-center gap-2 hover:scale-105 hover:from-blue-500 hover:to-cyan-500 duration-300 rounded-lg text-white font-semibold shadow-lg hover:shadow-cyan-500/50 transition-all ${
-                isSubmitted ? 'bg-green-500 hover:bg-green-500' : ''
+              className={`relative py-3 px-6 mx-auto flex items-center justify-center gap-2 hover:scale-105 duration-300 rounded-lg text-white font-semibold shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-800 ${
+                isSubmitted 
+                  ? 'bg-green-500 hover:bg-green-600 hover:shadow-green-500/50' 
+                  : isSubmitting
+                  ? 'bg-gray-600 cursor-not-allowed opacity-70'
+                  : 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 hover:shadow-cyan-500/50'
               }`}
+              aria-busy={isSubmitting}
             >
               {isSubmitted ? (
                 <>
-                  <FaCheckCircle /> Message Sent Successfully!
+                  <FaCheckCircle className='animate-bounce' /> Message Sent Successfully!
                 </>
               ) : isSubmitting ? (
-                'Sending...'
+                <>
+                  <FaSpinner className='animate-spin' /> Sending...
+                </>
               ) : (
                 <>
                   <FaPaperPlane /> Send Message

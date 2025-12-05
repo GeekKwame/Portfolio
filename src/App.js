@@ -8,10 +8,12 @@ import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import ScrollProgress from "./components/ScrollProgress";
 
 function App() {
   return (
     <div className="App">
+     <ScrollProgress/>
      <NavBar/>
      <Home/>
      <SocialLinks/>
