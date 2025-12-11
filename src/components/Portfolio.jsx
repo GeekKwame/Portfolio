@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FaCode, FaRocket, FaGithub } from 'react-icons/fa'
-import { Link } from 'react-scroll'
+import { FaExternalLinkAlt, FaGithub, FaStickyNote } from 'react-icons/fa'
+import notesAppImage from "../assets/images/notes-app.png"
 
 function Portfolio() {
   const [isVisible, setIsVisible] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -27,8 +28,20 @@ function Portfolio() {
     };
   }, []);
 
+  const portfolios = [
+    {
+      id: 1,
+      src: notesAppImage,
+      title: "Notes App",
+      description: "A full-stack notes application built with Django REST Framework and React. Features include creating, reading, updating, and deleting notes with a clean, intuitive dark-themed interface. Includes real-time updates, auto-save functionality, and responsive design.",
+      link1: "",
+      link2: "https://github.com/GeekKwame/Notes-App",
+      tags: ["React", "Django", "REST API", "Python", "Full Stack"]
+    }
+  ];
+
   return (
-    <div name="portfolio" ref={sectionRef} className='bg-gradient-to-b from-stone-900 to-gray-800 w-full min-h-screen py-20'>
+    <div name="portfolio" ref={sectionRef} className='bg-gradient-to-b from-stone-900 to-gray-800 w-full min-h-screen py-12 md:py-20'>
       <div className='max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full'>
         <div className={`mb-8 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white'>
@@ -38,67 +51,71 @@ function Portfolio() {
           <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
         </div>
         
-        <div className={`flex flex-col items-center justify-center min-h-[400px] md:min-h-[500px] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className='text-center max-w-2xl mx-auto px-4'>
-            {/* Icon Animation */}
-            <div className='mb-6 md:mb-8 flex justify-center'>
-              <div className='relative group'>
-                <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-2xl opacity-30 animate-pulse group-hover:opacity-50 transition-opacity duration-300'></div>
-                <div className='relative bg-gradient-to-br from-gray-800 to-gray-900 p-6 md:p-8 rounded-full border-2 border-cyan-500/50 group-hover:border-cyan-500 group-hover:scale-110 transition-all duration-300'>
-                  <FaCode className='text-4xl md:text-6xl text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300' />
+        <div className='grid sm:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8'>
+          {portfolios.map(({id, src, title, description, link1, link2, tags}, index) => (
+            <div 
+              key={id}
+              className={`group relative shadow-xl shadow-gray-900/50 rounded-xl overflow-hidden bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-500 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: `${index * 150}ms` }}
+            >
+              {/* Project Image Area */}
+              <div className='relative overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900'>
+                {imageError || !src ? (
+                  <div className='flex flex-col items-center justify-center p-8 min-h-[300px] md:min-h-[400px]'>
+                    <FaStickyNote className='text-6xl md:text-8xl text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300' />
+                    <p className='text-gray-400 text-sm'>Notes App Screenshot</p>
+                  </div>
+                ) : (
+                  <div className='relative w-full bg-gray-900 p-2 md:p-4'>
+                    <img 
+                      src={src} 
+                      alt={title} 
+                      className='w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-[1.02] duration-500 transition-transform' 
+                      onError={() => setImageError(true)}
+                      style={{ maxHeight: '500px' }}
+                    />
+                  </div>
+                )}
+                <div className='absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none'></div>
+              </div>
+              
+              <div className='p-6'>
+                <h3 className='text-xl md:text-2xl font-bold mb-3 text-white group-hover:text-cyan-400 transition-colors duration-300'>{title}</h3>
+                <p className='text-gray-400 text-sm md:text-base mb-4 leading-relaxed'>{description}</p>
+                
+                <div className='flex flex-wrap gap-2 mb-4'>
+                  {tags.map((tag, i) => (
+                    <span key={i} className='px-2 py-1 bg-cyan-500/20 text-cyan-400 text-xs rounded-md border border-cyan-500/30 group-hover:border-cyan-500/50 transition-colors duration-300'>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                
+                <div className='flex items-center justify-center gap-4'>
+                  {link1 && (
+                    <a 
+                      href={link1} 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className='flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50'
+                    >
+                      <FaExternalLinkAlt /> Demo
+                    </a>
+                  )}
+                  <a 
+                    href={link2} 
+                    target="_blank"
+                    rel="noreferrer"
+                    className='flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 border border-gray-600 hover:border-gray-500'
+                  >
+                    <FaGithub /> View Code
+                  </a>
                 </div>
               </div>
             </div>
-
-            {/* Coming Soon Message */}
-            <h3 className='text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent px-2'>
-              Projects Coming Soon!
-            </h3>
-            <p className='text-gray-300 text-base sm:text-lg md:text-xl mb-4 md:mb-6 leading-relaxed px-2'>
-              I'm currently working on exciting personal projects that showcase my skills in 
-              React, Django, and modern web development. Check back soon to see what I've been building!
-            </p>
-            <p className='text-gray-400 text-sm sm:text-base mb-6 md:mb-8 px-2'>
-              In the meantime, feel free to explore my GitHub profile to see my learning journey and contributions.
-            </p>
-
-            {/* Action Buttons */}
-            <div className='flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 md:mb-0'>
-              <a 
-                href="https://github.com/GeekKwame" 
-                target="_blank"
-                rel="noreferrer"
-                className='group w-full sm:w-auto flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 rounded-lg text-white text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50'
-              >
-                <FaGithub /> View My GitHub
-              </a>
-              <Link 
-                to='contact' 
-                smooth 
-                duration={500}
-                className='group w-full sm:w-auto flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 cursor-pointer'
-              >
-                <FaRocket /> Get In Touch
-              </Link>
-            </div>
-
-            {/* Tech Stack Preview */}
-            <div className='mt-8 md:mt-12 pt-6 md:pt-8 border-t border-gray-700'>
-              <p className='text-gray-400 text-xs sm:text-sm mb-3 md:mb-4'>Technologies I'm working with:</p>
-              <div className='flex flex-wrap justify-center gap-2 sm:gap-3'>
-                {['React', 'Django', 'Python', 'JavaScript', 'Tailwind CSS', 'REST APIs'].map((tech, index) => (
-                  <span 
-                    key={index}
-                    className='group relative px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-cyan-500/30 rounded-lg text-cyan-400 text-xs sm:text-sm font-medium hover:border-cyan-500 hover:bg-cyan-500/10 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 cursor-default'
-                    style={{ transitionDelay: `${index * 50}ms` }}
-                  >
-                    <span className='relative z-10'>{tech}</span>
-                    <span className='absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
