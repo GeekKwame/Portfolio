@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FaExternalLinkAlt, FaGithub, FaStickyNote } from 'react-icons/fa'
+import { FaExternalLinkAlt, FaGithub, FaStickyNote, FaBook } from 'react-icons/fa'
 import notesAppImage from "../assets/images/notes-app.png"
+import booksAppImage from "../assets/images/books-app.png"
 
 function Portfolio() {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,7 +37,20 @@ function Portfolio() {
       description: "A full-stack notes application built with Django REST Framework and React. Features include creating, reading, updating, and deleting notes with a clean, intuitive dark-themed interface. Includes real-time updates, auto-save functionality, and responsive design.",
       link1: "",
       link2: "https://github.com/GeekKwame/Notes-App",
-      tags: ["React", "Django", "REST API", "Python", "Full Stack"]
+      tags: ["React", "Django", "REST API", "Python", "Full Stack"],
+      icon: FaStickyNote,
+      iconText: "Notes App Screenshot"
+    },
+    {
+      id: 2,
+      src: booksAppImage,
+      title: "Book Website",
+      description: "A full-stack book tracker featuring a modern dark UI with a books-themed background. Built with React + Vite frontend and Django REST Framework backend. Supports full CRUD operations: create, list, edit, and delete books with glassmorphism-inspired design and animated accents.",
+      link1: "",
+      link2: "https://github.com/GeekKwame/books-website",
+      tags: ["React", "Vite", "Django", "Django REST Framework", "Python", "Full Stack", "CORS"],
+      icon: FaBook,
+      iconText: "Book Website Screenshot"
     }
   ];
 
@@ -52,7 +66,9 @@ function Portfolio() {
         </div>
         
         <div className='grid sm:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8'>
-          {portfolios.map(({id, src, title, description, link1, link2, tags}, index) => (
+          {portfolios.map(({id, src, title, description, link1, link2, tags, icon: Icon = FaStickyNote, iconText}, index) => {
+            const fallbackIconText = iconText || `${title} Screenshot`;
+            return (
             <div 
               key={id}
               className={`group relative shadow-xl shadow-gray-900/50 rounded-xl overflow-hidden bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-500 ${
@@ -64,8 +80,8 @@ function Portfolio() {
               <div className='relative overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900'>
                 {imageError || !src ? (
                   <div className='flex flex-col items-center justify-center p-8 min-h-[300px] md:min-h-[400px]'>
-                    <FaStickyNote className='text-6xl md:text-8xl text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300' />
-                    <p className='text-gray-400 text-sm'>Notes App Screenshot</p>
+                    <Icon className='text-6xl md:text-8xl text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300' />
+                    <p className='text-gray-400 text-sm'>{fallbackIconText}</p>
                   </div>
                 ) : (
                   <div className='relative w-full bg-gray-900 p-2 md:p-4'>
@@ -104,18 +120,21 @@ function Portfolio() {
                       <FaExternalLinkAlt /> Demo
                     </a>
                   )}
-                  <a 
-                    href={link2} 
-                    target="_blank"
-                    rel="noreferrer"
-                    className='flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 border border-gray-600 hover:border-gray-500'
-                  >
-                    <FaGithub /> View Code
-                  </a>
+                  {link2 && (
+                    <a 
+                      href={link2} 
+                      target="_blank"
+                      rel="noreferrer"
+                      className='flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 border border-gray-600 hover:border-gray-500'
+                    >
+                      <FaGithub /> View Code
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
