@@ -5,8 +5,12 @@ import booksAppImage from "../assets/images/books-app.png"
 
 function Portfolio() {
   const [isVisible, setIsVisible] = useState(false);
-  const [imageError, setImageError] = useState(false);
+  const [imageErrors, setImageErrors] = useState({});
   const sectionRef = useRef(null);
+  
+  const handleImageError = (id) => {
+    setImageErrors(prev => ({ ...prev, [id]: true }));
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -78,7 +82,7 @@ function Portfolio() {
             >
               {/* Project Image Area */}
               <div className='relative overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900'>
-                {imageError || !src ? (
+                {imageErrors[id] || !src ? (
                   <div className='flex flex-col items-center justify-center p-8 min-h-[300px] md:min-h-[400px]'>
                     <Icon className='text-6xl md:text-8xl text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300' />
                     <p className='text-gray-400 text-sm'>{fallbackIconText}</p>
@@ -87,9 +91,11 @@ function Portfolio() {
                   <div className='relative w-full bg-gray-900 p-2 md:p-4'>
                     <img 
                       src={src} 
-                      alt={title} 
+                      alt={`${title} - Project Screenshot`} 
                       className='w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-[1.02] duration-500 transition-transform' 
-                      onError={() => setImageError(true)}
+                      onError={() => handleImageError(id)}
+                      loading="lazy"
+                      decoding="async"
                       style={{ maxHeight: '500px' }}
                     />
                   </div>

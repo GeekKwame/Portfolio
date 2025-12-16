@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {FaBars,FaTimes} from "react-icons/fa"
 import { Link } from 'react-scroll'
+import profilePic from "../assets/images/profile/profile-pic.jpg"
 
 function NavBar() {
   const [nav, setNav] = useState(false);
@@ -55,8 +56,25 @@ function NavBar() {
     <div className={`flex justify-between items-center w-full h-20 text-white fixed top-0 z-50 px-4 md:px-8 transition-all duration-300 ${
       scrolled ? 'bg-stone-900/95 backdrop-blur-md shadow-lg' : 'bg-stone-900'
     }`}>
-      <Link to="home" smooth duration={500} className='cursor-pointer'>
-        <h1 className='text-lg sm:text-xl md:text-2xl lg:text-4xl font-header bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 break-words'>
+      <Link to="home" smooth duration={500} className='cursor-pointer flex items-center gap-3 hover:scale-105 transition-transform duration-300 group'>
+        <div className='relative flex-shrink-0'>
+          <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-md opacity-0 group-hover:opacity-30 transition-opacity duration-300'></div>
+          <div className='relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-cyan-500/40 shadow-lg shadow-cyan-500/20 group-hover:border-cyan-500/60 group-hover:shadow-cyan-500/40 transition-all duration-300'>
+            <img 
+              src={profilePic} 
+              alt="Edmund Blessing - Full Stack Developer" 
+              className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'
+              loading="eager"
+              decoding="async"
+              style={{
+                objectPosition: 'center 25%',
+                imageRendering: 'auto',
+                filter: 'contrast(1.05) saturate(1.1) brightness(1.02)',
+              }}
+            />
+          </div>
+        </div>
+        <h1 className='text-lg sm:text-xl md:text-2xl lg:text-4xl font-header bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent break-words group-hover:from-cyan-300 group-hover:to-blue-400 transition-all duration-300'>
           EDMUND BLESSING
         </h1>
       </Link>

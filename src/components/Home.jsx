@@ -3,6 +3,7 @@ import {MdOutlineArrowForwardIos} from "react-icons/md"
 import laptop from "../assets/109028-react-and-node-development-mobile-first.json"
 import { Player  } from '@lottiefiles/react-lottie-player';
 import { Link } from 'react-scroll';
+import profilePic from "../assets/images/profile/profile-pic.jpg"
 
 const Home = () => {
   const [displayText, setDisplayText] = useState('');
@@ -96,11 +97,51 @@ const Home = () => {
           </div>
         </div>
         
-        <div className='hidden lg:flex animate-float mt-8 lg:mt-0 lg:flex-shrink-0 lg:ml-8 xl:ml-12'>
-          <Player autoplay loop src={laptop} style={{width:'500px',height:"500px", maxWidth:'100%'}} />
+        <div className='hidden lg:flex animate-float mt-8 lg:mt-0 lg:flex-shrink-0 lg:ml-8 xl:ml-12 relative'>
+          <div className='relative'>
+            <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-2xl opacity-20 animate-pulse'></div>
+            <div className='relative w-80 h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-2xl shadow-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105'>
+              <img 
+                src={profilePic} 
+                alt="Edmund Blessing - Full Stack Developer" 
+                className='w-full h-full object-cover'
+                loading="eager"
+                decoding="async"
+                style={{
+                  objectPosition: 'center 25%',
+                  imageRendering: 'auto',
+                  filter: 'contrast(1.05) saturate(1.1) brightness(1.02)',
+                  transform: 'translateZ(0)',
+                  willChange: 'transform',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden'
+                }}
+              />
+            </div>
+          </div>
         </div>
-        <div className='flex lg:hidden animate-float mt-4 sm:mt-6 flex-shrink-0 justify-center w-full'>
-          <Player autoplay loop src={laptop} style={{width:'200px',height:"200px", maxWidth:'100%'}} />
+        <div className='flex lg:hidden animate-float mt-4 sm:mt-6 flex-shrink-0 justify-center w-full relative'>
+          <div className='relative'>
+            <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-xl opacity-20 animate-pulse'></div>
+            <div className='relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-2xl shadow-cyan-500/20'>
+              <img 
+                src={profilePic} 
+                alt="Edmund Blessing - Full Stack Developer" 
+                className='w-full h-full object-cover'
+                loading="eager"
+                decoding="async"
+                style={{
+                  objectPosition: 'center 25%',
+                  imageRendering: 'auto',
+                  filter: 'contrast(1.05) saturate(1.1) brightness(1.02)',
+                  transform: 'translateZ(0)',
+                  willChange: 'transform',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden'
+                }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
