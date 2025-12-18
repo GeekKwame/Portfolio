@@ -103,25 +103,25 @@ function Portfolio() {
                 <div className='absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none'></div>
               </div>
               
-              <div className='p-6'>
-                <h3 className='text-xl md:text-2xl font-bold mb-3 text-white group-hover:text-cyan-400 transition-colors duration-300'>{title}</h3>
-                <p className='text-gray-400 text-sm md:text-base mb-4 leading-relaxed'>{description}</p>
+              <div className='p-4 sm:p-6'>
+                <h3 className='text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 text-white group-hover:text-cyan-400 transition-colors duration-300'>{title}</h3>
+                <p className='text-gray-400 text-sm md:text-base mb-3 sm:mb-4 leading-relaxed'>{description}</p>
                 
-                <div className='flex flex-wrap gap-2 mb-4'>
+                <div className='flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4'>
                   {tags.map((tag, i) => (
-                    <span key={i} className='px-2 py-1 bg-cyan-500/20 text-cyan-400 text-xs rounded-md border border-cyan-500/30 group-hover:border-cyan-500/50 transition-colors duration-300'>
+                    <span key={i} className='px-2 py-1 bg-cyan-500/20 text-cyan-400 text-xs sm:text-xs rounded-md border border-cyan-500/30 group-hover:border-cyan-500/50 transition-colors duration-300'>
                       {tag}
                     </span>
                   ))}
                 </div>
                 
-                <div className='flex items-center justify-center gap-4'>
+                <div className='flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4'>
                   {link1 && (
                     <a 
                       href={link1} 
                       target="_blank" 
                       rel="noreferrer"
-                      className='flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50'
+                      className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 active:from-blue-600 active:to-cyan-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-cyan-500/50 touch-manipulation select-none min-h-[44px]'
                     >
                       <FaExternalLinkAlt /> Demo
                     </a>
@@ -131,7 +131,7 @@ function Portfolio() {
                       href={link2} 
                       target="_blank"
                       rel="noreferrer"
-                      className='flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 border border-gray-600 hover:border-gray-500'
+                      className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gray-700 hover:bg-gray-600 active:bg-gray-800 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600 hover:border-gray-500 touch-manipulation select-none min-h-[44px]'
                     >
                       <FaGithub /> View Code
                     </a>
