@@ -194,7 +194,7 @@ function Contact() {
             <button 
               type='submit'
               disabled={isSubmitting || isSubmitted}
-              className={`relative py-3 px-6 mx-auto flex items-center justify-center gap-2 hover:scale-105 duration-300 rounded-lg text-white font-semibold shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-800 ${
+              className={`relative py-3 px-6 mx-auto flex items-center justify-center gap-2 hover:scale-105 active:scale-95 duration-300 rounded-lg text-white font-semibold shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-800 touch-manipulation select-none min-h-[48px] ${
                 isSubmitted 
                   ? 'bg-green-500 hover:bg-green-600 hover:shadow-green-500/50' 
                   : isSubmitting
@@ -202,6 +202,7 @@ function Contact() {
                   : 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 hover:shadow-cyan-500/50'
               }`}
               aria-busy={isSubmitting}
+              aria-live="polite"
             >
               {isSubmitted ? (
                 <>

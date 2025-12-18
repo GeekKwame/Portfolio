@@ -9,10 +9,14 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollProgress from "./components/ScrollProgress";
+import SkipToContent from "./components/SkipToContent";
+import StructuredData from "./components/StructuredData";
 
 function App() {
   return (
     <div className="App">
+     <StructuredData />
+     <SkipToContent />
      <ScrollProgress/>
      <NavBar/>
      <Home/>
