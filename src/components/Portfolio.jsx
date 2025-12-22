@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FaExternalLinkAlt, FaGithub, FaStickyNote, FaBook, FaMicrophone } from 'react-icons/fa'
-import notesAppImage from "../assets/images/notes-app.png"
-import booksAppImage from "../assets/images/books-app.png"
+import notesAppImage from "../assets/images/portfolio/notes-app.png"
+import booksAppImage from "../assets/images/portfolio/books-app.png"
+import audioHomeImage from "../assets/images/portfolio/audio-home.png"
+import audioLiveImage from "../assets/images/portfolio/audio-live.png"
 
 function Portfolio() {
   const [isVisible, setIsVisible] = useState(false);
@@ -58,7 +60,7 @@ function Portfolio() {
     },
     {
       id: 3,
-      src: null,
+      src: [audioHomeImage, audioLiveImage],
       title: "Live Audio Room",
       description: "A modern, real-time audio room application built with React, TypeScript, and Stream.io Video SDK. Create and join live audio conversations similar to Clubhouse or Twitter Spaces. Features include participant management, permission system, live streaming, user authentication, and session persistence with a beautiful glassmorphism UI.",
       link1: "",
@@ -97,6 +99,24 @@ function Portfolio() {
                   <div className='flex flex-col items-center justify-center p-8 min-h-[300px] md:min-h-[400px]'>
                     <Icon className='text-6xl md:text-8xl text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300' />
                     <p className='text-gray-400 text-sm'>{fallbackIconText}</p>
+                  </div>
+                ) : Array.isArray(src) ? (
+                  <div className='relative w-full bg-gray-900 p-2 md:p-4'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4'>
+                      {src.map((imgSrc, imgIndex) => (
+                        <div key={imgIndex} className='relative overflow-hidden rounded-lg'>
+                          <img 
+                            src={imgSrc} 
+                            alt={`${title} - Screenshot ${imgIndex + 1}`} 
+                            className='w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-[1.02] duration-500 transition-transform' 
+                            onError={() => handleImageError(id)}
+                            loading="lazy"
+                            decoding="async"
+                            style={{ maxHeight: '400px' }}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 ) : (
                   <div className='relative w-full bg-gray-900 p-2 md:p-4'>
