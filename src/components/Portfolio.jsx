@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FaExternalLinkAlt, FaGithub, FaStickyNote, FaBook } from 'react-icons/fa'
+import { FaExternalLinkAlt, FaGithub, FaStickyNote, FaBook, FaMicrophone } from 'react-icons/fa'
 import notesAppImage from "../assets/images/notes-app.png"
 import booksAppImage from "../assets/images/books-app.png"
 
@@ -55,6 +55,17 @@ function Portfolio() {
       tags: ["React", "Vite", "Django", "Django REST Framework", "Python", "Full Stack", "CORS"],
       icon: FaBook,
       iconText: "Book Website Screenshot"
+    },
+    {
+      id: 3,
+      src: null,
+      title: "Live Audio Room",
+      description: "A modern, real-time audio room application built with React, TypeScript, and Stream.io Video SDK. Create and join live audio conversations similar to Clubhouse or Twitter Spaces. Features include participant management, permission system, live streaming, user authentication, and session persistence with a beautiful glassmorphism UI.",
+      link1: "",
+      link2: "https://github.com/GeekKwame/live-audio-room",
+      tags: ["React", "TypeScript", "Stream.io", "Node.js", "Express", "Real-time", "WebRTC", "Full Stack"],
+      icon: FaMicrophone,
+      iconText: "Live Audio Room Screenshot"
     }
   ];
 
