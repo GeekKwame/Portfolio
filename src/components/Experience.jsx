@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa'
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 // Import company logos
 import knustLogo from "../assets/images/companies/knust.png"
 import m365connectLogo from "../assets/images/companies/m365connect.png"
@@ -8,30 +9,8 @@ import leratoLogo from "../assets/images/companies/lerato.png"
 import zidioLogo from "../assets/images/companies/zidio.png"
 
 function Experience() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
   const [imageErrors, setImageErrors] = useState({});
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   const experiences = [
     {

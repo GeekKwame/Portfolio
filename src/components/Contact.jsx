@@ -1,34 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import { FaPaperPlane, FaCheckCircle, FaSpinner } from 'react-icons/fa'
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 
 function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+  const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
   const validate = () => {
     const newErrors = {};

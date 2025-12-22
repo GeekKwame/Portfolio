@@ -1,39 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { FaExternalLinkAlt, FaGithub, FaStickyNote, FaBook, FaMicrophone } from 'react-icons/fa'
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import notesAppImage from "../assets/images/portfolio/notes-app.png"
 import booksAppImage from "../assets/images/portfolio/books-app.png"
 import audioHomeImage from "../assets/images/portfolio/audio-home.png"
 import audioLiveImage from "../assets/images/portfolio/audio-live.png"
 
 function Portfolio() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
   const [imageErrors, setImageErrors] = useState({});
-  const sectionRef = useRef(null);
   
   const handleImageError = (id) => {
     setImageErrors(prev => ({ ...prev, [id]: true }));
   };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   const portfolios = [
     {
