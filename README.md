@@ -41,6 +41,7 @@ npm run build
 
 ## 🛠️ Tech Stack
 
+- **Vite** - Build tool
 - **React** - UI library
 - **Tailwind CSS** - Styling
 - **React Scroll** - Smooth scrolling navigation
@@ -52,7 +53,6 @@ npm run build
 ```
 portfolio/
 ├── public/
-│   └── index.html
 ├── src/
 │   ├── components/
 │   │   ├── About.jsx
@@ -64,10 +64,12 @@ portfolio/
 │   │   └── SocialLinks.jsx
 │   ├── assets/
 │   │   └── images/
-│   ├── App.js
-│   ├── index.js
+│   ├── App.jsx
+│   ├── index.jsx
 │   └── index.css
+├── index.html
 ├── package.json
+├── vite.config.js
 └── tailwind.config.js
 ```
 
