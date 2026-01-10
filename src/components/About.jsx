@@ -48,36 +48,36 @@ function About() {
             </div>
           ))}
         </div>
-        
+
         <div className='grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12'>
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
             <p className='text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4'>
-              I'm Blessing Edmund Kwame Dogbe, a dedicated Full-Stack Developer with a passion for creating 
-              innovative web solutions. I specialize in building modern, responsive, and user-focused applications 
+              I'm Blessing Edmund Kwame Dogbe, a dedicated Full-Stack Developer with a passion for creating
+              innovative web solutions. I specialize in building modern, responsive, and user-focused applications
               using cutting-edge technologies including React, JavaScript, Python, Django, Tailwind CSS, and Git.
             </p>
             <p className='text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4'>
-              With a strong foundation in Applied Mathematics from KNUST, I bring analytical thinking, 
-              systematic problem-solving, and mathematical precision to every project. My approach combines 
-              creative design with robust engineering principles to deliver scalable, maintainable, and 
+              With a strong foundation in Applied Mathematics from KNUST, I bring analytical thinking,
+              systematic problem-solving, and mathematical precision to every project. My approach combines
+              creative design with robust engineering principles to deliver scalable, maintainable, and
               high-performance applications.
             </p>
             <p className='text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4'>
-              I'm committed to continuous learning and staying current with industry best practices. 
-              Whether it's implementing complex algorithms, optimizing database queries, or crafting 
-              intuitive user interfaces, I strive to exceed expectations and deliver solutions that 
+              I'm committed to continuous learning and staying current with industry best practices.
+              Whether it's implementing complex algorithms, optimizing database queries, or crafting
+              intuitive user interfaces, I strive to exceed expectations and deliver solutions that
               make a meaningful impact.
             </p>
             <p className='text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed'>
-              When I'm not coding, I enjoy contributing to open-source projects, exploring new technologies, 
-              and sharing knowledge with the developer community. I'm always open to collaborating on 
+              When I'm not coding, I enjoy contributing to open-source projects, exploring new technologies,
+              and sharing knowledge with the developer community. I'm always open to collaborating on
               exciting projects and opportunities to grow as a developer.
             </p>
           </div>
-          
+
           <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
             {skills.map((skill, index) => (
-              <div 
+              <div
                 key={index}
                 className='group relative p-4 md:p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-600/50 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 hover:scale-105 overflow-hidden'
                 style={{ transitionDelay: `${index * 100}ms` }}
@@ -93,30 +93,38 @@ function About() {
           </div>
         </div>
 
-        {/* Tech Stack Section */}
+        {/* Tech Stack Section with Animated Skill Bars */}
         <div className={`mt-6 md:mt-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className='p-4 md:p-6 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 rounded-xl border border-cyan-500/20 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10'>
-            <h3 className='text-xl md:text-2xl font-bold mb-4 text-cyan-400 flex items-center gap-2'>
+            <h3 className='text-xl md:text-2xl font-bold mb-6 text-cyan-400 flex items-center gap-2'>
               <FaTools className='text-cyan-400' />
               Technology Stack
             </h3>
-            <div className='grid md:grid-cols-2 gap-4 md:gap-6'>
-              <div>
-                <p className='text-sm sm:text-base md:text-lg text-gray-300 mb-2'>
-                  <span className='font-semibold text-cyan-400 block mb-2'>Core Technologies:</span>
-                  <span className='text-gray-400 leading-relaxed'>
-                    Python (Django), React, JavaScript/TypeScript, Tailwind CSS, Git, REST APIs, SQL Databases
-                  </span>
-                </p>
-              </div>
-              <div>
-                <p className='text-sm sm:text-base md:text-lg text-gray-300'>
-                  <span className='font-semibold text-cyan-400 block mb-2'>Development Tools:</span>
-                  <span className='text-gray-400 leading-relaxed'>
-                    VS Code, Postman, Chrome DevTools, npm/yarn, GitHub, Docker, Deployment (Netlify, Vercel, PythonAnywhere)
-                  </span>
-                </p>
-              </div>
+            <div className='space-y-4'>
+              {[
+                { name: 'React / JavaScript', level: 90, color: 'from-cyan-500 to-blue-500' },
+                { name: 'Python / Django', level: 85, color: 'from-green-500 to-teal-500' },
+                { name: 'TypeScript', level: 80, color: 'from-blue-500 to-indigo-500' },
+                { name: 'Tailwind CSS', level: 90, color: 'from-cyan-400 to-cyan-600' },
+                { name: 'REST APIs', level: 85, color: 'from-purple-500 to-pink-500' },
+                { name: 'SQL Databases', level: 75, color: 'from-orange-500 to-yellow-500' },
+              ].map((skill, index) => (
+                <div key={skill.name} className='group'>
+                  <div className='flex justify-between mb-1'>
+                    <span className='text-sm font-medium text-gray-300 group-hover:text-cyan-400 transition-colors duration-300'>{skill.name}</span>
+                    <span className='text-sm font-medium text-cyan-400'>{skill.level}%</span>
+                  </div>
+                  <div className='w-full bg-gray-700/50 rounded-full h-2.5 overflow-hidden'>
+                    <div
+                      className={`h-2.5 rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`}
+                      style={{
+                        width: isVisible ? `${skill.level}%` : '0%',
+                        transitionDelay: `${index * 100}ms`
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
