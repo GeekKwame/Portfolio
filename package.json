@@ -20,15 +20,13 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-leaflet": "^4.1.0",
-    "react-scripts": "5.0.1",
     "react-scroll": "^1.8.7",
     "web-vitals": "^3.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -49,8 +47,10 @@
     ]
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
     "autoprefixer": "^10.4.12",
     "postcss": "^8.4.17",
-    "tailwindcss": "^3.1.8"
+    "tailwindcss": "^3.1.8",
+    "vite": "^7.3.1"
   }
 }
