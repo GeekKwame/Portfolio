@@ -53,7 +53,7 @@ const Home = () => {
           </div>
           <div className='flex-shrink-0 ml-4 animate-float relative'>
             <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-lg opacity-20 animate-pulse'></div>
-            <div className='relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-cyan-500/30 shadow-xl shadow-cyan-500/20'>
+            <div className='relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-cyan-500/30 shadow-xl shadow-cyan-500/20'>
               <img
                 src={profilePic}
                 alt="Edmund Blessing - Full Stack Developer"
