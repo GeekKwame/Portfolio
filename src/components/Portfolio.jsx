@@ -52,13 +52,13 @@ function Portfolio() {
     {
       id: 4,
       src: tourPlannerImage,
-      title: "Tourvisto",
-      description: "A modern, full-stack travel application that combines the power of AI with a seamless booking experience. Features specific portals for tourists (AI planning, booking) and admins (dashboard, management). Built with React Router v7, Supabase, and Google Gemini.",
+      title: "The Tourist's Planner",
+      description: "A modern, full-stack travel application that combines the power of AI with a seamless booking experience. Features AI trip planning with Google Gemini, specific portals for tourists (My Trips, Booking) and admins (Dashboard, Trip Management). Built with React Router v7, Supabase, and Syncfusion Components.",
       link1: "",
       link2: "https://github.com/GeekKwame/travel-planner",
-      tags: ["React Router v7", "TypeScript", "Tailwind CSS", "Supabase", "Gemini AI", "Stripe"],
+      tags: ["React Router v7", "TypeScript", "Tailwind CSS", "Syncfusion", "Supabase", "Gemini AI", "Stripe"],
       icon: FaPlane,
-      iconText: "Tourvisto Screenshot"
+      iconText: "The Tourist's Planner Screenshot"
     }
   ];
 

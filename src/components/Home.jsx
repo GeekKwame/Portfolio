@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { MdOutlineArrowForwardIos } from "react-icons/md"
-import laptop from "../assets/109028-react-and-node-development-mobile-first.json"
-import { Player } from '@lottiefiles/react-lottie-player';
 import { Link } from 'react-scroll';
 import profilePic from "../assets/images/profile/profile-pic.jpg"
 
@@ -31,9 +29,9 @@ const Home = () => {
       <div className='absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 animate-gradient-shift' style={{ backgroundSize: '200% 200%' }}></div>
       {/* Enhanced animated background elements */}
       <div className='absolute inset-0 overflow-hidden pointer-events-none'>
-        <div className='absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse'></div>
-        <div className='absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse' style={{ animationDelay: '1s' }}></div>
-        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl animate-pulse' style={{ animationDelay: '2s' }}></div>
+        <div className='absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse will-change-transform'></div>
+        <div className='absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse will-change-transform' style={{ animationDelay: '1s' }}></div>
+        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl animate-pulse will-change-transform' style={{ animationDelay: '2s' }}></div>
         {/* Grid pattern overlay */}
         <div className='absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]'></div>
       </div>
