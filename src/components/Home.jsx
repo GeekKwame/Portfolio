@@ -36,9 +36,44 @@ const Home = () => {
         <div className='absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]'></div>
       </div>
 
-      <div className='flex flex-col justify-start lg:justify-center items-start min-h-screen mx-auto w-full max-w-screen-xl text-white px-4 md:px-8 lg:flex-row lg:items-center lg:justify-between relative z-10 pt-24 pb-20 lg:py-0'>
-        <div className='justify-center w-full lg:w-auto lg:flex-1 lg:min-w-0 animate-fade-in relative z-20 mt-4 lg:mt-0'>
-          <div className='mb-4 w-full'>
+      <div className='flex flex-col lg:flex-row justify-start lg:justify-center items-start lg:items-center min-h-screen mx-auto w-full max-w-screen-xl text-white px-4 md:px-8 lg:justify-between relative z-10 pt-24 pb-20 lg:py-0'>
+        {/* Mobile Header with Profile Picture on Right */}
+        <div className='flex lg:hidden w-full items-center justify-between mb-6 relative z-20'>
+          <div className='flex-1'>
+            <h1 className='text-xl sm:text-2xl md:text-3xl mb-2 text-white'>
+              Hi There, <span className='animate-bounce inline-block'>👋</span>
+            </h1>
+            <h2 className='text-2xl sm:text-3xl md:text-4xl font-bold leading-tight'>
+              <span className='text-white'>I'm a </span>
+              <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>
+                {displayText || 'Full Stack Developer'}
+              </span>
+              {isTyping && <span className='animate-pulse text-cyan-400 ml-1 inline-block'>|</span>}
+            </h2>
+          </div>
+          <div className='flex-shrink-0 ml-4 animate-float relative'>
+            <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-lg opacity-20 animate-pulse'></div>
+            <div className='relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-cyan-500/30 shadow-xl shadow-cyan-500/20'>
+              <img
+                src={profilePic}
+                alt="Edmund Blessing - Full Stack Developer"
+                className='w-full h-full object-cover'
+                loading="eager"
+                decoding="async"
+                style={{
+                  objectPosition: 'center 25%',
+                  imageRendering: 'auto',
+                  filter: 'contrast(1.05) saturate(1.1) brightness(1.02)',
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop and Mobile Content */}
+        <div className='justify-center w-full lg:w-auto lg:flex-1 lg:min-w-0 animate-fade-in relative z-20 mt-0 lg:mt-0'>
+          {/* Desktop Header */}
+          <div className='hidden lg:block mb-4 w-full'>
             <h1 className='text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-2 text-white relative z-10'>
               Hi There, <span className='animate-bounce inline-block'>👋</span>
             </h1>
@@ -50,6 +85,7 @@ const Home = () => {
               {isTyping && <span className='animate-pulse text-cyan-400 ml-1 inline-block'>|</span>}
             </h2>
           </div>
+          
           <p className='text-gray-300 text-sm sm:text-base md:text-lg mb-6 max-w-lg leading-relaxed w-full'>
             I'm a passionate Full Stack Developer specializing in building scalable,
             modern web applications. With expertise in React, Django, and Python,
@@ -97,33 +133,11 @@ const Home = () => {
           </div>
         </div>
 
+        {/* Desktop Profile Picture */}
         <div className='hidden lg:flex animate-float mt-8 lg:mt-0 lg:flex-shrink-0 lg:ml-8 xl:ml-12 relative'>
           <div className='relative'>
             <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-2xl opacity-20 animate-pulse'></div>
             <div className='relative w-80 h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-2xl shadow-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105'>
-              <img
-                src={profilePic}
-                alt="Edmund Blessing - Full Stack Developer"
-                className='w-full h-full object-cover'
-                loading="eager"
-                decoding="async"
-                style={{
-                  objectPosition: 'center 25%',
-                  imageRendering: 'auto',
-                  filter: 'contrast(1.05) saturate(1.1) brightness(1.02)',
-                  transform: 'translateZ(0)',
-                  willChange: 'transform',
-                  backfaceVisibility: 'hidden',
-                  WebkitBackfaceVisibility: 'hidden'
-                }}
-              />
-            </div>
-          </div>
-        </div>
-        <div className='flex lg:hidden animate-float mt-4 sm:mt-6 flex-shrink-0 justify-center w-full relative'>
-          <div className='relative'>
-            <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-xl opacity-20 animate-pulse'></div>
-            <div className='relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-2xl shadow-cyan-500/20'>
               <img
                 src={profilePic}
                 alt="Edmund Blessing - Full Stack Developer"
