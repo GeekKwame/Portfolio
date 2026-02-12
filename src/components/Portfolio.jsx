@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { FaExternalLinkAlt, FaGithub, FaStickyNote, FaBook, FaMicrophone, FaPlane } from 'react-icons/fa'
+import { FaExternalLinkAlt, FaGithub, FaStickyNote, FaBook, FaMicrophone, FaPlane, FaFileAlt } from 'react-icons/fa'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
+import aiResumeAnalyzerImage from "../assets/images/portfolio/ai-resume-analyzer.png"
 import notesAppImage from "../assets/images/portfolio/notes-app.png"
 import booksAppImage from "../assets/images/portfolio/books-app.png"
 import audioHomeImage from "../assets/images/portfolio/audio-home.png"
@@ -18,6 +19,17 @@ function Portfolio() {
   const portfolios = [
     {
       id: 1,
+      src: aiResumeAnalyzerImage,
+      title: "AI Resume Analyzer",
+      description: "An intelligent resume analysis tool that provides ATS (Applicant Tracking System) scores and AI-powered improvement suggestions. Features include drag-and-drop resume upload, PDF processing, comprehensive feedback with category-specific scores (Tone & Style, Content, Structure, Skills), ATS compatibility tips, and resume history dashboard. Built with React Router, TypeScript, and Puter.js integration.",
+      link1: "",
+      link2: "https://github.com/GeekKwame/ai-resume-analyzer",
+      tags: ["React Router", "TypeScript", "Tailwind CSS v4", "Zustand", "Puter.js", "PDF.js", "AI Analysis", "ATS Scoring"],
+      icon: FaFileAlt,
+      iconText: "AI Resume Analyzer Screenshot"
+    },
+    {
+      id: 2,
       src: notesAppImage,
       title: "Notes App",
       description: "A full-stack notes application built with Django REST Framework and React. Features include creating, reading, updating, and deleting notes with a clean, intuitive dark-themed interface. Includes real-time updates, auto-save functionality, and responsive design.",
@@ -28,7 +40,7 @@ function Portfolio() {
       iconText: "Notes App Screenshot"
     },
     {
-      id: 2,
+      id: 3,
       src: booksAppImage,
       title: "Book Website",
       description: "A full-stack book tracker featuring a modern dark UI with a books-themed background. Built with React + Vite frontend and Django REST Framework backend. Supports full CRUD operations: create, list, edit, and delete books with glassmorphism-inspired design and animated accents.",
@@ -39,7 +51,7 @@ function Portfolio() {
       iconText: "Book Website Screenshot"
     },
     {
-      id: 3,
+      id: 4,
       src: [audioHomeImage, audioLiveImage],
       title: "Live Audio Room",
       description: "A modern, real-time audio room application built with React, TypeScript, and Stream.io Video SDK. Create and join live audio conversations similar to Clubhouse or Twitter Spaces. Features include participant management, permission system, live streaming, user authentication, and session persistence with a beautiful glassmorphism UI.",
@@ -50,7 +62,7 @@ function Portfolio() {
       iconText: "Live Audio Room Screenshot"
     },
     {
-      id: 4,
+      id: 5,
       src: tourPlannerImage,
       title: "The Tourist's Planner",
       description: "A modern, full-stack travel application that combines the power of AI with a seamless booking experience. Features AI trip planning with Google Gemini, specific portals for tourists (My Trips, Booking) and admins (Dashboard, Trip Management). Built with React Router v7, Supabase, and Syncfusion Components.",
