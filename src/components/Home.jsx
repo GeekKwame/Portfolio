@@ -122,6 +122,10 @@ const Home = () => {
             <a
               href="/resume.pdf"
               download="Edmund_Blessing_Resume.pdf"
+              onClick={() => {
+                const { trackResumeDownload } = require('../utils/analytics');
+                trackResumeDownload();
+              }}
               className='group relative w-full sm:w-auto px-5 py-3.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-gray-500 text-gray-300 cursor-pointer text-base sm:text-lg font-semibold hover:bg-gray-700 hover:text-white hover:border-gray-400 active:bg-gray-800 active:scale-95 hover:shadow-lg hover:shadow-gray-500/20 duration-300 hover:scale-105 transition-all whitespace-nowrap overflow-hidden focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-800 touch-manipulation select-none min-h-[48px]'
             >
               <span className='relative z-10 flex items-center'>

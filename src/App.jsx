@@ -11,23 +11,26 @@ import ScrollToTop from "./components/ScrollToTop";
 import ScrollProgress from "./components/ScrollProgress";
 import SkipToContent from "./components/SkipToContent";
 import StructuredData from "./components/StructuredData";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   return (
-    <div className="App">
-     <StructuredData />
-     <SkipToContent />
-     <ScrollProgress/>
-     <NavBar/>
-     <Home/>
-     <SocialLinks/>
-     <About/>
-     <Portfolio/>
-     <Experience/>
-     <Contact/>
-     <Footer/>
-     <ScrollToTop/>
-    </div>
+    <ErrorBoundary>
+      <div className="App">
+       <StructuredData />
+       <SkipToContent />
+       <ScrollProgress/>
+       <NavBar/>
+       <Home/>
+       <SocialLinks/>
+       <About/>
+       <Portfolio/>
+       <Experience/>
+       <Contact/>
+       <Footer/>
+       <ScrollToTop/>
+      </div>
+    </ErrorBoundary>
   );
 }
 

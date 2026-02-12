@@ -1,9 +1,22 @@
-import React from 'react'
-import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from 'react-icons/fa'
+import React, { useState, memo } from 'react'
+import { FaGithub, FaLinkedin, FaEnvelope, FaHeart, FaCopy, FaCheck } from 'react-icons/fa'
 import { Link } from 'react-scroll'
+import { trackSocialClick } from '../utils/analytics'
 
-function Footer() {
+const Footer = memo(function Footer() {
   const currentYear = new Date().getFullYear();
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyEmailToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText('dogbeblessingkwame@gmail.com');
+      setEmailCopied(true);
+      trackSocialClick('email');
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+    }
+  };
 
   const socialLinks = [
     {
@@ -63,6 +76,7 @@ function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => trackSocialClick(link.label.toLowerCase().replace(' ', '_'))}
                   aria-label={link.label}
                   className={`text-gray-400 ${link.color} transition-all duration-300 text-lg md:text-xl hover:scale-125 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]`}
                 >
@@ -95,13 +109,27 @@ function Footer() {
           <div className='flex flex-col'>
             <h4 className='text-base sm:text-lg font-semibold mb-3 md:mb-4 text-cyan-400'>Get In Touch</h4>
             <div className='space-y-2 md:space-y-3 text-xs sm:text-sm text-gray-400'>
-              <a
-                href="mailto:dogbeblessingkwame@gmail.com"
-                className='flex items-center gap-2 hover:text-cyan-400 transition-colors duration-300 break-words'
-              >
-                <FaEnvelope className='text-cyan-400 flex-shrink-0' />
-                <span className='break-all'>dogbeblessingkwame@gmail.com</span>
-              </a>
+              <div className='flex items-center gap-2 group'>
+                <a
+                  href="mailto:dogbeblessingkwame@gmail.com"
+                  className='flex items-center gap-2 hover:text-cyan-400 transition-colors duration-300 break-words flex-1'
+                >
+                  <FaEnvelope className='text-cyan-400 flex-shrink-0' />
+                  <span className='break-all'>dogbeblessingkwame@gmail.com</span>
+                </a>
+                <button
+                  onClick={copyEmailToClipboard}
+                  className='p-2 rounded-lg hover:bg-gray-800/50 transition-all duration-300 hover:scale-110 active:scale-95 group-hover:text-cyan-400 text-gray-500'
+                  aria-label="Copy email to clipboard"
+                  title="Copy email"
+                >
+                  {emailCopied ? (
+                    <FaCheck className='text-green-400' />
+                  ) : (
+                    <FaCopy className='text-gray-400' />
+                  )}
+                </button>
+              </div>
               <p className='text-gray-500 text-xs mt-3 md:mt-4'>
                 Available for freelance projects and full-time opportunities.
               </p>
@@ -121,7 +149,7 @@ function Footer() {
       </div>
     </footer>
   )
-}
+})
 
 export default Footer
 

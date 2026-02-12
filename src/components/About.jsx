@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { FaCode, FaServer, FaPalette, FaGraduationCap, FaProjectDiagram, FaTools, FaRocket } from 'react-icons/fa'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 
-function About() {
+const About = memo(function About() {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
   const stats = [
-    { icon: <FaProjectDiagram />, value: '3+', label: 'Projects', color: 'from-cyan-500 to-blue-500' },
-    { icon: <FaRocket />, value: '5+', label: 'Technologies', color: 'from-purple-500 to-pink-500' },
+    { icon: <FaProjectDiagram />, value: '5+', label: 'Projects', color: 'from-cyan-500 to-blue-500' },
+    { icon: <FaRocket />, value: '15+', label: 'Technologies', color: 'from-purple-500 to-pink-500' },
     { icon: <FaTools />, value: 'Full Stack', label: 'Developer', color: 'from-green-500 to-teal-500' }
   ];
 
@@ -131,6 +131,6 @@ function About() {
       </div>
     </div>
   )
-}
+})
 
 export default About

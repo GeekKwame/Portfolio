@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import { FaExternalLinkAlt, FaGithub, FaStickyNote, FaBook, FaMicrophone, FaPlane, FaFileAlt } from 'react-icons/fa'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
+import { trackProjectView, trackSocialClick } from '../utils/analytics'
 import aiResumeAnalyzerImage from "../assets/images/portfolio/ai-resume-analyzer.png"
 import notesAppImage from "../assets/images/portfolio/notes-app.png"
 import booksAppImage from "../assets/images/portfolio/books-app.png"
@@ -8,9 +9,10 @@ import audioHomeImage from "../assets/images/portfolio/audio-home.png"
 import audioLiveImage from "../assets/images/portfolio/audio-live.png"
 import tourPlannerImage from "../assets/images/portfolio/tour-planner.png"
 
-function Portfolio() {
+const Portfolio = memo(function Portfolio() {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
   const [imageErrors, setImageErrors] = useState({});
+  const [imageLoading, setImageLoading] = useState({});
 
   const handleImageError = (id) => {
     setImageErrors(prev => ({ ...prev, [id]: true }));
@@ -107,11 +109,15 @@ function Portfolio() {
                       <div className='grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4'>
                         {src.map((imgSrc, imgIndex) => (
                           <div key={imgIndex} className='relative overflow-hidden rounded-lg'>
+                            {imageLoading[`${id}-${imgIndex}`] !== false && (
+                              <div className='absolute inset-0 bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 animate-shimmer bg-[length:200%_100%] rounded-lg' />
+                            )}
                             <img
                               src={imgSrc}
                               alt={`${title} - Screenshot ${imgIndex + 1}`}
-                              className='w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-[1.02] duration-500 transition-transform'
+                              className='w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-[1.02] duration-500 transition-transform relative'
                               onError={() => handleImageError(id)}
+                              onLoad={() => setImageLoading(prev => ({ ...prev, [`${id}-${imgIndex}`]: false }))}
                               loading="lazy"
                               decoding="async"
                               style={{ maxHeight: '400px' }}
@@ -122,11 +128,15 @@ function Portfolio() {
                     </div>
                   ) : (
                     <div className='relative w-full bg-gray-900 p-2 md:p-4'>
+                      {imageLoading[id] !== false && (
+                        <div className='absolute inset-0 bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 animate-shimmer bg-[length:200%_100%] rounded-lg' />
+                      )}
                       <img
                         src={src}
                         alt={`${title} - Project Screenshot`}
-                        className='w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-[1.02] duration-500 transition-transform'
+                        className='w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-[1.02] duration-500 transition-transform relative'
                         onError={() => handleImageError(id)}
+                        onLoad={() => setImageLoading(prev => ({ ...prev, [id]: false }))}
                         loading="lazy"
                         decoding="async"
                         style={{ maxHeight: '500px' }}
@@ -138,11 +148,11 @@ function Portfolio() {
 
                 <div className='p-4 sm:p-6'>
                   <h3 className='text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 text-white group-hover:text-cyan-400 transition-colors duration-300'>{title}</h3>
-                  <p className='text-gray-400 text-sm md:text-base mb-3 sm:mb-4 leading-relaxed'>{description}</p>
+                  <p className='text-gray-400 text-sm md:text-base mb-3 sm:mb-4 leading-relaxed group-hover:text-gray-300 transition-colors duration-300'>{description}</p>
 
                   <div className='flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4'>
                     {tags.map((tag, i) => (
-                      <span key={i} className='px-2 py-1 bg-cyan-500/20 text-cyan-400 text-xs sm:text-xs rounded-md border border-cyan-500/30 group-hover:border-cyan-500/50 transition-colors duration-300'>
+                      <span key={i} className='px-2 py-1 bg-cyan-500/20 text-cyan-400 text-xs sm:text-xs rounded-md border border-cyan-500/30 group-hover:border-cyan-500/50 group-hover:bg-cyan-500/30 group-hover:scale-105 transition-all duration-300'>
                         {tag}
                       </span>
                     ))}
@@ -154,7 +164,7 @@ function Portfolio() {
                         href={link1}
                         target="_blank"
                         rel="noreferrer"
-                        className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 active:from-blue-600 active:to-cyan-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-cyan-500/50 touch-manipulation select-none min-h-[44px]'
+                        className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 active:from-blue-600 active:to-cyan-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-cyan-500/50 touch-manipulation select-none min-h-[44px] group-hover:animate-pulse'
                       >
                         <FaExternalLinkAlt /> Demo
                       </a>
@@ -164,7 +174,11 @@ function Portfolio() {
                         href={link2}
                         target="_blank"
                         rel="noreferrer"
-                        className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gray-700 hover:bg-gray-600 active:bg-gray-800 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600 hover:border-gray-500 touch-manipulation select-none min-h-[44px]'
+                        onClick={() => {
+                          trackProjectView(title);
+                          trackSocialClick('github');
+                        }}
+                        className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gray-700 hover:bg-gray-600 active:bg-gray-800 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 touch-manipulation select-none min-h-[44px]'
                       >
                         <FaGithub /> View Code
                       </a>
@@ -178,6 +192,6 @@ function Portfolio() {
       </div>
     </div>
   )
-}
+})
 
 export default Portfolio

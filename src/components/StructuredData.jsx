@@ -28,9 +28,16 @@ function StructuredData() {
       "Django",
       "Python",
       "JavaScript",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "Tailwind CSS",
+      "REST APIs",
       "Full Stack Development",
       "Web Development",
-      "Software Engineering"
+      "Software Engineering",
+      "AI Integration",
+      "Machine Learning"
     ],
     "hasOccupation": {
       "@type": "Occupation",

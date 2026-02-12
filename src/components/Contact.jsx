@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { FaPaperPlane, FaCheckCircle, FaSpinner } from 'react-icons/fa'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
+import { trackContactSubmission } from '../utils/analytics'
 
 function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -60,11 +61,14 @@ function Contact() {
       
       setIsSubmitting(false);
       setIsSubmitted(true);
+      trackContactSubmission(true);
       setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 6000);
+      setErrors({});
+      setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
       console.error('Error sending message:', error);
       setIsSubmitting(false);
+      trackContactSubmission(false);
       // Still show success for better UX, but log error
       setIsSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
