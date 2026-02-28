@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 // Import company logos
@@ -8,7 +8,7 @@ import hubblemindLogo from "../assets/images/companies/hubblemind.jpeg"
 import leratoLogo from "../assets/images/companies/lerato.png"
 import zidioLogo from "../assets/images/companies/zidio.png"
 
-function Experience() {
+const Experience = memo(function Experience() {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
   const [imageErrors, setImageErrors] = useState({});
 
@@ -91,34 +91,33 @@ function Experience() {
   ];
 
   return (
-    <div name="experience" ref={sectionRef} className='bg-gradient-to-b from-gray-800 to-stone-800 w-full min-h-screen py-12 md:py-20'>
-      <div className='max-w-screen-lg mx-auto p-4 sm:p-6 flex flex-col justify-center w-full h-full text-white'>
+    <div name="experience" ref={sectionRef} className='bg-gradient-to-b from-slate-50 via-white to-blue-50/30 dark:from-gray-800 dark:to-stone-800 w-full min-h-screen py-12 md:py-20'>
+      <div className='max-w-screen-lg mx-auto p-4 sm:p-6 flex flex-col justify-center w-full h-full text-gray-900 dark:text-white'>
         <div className={`mb-8 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4'>
             Experience
           </p>
-          <p className='py-2 md:py-4 text-gray-300 text-base sm:text-lg'>My professional journey and the roles that shaped my expertise</p>
+          <p className='py-2 md:py-4 text-gray-600 dark:text-gray-300 text-base sm:text-lg'>My professional journey and the roles that shaped my expertise</p>
           <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
         </div>
-        
+
         <div className='space-y-6 md:space-y-8'>
           {experiences.map((exp, index) => (
             <div
               key={exp.id}
-              className={`group relative bg-gradient-to-br from-gray-700/50 to-gray-800/50 backdrop-blur-sm border border-gray-600/50 rounded-xl p-4 sm:p-6 md:p-8 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
+              className={`group relative bg-white/90 dark:bg-gradient-to-br dark:from-gray-700/50 dark:to-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-600/50 rounded-xl p-4 sm:p-6 md:p-8 shadow-md hover:border-cyan-400 dark:hover:border-cyan-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-cyan-400/10 dark:hover:shadow-cyan-500/10 hover:-translate-y-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className='absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl'></div>
-              
+
               <div className='relative z-10 flex flex-col md:flex-row gap-4 md:gap-6'>
                 {/* Company Logo */}
                 <div className='flex-shrink-0'>
                   {exp.logo && !imageErrors[exp.id] ? (
                     <div className='w-16 h-16 md:w-20 md:h-20 rounded-xl bg-white/10 backdrop-blur-sm p-2 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-white/20 transition-all duration-300 overflow-hidden border border-gray-600/30'>
-                      <img 
-                        src={exp.logo} 
+                      <img
+                        src={exp.logo}
                         alt={`${exp.company} logo`}
                         className='w-full h-full object-contain'
                         onError={() => {
@@ -137,7 +136,7 @@ function Experience() {
                 <div className='flex-1 min-w-0'>
                   <div className='flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3'>
                     <div>
-                      <h3 className='text-lg sm:text-xl md:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300 mb-1'>
+                      <h3 className='text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300 mb-1'>
                         {exp.title}
                       </h3>
                       <p className='text-cyan-400 font-semibold text-sm sm:text-base mb-2'>
@@ -147,7 +146,7 @@ function Experience() {
                   </div>
 
                   {/* Duration and Location */}
-                  <div className='flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-4'>
+                  <div className='flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4'>
                     <div className='flex items-center gap-2'>
                       <FaCalendarAlt className='text-cyan-400' />
                       <span>{exp.duration} · {exp.period}</span>
@@ -159,7 +158,7 @@ function Experience() {
                   </div>
 
                   {/* Description */}
-                  <p className='text-gray-300 text-sm sm:text-base leading-relaxed mb-4'>
+                  <p className='text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-4'>
                     {exp.description}
                   </p>
 
@@ -187,6 +186,6 @@ function Experience() {
       </div>
     </div>
   )
-}
+})
 
 export default Experience

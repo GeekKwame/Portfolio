@@ -1,54 +1,90 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { MdOutlineArrowForwardIos } from "react-icons/md"
 import { Link } from 'react-scroll';
+import { trackResumeDownload } from '../utils/analytics'
 import profilePic from "../assets/images/profile/profile-pic.jpg"
+import { ROLES, RESUME } from '../config/constants'
+
+const roles = ROLES;
 
 const Home = () => {
   const [displayText, setDisplayText] = useState('');
-  const fullText = 'Full Stack Developer';
   const [isTyping, setIsTyping] = useState(true);
+  const roleIndexRef = useRef(0);
+  const charIndexRef = useRef(0);
+  const isDeletingRef = useRef(false);
 
   useEffect(() => {
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex < fullText.length) {
-        setDisplayText(fullText.substring(0, currentIndex + 1));
-        currentIndex++;
-      } else {
-        setIsTyping(false);
-        clearInterval(typingInterval);
-      }
-    }, 100);
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      setDisplayText(roles[0]);
+      setIsTyping(false);
+      return;
+    }
 
-    return () => clearInterval(typingInterval);
+    const tick = () => {
+      const currentRole = roles[roleIndexRef.current];
+      if (!isDeletingRef.current) {
+        // Typing
+        charIndexRef.current++;
+        setDisplayText(currentRole.substring(0, charIndexRef.current));
+        if (charIndexRef.current === currentRole.length) {
+          setIsTyping(false);
+          isDeletingRef.current = true;
+          return 2000; // hold before deleting
+        }
+        return 100;
+      } else {
+        // Deleting
+        setIsTyping(true);
+        charIndexRef.current--;
+        setDisplayText(currentRole.substring(0, charIndexRef.current));
+        if (charIndexRef.current === 0) {
+          isDeletingRef.current = false;
+          roleIndexRef.current = (roleIndexRef.current + 1) % roles.length;
+          return 500; // pause before typing next role
+        }
+        return 50;
+      }
+    };
+
+    let timeoutId;
+    const loop = () => {
+      const delay = tick();
+      timeoutId = setTimeout(loop, delay);
+    };
+    loop();
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
+
   return (
-    <div name="home" className='min-h-screen w-full bg-gradient-to-b from-stone-900 via-gray-800 to-stone-900 relative overflow-x-hidden'>
+    <div name="home" className='min-h-screen w-full bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/20 dark:from-stone-900 dark:via-gray-800 dark:to-stone-900 relative overflow-x-hidden'>
       {/* Animated gradient overlay */}
-      <div className='absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 animate-gradient-shift' style={{ backgroundSize: '200% 200%' }}></div>
+      <div className='absolute inset-0 bg-gradient-to-br from-cyan-500/8 via-blue-500/5 to-purple-500/5 dark:from-cyan-500/5 dark:via-transparent dark:to-blue-500/5 animate-gradient-shift' style={{ backgroundSize: '200% 200%' }}></div>
       {/* Enhanced animated background elements */}
       <div className='absolute inset-0 overflow-hidden pointer-events-none'>
-        <div className='absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse will-change-transform'></div>
-        <div className='absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse will-change-transform' style={{ animationDelay: '1s' }}></div>
-        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl animate-pulse will-change-transform' style={{ animationDelay: '2s' }}></div>
+        <div className='absolute top-20 left-10 w-72 h-72 bg-cyan-400/15 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse will-change-transform'></div>
+        <div className='absolute bottom-20 right-10 w-96 h-96 bg-blue-400/15 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse will-change-transform' style={{ animationDelay: '1s' }}></div>
+        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-400/10 dark:bg-purple-500/5 rounded-full blur-3xl animate-pulse will-change-transform' style={{ animationDelay: '2s' }}></div>
         {/* Grid pattern overlay */}
-        <div className='absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]'></div>
+        <div className='absolute inset-0 bg-[linear-gradient(to_right,#94a3b840_1px,transparent_1px),linear-gradient(to_bottom,#94a3b840_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]'></div>
       </div>
 
-      <div className='flex flex-col lg:flex-row justify-start lg:justify-center items-start lg:items-center min-h-screen mx-auto w-full max-w-screen-xl text-white px-4 md:px-8 lg:justify-between relative z-10 pt-24 pb-20 lg:py-0'>
+      <div className='flex flex-col lg:flex-row justify-start lg:justify-center items-start lg:items-center min-h-screen mx-auto w-full max-w-screen-xl text-gray-900 dark:text-white px-4 md:px-8 lg:justify-between relative z-10 pt-24 pb-20 lg:py-0'>
         {/* Mobile Header with Profile Picture on Right */}
         <div className='flex lg:hidden w-full items-center justify-between mb-6 relative z-20'>
           <div className='flex-1'>
-            <h1 className='text-xl sm:text-2xl md:text-3xl mb-2 text-white'>
+            <h1 className='text-xl sm:text-2xl md:text-3xl mb-2 text-gray-900 dark:text-white'>
               Hi There, <span className='animate-bounce inline-block'>👋</span>
             </h1>
             <h2 className='text-2xl sm:text-3xl md:text-4xl font-bold leading-tight'>
-              <span className='text-white'>I'm a </span>
-              <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>
+              <span className='text-gray-900 dark:text-white'>I'm a </span>
+              <span className='bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-500 bg-clip-text text-transparent'>
                 {displayText || 'Full Stack Developer'}
               </span>
-              {isTyping && <span className='animate-pulse text-cyan-400 ml-1 inline-block'>|</span>}
+              {isTyping && <span className='animate-pulse text-cyan-600 dark:text-cyan-400 ml-1 inline-block'>|</span>}
             </h2>
           </div>
           <div className='flex-shrink-0 ml-4 animate-float relative'>
@@ -74,19 +110,19 @@ const Home = () => {
         <div className='justify-center w-full lg:w-auto lg:flex-1 lg:min-w-0 animate-fade-in relative z-20 mt-0 lg:mt-0'>
           {/* Desktop Header */}
           <div className='hidden lg:block mb-4 w-full'>
-            <h1 className='text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-2 text-white relative z-10'>
+            <h1 className='text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-2 text-gray-900 dark:text-white relative z-10'>
               Hi There, <span className='animate-bounce inline-block'>👋</span>
             </h1>
             <h2 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight w-full'>
-              <span className='text-white block sm:inline'>I'm a </span>
+              <span className='text-gray-900 dark:text-white block sm:inline'>I'm a </span>
               <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent block sm:inline'>
                 {displayText || 'Full Stack Developer'}
               </span>
               {isTyping && <span className='animate-pulse text-cyan-400 ml-1 inline-block'>|</span>}
             </h2>
           </div>
-          
-          <p className='text-gray-300 text-sm sm:text-base md:text-lg mb-6 max-w-lg leading-relaxed w-full'>
+
+          <p className='text-gray-600 dark:text-gray-300 text-sm sm:text-base md:text-lg mb-6 max-w-lg leading-relaxed w-full'>
             I'm a passionate Full Stack Developer specializing in building scalable,
             modern web applications. With expertise in React, Django, and Python,
             I transform complex ideas into elegant, user-friendly digital solutions.
@@ -108,7 +144,7 @@ const Home = () => {
               <span className='absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
             </Link>
             <Link
-              className='group relative w-full sm:w-auto px-5 py-3.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-cyan-500 text-cyan-400 cursor-pointer text-base sm:text-lg font-semibold hover:bg-cyan-500 hover:text-white active:bg-cyan-600 active:scale-95 duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30 transition-all whitespace-nowrap overflow-hidden focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-800 touch-manipulation select-none min-h-[48px]'
+              className='group relative w-full sm:w-auto px-5 py-3.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-cyan-500 dark:border-cyan-500 text-cyan-600 dark:text-cyan-400 cursor-pointer text-base sm:text-lg font-semibold hover:bg-cyan-500 hover:text-white active:bg-cyan-600 active:scale-95 duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30 transition-all whitespace-nowrap overflow-hidden focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800 touch-manipulation select-none min-h-[48px]'
               to='contact'
               smooth
               duration={500}
@@ -120,13 +156,10 @@ const Home = () => {
               <span className='absolute inset-0 bg-cyan-500/10 scale-0 group-hover:scale-100 transition-transform duration-300 origin-center rounded-lg'></span>
             </Link>
             <a
-              href="/resume.pdf"
-              download="Edmund_Blessing_Resume.pdf"
-              onClick={() => {
-                const { trackResumeDownload } = require('../utils/analytics');
-                trackResumeDownload();
-              }}
-              className='group relative w-full sm:w-auto px-5 py-3.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-gray-500 text-gray-300 cursor-pointer text-base sm:text-lg font-semibold hover:bg-gray-700 hover:text-white hover:border-gray-400 active:bg-gray-800 active:scale-95 hover:shadow-lg hover:shadow-gray-500/20 duration-300 hover:scale-105 transition-all whitespace-nowrap overflow-hidden focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-800 touch-manipulation select-none min-h-[48px]'
+              href={RESUME.path}
+              download={RESUME.filename}
+              onClick={() => trackResumeDownload()}
+              className='group relative w-full sm:w-auto px-5 py-3.5 sm:px-6 sm:py-3 flex items-center justify-center rounded-lg bg-transparent border-2 border-gray-400 dark:border-gray-500 text-gray-700 dark:text-gray-300 cursor-pointer text-base sm:text-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white hover:border-gray-500 dark:hover:border-gray-400 active:bg-gray-200 dark:active:bg-gray-800 active:scale-95 hover:shadow-lg hover:shadow-gray-400/20 dark:hover:shadow-gray-500/20 duration-300 hover:scale-105 transition-all whitespace-nowrap overflow-hidden focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800 touch-manipulation select-none min-h-[48px]'
             >
               <span className='relative z-10 flex items-center'>
                 Download Resume
@@ -161,6 +194,16 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll Down Indicator */}
+      <div className='absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 hidden lg:flex flex-col items-center animate-bounce-slow'>
+        <Link to='about' smooth duration={500} className='cursor-pointer group flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-300'>
+          <span className='text-xs font-medium tracking-widest uppercase'>Scroll Down</span>
+          <svg className='w-5 h-5 group-hover:translate-y-1 transition-transform duration-300' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 14l-7 7m0 0l-7-7m7 7V3' />
+          </svg>
+        </Link>
       </div>
     </div>
   )

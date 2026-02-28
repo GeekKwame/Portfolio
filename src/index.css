@@ -11,12 +11,32 @@
     overflow-x: hidden;
   }
 
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html.light {
+    color-scheme: light;
+  }
+
   body {
     overflow-x: hidden;
     width: 100%;
     max-width: 100vw;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Theme-based body styles */
+  body {
+    background-color: #ffffff;
+    color: #111827;
+  }
+
+  html.dark body {
+    background-color: #0c0a09;
+    color: #ffffff;
   }
 
   * {
@@ -64,10 +84,6 @@
 
   .animate-gradient-shift {
     animation: gradientShift 8s ease infinite;
-  }
-
-  .animate-shimmer {
-    animation: shimmer 2s linear infinite;
   }
 
   .animate-bounce-slow {
@@ -173,9 +189,12 @@
 }
 
 @keyframes gradientShift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -187,7 +206,7 @@
       rgba(255, 255, 255, 0.1),
       transparent);
   background-size: 1000px 100%;
-  animation: shimmer 2s infinite;
+  animation: shimmer 2s linear infinite;
 }
 
 /* Custom scrollbar */
@@ -265,19 +284,7 @@
   }
 }
 
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
+/* gradient-shift keyframes consolidated into gradientShift above */
 
 @keyframes bounce-in {
   0% {
@@ -325,7 +332,7 @@
 
 .animate-gradient-shift {
   background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
+  animation: gradientShift 8s ease infinite;
   will-change: background-position;
 }
 
@@ -406,4 +413,34 @@
   display: block;
   width: calc(100% + 1.3px);
   height: 50px;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-float,
+  .animate-pulse,
+  .animate-bounce,
+  .animate-bounce-slow,
+  .animate-pulse-slow,
+  .animate-shimmer,
+  .animate-gradient-shift,
+  .animate-glow,
+  .animate-pulse-glow,
+  .animate-slide-in,
+  .animate-slide-in-right,
+  .animate-fade-in,
+  .animate-bounce-in,
+  .animate-spin {
+    animation: none !important;
+  }
 }

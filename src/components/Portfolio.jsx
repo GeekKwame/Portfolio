@@ -13,6 +13,7 @@ const Portfolio = memo(function Portfolio() {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
   const [imageErrors, setImageErrors] = useState({});
   const [imageLoading, setImageLoading] = useState({});
+  const [activeFilter, setActiveFilter] = useState('All');
 
   const handleImageError = (id) => {
     setImageErrors(prev => ({ ...prev, [id]: true }));
@@ -27,6 +28,7 @@ const Portfolio = memo(function Portfolio() {
       link1: "",
       link2: "https://github.com/GeekKwame/ai-resume-analyzer",
       tags: ["React Router", "TypeScript", "Tailwind CSS v4", "Zustand", "Puter.js", "PDF.js", "AI Analysis", "ATS Scoring"],
+      category: "AI / ML",
       icon: FaFileAlt,
       iconText: "AI Resume Analyzer Screenshot"
     },
@@ -38,6 +40,7 @@ const Portfolio = memo(function Portfolio() {
       link1: "",
       link2: "https://github.com/GeekKwame/Notes-App",
       tags: ["React", "Django", "REST API", "Python", "Full Stack"],
+      category: "Full Stack",
       icon: FaStickyNote,
       iconText: "Notes App Screenshot"
     },
@@ -49,6 +52,7 @@ const Portfolio = memo(function Portfolio() {
       link1: "",
       link2: "https://github.com/GeekKwame/books-website",
       tags: ["React", "Vite", "Django", "Django REST Framework", "Python", "Full Stack", "CORS"],
+      category: "Full Stack",
       icon: FaBook,
       iconText: "Book Website Screenshot"
     },
@@ -60,6 +64,7 @@ const Portfolio = memo(function Portfolio() {
       link1: "",
       link2: "https://github.com/GeekKwame/live-audio-room",
       tags: ["React", "TypeScript", "Stream.io", "Node.js", "Express", "Real-time", "WebRTC", "Full Stack"],
+      category: "Real-time",
       icon: FaMicrophone,
       iconText: "Live Audio Room Screenshot"
     },
@@ -71,29 +76,46 @@ const Portfolio = memo(function Portfolio() {
       link1: "",
       link2: "https://github.com/GeekKwame/travel-planner",
       tags: ["React Router v7", "TypeScript", "Tailwind CSS", "Syncfusion", "Supabase", "Gemini AI", "Stripe"],
+      category: "Full Stack",
       icon: FaPlane,
       iconText: "The Tourist's Planner Screenshot"
     }
   ];
 
   return (
-    <div name="portfolio" ref={sectionRef} className='bg-gradient-to-b from-stone-900 to-gray-800 w-full min-h-screen py-12 md:py-20'>
+    <div name="portfolio" ref={sectionRef} className='bg-gradient-to-b from-white via-slate-50/50 to-blue-50/20 dark:from-stone-900 dark:to-gray-800 w-full min-h-screen py-12 md:py-20'>
       <div className='max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full'>
         <div className={`mb-8 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white'>
+          <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white'>
             Portfolio
           </p>
-          <p className='py-2 md:py-4 text-gray-300 text-base sm:text-lg'>Explore my projects and see how I bring ideas to life</p>
+          <p className='py-2 md:py-4 text-gray-600 dark:text-gray-300 text-base sm:text-lg'>Explore my projects and see how I bring ideas to life</p>
           <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
         </div>
 
+        {/* Filter Tabs */}
+        <div className={`flex flex-wrap gap-2 sm:gap-3 mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {['All', 'Full Stack', 'AI / ML', 'Real-time'].map((filter) => (
+            <button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 cursor-pointer border ${activeFilter === filter
+                  ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-transparent shadow-lg shadow-cyan-500/30 scale-105'
+                  : 'bg-white dark:bg-gray-800/50 text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-600/50 hover:text-cyan-600 dark:hover:text-white hover:border-cyan-500 dark:hover:border-cyan-500/50 hover:bg-cyan-50 dark:hover:bg-gray-700/50 shadow-sm dark:shadow-none'
+                }`}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+
         <div className='grid sm:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8'>
-          {portfolios.map(({ id, src, title, description, link1, link2, tags, icon: Icon = FaStickyNote, iconText }, index) => {
+          {portfolios.filter(p => activeFilter === 'All' || p.category === activeFilter).map(({ id, src, title, description, link1, link2, tags, icon: Icon = FaStickyNote, iconText }, index) => {
             const fallbackIconText = iconText || `${title} Screenshot`;
             return (
               <div
                 key={id}
-                className={`group relative shadow-xl shadow-gray-900/50 rounded-xl overflow-hidden bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 hover:shadow-cyan-500/20 hover:shadow-2xl transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                className={`group relative shadow-lg dark:shadow-xl shadow-gray-200 dark:shadow-gray-900/50 rounded-xl overflow-hidden bg-white/90 dark:bg-gradient-to-br dark:from-gray-800/80 dark:to-gray-900/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-400/10 dark:hover:shadow-cyan-500/20 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
@@ -147,8 +169,8 @@ const Portfolio = memo(function Portfolio() {
                 </div>
 
                 <div className='p-4 sm:p-6'>
-                  <h3 className='text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 text-white group-hover:text-cyan-400 transition-colors duration-300'>{title}</h3>
-                  <p className='text-gray-400 text-sm md:text-base mb-3 sm:mb-4 leading-relaxed group-hover:text-gray-300 transition-colors duration-300'>{description}</p>
+                  <h3 className='text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300'>{title}</h3>
+                  <p className='text-gray-600 dark:text-gray-400 text-sm md:text-base mb-3 sm:mb-4 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300'>{description}</p>
 
                   <div className='flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4'>
                     {tags.map((tag, i) => (

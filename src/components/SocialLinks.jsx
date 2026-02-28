@@ -2,23 +2,31 @@ import React, { useState, memo } from 'react'
 import { FaGithub, FaLinkedin, FaCopy, FaCheck } from "react-icons/fa"
 import { HiOutlineMail } from "react-icons/hi"
 import { trackSocialClick } from '../utils/analytics'
+import { PERSONAL_INFO, SOCIAL_LINKS } from '../config/constants'
+import { useToastContext } from '../context/ToastContext'
 
 const SocialLinks = memo(function SocialLinks() {
   const [emailCopied, setEmailCopied] = useState(false);
+  const { success } = useToastContext();
 
   const copyEmailToClipboard = async (e) => {
     e.preventDefault();
     try {
-      await navigator.clipboard.writeText('dogbeblessingkwame@gmail.com');
+      await navigator.clipboard.writeText(PERSONAL_INFO.email);
       setEmailCopied(true);
       trackSocialClick('email');
+      success('Email copied to clipboard!');
       setTimeout(() => setEmailCopied(false), 2000);
     } catch (err) {
       console.error('Failed to copy email:', err);
       // Fallback to mailto
-      window.location.href = 'mailto:dogbeblessingkwame@gmail.com';
+      window.location.href = `mailto:${PERSONAL_INFO.email}`;
     }
   };
+
+  const emailLink = SOCIAL_LINKS.find(link => link.platform === 'Email');
+  const linkedinLink = SOCIAL_LINKS.find(link => link.platform === 'LinkedIn');
+  const githubLink = SOCIAL_LINKS.find(link => link.platform === 'GitHub');
 
   const links = [
     {
@@ -26,30 +34,30 @@ const SocialLinks = memo(function SocialLinks() {
       child: (
         <> LinkedIn<FaLinkedin size={30} /> </>
       ),
-      href: "https://www.linkedin.com/in/edmund-blessing/",
+      href: linkedinLink?.url || "",
       style: "rounded-tr-md",
       color: "hover:bg-blue-600",
-      label: "Connect on LinkedIn"
+      label: linkedinLink?.label || "Connect on LinkedIn"
     },
     {
       id: 2,
       child: (
         <> Github<FaGithub size={30} /> </>
       ),
-      href: "https://github.com/GeekKwame",
+      href: githubLink?.url || "",
       style: "",
       color: "hover:bg-gray-800",
-      label: "View my GitHub"
+      label: githubLink?.label || "View my GitHub"
     },
     {
       id: 3,
       child: (
         <> {emailCopied ? <>Copied!<FaCheck size={30} /></> : <>Mail<HiOutlineMail size={30} /></>} </>
       ),
-      href: "mailto:dogbeblessingkwame@gmail.com",
+      href: emailLink?.url || "",
       style: "rounded-br-md",
       color: emailCopied ? "bg-green-600" : "hover:bg-red-600",
-      label: emailCopied ? "Email copied!" : "Copy email address",
+      label: emailCopied ? "Email copied!" : emailLink?.label || "Copy email address",
       onClick: copyEmailToClipboard,
       isEmail: true
     },

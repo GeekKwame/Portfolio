@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { FaCode, FaServer, FaPalette, FaGraduationCap, FaProjectDiagram, FaTools, FaRocket } from 'react-icons/fa'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
+import CurrentlyBuilding from './CurrentlyBuilding'
 
 const About = memo(function About() {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
@@ -19,11 +20,11 @@ const About = memo(function About() {
   ];
 
   return (
-    <div name="about" ref={sectionRef} className='w-full min-h-screen bg-gradient-to-b from-gray-800 to-stone-900 text-white py-12 md:py-20'>
+    <div name="about" ref={sectionRef} className='w-full min-h-screen bg-gradient-to-b from-slate-50 via-white to-blue-50/30 dark:from-gray-800 dark:to-stone-900 text-gray-900 dark:text-white py-12 md:py-20'>
       <div className='max-w-screen-lg px-4 sm:px-6 mx-auto flex flex-col justify-center w-full h-full'>
         <div className={`mb-8 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4'>About</p>
-          <p className='text-gray-400 text-base sm:text-lg mb-4'>Get to know more about me, my skills, and what drives me</p>
+          <p className='text-gray-600 dark:text-gray-400 text-base sm:text-lg mb-4'>Get to know more about me, my skills, and what drives me</p>
           <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
         </div>
 
@@ -32,7 +33,7 @@ const About = memo(function About() {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className='group relative p-4 md:p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-600/50 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-105 overflow-hidden'
+              className='group relative p-4 md:p-6 bg-white/80 dark:bg-gradient-to-br dark:from-gray-700/50 dark:to-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-600/50 shadow-md hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-400/20 dark:hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-105 overflow-hidden'
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
@@ -43,7 +44,7 @@ const About = memo(function About() {
                 <div className={`text-3xl md:text-4xl font-bold mb-1 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
                   {stat.value}
                 </div>
-                <p className='text-gray-400 text-sm md:text-base group-hover:text-gray-300 transition-colors duration-300'>{stat.label}</p>
+                <p className='text-gray-600 dark:text-gray-400 text-sm md:text-base group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300'>{stat.label}</p>
               </div>
             </div>
           ))}
@@ -51,28 +52,29 @@ const About = memo(function About() {
 
         <div className='grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12'>
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-            <p className='text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4'>
+            <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4'>
               I'm Blessing Edmund Kwame Dogbe, a dedicated Full-Stack Developer with a passion for creating
               innovative web solutions. I specialize in building modern, responsive, and user-focused applications
               using cutting-edge technologies including React, JavaScript, Python, Django, Tailwind CSS, and Git.
             </p>
-            <p className='text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4'>
+            <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4'>
               With a strong foundation in Applied Mathematics from KNUST, I bring analytical thinking,
               systematic problem-solving, and mathematical precision to every project. My approach combines
               creative design with robust engineering principles to deliver scalable, maintainable, and
               high-performance applications.
             </p>
-            <p className='text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4'>
+            <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4'>
               I'm committed to continuous learning and staying current with industry best practices.
               Whether it's implementing complex algorithms, optimizing database queries, or crafting
               intuitive user interfaces, I strive to exceed expectations and deliver solutions that
               make a meaningful impact.
             </p>
-            <p className='text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed'>
+            <p className='text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-6'>
               When I'm not coding, I enjoy contributing to open-source projects, exploring new technologies,
               and sharing knowledge with the developer community. I'm always open to collaborating on
               exciting projects and opportunities to grow as a developer.
             </p>
+            <CurrentlyBuilding />
           </div>
 
           <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
@@ -86,7 +88,7 @@ const About = memo(function About() {
                 <div className='relative z-10'>
                   <div className='text-2xl md:text-3xl text-cyan-400 mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300'>{skill.icon}</div>
                   <h3 className='text-base md:text-lg font-bold mb-1 md:mb-2 group-hover:text-cyan-400 transition-colors duration-300'>{skill.title}</h3>
-                  <p className='text-xs sm:text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300'>{skill.desc}</p>
+                  <p className='text-xs sm:text-sm text-gray-600 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300'>{skill.desc}</p>
                 </div>
               </div>
             ))}
@@ -111,7 +113,7 @@ const About = memo(function About() {
               ].map((skill, index) => (
                 <div key={skill.name} className='group'>
                   <div className='flex justify-between mb-1'>
-                    <span className='text-sm font-medium text-gray-300 group-hover:text-cyan-400 transition-colors duration-300'>{skill.name}</span>
+                    <span className='text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300'>{skill.name}</span>
                     <span className='text-sm font-medium text-cyan-400'>{skill.level}%</span>
                   </div>
                   <div className='w-full bg-gray-700/50 rounded-full h-2.5 overflow-hidden'>

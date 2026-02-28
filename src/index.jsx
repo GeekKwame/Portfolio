@@ -10,14 +10,6 @@ initAnalytics();
 // Track initial page view
 trackPageView(window.location.pathname);
 
-// Make analytics functions globally available for onClick handlers
-if (typeof window !== 'undefined') {
-  window.trackResumeDownload = () => {
-    const { trackResumeDownload } = require('./utils/analytics');
-    trackResumeDownload();
-  };
-}
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

@@ -6,7 +6,7 @@ function ScrollProgress() {
   const updateScrollProgress = useCallback(() => {
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const scrollableHeight = documentHeight - windowHeight;
     const progress = scrollableHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / scrollableHeight) * 100)) : 0;
     setScrollProgress(progress);
