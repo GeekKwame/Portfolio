@@ -97,7 +97,7 @@ function NavBar() {
           <div className='relative w-9 h-9 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-cyan-500/40 shadow-lg shadow-cyan-500/20 group-hover:border-cyan-500/60 group-hover:shadow-cyan-500/40 transition-all duration-300'>
             <img
               src={profilePic}
-              alt="Edmund Blessing - Full Stack Developer"
+              alt={`${PERSONAL_INFO.name} - ${PERSONAL_INFO.title}`}
               className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'
               loading="eager"
               decoding="async"

@@ -1,7 +1,8 @@
 import React, { memo } from 'react'
-import { FaCode, FaServer, FaPalette, FaGraduationCap, FaProjectDiagram, FaTools, FaRocket } from 'react-icons/fa'
+import { FaCode, FaServer, FaGraduationCap, FaProjectDiagram, FaTools, FaRocket, FaBriefcase } from 'react-icons/fa'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import CurrentlyBuilding from './CurrentlyBuilding'
+import { PERSONAL_INFO } from '../config/constants'
 
 const About = memo(function About() {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
@@ -9,14 +10,14 @@ const About = memo(function About() {
   const stats = [
     { icon: <FaProjectDiagram />, value: '5+', label: 'Projects', color: 'from-cyan-500 to-blue-500' },
     { icon: <FaRocket />, value: '15+', label: 'Technologies', color: 'from-purple-500 to-pink-500' },
-    { icon: <FaTools />, value: 'Full Stack', label: 'Developer', color: 'from-green-500 to-teal-500' }
+    { icon: <FaBriefcase />, value: 'Open', label: 'To Opportunities', color: 'from-green-500 to-teal-500' }
   ];
 
   const skills = [
-    { icon: <FaCode />, title: 'Frontend Development', desc: 'React, JavaScript, TypeScript, HTML5, CSS3, Tailwind CSS, Responsive Design' },
-    { icon: <FaServer />, title: 'Backend Development', desc: 'Python, Django, REST APIs, Database Design, API Integration, Authentication' },
-    { icon: <FaPalette />, title: 'UI/UX Design', desc: 'Responsive Design, Modern Interfaces, User Experience, Accessibility, Performance Optimization' },
-    { icon: <FaGraduationCap />, title: 'Education & Skills', desc: 'BSc Applied Mathematics (KNUST), Problem Solving, Algorithm Design, Data Structures' }
+    { icon: <FaRocket />, title: 'AI & Cloud', desc: 'AWS, Cloud Computing, Machine Learning, AI integration, Python, and continuous learning through Azubi Africa' },
+    { icon: <FaServer />, title: 'Python, SQL & Backend', desc: 'Python, Django, SQL, REST APIs, database design, data analysis, and API integration' },
+    { icon: <FaCode />, title: 'Full-Stack Development', desc: 'React, JavaScript, TypeScript, HTML5, CSS3, Tailwind CSS, and responsive web applications' },
+    { icon: <FaGraduationCap />, title: 'IT Support & Education', desc: 'Technical support, hardware & network troubleshooting, BSc Applied Mathematics (KNUST), AWS Cloud & AI (Azubi Africa)' }
   ];
 
   return (
@@ -24,7 +25,7 @@ const About = memo(function About() {
       <div className='max-w-screen-lg px-4 sm:px-6 mx-auto flex flex-col justify-center w-full h-full'>
         <div className={`mb-8 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4'>About</p>
-          <p className='text-gray-600 dark:text-gray-400 text-base sm:text-lg mb-4'>Get to know more about me, my skills, and what drives me</p>
+          <p className='text-gray-600 dark:text-gray-400 text-base sm:text-lg mb-4'>{PERSONAL_INFO.headline}</p>
           <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
         </div>
 
@@ -53,26 +54,23 @@ const About = memo(function About() {
         <div className='grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12'>
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
             <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4'>
-              I'm Blessing Edmund Kwame Dogbe, a dedicated Full-Stack Developer with a passion for creating
-              innovative web solutions. I specialize in building modern, responsive, and user-focused applications
-              using cutting-edge technologies including React, JavaScript, Python, Django, Tailwind CSS, and Git.
+              I'm Blessing Edmund Kwame Dogbe, an aspiring AI & Cloud Engineer with a growing focus on Python,
+              SQL, and machine learning. I also build full-stack applications with React, Django, and modern
+              web tools—and bring hands-on IT support experience from university and client-facing roles.
             </p>
             <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4'>
-              With a strong foundation in Applied Mathematics from KNUST, I bring analytical thinking,
-              systematic problem-solving, and mathematical precision to every project. My approach combines
-              creative design with robust engineering principles to deliver scalable, maintainable, and
-              high-performance applications.
+              With a BSc in Applied Mathematics from KNUST and training in AWS Cloud & AI through Azubi Africa,
+              I combine analytical thinking with practical engineering—whether that's data pipelines, ML
+              experiments, cloud concepts, or reliable full-stack delivery.
             </p>
             <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4'>
-              I'm committed to continuous learning and staying current with industry best practices.
-              Whether it's implementing complex algorithms, optimizing database queries, or crafting
-              intuitive user interfaces, I strive to exceed expectations and deliver solutions that
-              make a meaningful impact.
+              I'm committed to continuous learning across AI, cloud, and software development. From optimizing
+              SQL queries and training models to shipping responsive UIs and resolving IT issues, I aim to
+              deliver solutions that are both technically sound and easy to use.
             </p>
             <p className='text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-6'>
-              When I'm not coding, I enjoy contributing to open-source projects, exploring new technologies,
-              and sharing knowledge with the developer community. I'm always open to collaborating on
-              exciting projects and opportunities to grow as a developer.
+              {PERSONAL_INFO.availability} I'm always open to connecting on new projects, internships,
+              and roles where I can grow as an engineer while contributing real value.
             </p>
             <CurrentlyBuilding />
           </div>
@@ -104,12 +102,12 @@ const About = memo(function About() {
             </h3>
             <div className='space-y-4'>
               {[
-                { name: 'React / JavaScript', level: 90, color: 'from-cyan-500 to-blue-500' },
-                { name: 'Python / Django', level: 85, color: 'from-green-500 to-teal-500' },
-                { name: 'TypeScript', level: 80, color: 'from-blue-500 to-indigo-500' },
-                { name: 'Tailwind CSS', level: 90, color: 'from-cyan-400 to-cyan-600' },
-                { name: 'REST APIs', level: 85, color: 'from-purple-500 to-pink-500' },
-                { name: 'SQL Databases', level: 75, color: 'from-orange-500 to-yellow-500' },
+                { name: 'Python', level: 88, color: 'from-green-500 to-teal-500' },
+                { name: 'SQL', level: 82, color: 'from-orange-500 to-yellow-500' },
+                { name: 'Machine Learning', level: 78, color: 'from-purple-500 to-pink-500' },
+                { name: 'React / JavaScript', level: 88, color: 'from-cyan-500 to-blue-500' },
+                { name: 'Cloud / AWS', level: 72, color: 'from-sky-500 to-indigo-500' },
+                { name: 'IT Support', level: 85, color: 'from-emerald-500 to-cyan-500' },
               ].map((skill, index) => (
                 <div key={skill.name} className='group'>
                   <div className='flex justify-between mb-1'>

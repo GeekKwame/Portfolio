@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import SocialLinks from "./components/SocialLinks";
 const About = lazy(() => import('./components/About'));
+const Education = lazy(() => import('./components/Education'));
 const Portfolio = lazy(() => import('./components/Portfolio'));
 const Experience = lazy(() => import('./components/Experience'));
 const Contact = lazy(() => import('./components/Contact'));
@@ -31,6 +32,7 @@ function App() {
             </div>
           }>
             <About />
+            <Education />
             <Portfolio />
             <Experience />
             <Contact />

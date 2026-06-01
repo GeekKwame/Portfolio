@@ -3,7 +3,7 @@ import { MdOutlineArrowForwardIos } from "react-icons/md"
 import { Link } from 'react-scroll';
 import { trackResumeDownload } from '../utils/analytics'
 import profilePic from "../assets/images/profile/profile-pic.jpg"
-import { ROLES, RESUME } from '../config/constants'
+import { PERSONAL_INFO, ROLES, RESUME } from '../config/constants'
 
 const roles = ROLES;
 
@@ -82,17 +82,20 @@ const Home = () => {
             <h2 className='text-2xl sm:text-3xl md:text-4xl font-bold leading-tight'>
               <span className='text-gray-900 dark:text-white'>I'm a </span>
               <span className='bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-500 bg-clip-text text-transparent'>
-                {displayText || 'Full Stack Developer'}
+                {displayText || PERSONAL_INFO.title}
               </span>
               {isTyping && <span className='animate-pulse text-cyan-600 dark:text-cyan-400 ml-1 inline-block'>|</span>}
             </h2>
+            <p className='mt-3 text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-md'>
+              {PERSONAL_INFO.headline}
+            </p>
           </div>
           <div className='flex-shrink-0 ml-4 animate-float relative'>
             <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-lg opacity-20 animate-pulse'></div>
             <div className='relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-cyan-500/30 shadow-xl shadow-cyan-500/20'>
               <img
                 src={profilePic}
-                alt="Edmund Blessing - Full Stack Developer"
+                alt={`${PERSONAL_INFO.name} - ${PERSONAL_INFO.title}`}
                 className='w-full h-full object-cover'
                 loading="eager"
                 decoding="async"
@@ -116,18 +119,17 @@ const Home = () => {
             <h2 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight w-full'>
               <span className='text-gray-900 dark:text-white block sm:inline'>I'm a </span>
               <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent block sm:inline'>
-                {displayText || 'Full Stack Developer'}
+                {displayText || PERSONAL_INFO.title}
               </span>
               {isTyping && <span className='animate-pulse text-cyan-400 ml-1 inline-block'>|</span>}
             </h2>
+            <p className='mt-3 text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl'>
+              {PERSONAL_INFO.headline}
+            </p>
           </div>
 
-          <p className='text-gray-600 dark:text-gray-300 text-sm sm:text-base md:text-lg mb-6 max-w-lg leading-relaxed w-full'>
-            I'm a passionate Full Stack Developer specializing in building scalable,
-            modern web applications. With expertise in React, Django, and Python,
-            I transform complex ideas into elegant, user-friendly digital solutions.
-            I'm dedicated to writing clean code, implementing best practices, and
-            delivering exceptional user experiences that drive business value.
+          <p className='text-gray-600 dark:text-gray-300 text-sm sm:text-base md:text-lg mb-6 max-w-2xl leading-relaxed w-full'>
+            {PERSONAL_INFO.intro}
           </p>
 
           <div className='flex flex-col sm:flex-row gap-3 sm:gap-3 md:gap-4 flex-wrap w-full'>
@@ -177,7 +179,7 @@ const Home = () => {
             <div className='relative w-80 h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-2xl shadow-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105'>
               <img
                 src={profilePic}
-                alt="Edmund Blessing - Full Stack Developer"
+                alt={`${PERSONAL_INFO.name} - ${PERSONAL_INFO.title}`}
                 className='w-full h-full object-cover'
                 loading="eager"
                 decoding="async"
