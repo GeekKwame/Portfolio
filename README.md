@@ -31,7 +31,7 @@ npm install
 npm start
 ```
 
-The app will open at [http://localhost:3000](http://localhost:3000)
+The dev server runs at [http://localhost:5173](http://localhost:5173)
 
 ### Build for production:
 
@@ -106,10 +106,16 @@ portfolio/
    ```
 4. Run `npm run build` then `npm run deploy`
 
+### Vercel
+
+1. Import the repository and set **Root Directory** to `Portfolio`.
+2. Build command: `npm run build` (default via `vercel.json`).
+3. Output directory: `dist`.
+4. Contact email is configured in `src/config/constants.js` (`CONTACT_EMAIL`).
+
 ### Other Platforms
 
-- **Netlify**: Connect your repository and set build command to `npm run build`
-- **Vercel**: Import your repository and deploy
+- **Netlify**: Connect your repository, root `Portfolio`, build `npm run build`, publish `dist`
 - **AWS Amplify**: Connect repository and configure build settings
 
 ## 📝 Notes

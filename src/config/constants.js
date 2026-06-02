@@ -7,6 +7,9 @@
 export const HEADLINE =
   'Aspiring AI & Cloud Engineer | Python, SQL, Machine Learning | Full-Stack Dev | IT Support | Open to Opportunities';
 
+/** Contact email — single source of truth for mailto, contact form, and footer */
+export const CONTACT_EMAIL = 'dogbeblessingkwame@gmail.com';
+
 export const SEO = {
   title: 'Edmund Blessing — AI & Cloud Engineer Portfolio',
   description:
@@ -25,6 +28,7 @@ export const PERSONAL_INFO = {
     'Aspiring AI & Cloud Engineer building toward cloud and AI roles, with hands-on experience in Python, SQL, machine learning, full-stack development, and IT support. I turn complex problems into reliable, user-focused solutions—and I am open to new opportunities.',
   location: 'Available worldwide',
   availability: 'Open to opportunities — freelance, full-time, and collaboration.',
+  email: CONTACT_EMAIL,
 };
 
 export const SOCIAL_LINKS = [
@@ -47,7 +51,7 @@ export const SOCIAL_LINKS = [
   {
     id: 3,
     platform: 'Email',
-    url: 'mailto:dogbeblessingkwame@gmail.com',
+    url: `mailto:${CONTACT_EMAIL}`,
     icon: 'FaEnvelope',
     color: 'hover:text-red-400',
     label: 'Send me an email',
