@@ -8,7 +8,7 @@ const About = memo(function About() {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
   const stats = [
-    { icon: <FaProjectDiagram />, value: '5+', label: 'Projects', color: 'from-cyan-500 to-blue-500' },
+    { icon: <FaProjectDiagram />, value: '8+', label: 'Projects', color: 'from-cyan-500 to-blue-500' },
     { icon: <FaRocket />, value: '15+', label: 'Technologies', color: 'from-purple-500 to-pink-500' },
     { icon: <FaBriefcase />, value: 'Open', label: 'To Opportunities', color: 'from-green-500 to-teal-500' }
   ];
