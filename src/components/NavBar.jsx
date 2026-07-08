@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { FaBars, FaTimes } from "react-icons/fa"
 import { Link } from 'react-scroll'
-import profilePic from "../assets/images/profile/profile-pic.jpg"
+import profilePic from "../assets/images/profile/profile-pic.jpeg"
 import ThemeToggle from "./ThemeToggle"
 import { PERSONAL_INFO, NAVIGATION_LINKS } from '../config/constants'
 

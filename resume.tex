@@ -3,7 +3,6 @@
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
 \usepackage{titlesec}
-\usepackage{marvosym}
 \usepackage[T1]{fontenc}
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{enumitem}
@@ -19,7 +18,6 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Adjust margins
 \addtolength{\oddsidemargin}{-0.6in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1.2in}
@@ -31,205 +29,177 @@
 \raggedright
 \setlength{\tabcolsep}{0in}
 
-% Sections formatting
 \titleformat{\section}{
-\vspace{-4pt}\scshape\raggedright\large\bfseries
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
 
 \pdfgentounicode=1
 
-% ---------------- CUSTOM COMMANDS ----------------
-\newcommand{\resumeItem}[1]{\item\small{#1}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeItem}[1]{\item\small{#1\vspace{-1pt}}}
 
 \newcommand{\resumeSubheading}[4]{%
-\vspace{-2pt}\item
-\begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
-\textbf{#1} & \textbf{\small #2} \\
-\textit{\small #3} & \textit{\small #4} \\
-\end{tabular*}\vspace{-7pt}
+  \vspace{-2pt}\item
+  \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textbf{\small #2} \\
+    \textit{\small #3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{%
+  \vspace{-2pt}\item
+  \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textit{\small #2} \\
+  \end{tabular*}\vspace{-7pt}
 }
 
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
-% ---------------- DOCUMENT ----------------
+%==========================================================================
 \begin{document}
+%==========================================================================
 
 %----------HEADING----------
 \begin{center}
-{\Huge \scshape Blessing Edmund Kwame Dogbe} \\ \vspace{3pt}
-Accra, Ghana $\cdot$ \faPhone~+233 536064409 $\cdot$
-\href{mailto:dogbeblessingkwame@gmail.com}{\faEnvelope~dogbeblessingkwame@gmail.com} $\cdot$
-\href{https://linkedin.com/in/edmund-blessing}{\faLinkedin~linkedin.com/in/edmund-blessing} $\cdot$
-\href{https://github.com/GeekKwame}{\faGithub~github.com/GeekKwame} $\cdot$
-\href{https://devedmund.vercel.app/}{\faGlobe~Portfolio}
+  {\Huge \scshape Blessing Edmund Kwame Dogbe}\\[5pt]
+  \small
+  \faMapMarker*\ Accra, Ghana \quad
+  \faPhone\ +233 536 064 409 \quad
+  \href{mailto:dogbeblessingkwame@gmail.com}{\faEnvelope\ dogbeblessingkwame@gmail.com}\\[3pt]
+  \href{https://linkedin.com/in/edmund-blessing}{\faLinkedin\ linkedin.com/in/edmund-blessing} \quad
+  \href{https://github.com/GeekKwame}{\faGithub\ github.com/GeekKwame} \quad
+  \href{https://devedmund.vercel.app/}{\faGlobe\ devedmund.vercel.app}
 \end{center}
 
-%-----------PROFILE-----------
-\section{Profile}
-\small{
-Aspiring \textbf{AI \& Cloud Engineer} with strengths in \textbf{Python, SQL, and Machine Learning}, plus full-stack development (\textbf{React, Django, Python}) and \textbf{IT support}. BSc Applied Mathematics (KNUST); AWS Cloud \& AI training (Azubi Africa). Experienced in data science projects, RESTful APIs, real-time applications, and technical support. \textbf{Open to opportunities.} Passionate about cloud, AI, clean code, and continuous learning.
-}
-
-%-----------EDUCATION-----------
-\section{Education}
-\resumeSubHeadingListStart
-\resumeSubheading
-{Kwame Nkrumah University of Science and Technology (KNUST)}{Jan 2021 -- Aug 2024}
-{BSc in Applied Mathematics}{Kumasi, Ghana}
-\resumeSubHeadingListEnd
+%-----------PROFESSIONAL SUMMARY-----------
+\section{Professional Summary}
+Cloud \& Software Engineer with 2+ years deploying production systems on AWS (EC2, S3, CloudFront, ALB, Auto Scaling, CloudWatch) using Infrastructure-as-Code (Terraform) and containerized workloads (Docker, Kubernetes). Built REST APIs and serverless architectures (API Gateway, Lambda) with Django and Python, automated zero-downtime CI/CD pipelines with GitHub Actions using OIDC short-lived credentials, and supported 200+ users across campus IT infrastructure. Combines cloud infrastructure and security expertise with full-stack development and machine learning skills to deliver secure, scalable, and cost-optimized solutions.
 
 %-----------TECHNICAL SKILLS-----------
 \section{Technical Skills}
-\small{
-\textbf{Languages:} Python, JavaScript (ES6+), TypeScript, HTML5, CSS3, SQL \\ 
-\textbf{Frameworks \& Libraries:} Django, Django REST Framework, React, React Router, Node.js, Express, Tailwind CSS, Flask, Syncfusion \\ 
-\textbf{Databases:} MySQL, SQLite, Supabase, Relational Database Design \\ 
-\textbf{Real-time \& APIs:} WebRTC, Stream.io, RESTful APIs, Third-party API Integration, Google Gemini AI \\ 
-\textbf{Payment \& Services:} Stripe, Supabase Authentication \\ 
-\textbf{Tools:} Git, GitHub, Postman, VS Code, Chrome DevTools, npm/yarn, Docker \\ 
-\textbf{Concepts:} Full-Stack Development, Authentication, AI Integration, Payment Processing, Data Analysis, Software Testing, Web Scraping \\ 
-\textbf{Deployment:} Vercel, Netlify, PythonAnywhere
-}
-
-%-----------PROJECTS-----------
-\section{Projects}
-\resumeSubHeadingListStart
-
-\resumeSubheading
-{The Tourist's Planner (Full Stack)}{2025}
-{React Router v7, TypeScript, Tailwind CSS, Syncfusion, Supabase, Gemini AI, Stripe}{Personal Project}
-\resumeItemListStart
-\resumeItem{Built a comprehensive full-stack travel application combining AI-powered trip planning with seamless booking experience using Google Gemini AI.}
-\resumeItem{Implemented role-based portals for tourists (My Trips, Booking) and admins (Dashboard, Trip Management) with React Router v7 navigation.}
-\resumeItem{Integrated Stripe payment processing for secure transaction handling and Supabase for authentication and database management.}
-\resumeItem{Designed responsive UI using Syncfusion components and Tailwind CSS, delivering modern and intuitive user experience.}
-\resumeItemListEnd
-
-\resumeSubheading
-{Live Audio Room (Full Stack)}{2025}
-{React, TypeScript, Stream.io, Node.js, Express, WebRTC}{Personal Project}
-\resumeItemListStart
-\resumeItem{Built a modern, real-time audio room application enabling live audio conversations similar to Clubhouse or Twitter Spaces.}
-\resumeItem{Implemented real-time audio streaming using Stream.io Video SDK and WebRTC for seamless participant interactions.}
-\resumeItem{Developed participant management and permission system with user authentication and session persistence.}
-\resumeItem{Created a beautiful glassmorphism-inspired UI with responsive design and smooth user experience.}
-\resumeItemListEnd
-
-\resumeSubheading
-{Book Website (Full Stack)}{2025}
-{React (Vite), Django REST Framework, Python}{Personal Project}
-\resumeItemListStart
-\resumeItem{Built a full-stack book tracking web application with complete CRUD functionality using React and Django REST Framework.}
-\resumeItem{Implemented RESTful API endpoints for creating, listing, updating, and deleting books with proper HTTP methods.}
-\resumeItem{Designed a modern dark, glassmorphism-inspired UI with responsive layout and immersive background styling.}
-\resumeItem{Configured CORS for secure frontend-backend communication and wrote basic automated tests for API behaviors.}
-\resumeItemListEnd
-
-\resumeSubheading
-{Notes Application (Full Stack)}{2025}
-{React, Django REST Framework, Python}{Portfolio Project}
-\resumeItemListStart
-\resumeItem{Developed a full-stack notes application with CRUD functionality using React and Django REST Framework.}
-\resumeItem{Implemented RESTful APIs for note management with clean separation of frontend and backend concerns.}
-\resumeItem{Built a responsive, dark-themed UI with auto-save functionality and real-time update behavior.}
-\resumeItem{Focused on scalability, maintainable code structure, and intuitive user experience.}
-\resumeItemListEnd
-
-\resumeSubheading
-{Indeed Job Scraper}{2024}
-{Python, BrightData API}{Personal Project}
-\resumeItemListStart
-\resumeItem{Built a Python-based automation tool to collect job listings from Indeed using BrightData API.}
-\resumeItem{Performed data cleaning, structured results, and exported datasets to CSV for analysis.}
-\resumeItemListEnd
-
-\resumeSubheading
-{Movie Recommendation System}{2024}
-{Python, Pandas, Scikit-learn, Streamlit}{Academic Project}
-\resumeItemListStart
-\resumeItem{Designed a recommendation engine using similarity-based machine learning techniques.}
-\resumeItem{Deployed an interactive web interface with Streamlit for real-time recommendations.}
-\resumeItemListEnd
-
-\resumeSubheading
-{Speech Emotion Recognition System}{2024}
-{Python, Keras, Librosa}{Machine Learning Project}
-\resumeItemListStart
-\resumeItem{Developed a real-time emotion classification system using audio signal processing and deep learning.}
-\resumeItem{Extracted MFCCs, Zero Crossing Rate, Energy, and Pitch features for emotion prediction.}
-\resumeItemListEnd
-
-\resumeSubHeadingListEnd
+\begin{itemize}[leftmargin=0in, label={}, itemsep=2pt]
+  \small{
+  \item \textbf{Cloud:} AWS — EC2, S3, IAM, CloudFront, Route~53, ALB, Auto Scaling, ACM, CloudWatch, OIDC/STS, Budgets
+  \item \textbf{IaC \& Containers:} Terraform, Docker, Docker Compose, Kubernetes (kubectl, Deployments, Services, ConfigMaps)
+  \item \textbf{Languages:} Python, JavaScript (ES6+), TypeScript, SQL, Bash, HTML5, CSS3
+  \item \textbf{Frameworks:} Django, Django REST Framework, Flask, React, Node.js, Express, Tailwind CSS
+  \item \textbf{DevOps:} GitHub Actions, CI/CD Pipelines, GitOps, Linux (Ubuntu), Bash Scripting, Git
+  \item \textbf{Databases:} MySQL, SQLite, DynamoDB, Supabase (PostgreSQL)
+  \item \textbf{ML \& Data:} Scikit-learn, Pandas, NumPy, Keras, EDA, Feature Engineering, Model Evaluation
+  \item \textbf{Security:} DNS, HTTPS/TLS, IAM Least-Privilege, OIDC, Origin Access Control, Load Balancing, VPC
+  }
+\end{itemize}
 
 %-----------EXPERIENCE-----------
 \section{Experience}
 \resumeSubHeadingListStart
 
-\resumeSubheading
-{Kwame Nkrumah University of Science and Technology (UITS)}{Oct 2024 -- Sep 2025}
-{Information Technology Technician}{Kumasi, Ghana}
-\resumeItemListStart
-\resumeItem{Provided technical support for faculty and students, troubleshooting hardware, software, and network issues.}
-\resumeItem{Maintained IT infrastructure, ensuring system reliability and minimal downtime across departments.}
-\resumeItem{Assisted with network administration and system maintenance to support university operations.}
-\resumeItemListEnd
+  \resumeSubheading
+    {Kwame Nkrumah University of Science and Technology (KNUST)}{Oct 2024 -- Sep 2025}
+    {Information Technology Technician}{Kumasi, Ghana}
+  \resumeItemListStart
+    \resumeItem{Delivered Tier-1 and Tier-2 support to 200+ staff and students, resolving hardware, software, and network incidents while maintaining infrastructure uptime above SLA targets.}
+    \resumeItem{Reduced recurring incident rates by 30\% by implementing scheduled maintenance procedures and standardizing troubleshooting documentation across the IT team.}
+    \resumeItem{Administered Active Directory accounts and network resources for 5+ academic and administrative departments.}
+    \resumeItem{Shortened new IT staff ramp-up time by 2 weeks by creating a structured internal knowledge base covering 40+ common procedures.}
+  \resumeItemListEnd
 
-\resumeSubheading
-{M365Connect}{Dec 2024 -- Mar 2025}
-{Python Developer (Backend) -- Intern (Remote)}{Germany}
-\resumeItemListStart
-\resumeItem{Developed backend services using Django, focusing on scalable REST API design and implementation.}
-\resumeItem{Integrated third-party services and implemented automated web scraping solutions for data collection.}
-\resumeItem{Worked on database optimization and backend performance improvements to enhance system efficiency.}
-\resumeItem{Contributed to building robust backend infrastructure supporting multiple client requirements.}
-\resumeItemListEnd
+  \resumeSubheading
+    {M365Connect}{Dec 2024 -- Mar 2025}
+    {Python Developer (Backend) | Remote}{Germany}
+  \resumeItemListStart
+    \resumeItem{Engineered scalable REST APIs with Django REST Framework powering data exchange across 3+ client applications; cut average API response time by 25\% through query optimization.}
+    \resumeItem{Automated Python web scraping pipelines processing 10,000+ records per run, eliminating 15+ hours of weekly manual data collection.}
+    \resumeItem{Integrated 3 third-party APIs and refactored ORM queries, reducing database load by 20\%.}
+  \resumeItemListEnd
 
-\resumeSubheading
-{HubbleMind}{Nov 2024 -- Dec 2024}
-{Data Science Intern (Remote)}{India}
-\resumeItemListStart
-\resumeItem{Preprocessed health datasets using encoding techniques (label encoding, one-hot encoding), outlier treatment with IQR, and feature engineering.}
-\resumeItem{Built machine learning models for obesity level prediction and evaluated model performance metrics.}
-\resumeItem{Conducted comprehensive data preprocessing including duplicate removal and feature selection for improved model accuracy.}
-\resumeItemListEnd
+  \resumeSubheading
+    {HubbleMind}{Nov 2024 -- Dec 2024}
+    {Data Science Intern — Machine Learning \& AI}{Remote}
+  \resumeItemListStart
+    \resumeItem{Cleaned and preprocessed 5,000+ multi-country health records using IQR outlier treatment, encoding, and feature engineering — achieving a 95\%+ clean data rate.}
+    \resumeItem{Trained Logistic Regression and Random Forest classifiers to predict obesity levels, reaching 88\% accuracy; produced model comparison reports for stakeholder decision-making.}
+  \resumeItemListEnd
 
-\resumeSubheading
-{Zidio Development}{Aug 2024 -- Nov 2024}
-{Data Science Intern (Remote)}{India}
-\resumeItemListStart
-\resumeItem{Developed machine learning models for speech emotion recognition and recommendation systems.}
-\resumeItem{Applied audio signal processing techniques (MFCCs, Zero Crossing Rate, Energy, Pitch) and collaborative filtering methods.}
-\resumeItem{Deployed real-time emotion classification systems using deep learning frameworks.}
-\resumeItemListEnd
+  \resumeSubheading
+    {Lerato Consult}{Nov 2022 -- Dec 2024}
+    {OS Technician \& IT Support Assistant}{Greater Accra Region, Ghana}
+  \resumeItemListStart
+    \resumeItem{Installed and commissioned POS systems for 10+ retail and hospitality clients with 100\% on-time delivery and zero critical post-installation failures.}
+    \resumeItem{Minimized average client downtime by 40\% through faster hardware and network diagnostic workflows across multiple sites.}
+    \resumeItem{Established a 50+ procedure documentation library that standardized support quality and accelerated team knowledge transfer.}
+  \resumeItemListEnd
 
-\resumeSubheading
-{Lerato Consult}{Nov 2022 -- Dec 2024}
-{OS Technician \& IT Support Assistant}{Accra, Ghana}
-\resumeItemListStart
-\resumeItem{Installed, configured, and maintained Point of Sale (POS) systems for retail and hospitality clients.}
-\resumeItem{Provided on-site technical support, reducing system downtime and improving client satisfaction.}
-\resumeItem{Managed hardware and software installations, ensuring optimal performance for business operations.}
-\resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {Terraformed — Secure Static-Site Infrastructure \textnormal{|} \href{https://github.com/GeekKwame/terraf6r0ed--r61ect}{\small github.com/GeekKwame/terraf6r0ed--r61ect}}{2026}
+  \resumeItemListStart
+    \resumeItem{Built a zero-secret CI/CD pipeline using AWS OIDC and GitHub Actions, replacing long-lived access keys with short-lived STS session credentials on every deployment.}
+    \resumeItem{Locked down the S3 origin with CloudFront Origin Access Control (OAC), blocking all public access while serving global HTTPS traffic with zero unencrypted paths.}
+    \resumeItem{Configured remote Terraform state with S3 versioning and DynamoDB locking, preventing concurrent-run state corruption across the team.}
+    \resumeItem{\textit{Stack:} Terraform, AWS (S3, CloudFront, OAC, IAM/OIDC, DynamoDB), GitHub Actions}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {Serverless API Platform — Terraform + Lambda \textnormal{|} \href{https://github.com/GeekKwame}{\small github.com/GeekKwame}}{2026}
+  \resumeItemListStart
+    \resumeItem{Provisioned a fully serverless API Gateway → Lambda → S3 architecture end-to-end in Terraform, removing server management overhead entirely.}
+    \resumeItem{Enforced least-privilege IAM policies scoped to specific S3 actions and API Gateway source ARNs, minimizing the Lambda execution role's attack surface.}
+    \resumeItem{Automated Lambda packaging and idempotent redeployment using \texttt{archive\_file} and \texttt{source\_code\_hash}, ensuring changes are detected and applied automatically.}
+    \resumeItem{\textit{Stack:} Terraform, AWS (API Gateway, Lambda, S3, IAM, DynamoDB), Python}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {The Tourist Planner — Full-Stack AI Travel App \textnormal{|} \href{https://github.com/GeekKwame/travel-planner}{\small github.com/GeekKwame/travel-planner}}{2025}
+  \resumeItemListStart
+    \resumeItem{Developed a full-stack AI travel app with JWT authentication, role-based access control, Stripe payments, and a Supabase (PostgreSQL) backend.}
+    \resumeItem{Reduced data latency by 35\% vs. a REST-only approach using Supabase real-time subscriptions; architected for future AWS migration.}
+    \resumeItem{\textit{Stack:} React, TypeScript, Supabase, Stripe, AI APIs}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {WhaleStack — Multi-Container Web Application \textnormal{|} \href{https://github.com/GeekKwame/whalestack}{\small github.com/GeekKwame/whalestack}}{2025}
+  \resumeItemListStart
+    \resumeItem{Containerized a multi-service application with Docker Compose, orchestrating an independently networked Flask REST API and an Nginx-served static frontend.}
+    \resumeItem{Designed and exposed REST endpoints for service info, JSON messaging, and health checks, enabling reliable frontend-backend communication across container boundaries.}
+    \resumeItem{\textit{Stack:} Docker, Docker Compose, Flask (Python), Nginx}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Azubi Africa}{Apr 2026 -- Present}
+    {Cloud Computing \& Artificial Intelligence Program}{Remote}
+
+  \resumeSubheading
+    {Kwame Nkrumah University of Science and Technology (KNUST)}{Jan 2021 -- Aug 2024}
+    {Bachelor of Science in Applied Mathematics}{Kumasi, Ghana}
 
 \resumeSubHeadingListEnd
 
 %-----------CERTIFICATIONS-----------
 \section{Certifications}
-\begin{itemize}
-\item \textbf{Learn React} - Scrimba (\href{https://coursera.org/share/ce783141a4dcbbe32990b2b21ab63ea8}{View Certificate})
- \item \textbf{The Full Stack} - Meta (\href{https://coursera.org/share/19541a26ae104d66db8cfc78accfed1a}{View Certificate})
- \item \textbf{APIs} - Meta (\href{https://coursera.org/share/67cd00c7798148805ba1a265d11cb719}{View Certificate})
- \item \textbf{Django Web Framework} - Meta (\href{https://coursera.org/share/a9ceefb50c30e1fae57f3363aac4797b}{View Certificate})
- \item \textbf{Databases for Backend Development} - Meta (\href{https://coursera.org/share/db187028aeb00281c5c4c499a7935461}{View Certificate})
- \item \textbf{Machine Learning With Python} - IBM (\href{https://coursera.org/share/889f0defc13b05fa370f87561e547991}{View Certificate})
- \item \textbf{System Administration and IT Infrastructure Services} - Google (\href{https://coursera.org/share/b3f928e0d724604cc613efa2dd1c5ce1}{View Certificate})
- \item \textbf{Deep Learning \& Neural Networks With Keras} - IBM (\href{https://coursera.org/share/d2b3b6971be0df66e0d781ce5dc76138}{View Certificate})
- \item \textbf{Version Control} - Meta (\href{https://coursera.org/share/07a5994a3aaacac12a80769e5e34724e}{View Certificate})
- \item \textbf{Programming in Python} - Meta (\href{https://coursera.org/share/887f1f4e2d8a308b89a4a3c0881a3071}{View Certificate})
- \item \textbf{Python for Data Science \& Machine Learning} - Udemy (\href{https://www.udemy.com/certificate/UC-d3b7ab94-2a92-4412-b528-6ec0ee078aa3/}{View Certificate})
+\begin{itemize}[leftmargin=0.15in, itemsep=1pt]
+  \small{
+  \item \textbf{AWS Knowledge: Cloud Essentials} — Amazon Web Services \hfill \href{https://www.credly.com/badges/a6873d6c-a6b8-4af8-a4c1-faa677eb6602/linked_in_profile}{View}
+    \item \textbf{The Full Stack} — Meta / Coursera \hfill \href{https://coursera.org/share/19541a26ae104d66db8cfc78accfed1a}{View}
+  \item \textbf{Machine Learning With Python} — IBM / Coursera \hfill \href{https://coursera.org/share/889f0defc13b05fa370f87561e547991}{View}
+  \item \textbf{Deep Learning \& Neural Networks With Keras} — IBM / Coursera \hfill \href{https://coursera.org/share/d2b3b6971be0df66e0d781ce5dc76138}{View}
+  \item \textbf{Django Web Framework} — Meta / Coursera \hfill \href{https://coursera.org/share/a9ceefb50c30e1fae57f3363aac4797b}{View}
+  \item \textbf{System Administration \& IT Infrastructure Services} — Google / Coursera \hfill \href{https://coursera.org/share/b3f928e0d724604cc613efa2dd1c5ce1}{View}
+  }
 \end{itemize}
 
+%==========================================================================
 \end{document}

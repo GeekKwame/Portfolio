@@ -14,10 +14,10 @@ const About = memo(function About() {
   ];
 
   const skills = [
-    { icon: <FaRocket />, title: 'AI & Cloud', desc: 'AWS, Cloud Computing, Machine Learning, AI integration, Python, and continuous learning through Azubi Africa' },
-    { icon: <FaServer />, title: 'Python, SQL & Backend', desc: 'Python, Django, SQL, REST APIs, database design, data analysis, and API integration' },
-    { icon: <FaCode />, title: 'Full-Stack Development', desc: 'React, JavaScript, TypeScript, HTML5, CSS3, Tailwind CSS, and responsive web applications' },
-    { icon: <FaGraduationCap />, title: 'IT Support & Education', desc: 'Technical support, hardware & network troubleshooting, BSc Applied Mathematics (KNUST), AWS Cloud & AI (Azubi Africa)' }
+    { icon: <FaRocket />, title: 'Cloud & Infrastructure', desc: 'AWS (EC2, S3, CloudFront, ALB, Auto Scaling, CloudWatch), Terraform IaC, Docker, Kubernetes, serverless (Lambda, API Gateway), zero-secret CI/CD with OIDC' },
+    { icon: <FaServer />, title: 'Python & Backend', desc: 'Django, Django REST Framework, Flask, REST APIs, web scraping pipelines, ORM optimization, database design, 3rd-party API integration' },
+    { icon: <FaCode />, title: 'Full-Stack Development', desc: 'React, TypeScript, JavaScript (ES6+), Node.js, HTML5, CSS3, Tailwind CSS, real-time systems, responsive web applications' },
+    { icon: <FaGraduationCap />, title: 'DevOps & IT Support', desc: 'GitHub Actions CI/CD, Linux (Ubuntu), Bash scripting, Active Directory, network diagnostics, BSc Applied Mathematics (KNUST), AWS Cloud & AI (Azubi Africa)' }
   ];
 
   return (
@@ -54,19 +54,19 @@ const About = memo(function About() {
         <div className='grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12'>
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
             <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4'>
-              I'm Blessing Edmund Kwame Dogbe, an aspiring AI & Cloud Engineer with a growing focus on Python,
-              SQL, and machine learning. I also build full-stack applications with React, Django, and modern
-              web tools—and bring hands-on IT support experience from university and client-facing roles.
+              I'm Blessing Edmund Kwame Dogbe, a Cloud & Software Engineer with 2+ years deploying production
+              systems on AWS — EC2, S3, CloudFront, ALB, Auto Scaling, and CloudWatch — using Terraform for
+              Infrastructure-as-Code and containerized workloads with Docker and Kubernetes.
             </p>
             <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4'>
-              With a BSc in Applied Mathematics from KNUST and training in AWS Cloud & AI through Azubi Africa,
-              I combine analytical thinking with practical engineering—whether that's data pipelines, ML
-              experiments, cloud concepts, or reliable full-stack delivery.
+              I build REST APIs and serverless architectures (API Gateway, Lambda) with Django and Python,
+              automate zero-downtime CI/CD pipelines with GitHub Actions using OIDC short-lived credentials,
+              and deliver secure, scalable full-stack applications with React on the frontend.
             </p>
             <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4'>
-              I'm committed to continuous learning across AI, cloud, and software development. From optimizing
-              SQL queries and training models to shipping responsive UIs and resolving IT issues, I aim to
-              deliver solutions that are both technically sound and easy to use.
+              With a BSc in Applied Mathematics from KNUST and AWS Cloud & AI training through Azubi Africa,
+              I combine analytical thinking with practical engineering — turning complex infrastructure
+              challenges into cost-optimized, production-ready solutions.
             </p>
             <p className='text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-6'>
               {PERSONAL_INFO.availability} I'm always open to connecting on new projects, internships,
@@ -102,12 +102,12 @@ const About = memo(function About() {
             </h3>
             <div className='space-y-4'>
               {[
-                { name: 'Python', level: 88, color: 'from-green-500 to-teal-500' },
-                { name: 'SQL', level: 82, color: 'from-orange-500 to-yellow-500' },
-                { name: 'Machine Learning', level: 78, color: 'from-purple-500 to-pink-500' },
-                { name: 'React / JavaScript', level: 88, color: 'from-cyan-500 to-blue-500' },
-                { name: 'Cloud / AWS', level: 72, color: 'from-sky-500 to-indigo-500' },
-                { name: 'IT Support', level: 85, color: 'from-emerald-500 to-cyan-500' },
+                { name: 'Cloud & AWS (Terraform, IaC)', level: 82, color: 'from-sky-500 to-indigo-500' },
+                { name: 'Python & Django', level: 88, color: 'from-green-500 to-teal-500' },
+                { name: 'Docker & Kubernetes', level: 78, color: 'from-cyan-500 to-blue-500' },
+                { name: 'React & TypeScript', level: 85, color: 'from-blue-500 to-violet-500' },
+                { name: 'CI/CD & DevOps', level: 80, color: 'from-orange-500 to-yellow-500' },
+                { name: 'Machine Learning', level: 74, color: 'from-purple-500 to-pink-500' },
               ].map((skill, index) => (
                 <div key={skill.name} className='group'>
                   <div className='flex justify-between mb-1'>

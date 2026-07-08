@@ -32,7 +32,7 @@ const Education = memo(function Education() {
       id: 2,
       school: 'Azubi Africa',
       degree: 'Cloud Computing & Artificial Intelligence Training Program',
-      duration: 'Apr 2026 - Aug 2026',
+      duration: 'Apr 2026 - Present',
       location: 'Ghana',
       description:
         'Selected participant in the AWS Cloud Computing and Artificial Intelligence Program delivered by Generation.',

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { MdOutlineArrowForwardIos } from "react-icons/md"
 import { Link } from 'react-scroll';
 import { trackResumeDownload } from '../utils/analytics'
-import profilePic from "../assets/images/profile/profile-pic.jpg"
+import profilePic from "../assets/images/profile/profile-pic.jpeg"
 import { PERSONAL_INFO, ROLES, RESUME } from '../config/constants'
 
 const roles = ROLES;

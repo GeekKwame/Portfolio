@@ -5,27 +5,27 @@
 
 /** LinkedIn headline — single source of truth for positioning across the site */
 export const HEADLINE =
-  'Aspiring AI & Cloud Engineer | Python, SQL, Machine Learning | Full-Stack Dev | IT Support | Open to Opportunities';
+  'Cloud & Software Engineer | AWS · Terraform · Docker · Kubernetes | Python · Django · React | CI/CD · DevOps | Open to Opportunities';
 
 /** Contact email — single source of truth for mailto, contact form, and footer */
 export const CONTACT_EMAIL = 'dogbeblessingkwame@gmail.com';
 
 export const SEO = {
-  title: 'Edmund Blessing — AI & Cloud Engineer Portfolio',
+  title: 'Edmund Blessing — Cloud & Software Engineer Portfolio',
   description:
-    'Aspiring AI & Cloud Engineer skilled in Python, SQL, and Machine Learning. Full-stack developer and IT support professional. Open to opportunities.',
+    'Cloud & Software Engineer with 2+ years deploying production systems on AWS using Terraform, Docker, and Kubernetes. Python & Django backend, React frontend, CI/CD with GitHub Actions. Open to opportunities.',
   keywords:
-    'AI Engineer, Cloud Engineer, Python Developer, SQL, Machine Learning, Full Stack Developer, IT Support, AWS, React, Django, Portfolio, Ghana',
+    'Cloud Engineer, Software Engineer, AWS, Terraform, Docker, Kubernetes, Python Developer, Django, React, DevOps, CI/CD, GitHub Actions, Machine Learning, Full Stack Developer, Ghana, Portfolio',
   ogSiteName: 'Edmund Blessing Portfolio',
 };
 
 export const PERSONAL_INFO = {
   name: 'Edmund Blessing',
-  title: 'Aspiring AI & Cloud Engineer',
+  title: 'Cloud & Software Engineer',
   headline: HEADLINE,
-  bio: 'Aspiring AI & Cloud Engineer with strengths in Python, SQL, and Machine Learning. Full-stack developer and IT support professional—open to opportunities.',
+  bio: 'Cloud & Software Engineer deploying production systems on AWS with Terraform, Docker, and Kubernetes. Python & Django backend, React frontend, CI/CD pipelines—open to opportunities.',
   intro:
-    'Aspiring AI & Cloud Engineer building toward cloud and AI roles, with hands-on experience in Python, SQL, machine learning, full-stack development, and IT support. I turn complex problems into reliable, user-focused solutions—and I am open to new opportunities.',
+    'Cloud & Software Engineer with 2+ years deploying production systems on AWS (EC2, S3, CloudFront, ALB, Auto Scaling, CloudWatch) using Terraform and containerized workloads. I build REST APIs with Django, automate zero-downtime CI/CD pipelines with GitHub Actions, and deliver secure, scalable full-stack solutions.',
   location: 'Available worldwide',
   availability: 'Open to opportunities — freelance, full-time, and collaboration.',
   email: CONTACT_EMAIL,
@@ -69,11 +69,11 @@ export const NAVIGATION_LINKS = [
 
 /** Rotating roles on the home hero — derived from the LinkedIn headline */
 export const ROLES = [
-  'Aspiring AI & Cloud Engineer',
-  'Python & SQL Developer',
-  'Machine Learning Enthusiast',
+  'Cloud & Software Engineer',
+  'AWS & Terraform Engineer',
+  'Python & Django Developer',
   'Full-Stack Developer',
-  'IT Support Professional',
+  'DevOps & CI/CD Practitioner',
 ];
 
 export const RESUME = {
