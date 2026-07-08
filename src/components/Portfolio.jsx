@@ -11,6 +11,8 @@ import tourPlannerImage from "../assets/images/portfolio/tour-planner.png"
 import pulsevoteImage from "../assets/images/portfolio/pulsevote.jpg"
 import terraformedImage from "../assets/images/portfolio/terraformed-webpage.png"
 import whalestackImage from "../assets/images/portfolio/whalestack.png"
+import student from "../assets/images/portfolio/student-study-planner.png"
+import serverlessImage from "../assets/images/portfolio/serverless-terraform-aws.png"
 
 const Portfolio = memo(function Portfolio() {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
@@ -25,7 +27,7 @@ const Portfolio = memo(function Portfolio() {
   const portfolios = [
     {
       id: 1,
-      src: null,
+      src: student,
       title: "Student Study Planner — AWS Capstone Project",
       description: "An interactive, responsive web application deployed on AWS using Route 53, CloudFront CDN, ALB, EC2, S3, ACM, and GitHub Actions CI/CD. Architected with an Auto Scaling Group, restricted security groups, OAC, and HTTPS enforcement.",
       link1: "",
@@ -61,7 +63,7 @@ const Portfolio = memo(function Portfolio() {
     },
     {
       id: 4,
-      src: null,
+      src: serverlessImage,
       title: "Serverless API Platform — Terraform + Lambda",
       description: "Provisioned a fully serverless API Gateway → Lambda → S3 architecture end-to-end in Terraform, removing server management overhead entirely. Enforced least-privilege IAM policies scoped to specific S3 actions and API Gateway source ARNs. Automated Lambda packaging and idempotent redeployment using archive_file and source_code_hash, ensuring changes are detected and applied automatically.",
       link1: "",
