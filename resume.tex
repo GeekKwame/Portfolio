@@ -139,6 +139,24 @@ Cloud \& Software Engineer with 2+ years deploying production systems on AWS (EC
 \resumeSubHeadingListStart
 
   \resumeProjectHeading
+    {Student Study Planner --- AWS Capstone Project \textnormal{|} \href{https://github.com/GeekKwame/aws-capstone-project}{\small github.com/GeekKwame/aws-capstone-project}}{2026}
+  \resumeItemListStart
+    \resumeItem{Deployed an interactive, full-stack study planner on AWS using Route 53, CloudFront CDN, ALB, EC2 (Nginx), S3, ACM, and GitHub Actions CI/CD across four documented phases.}
+    \resumeItem{Secured the architecture with OAC for S3 static asset delivery, CloudFront Prefix List restrictions on the ALB security group, and EC2 access limited solely to the ALB.}
+    \resumeItem{Configured an Auto Scaling Group for traffic spikes, CloudWatch alarms for CPU and 5xx errors, and AWS Budget alerts to prevent unexpected Free Tier charges.}
+    \resumeItem{\textit{Stack:} AWS (Route 53, CloudFront, ALB, EC2, S3, ACM, Auto Scaling, CloudWatch), Nginx, GitHub Actions}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {PulseVote --- Live Polling App \textnormal{|} \href{https://github.com/GeekKwame/pulsevote}{\small github.com/GeekKwame/pulsevote}}{2026}
+  \resumeItemListStart
+    \resumeItem{Built and deployed a real-time polling web application on AWS using CloudFront, ALB, EC2, S3, ACM, and GitHub Actions CI/CD with zero-downtime automated deployments via SCP and SSH.}
+    \resumeItem{Hardened security by restricting ALB ingress to the CloudFront Managed Prefix List and EC2 ingress solely to the ALB security group, eliminating all direct public access to the origin.}
+    \resumeItem{Configured CloudWatch Alarms for EC2 CPU utilization and ALB 5xx error rates, with log retention policies and AWS Budget alerts for cost control.}
+    \resumeItem{\textit{Stack:} AWS (CloudFront, ALB, EC2, S3, ACM, Auto Scaling, CloudWatch), Nginx, GitHub Actions}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
     {Terraformed — Secure Static-Site Infrastructure \textnormal{|} \href{https://github.com/GeekKwame/terraf6r0ed--r61ect}{\small github.com/GeekKwame/terraf6r0ed--r61ect}}{2026}
   \resumeItemListStart
     \resumeItem{Built a zero-secret CI/CD pipeline using AWS OIDC and GitHub Actions, replacing long-lived access keys with short-lived STS session credentials on every deployment.}
