@@ -28,7 +28,7 @@ const Portfolio = memo(function Portfolio() {
       src: null,
       title: "Student Study Planner — AWS Capstone Project",
       description: "An interactive, responsive web application deployed on AWS using Route 53, CloudFront CDN, ALB, EC2, S3, ACM, and GitHub Actions CI/CD. Architected with an Auto Scaling Group, restricted security groups, OAC, and HTTPS enforcement.",
-      link1: "https://www.studentstudyplannerxyz.xyz/",
+      link1: "",
       link2: "https://github.com/GeekKwame/aws-capstone-project",
       tags: ["AWS", "CloudFront", "ALB", "Route 53", "Auto Scaling", "EC2", "S3", "ACM", "GitHub Actions", "CI/CD"],
       category: "Cloud / IaC",
