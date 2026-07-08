@@ -1,5 +1,5 @@
 import React, { useState, memo } from 'react'
-import { FaExternalLinkAlt, FaGithub, FaStickyNote, FaBook, FaMicrophone, FaPlane, FaFileAlt, FaCloud, FaCubes, FaPoll } from 'react-icons/fa'
+import { FaExternalLinkAlt, FaGithub, FaStickyNote, FaBook, FaMicrophone, FaPlane, FaFileAlt, FaCloud, FaCubes, FaPoll, FaGraduationCap } from 'react-icons/fa'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import { trackProjectView, trackSocialClick } from '../utils/analytics'
 import aiResumeAnalyzerImage from "../assets/images/portfolio/ai-resume-analyzer.png"
@@ -25,6 +25,18 @@ const Portfolio = memo(function Portfolio() {
   const portfolios = [
     {
       id: 1,
+      src: null,
+      title: "Student Study Planner — AWS Capstone Project",
+      description: "An interactive, responsive web application deployed on AWS using Route 53, CloudFront CDN, ALB, EC2, S3, ACM, and GitHub Actions CI/CD. Architected with an Auto Scaling Group, restricted security groups, OAC, and HTTPS enforcement.",
+      link1: "https://www.studentstudyplannerxyz.xyz/",
+      link2: "https://github.com/GeekKwame/aws-capstone-project",
+      tags: ["AWS", "CloudFront", "ALB", "Route 53", "Auto Scaling", "EC2", "S3", "ACM", "GitHub Actions", "CI/CD"],
+      category: "Cloud / IaC",
+      icon: FaGraduationCap,
+      iconText: "Student Study Planner Architecture"
+    },
+    {
+      id: 2,
       src: pulsevoteImage,
       title: "PulseVote — Live Polling App",
       description: "A real-time polling web application deployed on AWS using CloudFront, ALB, EC2, S3, ACM, and GitHub Actions CI/CD. Architected with an Auto Scaling Group, ALB listener redirects, restricted security groups, and CloudWatch alerting.",
@@ -36,7 +48,7 @@ const Portfolio = memo(function Portfolio() {
       iconText: "PulseVote Architecture Diagram"
     },
     {
-      id: 2,
+      id: 3,
       src: terraformedImage,
       title: "Terraformed — Secure Static-Site Infrastructure",
       description: "Built a zero-secret CI/CD pipeline using AWS OIDC and GitHub Actions, replacing long-lived access keys with short-lived STS session credentials on every deployment. Locked down the S3 origin with CloudFront Origin Access Control (OAC), blocking all public access while serving global HTTPS traffic. Configured remote Terraform state with S3 versioning and DynamoDB locking, preventing concurrent-run state corruption.",
@@ -48,7 +60,7 @@ const Portfolio = memo(function Portfolio() {
       iconText: "Terraformed Infrastructure Screenshot"
     },
     {
-      id: 3,
+      id: 4,
       src: null,
       title: "Serverless API Platform — Terraform + Lambda",
       description: "Provisioned a fully serverless API Gateway → Lambda → S3 architecture end-to-end in Terraform, removing server management overhead entirely. Enforced least-privilege IAM policies scoped to specific S3 actions and API Gateway source ARNs. Automated Lambda packaging and idempotent redeployment using archive_file and source_code_hash, ensuring changes are detected and applied automatically.",
@@ -60,7 +72,7 @@ const Portfolio = memo(function Portfolio() {
       iconText: "Serverless API Platform Screenshot"
     },
     {
-      id: 4,
+      id: 5,
       src: aiResumeAnalyzerImage,
       title: "AI Resume Analyzer",
       description: "An intelligent resume analysis tool that provides ATS (Applicant Tracking System) scores and AI-powered improvement suggestions. Features include drag-and-drop resume upload, PDF processing, comprehensive feedback with category-specific scores (Tone & Style, Content, Structure, Skills), ATS compatibility tips, and resume history dashboard. Built with React Router, TypeScript, and Puter.js integration.",
@@ -72,7 +84,7 @@ const Portfolio = memo(function Portfolio() {
       iconText: "AI Resume Analyzer Screenshot"
     },
     {
-      id: 5,
+      id: 6,
       src: notesAppImage,
       title: "Notes App",
       description: "A full-stack notes application built with Django REST Framework and React. Features include creating, reading, updating, and deleting notes with a clean, intuitive dark-themed interface. Includes real-time updates, auto-save functionality, and responsive design.",
@@ -84,7 +96,7 @@ const Portfolio = memo(function Portfolio() {
       iconText: "Notes App Screenshot"
     },
     {
-      id: 6,
+      id: 7,
       src: booksAppImage,
       title: "Book Website",
       description: "A full-stack book tracker featuring a modern dark UI with a books-themed background. Built with React + Vite frontend and Django REST Framework backend. Supports full CRUD operations: create, list, edit, and delete books with glassmorphism-inspired design and animated accents.",
@@ -96,7 +108,7 @@ const Portfolio = memo(function Portfolio() {
       iconText: "Book Website Screenshot"
     },
     {
-      id: 7,
+      id: 8,
       src: whalestackImage,
       title: "WhaleStack — Multi-Container Web Application",
       description: "Containerized a multi-service application with Docker Compose, orchestrating an independently networked Flask REST API and an Nginx-served static frontend. Designed and exposed REST endpoints for service info, JSON messaging, and health checks, enabling reliable frontend-backend communication across container boundaries.",
@@ -108,7 +120,7 @@ const Portfolio = memo(function Portfolio() {
       iconText: "WhaleStack Multi-Container App Screenshot"
     },
     {
-      id: 8,
+      id: 9,
       src: [audioHomeImage, audioLiveImage],
       title: "Live Audio Room",
       description: "A modern, real-time audio room application built with React, TypeScript, and Stream.io Video SDK. Create and join live audio conversations similar to Clubhouse or Twitter Spaces. Features include participant management, permission system, live streaming, user authentication, and session persistence with a beautiful glassmorphism UI.",
@@ -120,7 +132,7 @@ const Portfolio = memo(function Portfolio() {
       iconText: "Live Audio Room Screenshot"
     },
     {
-      id: 9,
+      id: 10,
       src: tourPlannerImage,
       title: "The Tourist's Planner",
       description: "A full-stack AI travel app with JWT authentication, role-based access control, Stripe payments, and a Supabase (PostgreSQL) backend. Reduced data latency by 35% vs. a REST-only approach using Supabase real-time subscriptions; architected for future AWS migration. Features AI trip planning, tourist and admin portals, and booking management.",
