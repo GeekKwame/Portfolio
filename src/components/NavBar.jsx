@@ -191,7 +191,7 @@ function NavBar() {
                     to={linkItem.link}
                     smooth
                     duration={500}
-                    className='text-gray-300 hover:text-cyan-400 active:text-cyan-500 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-lg px-6 py-4 text-2xl sm:text-3xl min-h-[60px] flex items-center justify-center w-full max-w-xs touch-manipulation select-none'
+                    className='text-gray-800 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 active:text-cyan-600 dark:active:text-cyan-400 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-lg px-6 py-4 text-2xl sm:text-3xl min-h-[60px] flex items-center justify-center w-full max-w-xs touch-manipulation select-none'
                   >
                     {linkItem.label}
                   </Link>

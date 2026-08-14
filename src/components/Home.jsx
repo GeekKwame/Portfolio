@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { MdOutlineArrowForwardIos } from "react-icons/md"
 import { Link } from 'react-scroll';
 import { trackResumeDownload } from '../utils/analytics'
@@ -65,10 +65,8 @@ const Home = () => {
       <div className='absolute inset-0 bg-gradient-to-br from-cyan-500/8 via-blue-500/5 to-purple-500/5 dark:from-cyan-500/5 dark:via-transparent dark:to-blue-500/5 animate-gradient-shift' style={{ backgroundSize: '200% 200%' }}></div>
       {/* Enhanced animated background elements */}
       <div className='absolute inset-0 overflow-hidden pointer-events-none'>
-        <div className='absolute top-20 left-10 w-72 h-72 bg-cyan-400/15 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse will-change-transform'></div>
-        <div className='absolute bottom-20 right-10 w-96 h-96 bg-blue-400/15 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse will-change-transform' style={{ animationDelay: '1s' }}></div>
-        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-400/10 dark:bg-purple-500/5 rounded-full blur-3xl animate-pulse will-change-transform' style={{ animationDelay: '2s' }}></div>
-        {/* Grid pattern overlay */}
+        <div className='absolute top-20 left-10 w-72 h-72 bg-cyan-400/10 dark:bg-cyan-500/10 rounded-full blur-3xl'></div>
+        <div className='absolute bottom-20 right-10 w-96 h-96 bg-blue-400/10 dark:bg-blue-500/10 rounded-full blur-3xl'></div>
         <div className='absolute inset-0 bg-[linear-gradient(to_right,#94a3b840_1px,transparent_1px),linear-gradient(to_bottom,#94a3b840_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]'></div>
       </div>
 
@@ -77,7 +75,7 @@ const Home = () => {
         <div className='flex lg:hidden w-full items-center justify-between mb-6 relative z-20'>
           <div className='flex-1'>
             <h1 className='text-xl sm:text-2xl md:text-3xl mb-2 text-gray-900 dark:text-white'>
-              Hi There, <span className='animate-bounce inline-block'>👋</span>
+              Hi There, <span>👋</span>
             </h1>
             <h2 className='text-2xl sm:text-3xl md:text-4xl font-bold leading-tight'>
               <span className='text-gray-900 dark:text-white'>I'm a </span>
@@ -114,7 +112,7 @@ const Home = () => {
           {/* Desktop Header */}
           <div className='hidden lg:block mb-4 w-full'>
             <h1 className='text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-2 text-gray-900 dark:text-white relative z-10'>
-              Hi There, <span className='animate-bounce inline-block'>👋</span>
+              Hi There, <span>👋</span>
             </h1>
             <h2 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight w-full'>
               <span className='text-gray-900 dark:text-white block sm:inline'>I'm a </span>

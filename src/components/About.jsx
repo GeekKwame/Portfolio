@@ -79,13 +79,13 @@ const About = memo(function About() {
             {skills.map((skill, index) => (
               <div
                 key={index}
-                className='group relative p-4 md:p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-600/50 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 hover:scale-105 overflow-hidden'
+                className='group relative p-4 md:p-6 bg-white/90 dark:bg-gradient-to-br dark:from-gray-700/50 dark:to-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-600/50 shadow-md hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-400/10 dark:hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-105 overflow-hidden'
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className='absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
                 <div className='relative z-10'>
-                  <div className='text-2xl md:text-3xl text-cyan-400 mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300'>{skill.icon}</div>
-                  <h3 className='text-base md:text-lg font-bold mb-1 md:mb-2 group-hover:text-cyan-400 transition-colors duration-300'>{skill.title}</h3>
+                  <div className='text-2xl md:text-3xl text-cyan-600 dark:text-cyan-400 mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300'>{skill.icon}</div>
+                  <h3 className='text-base md:text-lg font-bold mb-1 md:mb-2 text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300'>{skill.title}</h3>
                   <p className='text-xs sm:text-sm text-gray-600 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300'>{skill.desc}</p>
                 </div>
               </div>
@@ -93,37 +93,24 @@ const About = memo(function About() {
           </div>
         </div>
 
-        {/* Tech Stack Section with Animated Skill Bars */}
         <div className={`mt-6 md:mt-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className='p-4 md:p-6 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 rounded-xl border border-cyan-500/20 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10'>
-            <h3 className='text-xl md:text-2xl font-bold mb-6 text-cyan-400 flex items-center gap-2'>
-              <FaTools className='text-cyan-400' />
-              Technology Stack
+          <div className='p-4 md:p-6 bg-white/80 dark:bg-gradient-to-r dark:from-cyan-500/10 dark:via-blue-500/10 dark:to-purple-500/10 rounded-xl border border-gray-200 dark:border-cyan-500/20 backdrop-blur-sm'>
+            <h3 className='text-xl md:text-2xl font-bold mb-4 text-cyan-600 dark:text-cyan-400 flex items-center gap-2'>
+              <FaTools className='text-cyan-600 dark:text-cyan-400' />
+              Tools I actually used
             </h3>
-            <div className='space-y-4'>
+            <div className='flex flex-wrap gap-2'>
               {[
-                { name: 'Cloud & AWS (SAM, Terraform, IaC)', level: 82, color: 'from-sky-500 to-indigo-500' },
-                { name: 'Serverless (Lambda, API Gateway, DynamoDB)', level: 80, color: 'from-cyan-500 to-blue-500' },
-                { name: 'Python & Django', level: 88, color: 'from-green-500 to-teal-500' },
-                { name: 'Docker & Kubernetes', level: 78, color: 'from-teal-500 to-emerald-500' },
-                { name: 'React & TypeScript', level: 85, color: 'from-blue-500 to-violet-500' },
-                { name: 'CI/CD & DevOps', level: 80, color: 'from-orange-500 to-yellow-500' },
-              ].map((skill, index) => (
-                <div key={skill.name} className='group'>
-                  <div className='flex justify-between mb-1'>
-                    <span className='text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300'>{skill.name}</span>
-                    <span className='text-sm font-medium text-cyan-400'>{skill.level}%</span>
-                  </div>
-                  <div className='w-full bg-gray-700/50 rounded-full h-2.5 overflow-hidden'>
-                    <div
-                      className={`h-2.5 rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`}
-                      style={{
-                        width: isVisible ? `${skill.level}%` : '0%',
-                        transitionDelay: `${index * 100}ms`
-                      }}
-                    ></div>
-                  </div>
-                </div>
+                'AWS SAM', 'CloudFront', 'Lambda', 'API Gateway', 'DynamoDB', 'WAF',
+                'S3 / OAC', 'Terraform', 'OIDC', 'Docker', 'Kubernetes',
+                'Python', 'Django', 'React', 'GitHub Actions', 'CloudWatch',
+              ].map((name) => (
+                <span
+                  key={name}
+                  className='px-3 py-1.5 text-sm font-medium rounded-md bg-cyan-500/10 text-cyan-800 dark:text-cyan-300 border border-cyan-500/30'
+                >
+                  {name}
+                </span>
               ))}
             </div>
           </div>

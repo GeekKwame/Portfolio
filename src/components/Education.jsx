@@ -99,7 +99,7 @@ const Education = memo(function Education() {
                   <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300 mb-1">
                     {entry.degree}
                   </h3>
-                  <p className="text-cyan-400 font-semibold text-sm sm:text-base mb-3">{entry.school}</p>
+                  <p className="text-cyan-700 dark:text-cyan-400 font-semibold text-sm sm:text-base mb-3">{entry.school}</p>
 
                   <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
                     <div className="flex items-center gap-2">
@@ -122,7 +122,7 @@ const Education = memo(function Education() {
                     {entry.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-2 py-1 bg-cyan-500/20 text-cyan-400 text-xs rounded-md border border-cyan-500/30 group-hover:border-cyan-500/50 transition-colors duration-300"
+                        className="px-2 py-1 bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 text-xs rounded-md border border-cyan-500/30"
                       >
                         {skill}
                       </span>

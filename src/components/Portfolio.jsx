@@ -2,7 +2,7 @@ import React, { useState, memo } from 'react'
 import { FaExternalLinkAlt, FaGithub, FaStickyNote, FaCloud, FaCubes, FaPoll, FaGraduationCap, FaCalendarCheck, FaTasks } from 'react-icons/fa'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import { trackProjectView, trackSocialClick } from '../utils/analytics'
-import eventConnectImage from "../assets/images/portfolio/event-connect.png"
+import eventConnectImage from "../assets/images/portfolio/event-connect.webp"
 import pulsevoteImage from "../assets/images/portfolio/pulsevote.jpg"
 import terraformedImage from "../assets/images/portfolio/terraformed-webpage.png"
 import student from "../assets/images/portfolio/student-study-planner.png"
@@ -191,7 +191,7 @@ const Portfolio = memo(function Portfolio() {
 
                   <div className='flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4'>
                     {tags.map((tag, i) => (
-                      <span key={i} className='px-2 py-1 bg-cyan-500/20 text-cyan-400 text-xs sm:text-xs rounded-md border border-cyan-500/30 group-hover:border-cyan-500/50 group-hover:bg-cyan-500/30 group-hover:scale-105 transition-all duration-300'>
+                      <span key={i} className='px-2 py-1 bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 text-xs rounded-md border border-cyan-500/30'>
                         {tag}
                       </span>
                     ))}
@@ -204,7 +204,7 @@ const Portfolio = memo(function Portfolio() {
                         target="_blank"
                         rel="noreferrer"
                         aria-label={`${title} live site`}
-                        className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 active:from-blue-600 active:to-cyan-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-cyan-500/50 touch-manipulation select-none min-h-[44px] group-hover:animate-pulse'
+                        className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 active:from-blue-600 active:to-cyan-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-cyan-500/50 touch-manipulation select-none min-h-[44px]'
                       >
                         <FaExternalLinkAlt /> Live
                       </a>

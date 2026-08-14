@@ -1,5 +1,5 @@
 import React, { useState, memo } from 'react'
-import { FaPaperPlane, FaCheckCircle, FaSpinner } from 'react-icons/fa'
+import { FaPaperPlane, FaEnvelope } from 'react-icons/fa'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import { trackContactSubmission } from '../utils/analytics'
 import { PERSONAL_INFO } from '../config/constants'
@@ -8,10 +8,8 @@ import { useToastContext } from '../context/ToastContext'
 const Contact = memo(function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
-  const { success, error: showError } = useToastContext();
+  const { success } = useToastContext();
 
   const validate = () => {
     const newErrors = {};
@@ -29,11 +27,9 @@ const Contact = memo(function Contact() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
-    // Real-time validation for email
     if (name === 'email' && value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       setErrors(prev => ({ ...prev, email: 'Please enter a valid email' }));
     } else if (name === 'email' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
@@ -41,41 +37,14 @@ const Contact = memo(function Contact() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    setIsSubmitting(true);
-
-    // Using mailto as fallback - can be enhanced with EmailJS or backend API
-    const mailtoLink = `mailto:${PERSONAL_INFO.email}?subject=Portfolio Contact: ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(`From: ${formData.email}\n\n${formData.message}`)}`;
-
-    try {
-      // For production, integrate with EmailJS or your backend API
-      // Example with EmailJS:
-      // await emailjs.send('service_id', 'template_id', {
-      //   from_name: formData.name,
-      //   from_email: formData.email,
-      //   message: formData.message,
-      // });
-
-      // Fallback: Open email client
-      window.location.href = mailtoLink;
-
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      trackContactSubmission(true);
-      success('Message sent successfully! Your email client should open shortly.');
-      setFormData({ name: '', email: '', message: '' });
-      setErrors({});
-      setTimeout(() => setIsSubmitted(false), 5000);
-    } catch (err) {
-      console.error('Error sending message:', err);
-      setIsSubmitting(false);
-      trackContactSubmission(false);
-      showError('Failed to send message. Please try again or contact directly via email.');
-      setIsSubmitted(false);
-    }
+    const mailtoLink = `mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(`Portfolio contact from ${formData.name}`)}&body=${encodeURIComponent(`From: ${formData.email}\n\n${formData.message}`)}`;
+    window.location.href = mailtoLink;
+    trackContactSubmission(true);
+    success('Your email app should open with this message. If it does not, write to ' + PERSONAL_INFO.email + '.');
   };
 
   return (
@@ -85,7 +54,15 @@ const Contact = memo(function Contact() {
           <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4'>
             Contact
           </p>
-          <p className='py-3 md:py-5 text-gray-600 dark:text-gray-300 text-base sm:text-lg'>Cloud, serverless, or full-stack work — email me at {PERSONAL_INFO.email}</p>
+          <p className='py-3 md:py-5 text-gray-600 dark:text-gray-300 text-base sm:text-lg'>
+            Cloud, serverless, or full-stack work.{' '}
+            <a
+              href={`mailto:${PERSONAL_INFO.email}`}
+              className='text-cyan-600 dark:text-cyan-400 font-semibold underline-offset-2 hover:underline'
+            >
+              {PERSONAL_INFO.email}
+            </a>
+          </p>
           <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
         </div>
 
@@ -94,9 +71,12 @@ const Contact = memo(function Contact() {
             onSubmit={handleSubmit}
             className='flex flex-col w-full md:w-2/3 lg:w-1/2 bg-white/90 dark:bg-gradient-to-br dark:from-gray-800/50 dark:to-gray-900/50 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-xl border border-gray-200 dark:border-gray-700/50 shadow-xl dark:shadow-2xl hover:shadow-cyan-400/10 dark:hover:shadow-cyan-500/10 transition-all duration-300'
           >
+            <p className='text-sm text-gray-600 dark:text-gray-400 mb-4'>
+              The button opens your email app with this draft. Nothing is sent from this site.
+            </p>
             <div className='mb-4'>
               <label htmlFor='name' className='block text-sm font-semibold mb-2 text-cyan-600 dark:text-cyan-400'>
-                Name <span className='text-red-400'>*</span>
+                Name <span className='text-red-500 dark:text-red-400'>*</span>
               </label>
               <input
                 id='name'
@@ -111,15 +91,16 @@ const Contact = memo(function Contact() {
                 className={`w-full bg-white dark:bg-gray-900/50 p-3 rounded-lg border-2 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-gray-400 dark:hover:border-gray-500 ${errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-gray-600 focus:border-cyan-500'
                   }`}
                 placeholder='Enter your name'
+                autoComplete='name'
                 aria-invalid={errors.name ? 'true' : 'false'}
                 aria-describedby={errors.name ? 'name-error' : undefined}
               />
-              {errors.name && <p id="name-error" className='text-red-400 text-sm mt-1 animate-fade-in' role="alert">{errors.name}</p>}
+              {errors.name && <p id="name-error" className='text-red-500 dark:text-red-400 text-sm mt-1' role="alert">{errors.name}</p>}
             </div>
 
             <div className='mb-4'>
               <label htmlFor='email' className='block text-sm font-semibold mb-2 text-cyan-600 dark:text-cyan-400'>
-                Email <span className='text-red-400'>*</span>
+                Email <span className='text-red-500 dark:text-red-400'>*</span>
               </label>
               <input
                 id='email'
@@ -137,10 +118,11 @@ const Contact = memo(function Contact() {
                 className={`w-full bg-white dark:bg-gray-900/50 p-3 rounded-lg border-2 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-gray-400 dark:hover:border-gray-500 ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-gray-600 focus:border-cyan-500'
                   }`}
                 placeholder='Enter your email'
+                autoComplete='email'
                 aria-invalid={errors.email ? 'true' : 'false'}
                 aria-describedby={errors.email ? 'email-error' : undefined}
               />
-              {errors.email && <p id="email-error" className='text-red-400 text-sm mt-1 animate-fade-in' role="alert">{errors.email}</p>}
+              {errors.email && <p id="email-error" className='text-red-500 dark:text-red-400 text-sm mt-1' role="alert">{errors.email}</p>}
             </div>
 
             <div className='mb-6'>
@@ -170,35 +152,23 @@ const Contact = memo(function Contact() {
                 aria-invalid={errors.message ? 'true' : 'false'}
                 aria-describedby={errors.message ? 'message-error' : undefined}
               />
-              {errors.message && <p id="message-error" className='text-red-400 text-sm mt-1 animate-fade-in' role="alert">{errors.message}</p>}
+              {errors.message && <p id="message-error" className='text-red-500 dark:text-red-400 text-sm mt-1' role="alert">{errors.message}</p>}
             </div>
 
-            <button
-              type='submit'
-              disabled={isSubmitting || isSubmitted}
-              className={`relative py-3 px-6 mx-auto flex items-center justify-center gap-2 hover:scale-105 active:scale-95 duration-300 rounded-lg text-white font-semibold shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800 touch-manipulation select-none min-h-[48px] ${isSubmitted
-                  ? 'bg-green-500 hover:bg-green-600 hover:shadow-green-500/50'
-                  : isSubmitting
-                    ? 'bg-gray-600 cursor-not-allowed opacity-70'
-                    : 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 hover:shadow-cyan-500/50'
-                }`}
-              aria-busy={isSubmitting}
-              aria-live="polite"
-            >
-              {isSubmitted ? (
-                <>
-                  <FaCheckCircle className='animate-bounce' /> Message Sent Successfully!
-                </>
-              ) : isSubmitting ? (
-                <>
-                  <FaSpinner className='animate-spin' /> Sending...
-                </>
-              ) : (
-                <>
-                  <FaPaperPlane /> Send Message
-                </>
-              )}
-            </button>
+            <div className='flex flex-col sm:flex-row gap-3 justify-center'>
+              <button
+                type='submit'
+                className='relative py-3 px-6 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 duration-300 rounded-lg text-white font-semibold shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800 touch-manipulation select-none min-h-[48px] bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 hover:shadow-cyan-500/50'
+              >
+                <FaPaperPlane /> Open email app
+              </button>
+              <a
+                href={`mailto:${PERSONAL_INFO.email}`}
+                className='relative py-3 px-6 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 duration-300 rounded-lg font-semibold border-2 border-cyan-500 text-cyan-600 dark:text-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800 touch-manipulation select-none min-h-[48px]'
+              >
+                <FaEnvelope /> Email me
+              </a>
+            </div>
           </form>
         </div>
       </div>

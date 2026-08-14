@@ -130,7 +130,7 @@ const Footer = memo(function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className='border-t border-gray-800 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-2'>
+        <div className='border-t border-gray-200 dark:border-gray-800 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-2'>
           <p className='text-gray-500 dark:text-gray-500 text-xs sm:text-sm text-center md:text-left'>
             © {currentYear} {PERSONAL_INFO.name}. All rights reserved.
           </p>

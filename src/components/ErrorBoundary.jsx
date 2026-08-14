@@ -42,7 +42,7 @@ class ErrorBoundary extends React.Component {
                 <FaHome /> Go Home
               </Link>
             </div>
-            {process.env.NODE_ENV === 'development' && this.state.error && (
+            {import.meta.env.DEV && this.state.error && (
               <details className="mt-6 text-left">
                 <summary className="text-gray-400 cursor-pointer text-sm">Error Details (Dev Only)</summary>
                 <pre className="mt-2 text-xs text-red-400 overflow-auto bg-gray-900/50 p-3 rounded">

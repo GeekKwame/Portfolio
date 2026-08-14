@@ -123,7 +123,7 @@ const Experience = memo(function Experience() {
                       <h3 className='text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300 mb-1'>
                         {exp.title}
                       </h3>
-                      <p className='text-cyan-400 font-semibold text-sm sm:text-base mb-2'>
+                      <p className='text-cyan-700 dark:text-cyan-400 font-semibold text-sm sm:text-base mb-2'>
                         {exp.company} · {exp.type}
                       </p>
                     </div>
@@ -151,7 +151,7 @@ const Experience = memo(function Experience() {
                     {exp.skills.map((skill, skillIndex) => (
                       <span
                         key={skillIndex}
-                        className='px-2 py-1 bg-cyan-500/20 text-cyan-400 text-xs rounded-md border border-cyan-500/30 group-hover:border-cyan-500/50 transition-colors duration-300'
+                        className='px-2 py-1 bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 text-xs rounded-md border border-cyan-500/30'
                       >
                         {skill}
                       </span>
