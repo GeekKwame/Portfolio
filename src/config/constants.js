@@ -5,7 +5,7 @@
 
 /** LinkedIn headline — single source of truth for positioning across the site */
 export const HEADLINE =
-  'Cloud & Software Engineer | AWS · Terraform · Docker · Kubernetes | Python · Django · React | CI/CD · DevOps | Open to Opportunities';
+  'Cloud & Software Engineer | AWS SAM · Lambda · CloudFront · Terraform | Python · Django · React | CI/CD · DevOps | Open to Opportunities';
 
 /** Contact email — single source of truth for mailto, contact form, and footer */
 export const CONTACT_EMAIL = 'dogbeblessingkwame@gmail.com';
@@ -13,9 +13,9 @@ export const CONTACT_EMAIL = 'dogbeblessingkwame@gmail.com';
 export const SEO = {
   title: 'Edmund Blessing — Cloud & Software Engineer Portfolio',
   description:
-    'Cloud & Software Engineer with 2+ years deploying production systems on AWS using Terraform, Docker, and Kubernetes. Python & Django backend, React frontend, CI/CD with GitHub Actions. Open to opportunities.',
+    'Cloud & Software Engineer building production AWS systems where CloudFront is the only public HTTPS endpoint. AWS SAM, Lambda, DynamoDB, Terraform, Python, Django, React. Open to opportunities.',
   keywords:
-    'Cloud Engineer, Software Engineer, AWS, Terraform, Docker, Kubernetes, Python Developer, Django, React, DevOps, CI/CD, GitHub Actions, Machine Learning, Full Stack Developer, Ghana, Portfolio',
+    'Cloud Engineer, Software Engineer, AWS SAM, Lambda, CloudFront, DynamoDB, Terraform, Docker, Kubernetes, Python Developer, Django, React, DevOps, CI/CD, GitHub Actions, Full Stack Developer, Ghana, Portfolio',
   ogSiteName: 'Edmund Blessing Portfolio',
 };
 
@@ -23,9 +23,9 @@ export const PERSONAL_INFO = {
   name: 'Edmund Blessing',
   title: 'Cloud & Software Engineer',
   headline: HEADLINE,
-  bio: 'Cloud & Software Engineer deploying production systems on AWS with Terraform, Docker, and Kubernetes. Python & Django backend, React frontend, CI/CD pipelines—open to opportunities.',
+  bio: 'Cloud & Software Engineer. Production AWS where CloudFront is the only public HTTPS edge — SAM, Lambda, DynamoDB, Terraform, Python & Django, React, GitHub Actions. Open to opportunities.',
   intro:
-    'Cloud & Software Engineer with 2+ years deploying production systems on AWS (EC2, S3, CloudFront, ALB, Auto Scaling, CloudWatch) using Terraform and containerized workloads. I build REST APIs with Django, automate zero-downtime CI/CD pipelines with GitHub Actions, and deliver secure, scalable full-stack solutions.',
+    'Cloud & Software Engineer building production-style AWS systems. On Event-Connect, CloudFront is the only public HTTPS endpoint — private S3 with OAC, API Gateway as a hidden origin, five Python Lambdas, and DynamoDB tickets. I also ship Terraform, Docker/Kubernetes, Django REST APIs, and GitHub Actions CI/CD with OIDC.',
   location: 'Available worldwide',
   availability: 'Open to opportunities — freelance, full-time, and collaboration.',
   email: CONTACT_EMAIL,
@@ -70,7 +70,7 @@ export const NAVIGATION_LINKS = [
 /** Rotating roles on the home hero — derived from the LinkedIn headline */
 export const ROLES = [
   'Cloud & Software Engineer',
-  'AWS & Terraform Engineer',
+  'AWS Serverless Engineer',
   'Python & Django Developer',
   'Full-Stack Developer',
   'DevOps & CI/CD Practitioner',

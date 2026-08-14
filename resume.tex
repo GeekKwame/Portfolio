@@ -12,6 +12,7 @@
 \usepackage{tabularx}
 \usepackage{fontawesome5}
 \input{glyphtounicode}
+
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
@@ -74,20 +75,21 @@
 
 %-----------PROFESSIONAL SUMMARY-----------
 \section{Professional Summary}
-Cloud \& Software Engineer with 2+ years deploying production systems on AWS (EC2, S3, CloudFront, ALB, Auto Scaling, CloudWatch) using Infrastructure-as-Code (Terraform) and containerized workloads (Docker, Kubernetes). Built REST APIs and serverless architectures (API Gateway, Lambda) with Django and Python, automated zero-downtime CI/CD pipelines with GitHub Actions using OIDC short-lived credentials, and supported 200+ users across campus IT infrastructure. Combines cloud infrastructure and security expertise with full-stack development and machine learning skills to deliver secure, scalable, and cost-optimized solutions.
+Cloud \& Software Engineer building production-style systems on AWS. Recent work: Event-Connect, a serverless event-registration app where CloudFront is the only public HTTPS endpoint (private S3 + OAC, API Gateway as a hidden origin, WAF default-deny). Also ships Terraform and containerized workloads (Docker, Kubernetes), Django REST APIs, and GitHub Actions CI/CD with OIDC short-lived credentials. Backed by 2+ years of IT support and systems administration supporting 200+ users across university and enterprise environments.
 
 %-----------TECHNICAL SKILLS-----------
 \section{Technical Skills}
 \begin{itemize}[leftmargin=0in, label={}, itemsep=2pt]
   \small{
-  \item \textbf{Cloud:} AWS — EC2, S3, IAM, CloudFront, Route~53, ALB, Auto Scaling, ACM, CloudWatch, OIDC/STS, Budgets
-  \item \textbf{IaC \& Containers:} Terraform, Docker, Docker Compose, Kubernetes (kubectl, Deployments, Services, ConfigMaps)
+  \item \textbf{Cloud:} AWS — EC2, S3, IAM, CloudFront, Route~53, ALB, Auto Scaling, ACM, Lambda, API Gateway, WAF, Secrets Manager, SES, CloudWatch, CloudTrail, SNS, SQS, EventBridge, OIDC/STS, Budgets
+  \item \textbf{IaC \& Containers:} Terraform, AWS SAM, Docker, Docker Compose, Kubernetes (kubectl, Deployments, Services, ConfigMaps)
   \item \textbf{Languages:} Python, JavaScript (ES6+), TypeScript, SQL, Bash, HTML5, CSS3
   \item \textbf{Frameworks:} Django, Django REST Framework, Flask, React, Node.js, Express, Tailwind CSS
   \item \textbf{DevOps:} GitHub Actions, CI/CD Pipelines, GitOps, Linux (Ubuntu), Bash Scripting, Git
-  \item \textbf{Databases:} MySQL, SQLite, DynamoDB, Supabase (PostgreSQL)
+  \item \textbf{Databases:} DynamoDB, MySQL, SQLite, Supabase (PostgreSQL)
   \item \textbf{ML \& Data:} Scikit-learn, Pandas, NumPy, Keras, EDA, Feature Engineering, Model Evaluation
-  \item \textbf{Security:} DNS, HTTPS/TLS, IAM Least-Privilege, OIDC, Origin Access Control, Load Balancing, VPC
+  \item \textbf{Security:} DNS, HTTPS/TLS, IAM Least-Privilege, OIDC, Origin Access Control, WAF Default-Deny, Load Balancing, VPC
+  \item \textbf{Testing:} Pytest, Moto (AWS mocking), Unit Testing
   }
 \end{itemize}
 
@@ -99,36 +101,36 @@ Cloud \& Software Engineer with 2+ years deploying production systems on AWS (EC
     {Kwame Nkrumah University of Science and Technology (KNUST)}{Oct 2024 -- Sep 2025}
     {Information Technology Technician}{Kumasi, Ghana}
   \resumeItemListStart
-    \resumeItem{Delivered Tier-1 and Tier-2 support to 200+ staff and students, resolving hardware, software, and network incidents while maintaining infrastructure uptime above SLA targets.}
-    \resumeItem{Reduced recurring incident rates by 30\% by implementing scheduled maintenance procedures and standardizing troubleshooting documentation across the IT team.}
+    \resumeItem{Delivered Tier-1 and Tier-2 support to 200+ staff and students, resolving hardware, software, and network incidents.}
+    \resumeItem{Introduced scheduled maintenance procedures and standardized troubleshooting documentation, cutting repeat tickets for common issues.}
     \resumeItem{Administered Active Directory accounts and network resources for 5+ academic and administrative departments.}
-    \resumeItem{Shortened new IT staff ramp-up time by 2 weeks by creating a structured internal knowledge base covering 40+ common procedures.}
+    \resumeItem{Established an internal knowledge base covering 40+ procedures, accelerating onboarding for new IT staff.}
   \resumeItemListEnd
 
   \resumeSubheading
     {M365Connect}{Dec 2024 -- Mar 2025}
     {Python Developer (Backend) | Remote}{Germany}
   \resumeItemListStart
-    \resumeItem{Engineered scalable REST APIs with Django REST Framework powering data exchange across 3+ client applications; cut average API response time by 25\% through query optimization.}
-    \resumeItem{Automated Python web scraping pipelines processing 10,000+ records per run, eliminating 15+ hours of weekly manual data collection.}
-    \resumeItem{Integrated 3 third-party APIs and refactored ORM queries, reducing database load by 20\%.}
+    \resumeItem{Designed REST APIs with Django REST Framework, powering data exchange across 3 client applications.}
+    \resumeItem{Automated Python web scraping pipelines to collect large datasets, eliminating manual data-gathering work.}
+    \resumeItem{Integrated third-party APIs and refactored ORM queries, improving backend query efficiency.}
   \resumeItemListEnd
 
   \resumeSubheading
     {HubbleMind}{Nov 2024 -- Dec 2024}
     {Data Science Intern — Machine Learning \& AI}{Remote}
   \resumeItemListStart
-    \resumeItem{Cleaned and preprocessed 5,000+ multi-country health records using IQR outlier treatment, encoding, and feature engineering — achieving a 95\%+ clean data rate.}
-    \resumeItem{Trained Logistic Regression and Random Forest classifiers to predict obesity levels, reaching 88\% accuracy; produced model comparison reports for stakeholder decision-making.}
+    \resumeItem{Cleaned and preprocessed 5,000+ multi-country health records using IQR outlier treatment, encoding, and feature engineering.}
+    \resumeItem{Trained Logistic Regression and Random Forest classifiers to predict obesity levels at 88\% accuracy; presented findings to the team.}
   \resumeItemListEnd
 
   \resumeSubheading
     {Lerato Consult}{Nov 2022 -- Dec 2024}
     {OS Technician \& IT Support Assistant}{Greater Accra Region, Ghana}
   \resumeItemListStart
-    \resumeItem{Installed and commissioned POS systems for 10+ retail and hospitality clients with 100\% on-time delivery and zero critical post-installation failures.}
-    \resumeItem{Minimized average client downtime by 40\% through faster hardware and network diagnostic workflows across multiple sites.}
-    \resumeItem{Established a 50+ procedure documentation library that standardized support quality and accelerated team knowledge transfer.}
+    \resumeItem{Installed and configured POS systems for 10+ retail and hospitality clients across multiple sites.}
+    \resumeItem{Diagnosed and resolved hardware and network issues on-site, reducing client downtime.}
+    \resumeItem{Compiled a documentation library of 50+ support procedures, standardizing service quality across the team.}
   \resumeItemListEnd
 
 \resumeSubHeadingListEnd
@@ -138,55 +140,48 @@ Cloud \& Software Engineer with 2+ years deploying production systems on AWS (EC
 \resumeSubHeadingListStart
 
   \resumeProjectHeading
-    {Student Study Planner --- AWS Capstone Project \textnormal{|} \href{https://github.com/GeekKwame/aws-capstone-project}{\small github.com/GeekKwame/aws-capstone-project}}{2026}
+    {Event-Connect --- Serverless Event Registration \textnormal{|} \href{https://d3mbqhiwlx08nz.cloudfront.net}{\small Live} \textnormal{|} \href{https://github.com/GeekKwame/event-registration-system-sam}{\small GitHub}}{2026}
   \resumeItemListStart
-    \resumeItem{Deployed an interactive, full-stack study planner on AWS using Route 53, CloudFront CDN, ALB, EC2 (Nginx), S3, ACM, and GitHub Actions CI/CD across four documented phases.}
-    \resumeItem{Secured the architecture with OAC for S3 static asset delivery, CloudFront Prefix List restrictions on the ALB security group, and EC2 access limited solely to the ALB.}
-    \resumeItem{Configured an Auto Scaling Group for traffic spikes, CloudWatch alarms for CPU and 5xx errors, and AWS Budget alerts to prevent unexpected Free Tier charges.}
+    \resumeItem{Built a production event-registration system on AWS SAM where CloudFront is the only public HTTPS endpoint; S3 stays private behind OAC and API Gateway is a hidden origin.}
+    \resumeItem{Enforced WAF default-deny plus an origin-verify header so requests that skip CloudFront never reach compute; five Python 3.12 Lambdas persist events and tickets in DynamoDB.}
+    \resumeItem{Shipped browse/register with an on-screen ticket receipt, browser-local My tickets, and email lookup. Confirmation is emailed (Gmail may file it as spam); the ticket is DynamoDB plus the receipt, not the inbox.}
+    \resumeItem{Scoped SNS to an admin topic only; SES sandbox with Resend fallback from a verified domain. Admin session for list-all and cancel; secrets stay in Secrets Manager.}
+    \resumeItem{\textit{Stack:} AWS SAM, CloudFront, S3/OAC, API Gateway, WAF, Lambda (Python 3.12), DynamoDB, SNS, SES, Secrets Manager, CloudWatch}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {Smart Task Notification System --- Event-Driven Serverless API \textnormal{|} \href{https://github.com/GeekKwame/SmartTaskNotificationSystem}{\small GitHub}}{2026}
+  \resumeItemListStart
+    \resumeItem{Built a serverless task API on AWS where a single write fans out to DynamoDB, SNS, SQS, and EventBridge via a Lambda handler behind API Gateway.}
+    \resumeItem{Designed graceful-degradation logic so SNS/SQS delivery failures are logged without failing the client request.}
+    \resumeItem{Defined the stack as AWS SAM; validated with \texttt{pytest} + \texttt{moto} in CI; CloudWatch Lambda-error alarm and CloudTrail for API audit.}
+    \resumeItem{\textit{Stack:} AWS (API Gateway, Lambda, DynamoDB, SNS, SQS, EventBridge, CloudWatch, CloudTrail), AWS SAM, Python, Pytest, Moto, GitHub Actions}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {Student Study Planner --- AWS Capstone \textnormal{|} \href{https://github.com/GeekKwame/student-student-planner}{\small GitHub}}{2026}
+  \resumeItemListStart
+    \resumeItem{Deployed a full-stack study planner on AWS using Route 53, CloudFront, ALB, EC2 (Nginx), S3, ACM, and GitHub Actions CI/CD.}
+    \resumeItem{Secured the architecture with OAC for S3, CloudFront Prefix List restrictions on the ALB security group, and EC2 access limited solely to the ALB.}
+    \resumeItem{Configured an Auto Scaling Group, CloudWatch alarms for CPU and 5xx errors, and AWS Budget alerts for Free Tier cost control.}
     \resumeItem{\textit{Stack:} AWS (Route 53, CloudFront, ALB, EC2, S3, ACM, Auto Scaling, CloudWatch), Nginx, GitHub Actions}
   \resumeItemListEnd
 
   \resumeProjectHeading
-    {PulseVote --- Live Polling App \textnormal{|} \href{https://github.com/GeekKwame/pulsevote}{\small github.com/GeekKwame/pulsevote}}{2026}
+    {PulseVote --- Live Polling App \textnormal{|} \href{https://github.com/GeekKwame/pulsevote}{\small GitHub}}{2026}
   \resumeItemListStart
-    \resumeItem{Built and deployed a real-time polling web application on AWS using CloudFront, ALB, EC2, S3, ACM, and GitHub Actions CI/CD with zero-downtime automated deployments via SCP and SSH.}
-    \resumeItem{Hardened security by restricting ALB ingress to the CloudFront Managed Prefix List and EC2 ingress solely to the ALB security group, eliminating all direct public access to the origin.}
-    \resumeItem{Configured CloudWatch Alarms for EC2 CPU utilization and ALB 5xx error rates, with log retention policies and AWS Budget alerts for cost control.}
+    \resumeItem{Launched a real-time polling app on AWS (CloudFront, ALB, EC2, S3, ACM) with zero-downtime deploys via GitHub Actions, SCP, and SSH.}
+    \resumeItem{Restricted ALB ingress to the CloudFront Managed Prefix List and EC2 ingress solely to the ALB; CloudWatch alarms for CPU and ALB 5xx.}
     \resumeItem{\textit{Stack:} AWS (CloudFront, ALB, EC2, S3, ACM, Auto Scaling, CloudWatch), Nginx, GitHub Actions}
   \resumeItemListEnd
 
   \resumeProjectHeading
-    {Terraformed — Secure Static-Site Infrastructure \textnormal{|} \href{https://github.com/GeekKwame/terraf6r0ed--r61ect}{\small github.com/GeekKwame/terraf6r0ed--r61ect}}{2026}
+    {Terraformed --- Secure Static-Site Infrastructure \textnormal{|} \href{https://github.com/GeekKwame/terraformed-project}{\small GitHub}}{2026}
   \resumeItemListStart
-    \resumeItem{Built a zero-secret CI/CD pipeline using AWS OIDC and GitHub Actions, replacing long-lived access keys with short-lived STS session credentials on every deployment.}
-    \resumeItem{Locked down the S3 origin with CloudFront Origin Access Control (OAC), blocking all public access while serving global HTTPS traffic with zero unencrypted paths.}
-    \resumeItem{Configured remote Terraform state with S3 versioning and DynamoDB locking, preventing concurrent-run state corruption across the team.}
+    \resumeItem{Implemented a zero-secret CI/CD pipeline using AWS OIDC and GitHub Actions, replacing long-lived access keys with short-lived STS credentials on every deploy.}
+    \resumeItem{Locked down the S3 origin with CloudFront Origin Access Control (OAC), blocking public access while serving HTTPS traffic.}
+    \resumeItem{Configured remote Terraform state with S3 versioning and DynamoDB locking to prevent concurrent-run state corruption.}
     \resumeItem{\textit{Stack:} Terraform, AWS (S3, CloudFront, OAC, IAM/OIDC, DynamoDB), GitHub Actions}
-  \resumeItemListEnd
-
-  \resumeProjectHeading
-    {Serverless API Platform — Terraform + Lambda \textnormal{|} \href{https://github.com/GeekKwame}{\small github.com/GeekKwame}}{2026}
-  \resumeItemListStart
-    \resumeItem{Provisioned a fully serverless API Gateway → Lambda → S3 architecture end-to-end in Terraform, removing server management overhead entirely.}
-    \resumeItem{Enforced least-privilege IAM policies scoped to specific S3 actions and API Gateway source ARNs, minimizing the Lambda execution role's attack surface.}
-    \resumeItem{Automated Lambda packaging and idempotent redeployment using \texttt{archive\_file} and \texttt{source\_code\_hash}, ensuring changes are detected and applied automatically.}
-    \resumeItem{\textit{Stack:} Terraform, AWS (API Gateway, Lambda, S3, IAM, DynamoDB), Python}
-  \resumeItemListEnd
-
-  \resumeProjectHeading
-    {The Tourist Planner — Full-Stack AI Travel App \textnormal{|} \href{https://github.com/GeekKwame/travel-planner}{\small github.com/GeekKwame/travel-planner}}{2025}
-  \resumeItemListStart
-    \resumeItem{Developed a full-stack AI travel app with JWT authentication, role-based access control, Stripe payments, and a Supabase (PostgreSQL) backend.}
-    \resumeItem{Reduced data latency by 35\% vs. a REST-only approach using Supabase real-time subscriptions; architected for future AWS migration.}
-    \resumeItem{\textit{Stack:} React, TypeScript, Supabase, Stripe, AI APIs}
-  \resumeItemListEnd
-
-  \resumeProjectHeading
-    {WhaleStack — Multi-Container Web Application \textnormal{|} \href{https://github.com/GeekKwame/whalestack}{\small github.com/GeekKwame/whalestack}}{2025}
-  \resumeItemListStart
-    \resumeItem{Containerized a multi-service application with Docker Compose, orchestrating an independently networked Flask REST API and an Nginx-served static frontend.}
-    \resumeItem{Designed and exposed REST endpoints for service info, JSON messaging, and health checks, enabling reliable frontend-backend communication across container boundaries.}
-    \resumeItem{\textit{Stack:} Docker, Docker Compose, Flask (Python), Nginx}
   \resumeItemListEnd
 
 \resumeSubHeadingListEnd
@@ -196,7 +191,7 @@ Cloud \& Software Engineer with 2+ years deploying production systems on AWS (EC
 \resumeSubHeadingListStart
 
   \resumeSubheading
-    {Azubi Africa}{Apr 2026 -- Present}
+    {Azubi Africa}{Apr 2026 -- July 2026}
     {Cloud Computing \& Artificial Intelligence Program}{Remote}
 
   \resumeSubheading
@@ -210,7 +205,7 @@ Cloud \& Software Engineer with 2+ years deploying production systems on AWS (EC
 \begin{itemize}[leftmargin=0.15in, itemsep=1pt]
   \small{
   \item \textbf{AWS Knowledge: Cloud Essentials} — Amazon Web Services \hfill \href{https://www.credly.com/badges/a6873d6c-a6b8-4af8-a4c1-faa677eb6602/linked_in_profile}{View}
-    \item \textbf{The Full Stack} — Meta / Coursera \hfill \href{https://coursera.org/share/19541a26ae104d66db8cfc78accfed1a}{View}
+  \item \textbf{The Full Stack} — Meta / Coursera \hfill \href{https://coursera.org/share/19541a26ae104d66db8cfc78accfed1a}{View}
   \item \textbf{Machine Learning With Python} — IBM / Coursera \hfill \href{https://coursera.org/share/889f0defc13b05fa370f87561e547991}{View}
   \item \textbf{Deep Learning \& Neural Networks With Keras} — IBM / Coursera \hfill \href{https://coursera.org/share/d2b3b6971be0df66e0d781ce5dc76138}{View}
   \item \textbf{Django Web Framework} — Meta / Coursera \hfill \href{https://coursera.org/share/a9ceefb50c30e1fae57f3363aac4797b}{View}

@@ -13,7 +13,8 @@ function StructuredData() {
     "url": "https://github.com/GeekKwame",
     "sameAs": [
       "https://www.linkedin.com/in/edmund-blessing/",
-      "https://github.com/GeekKwame"
+      "https://github.com/GeekKwame",
+      "https://devedmund.vercel.app/"
     ],
     "email": "dogbeblessingkwame@gmail.com",
     "alumniOf": [
@@ -32,20 +33,22 @@ function StructuredData() {
       }
     ],
     "knowsAbout": [
-      "Artificial Intelligence",
-      "Cloud Computing",
       "AWS",
+      "AWS SAM",
+      "Amazon CloudFront",
+      "AWS Lambda",
+      "Amazon DynamoDB",
+      "Amazon API Gateway",
+      "Terraform",
       "Python",
-      "SQL",
-      "Machine Learning",
-      "React",
       "Django",
-      "JavaScript",
-      "TypeScript",
-      "Full Stack Development",
-      "IT Support",
-      "REST APIs",
-      "Web Development"
+      "React",
+      "Docker",
+      "Kubernetes",
+      "GitHub Actions",
+      "CI/CD",
+      "Cloud Computing",
+      "Full Stack Development"
     ],
     "hasOccupation": {
       "@type": "Occupation",

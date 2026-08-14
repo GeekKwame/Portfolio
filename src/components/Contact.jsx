@@ -85,7 +85,7 @@ const Contact = memo(function Contact() {
           <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4'>
             Contact
           </p>
-          <p className='py-3 md:py-5 text-gray-600 dark:text-gray-300 text-base sm:text-lg'>Have a project in mind or want to collaborate? I'd love to hear from you!</p>
+          <p className='py-3 md:py-5 text-gray-600 dark:text-gray-300 text-base sm:text-lg'>Cloud, serverless, or full-stack work — email me at {PERSONAL_INFO.email}</p>
           <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
         </div>
 

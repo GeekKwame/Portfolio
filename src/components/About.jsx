@@ -14,9 +14,9 @@ const About = memo(function About() {
   ];
 
   const skills = [
-    { icon: <FaRocket />, title: 'Cloud & Infrastructure', desc: 'AWS (EC2, S3, CloudFront, ALB, Auto Scaling, CloudWatch), Terraform IaC, Docker, Kubernetes, serverless (Lambda, API Gateway), zero-secret CI/CD with OIDC' },
-    { icon: <FaServer />, title: 'Python & Backend', desc: 'Django, Django REST Framework, Flask, REST APIs, web scraping pipelines, ORM optimization, database design, 3rd-party API integration' },
-    { icon: <FaCode />, title: 'Full-Stack Development', desc: 'React, TypeScript, JavaScript (ES6+), Node.js, HTML5, CSS3, Tailwind CSS, real-time systems, responsive web applications' },
+    { icon: <FaRocket />, title: 'Cloud & Infrastructure', desc: 'AWS SAM; CloudFront as the only public HTTPS edge; private S3 + OAC; API Gateway as a hidden origin; WAF default-deny; Lambda; DynamoDB; Terraform; Docker; Kubernetes; GitHub Actions with OIDC' },
+    { icon: <FaServer />, title: 'Python & Backend', desc: 'Python 3.12 Lambdas, Django, Django REST Framework, Flask, REST APIs, web scraping pipelines, ORM optimization, Secrets Manager, SES + email fallback' },
+    { icon: <FaCode />, title: 'Full-Stack Development', desc: 'React, TypeScript, JavaScript (ES6+), Node.js, HTML5, CSS3, Tailwind CSS, static UIs on CloudFront/S3, responsive web applications' },
     { icon: <FaGraduationCap />, title: 'DevOps & IT Support', desc: 'GitHub Actions CI/CD, Linux (Ubuntu), Bash scripting, Active Directory, network diagnostics, BSc Applied Mathematics (KNUST), AWS Cloud & AI (Azubi Africa)' }
   ];
 
@@ -54,21 +54,21 @@ const About = memo(function About() {
         <div className='grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12'>
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
             <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4'>
-              I'm Blessing Edmund Kwame Dogbe, a Cloud & Software Engineer with 2+ years deploying production
-              systems on AWS — EC2, S3, CloudFront, ALB, Auto Scaling, and CloudWatch — using Terraform for
-              Infrastructure-as-Code and containerized workloads with Docker and Kubernetes.
+              I'm Blessing Edmund Kwame Dogbe, a Cloud & Software Engineer. On Event-Connect, CloudFront is
+              the only public HTTPS endpoint — private S3 with Origin Access Control, API Gateway as a hidden
+              origin, WAF default-deny, five Python 3.12 Lambdas, and DynamoDB for events and tickets.
             </p>
             <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4'>
-              I build REST APIs and serverless architectures (API Gateway, Lambda) with Django and Python,
-              automate zero-downtime CI/CD pipelines with GitHub Actions using OIDC short-lived credentials,
-              and deliver secure, scalable full-stack applications with React on the frontend.
+              I also deploy CloudFront + ALB + EC2 stacks, write Terraform with OIDC (no long-lived keys),
+              build Django REST APIs, and automate CI/CD with GitHub Actions. Docker and Kubernetes show up
+              where the workload is containerized, not as decoration.
             </p>
             <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-4'>
-              With a BSc in Applied Mathematics from KNUST and AWS Cloud & AI training through Azubi Africa,
-              I combine analytical thinking with practical engineering — turning complex infrastructure
-              challenges into cost-optimized, production-ready solutions.
+              BSc Applied Mathematics from KNUST and AWS Cloud & AI training through Azubi Africa. I care
+              about least-privilege IAM, what is actually public on the internet, and whether a ticket still
+              exists if email lands in spam.
             </p>
-            <p className='text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-6'>
+            <p className='text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6'>
               {PERSONAL_INFO.availability} I'm always open to connecting on new projects, internships,
               and roles where I can grow as an engineer while contributing real value.
             </p>
@@ -102,12 +102,12 @@ const About = memo(function About() {
             </h3>
             <div className='space-y-4'>
               {[
-                { name: 'Cloud & AWS (Terraform, IaC)', level: 82, color: 'from-sky-500 to-indigo-500' },
+                { name: 'Cloud & AWS (SAM, Terraform, IaC)', level: 82, color: 'from-sky-500 to-indigo-500' },
+                { name: 'Serverless (Lambda, API Gateway, DynamoDB)', level: 80, color: 'from-cyan-500 to-blue-500' },
                 { name: 'Python & Django', level: 88, color: 'from-green-500 to-teal-500' },
-                { name: 'Docker & Kubernetes', level: 78, color: 'from-cyan-500 to-blue-500' },
+                { name: 'Docker & Kubernetes', level: 78, color: 'from-teal-500 to-emerald-500' },
                 { name: 'React & TypeScript', level: 85, color: 'from-blue-500 to-violet-500' },
                 { name: 'CI/CD & DevOps', level: 80, color: 'from-orange-500 to-yellow-500' },
-                { name: 'Machine Learning', level: 74, color: 'from-purple-500 to-pink-500' },
               ].map((skill, index) => (
                 <div key={skill.name} className='group'>
                   <div className='flex justify-between mb-1'>

@@ -4,17 +4,19 @@ import { FaHammer, FaGithub } from 'react-icons/fa';
 const CurrentlyBuilding = memo(function CurrentlyBuilding() {
     // Update this object whenever you start working on something new
     const currentProject = {
-        name: 'AI Resume Analyzer v2',
-        description: 'Adding multi-resume comparison and batch analysis features',
-        tech: ['React', 'TypeScript', 'Puter.js'],
-        repo: 'https://github.com/GeekKwame/ai-resume-analyzer',
-        status: 'In Progress', // 'In Progress', 'Planning', 'Testing'
+        name: 'Event-Connect',
+        description:
+            'Production serverless event registration — CloudFront is the only public HTTPS edge; iterating on tickets, admin session, and email fallback.',
+        tech: ['AWS SAM', 'CloudFront', 'Lambda', 'DynamoDB', 'WAF'],
+        repo: 'https://github.com/GeekKwame/event-registration-system-sam/',
+        status: 'Live',
     };
 
     const statusColors = {
         'In Progress': 'from-green-500 to-emerald-500',
         'Planning': 'from-yellow-500 to-orange-500',
         'Testing': 'from-blue-500 to-indigo-500',
+        'Live': 'from-cyan-500 to-blue-500',
     };
 
     return (
