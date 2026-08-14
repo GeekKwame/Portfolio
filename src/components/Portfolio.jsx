@@ -7,6 +7,7 @@ import pulsevoteImage from "../assets/images/portfolio/pulsevote.jpg"
 import terraformedImage from "../assets/images/portfolio/terraformed-webpage.png"
 import student from "../assets/images/portfolio/student-study-planner.png"
 import serverlessImage from "../assets/images/portfolio/serverless-terraform-aws.png"
+import { FLAGSHIP } from '../config/constants'
 
 const Portfolio = memo(function Portfolio() {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
@@ -23,10 +24,12 @@ const Portfolio = memo(function Portfolio() {
       id: 1,
       src: eventConnectImage,
       title: "Event-Connect — Serverless Event Registration",
-      description: "CloudFront is the only public HTTPS endpoint. Private S3 with OAC serves the UI; API Gateway is a hidden origin behind WAF default-deny and an origin-verify header. Five Python 3.12 Lambdas write tickets to DynamoDB (events-prod, registrations-prod). Browse events, register, see an on-screen receipt, and recover tickets from this browser (localStorage) or by email. Confirmation is emailed — Gmail may file it as spam; the ticket is DynamoDB plus the on-screen receipt, not the inbox. Admin session for list-all and cancel. SNS notifies the admin topic only.",
-      link1: "https://d3mbqhiwlx08nz.cloudfront.net",
-      link2: "https://github.com/GeekKwame/event-registration-system-sam/",
-      tags: ["AWS SAM", "CloudFront", "Lambda", "API Gateway", "DynamoDB", "WAF", "S3 OAC", "SNS", "SES", "Secrets Manager", "Python 3.12"],
+      product: "Browse events, register, and get an on-screen ticket receipt. My tickets stays in this browser (localStorage); email lookup recovers from DynamoDB. Admin session for list-all and cancel.",
+      system: "CloudFront is the only public HTTPS endpoint. Private S3 with OAC serves the UI; API Gateway is a hidden origin behind WAF default-deny. Five Python 3.12 Lambdas persist tickets in DynamoDB. Confirmation is emailed — Gmail may file it as spam; the ticket is DynamoDB plus the receipt, not the inbox. SNS notifies the admin topic only.",
+      flow: ['Browser', 'CloudFront (only public HTTPS)', 'Private S3 + hidden API', 'Lambda + DynamoDB'],
+      link1: FLAGSHIP.live,
+      link2: FLAGSHIP.repo,
+      tags: ["AWS SAM", "CloudFront", "Lambda", "API Gateway", "DynamoDB", "WAF", "S3 OAC", "SNS", "SES", "Python 3.12"],
       category: "Serverless",
       featured: true,
       icon: FaCalendarCheck,
@@ -37,6 +40,7 @@ const Portfolio = memo(function Portfolio() {
       src: null,
       title: "Smart Task Notification System",
       description: "Event-driven serverless task API: a single write fans out to DynamoDB, SNS, SQS, and EventBridge from a Lambda behind API Gateway. SNS/SQS delivery failures are logged without failing the client request. CloudWatch logs, metrics, and a Lambda-error alarm, plus CloudTrail for API audit. Full stack as AWS SAM; pytest + moto in CI.",
+      flow: ['API Gateway', 'Lambda', 'DynamoDB + SNS + SQS + EventBridge'],
       link1: "",
       link2: "https://github.com/GeekKwame/SmartTaskNotificationSystem",
       tags: ["AWS SAM", "API Gateway", "Lambda", "DynamoDB", "SNS", "SQS", "EventBridge", "CloudWatch", "Python", "Pytest"],
@@ -94,26 +98,141 @@ const Portfolio = memo(function Portfolio() {
     }
   ];
 
-  return (
-    <div name="portfolio" ref={sectionRef} className='bg-gradient-to-b from-white via-slate-50/50 to-blue-50/20 dark:from-stone-900 dark:to-gray-800 w-full min-h-screen py-12 md:py-20'>
-      <div className='max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full'>
-        <div className={`mb-8 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white'>
-            Portfolio
+  const visible = portfolios.filter(p => activeFilter === 'All' || p.category === activeFilter);
+  const featuredItems = visible.filter(p => p.featured);
+  const otherItems = visible.filter(p => !p.featured);
+
+  const renderMedia = (project) => {
+    const { id, src, title, flow, icon: Icon = FaStickyNote, iconText } = project;
+    const fallbackIconText = iconText || `${title} Screenshot`;
+
+    if (imageErrors[id] || !src) {
+      return (
+        <div className='flex flex-col justify-center p-6 md:p-8 min-h-[220px] bg-slate-900 text-left'>
+          <Icon className='text-3xl text-teal-300 mb-4' aria-hidden="true" />
+          <p className='text-slate-300 text-xs uppercase tracking-widest mb-3'>{fallbackIconText}</p>
+          {flow && (
+            <ol className='space-y-2 text-sm text-slate-100 font-mono'>
+              {flow.map((step, i) => (
+                <li key={step} className='flex gap-2'>
+                  <span className='text-teal-300 shrink-0'>{i + 1}.</span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
+          )}
+        </div>
+      );
+    }
+
+    return (
+      <div className='relative w-full bg-slate-950 p-2 md:p-4'>
+        {imageLoading[id] !== false && (
+          <div className='absolute inset-0 bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 animate-shimmer bg-[length:200%_100%] rounded-lg' />
+        )}
+        <img
+          src={src}
+          alt={`${title} architecture`}
+          className='w-full h-auto object-contain rounded-lg relative'
+          onError={() => handleImageError(id)}
+          onLoad={() => setImageLoading(prev => ({ ...prev, [id]: false }))}
+          loading="lazy"
+          decoding="async"
+          style={{ maxHeight: project.featured ? '420px' : '320px' }}
+        />
+      </div>
+    );
+  };
+
+  const renderBody = (project, featured) => {
+    const { title, product, system, description, flow, tags, link1, link2 } = project;
+    return (
+      <div className={`p-4 sm:p-6 ${featured ? 'lg:p-8 flex flex-col justify-center' : ''}`}>
+        {featured && (
+          <span className='self-start mb-3 px-2.5 py-1 text-xs font-semibold rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white'>
+            Featured
+          </span>
+        )}
+        <h3 className='text-lg sm:text-xl md:text-2xl font-bold mb-3 text-gray-900 dark:text-slate-100'>{title}</h3>
+        {product && (
+          <p className='text-gray-700 dark:text-slate-200 text-sm md:text-base mb-2 leading-relaxed'>
+            <span className='font-semibold text-cyan-800 dark:text-teal-300'>Product. </span>
+            {product}
           </p>
-          <p className='py-2 md:py-4 text-gray-600 dark:text-gray-300 text-base sm:text-lg'>Production AWS work — CloudFront-only public edges, SAM/Lambda, Terraform, and CI/CD</p>
+        )}
+        {system && (
+          <p className='text-gray-600 dark:text-slate-300 text-sm md:text-base mb-3 leading-relaxed'>
+            <span className='font-semibold text-cyan-800 dark:text-teal-300'>Edge & backend. </span>
+            {system}
+          </p>
+        )}
+        {!product && description && (
+          <p className='text-gray-600 dark:text-slate-300 text-sm md:text-base mb-3 leading-relaxed'>{description}</p>
+        )}
+        {featured && flow && (
+          <p className='text-sm font-mono text-gray-600 dark:text-slate-300 mb-4 leading-relaxed'>
+            {flow.join(' → ')}
+          </p>
+        )}
+        <div className='flex flex-wrap gap-1.5 sm:gap-2 mb-4'>
+          {tags.map((tag) => (
+            <span key={tag} className='px-2 py-1 bg-cyan-500/10 dark:bg-teal-500/10 text-cyan-800 dark:text-teal-200 text-xs rounded-md border border-cyan-500/30 dark:border-teal-500/25'>
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div className='flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4'>
+          {link1 && (
+            <a
+              href={link1}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${title} live site`}
+              className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-teal-600 dark:to-sky-700 hover:from-blue-500 hover:to-cyan-500 dark:hover:from-teal-500 dark:hover:to-sky-600 rounded-lg text-white font-semibold transition-colors duration-200 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-teal-400'
+            >
+              <FaExternalLinkAlt /> Live
+            </a>
+          )}
+          {link2 && (
+            <a
+              href={link2}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => {
+                trackProjectView(title);
+                trackSocialClick('github');
+              }}
+              className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gray-800 dark:bg-slate-700 hover:bg-gray-700 dark:hover:bg-slate-600 rounded-lg text-white font-semibold transition-colors duration-200 border border-gray-600 dark:border-slate-500 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-teal-400'
+            >
+              <FaGithub /> View Code
+            </a>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div name="portfolio" ref={sectionRef} className='bg-gradient-to-b from-white via-slate-50/50 to-blue-50/20 dark:bg-slate-950 dark:bg-none dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 w-full min-h-screen py-12 md:py-20'>
+      <div className='max-w-screen-xl p-4 mx-auto flex flex-col justify-center w-full h-full'>
+        <div className={`mb-8 md:mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-slate-50'>
+            Work
+          </p>
+          <p className='py-2 text-gray-600 dark:text-slate-200 text-base sm:text-lg max-w-2xl'>
+            Product UIs on CloudFront. APIs stay private. Infrastructure in SAM and Terraform.
+          </p>
           <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
         </div>
 
-        {/* Filter Tabs */}
-        <div className={`flex flex-wrap gap-2 sm:gap-3 mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`flex flex-wrap gap-2 sm:gap-3 mb-8 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           {['All', 'Serverless', 'Cloud / IaC'].map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 cursor-pointer border ${activeFilter === filter
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-transparent shadow-lg shadow-cyan-500/30 scale-105'
-                  : 'bg-white dark:bg-gray-800/50 text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-600/50 hover:text-cyan-600 dark:hover:text-white hover:border-cyan-500 dark:hover:border-cyan-500/50 hover:bg-cyan-50 dark:hover:bg-gray-700/50 shadow-sm dark:shadow-none'
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 cursor-pointer border min-h-[44px] ${activeFilter === filter
+                  ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-transparent'
+                  : 'bg-white dark:bg-slate-800/80 text-gray-700 dark:text-slate-300 border-gray-300 dark:border-slate-600 hover:border-cyan-500 dark:hover:border-teal-400/50 hover:text-cyan-700 dark:hover:text-slate-100'
                 }`}
             >
               {filter}
@@ -121,113 +240,34 @@ const Portfolio = memo(function Portfolio() {
           ))}
         </div>
 
-        <div className='grid sm:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8'>
-          {portfolios.filter(p => activeFilter === 'All' || p.category === activeFilter).map(({ id, src, title, description, link1, link2, tags, featured, icon: Icon = FaStickyNote, iconText }, index) => {
-            const fallbackIconText = iconText || `${title} Screenshot`;
-            return (
-              <div
-                key={id}
-                className={`group relative shadow-lg dark:shadow-xl shadow-gray-200 dark:shadow-gray-900/50 rounded-xl overflow-hidden bg-white/90 dark:bg-gradient-to-br dark:from-gray-800/80 dark:to-gray-900/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-400/10 dark:hover:shadow-cyan-500/20 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                  }`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-              >
-                {/* Project Image Area */}
-                <div className='relative overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900'>
-                  {featured && (
-                    <span className='absolute top-3 left-3 z-10 px-2.5 py-1 text-xs font-semibold rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg'>
-                      Featured
-                    </span>
-                  )}
-                  {imageErrors[id] || !src ? (
-                    <div className='flex flex-col items-center justify-center p-8 min-h-[300px] md:min-h-[400px]'>
-                      <Icon className='text-6xl md:text-8xl text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300' />
-                      <p className='text-gray-400 text-sm'>{fallbackIconText}</p>
-                    </div>
-                  ) : Array.isArray(src) ? (
-                    <div className='relative w-full bg-gray-900 p-2 md:p-4'>
-                      <div className='grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4'>
-                        {src.map((imgSrc, imgIndex) => (
-                          <div key={imgIndex} className='relative overflow-hidden rounded-lg'>
-                            {imageLoading[`${id}-${imgIndex}`] !== false && (
-                              <div className='absolute inset-0 bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 animate-shimmer bg-[length:200%_100%] rounded-lg' />
-                            )}
-                            <img
-                              src={imgSrc}
-                              alt={`${title} - Screenshot ${imgIndex + 1}`}
-                              className='w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-[1.02] duration-500 transition-transform relative'
-                              onError={() => handleImageError(id)}
-                              onLoad={() => setImageLoading(prev => ({ ...prev, [`${id}-${imgIndex}`]: false }))}
-                              loading="lazy"
-                              decoding="async"
-                              style={{ maxHeight: '400px' }}
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className='relative w-full bg-gray-900 p-2 md:p-4'>
-                      {imageLoading[id] !== false && (
-                        <div className='absolute inset-0 bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 animate-shimmer bg-[length:200%_100%] rounded-lg' />
-                      )}
-                      <img
-                        src={src}
-                        alt={`${title} - Project Screenshot`}
-                        className='w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-[1.02] duration-500 transition-transform relative'
-                        onError={() => handleImageError(id)}
-                        onLoad={() => setImageLoading(prev => ({ ...prev, [id]: false }))}
-                        loading="lazy"
-                        decoding="async"
-                        style={{ maxHeight: '500px' }}
-                      />
-                    </div>
-                  )}
-                  <div className='absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none'></div>
+        <div className='space-y-8'>
+          {featuredItems.map((project) => (
+            <article
+              key={project.id}
+              className={`rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 shadow-lg ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'} transition-all duration-700`}
+            >
+              <div className='grid lg:grid-cols-2'>
+                <div className='relative overflow-hidden bg-slate-950'>
+                  {renderMedia(project)}
                 </div>
-
-                <div className='p-4 sm:p-6'>
-                  <h3 className='text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300'>{title}</h3>
-                  <p className='text-gray-600 dark:text-gray-400 text-sm md:text-base mb-3 sm:mb-4 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300'>{description}</p>
-
-                  <div className='flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4'>
-                    {tags.map((tag, i) => (
-                      <span key={i} className='px-2 py-1 bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 text-xs rounded-md border border-cyan-500/30'>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className='flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4'>
-                    {link1 && (
-                      <a
-                        href={link1}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label={`${title} live site`}
-                        className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 active:from-blue-600 active:to-cyan-600 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-cyan-500/50 touch-manipulation select-none min-h-[44px]'
-                      >
-                        <FaExternalLinkAlt /> Live
-                      </a>
-                    )}
-                    {link2 && (
-                      <a
-                        href={link2}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={() => {
-                          trackProjectView(title);
-                          trackSocialClick('github');
-                        }}
-                        className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gray-700 hover:bg-gray-600 active:bg-gray-800 rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 touch-manipulation select-none min-h-[44px]'
-                      >
-                        <FaGithub /> View Code
-                      </a>
-                    )}
-                  </div>
-                </div>
+                {renderBody(project, true)}
               </div>
-            );
-          })}
+            </article>
+          ))}
+
+          <div className='grid sm:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8'>
+            {otherItems.map((project) => (
+              <article
+                key={project.id}
+                className={`rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 shadow-md hover:border-cyan-400 dark:hover:border-teal-400/40 transition-colors duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+              >
+                <div className='relative overflow-hidden bg-slate-950'>
+                  {renderMedia(project)}
+                </div>
+                {renderBody(project, false)}
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </div>

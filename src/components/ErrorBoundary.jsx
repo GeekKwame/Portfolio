@@ -19,11 +19,11 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen w-full bg-gradient-to-b from-stone-900 via-gray-800 to-stone-900 flex items-center justify-center px-4">
-          <div className="max-w-md w-full bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm p-8 rounded-xl border border-red-500/30 shadow-2xl text-center">
+        <div className="min-h-screen w-full bg-slate-950 flex items-center justify-center px-4">
+          <div className="max-w-md w-full bg-slate-900 p-8 rounded-xl border border-red-500/30 text-center">
             <FaExclamationTriangle className="text-red-500 text-5xl mx-auto mb-4 animate-pulse" />
             <h1 className="text-2xl font-bold text-white mb-2">Oops! Something went wrong</h1>
-            <p className="text-gray-400 mb-6">
+            <p className="text-slate-300 mb-6">
               We're sorry, but something unexpected happened. Please try refreshing the page.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">

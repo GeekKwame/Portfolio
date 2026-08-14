@@ -88,13 +88,13 @@ function NavBar() {
   return (
     <div className={`flex justify-between items-center w-full h-20 fixed top-0 z-50 px-4 md:px-8 transition-all duration-300 ${
       scrolled 
-        ? 'bg-white/95 dark:bg-stone-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-800' 
-        : 'bg-gradient-to-r from-white via-slate-50/50 to-white dark:from-stone-900 dark:via-gray-800 dark:to-stone-900'
-    } text-gray-900 dark:text-white`}>
-      <Link to="home" smooth duration={500} className='cursor-pointer flex items-center gap-2 sm:gap-3 hover:scale-105 active:scale-95 transition-transform duration-300 group touch-manipulation select-none'>
+        ? 'bg-white/95 dark:bg-slate-950/90 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-slate-800' 
+        : 'bg-gradient-to-r from-white via-slate-50/50 to-white dark:bg-slate-950 dark:bg-none dark:from-slate-950 dark:via-slate-950 dark:to-slate-950'
+    } text-gray-900 dark:text-slate-100`}>
+      <Link to="home" smooth duration={500} className='cursor-pointer flex items-center gap-2 sm:gap-3 active:scale-[0.98] transition-transform duration-200 group touch-manipulation select-none'>
         <div className='relative flex-shrink-0'>
           <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-md opacity-0 group-hover:opacity-30 group-active:opacity-20 transition-opacity duration-300'></div>
-          <div className='relative w-9 h-9 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-cyan-500/40 shadow-lg shadow-cyan-500/20 group-hover:border-cyan-500/60 group-hover:shadow-cyan-500/40 transition-all duration-300'>
+          <div className='relative w-9 h-9 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-cyan-500/40 dark:border-slate-600 shadow-lg shadow-cyan-500/20 dark:shadow-none'>
             <img
               src={profilePic}
               alt={`${PERSONAL_INFO.name} - ${PERSONAL_INFO.title}`}
@@ -109,9 +109,9 @@ function NavBar() {
             />
           </div>
         </div>
-        <h1 className='text-base sm:text-xl md:text-2xl lg:text-4xl font-header bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent break-words group-hover:from-cyan-300 group-hover:to-blue-400 transition-all duration-300'>
-          {PERSONAL_INFO.name.toUpperCase()}
-        </h1>
+        <span className='text-lg sm:text-xl md:text-2xl font-semibold tracking-tight text-gray-900 dark:text-slate-100 group-hover:text-cyan-700 dark:group-hover:text-teal-300 transition-colors duration-300'>
+          {PERSONAL_INFO.name}
+        </span>
       </Link>
 
       <div className='flex items-center gap-3'>
@@ -132,8 +132,8 @@ function NavBar() {
                 offset={-80}
                 onSetActive={() => setActiveSection(linkItem.link)}
                 className={`relative px-4 py-2 cursor-pointer capitalize rounded-lg transition-all duration-300 ${activeSection === linkItem.link
-                  ? 'text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-500/10'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white hover:bg-cyan-50/50 dark:hover:bg-gray-800/50'
+                  ? 'text-cyan-600 dark:text-teal-300 bg-cyan-50 dark:bg-teal-500/10'
+                  : 'text-gray-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-slate-50 hover:bg-cyan-50/50 dark:hover:bg-slate-800/80'
                   }`}
                 aria-current={activeSection === linkItem.link ? 'true' : undefined}
               >
@@ -153,7 +153,7 @@ function NavBar() {
           <ThemeToggle />
           <button
             ref={menuButtonRef}
-            className='cursor-pointer z-50 text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white active:text-cyan-600 dark:active:text-cyan-400 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-lg p-2 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation select-none'
+            className='cursor-pointer z-50 text-gray-600 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-teal-300 active:text-cyan-600 dark:active:text-teal-300 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-teal-400 rounded-lg p-2 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation select-none'
             onClick={() => {
               const wasOpen = nav;
               setNav(!nav);
@@ -176,7 +176,7 @@ function NavBar() {
               onTouchStart={() => setNav(false)}
               aria-hidden="true"
             />
-            <ul className='flex flex-col justify-start fixed items-center h-screen top-20 left-0 w-full bg-gradient-to-b from-white/98 via-slate-50/98 to-white/98 dark:from-stone-900/98 dark:to-gray-800/98 backdrop-blur-md animate-slide-in z-40 overflow-y-auto pb-20 border-r border-gray-200/50 dark:border-gray-800'>
+            <ul className='flex flex-col justify-start fixed items-center h-screen top-20 left-0 w-full bg-gradient-to-b from-white/98 via-slate-50/98 to-white/98 dark:bg-slate-950 dark:bg-none dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 backdrop-blur-md animate-slide-in z-40 overflow-y-auto pb-20 border-r border-gray-200/50 dark:border-slate-800'>
               {links.map((linkItem) => (
                 <li
                   className='w-full flex justify-center'
@@ -191,7 +191,7 @@ function NavBar() {
                     to={linkItem.link}
                     smooth
                     duration={500}
-                    className='text-gray-800 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 active:text-cyan-600 dark:active:text-cyan-400 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-lg px-6 py-4 text-2xl sm:text-3xl min-h-[60px] flex items-center justify-center w-full max-w-xs touch-manipulation select-none'
+                    className='text-gray-800 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-teal-300 active:text-cyan-600 dark:active:text-teal-300 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-teal-400 rounded-lg px-6 py-4 text-2xl sm:text-3xl min-h-[60px] flex items-center justify-center w-full max-w-xs touch-manipulation select-none'
                   >
                     {linkItem.label}
                   </Link>

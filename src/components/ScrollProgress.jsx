@@ -32,9 +32,9 @@ function ScrollProgress() {
   }, [updateScrollProgress]);
 
   return (
-    <div className='fixed top-0 left-0 w-full h-1 bg-gray-900/50 z-50'>
+    <div className='fixed top-0 left-0 w-full h-1 bg-gray-200 dark:bg-slate-800 z-50'>
       <div
-        className='h-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-150 ease-out shadow-lg shadow-cyan-500/50'
+        className='h-full bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-teal-400 dark:to-sky-500 transition-all duration-150 ease-out'
         style={{ width: `${scrollProgress}%` }}
       />
     </div>

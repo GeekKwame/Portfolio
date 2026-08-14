@@ -27,7 +27,7 @@ function App() {
           <Home />
           <SocialLinks />
           <Suspense fallback={
-            <div className='flex items-center justify-center min-h-[50vh] bg-gradient-to-b from-gray-800 to-stone-900'>
+            <div className='flex items-center justify-center min-h-[50vh] bg-slate-50 dark:bg-slate-950'>
               <div className='w-10 h-10 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin'></div>
             </div>
           }>

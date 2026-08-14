@@ -13,6 +13,9 @@
 
   html.dark {
     color-scheme: dark;
+    /* Tailwind’s antialiased smoothing thins Raleway on dark backgrounds */
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
   }
 
   html.light {
@@ -28,15 +31,31 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  /* Theme-based body styles */
   body {
     background-color: #ffffff;
     color: #111827;
   }
 
   html.dark body {
-    background-color: #0c0a09;
-    color: #ffffff;
+    background-color: #0f172a;
+    color: #e2e8f0;
+  }
+
+  /* Light-mode gradients paint as background-image and cover dark:bg-*.
+     Kill the image in dark mode so section color and text contrast hold. */
+  html.dark [name="home"],
+  html.dark [name="about"],
+  html.dark [name="education"],
+  html.dark [name="portfolio"],
+  html.dark [name="experience"],
+  html.dark [name="contact"],
+  html.dark footer {
+    background-image: none;
+  }
+
+  html.dark ::selection {
+    background: rgba(45, 212, 191, 0.28);
+    color: #f0fdfa;
   }
 
   * {
@@ -61,10 +80,17 @@
     user-select: none;
   }
 
-  /* Smooth scrolling on mobile */
-  @media (prefers-reduced-motion: no-preference) {
+  @media (prefers-reduced-motion: reduce) {
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
   }
 }
@@ -215,12 +241,20 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #1c1917;
+  background: #e2e8f0;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #06b6d4, #3b82f6);
   border-radius: 5px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #2dd4bf, #38bdf8);
 }
 
 ::-webkit-scrollbar-thumb:hover {

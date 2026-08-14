@@ -48,17 +48,17 @@ const Contact = memo(function Contact() {
   };
 
   return (
-    <div name="contact" ref={sectionRef} className='bg-gradient-to-b from-white via-slate-50/50 to-blue-50/30 dark:from-stone-800 dark:to-gray-800 min-h-screen w-full text-gray-900 dark:text-white py-12 md:py-20'>
+    <div name="contact" ref={sectionRef} className='bg-gradient-to-b from-white via-slate-50/50 to-blue-50/30 dark:bg-slate-900 dark:bg-none dark:from-slate-900 dark:via-slate-900 dark:to-slate-900 min-h-screen w-full text-gray-900 dark:text-slate-200 py-12 md:py-20'>
       <div className='flex flex-col p-4 sm:p-6 justify-center max-w-screen-lg mx-auto h-full'>
         <div className={`mb-8 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4'>
+          <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-slate-50'>
             Contact
           </p>
-          <p className='py-3 md:py-5 text-gray-600 dark:text-gray-300 text-base sm:text-lg'>
+          <p className='py-3 md:py-5 text-gray-600 dark:text-slate-200 text-base sm:text-lg'>
             Cloud, serverless, or full-stack work.{' '}
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
-              className='text-cyan-600 dark:text-cyan-400 font-semibold underline-offset-2 hover:underline'
+              className='text-cyan-600 dark:text-teal-300 font-semibold underline-offset-2 hover:underline'
             >
               {PERSONAL_INFO.email}
             </a>
@@ -69,13 +69,13 @@ const Contact = memo(function Contact() {
         <div className={`flex justify-center items-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <form
             onSubmit={handleSubmit}
-            className='flex flex-col w-full md:w-2/3 lg:w-1/2 bg-white/90 dark:bg-gradient-to-br dark:from-gray-800/50 dark:to-gray-900/50 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-xl border border-gray-200 dark:border-gray-700/50 shadow-xl dark:shadow-2xl hover:shadow-cyan-400/10 dark:hover:shadow-cyan-500/10 transition-all duration-300'
+            className='flex flex-col w-full md:w-2/3 lg:w-1/2 bg-white/90 dark:bg-slate-800/80 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-xl border border-gray-200 dark:border-slate-700/80 shadow-xl dark:shadow-none'
           >
-            <p className='text-sm text-gray-600 dark:text-gray-400 mb-4'>
+            <p className='text-sm text-gray-600 dark:text-slate-300 mb-4'>
               The button opens your email app with this draft. Nothing is sent from this site.
             </p>
             <div className='mb-4'>
-              <label htmlFor='name' className='block text-sm font-semibold mb-2 text-cyan-600 dark:text-cyan-400'>
+              <label htmlFor='name' className='block text-sm font-semibold mb-2 text-cyan-600 dark:text-teal-300'>
                 Name <span className='text-red-500 dark:text-red-400'>*</span>
               </label>
               <input
@@ -88,7 +88,7 @@ const Contact = memo(function Contact() {
                     setErrors(prev => ({ ...prev, name: 'Name is required' }));
                   }
                 }}
-                className={`w-full bg-white dark:bg-gray-900/50 p-3 rounded-lg border-2 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-gray-400 dark:hover:border-gray-500 ${errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-gray-600 focus:border-cyan-500'
+                className={`w-full bg-white dark:bg-slate-950 p-3 rounded-lg border-2 text-gray-900 dark:text-slate-100 placeholder-gray-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-gray-400 dark:hover:border-slate-400 ${errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-slate-500 focus:border-cyan-500'
                   }`}
                 placeholder='Enter your name'
                 autoComplete='name'
@@ -99,7 +99,7 @@ const Contact = memo(function Contact() {
             </div>
 
             <div className='mb-4'>
-              <label htmlFor='email' className='block text-sm font-semibold mb-2 text-cyan-600 dark:text-cyan-400'>
+              <label htmlFor='email' className='block text-sm font-semibold mb-2 text-cyan-600 dark:text-teal-300'>
                 Email <span className='text-red-500 dark:text-red-400'>*</span>
               </label>
               <input
@@ -115,7 +115,7 @@ const Contact = memo(function Contact() {
                     setErrors(prev => ({ ...prev, email: 'Please enter a valid email' }));
                   }
                 }}
-                className={`w-full bg-white dark:bg-gray-900/50 p-3 rounded-lg border-2 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-gray-400 dark:hover:border-gray-500 ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-gray-600 focus:border-cyan-500'
+                className={`w-full bg-white dark:bg-slate-950 p-3 rounded-lg border-2 text-gray-900 dark:text-slate-100 placeholder-gray-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-gray-400 dark:hover:border-slate-400 ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-slate-500 focus:border-cyan-500'
                   }`}
                 placeholder='Enter your email'
                 autoComplete='email'
@@ -127,10 +127,10 @@ const Contact = memo(function Contact() {
 
             <div className='mb-6'>
               <div className='flex justify-between items-center mb-2'>
-                <label htmlFor='message' className='block text-sm font-semibold text-cyan-600 dark:text-cyan-400'>
+                <label htmlFor='message' className='block text-sm font-semibold text-cyan-600 dark:text-teal-300'>
                   Message <span className='text-red-500 dark:text-red-400'>*</span>
                 </label>
-                <span className={`text-xs ${formData.message.length > 500 ? 'text-red-500 dark:text-red-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                <span className={`text-xs ${formData.message.length > 500 ? 'text-red-500 dark:text-red-400' : 'text-gray-500 dark:text-slate-400'}`}>
                   {formData.message.length}/1000
                 </span>
               </div>
@@ -146,7 +146,7 @@ const Contact = memo(function Contact() {
                   }
                 }}
                 maxLength={1000}
-                className={`w-full bg-white dark:bg-gray-900/50 p-3 rounded-lg border-2 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all resize-none hover:border-gray-400 dark:hover:border-gray-500 ${errors.message ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-gray-600 focus:border-cyan-500'
+                className={`w-full bg-white dark:bg-slate-950 p-3 rounded-lg border-2 text-gray-900 dark:text-slate-100 placeholder-gray-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all resize-none hover:border-gray-400 dark:hover:border-slate-400 ${errors.message ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-slate-500 focus:border-cyan-500'
                   }`}
                 placeholder='Enter your message (max 1000 characters)'
                 aria-invalid={errors.message ? 'true' : 'false'}
@@ -158,13 +158,13 @@ const Contact = memo(function Contact() {
             <div className='flex flex-col sm:flex-row gap-3 justify-center'>
               <button
                 type='submit'
-                className='relative py-3 px-6 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 duration-300 rounded-lg text-white font-semibold shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800 touch-manipulation select-none min-h-[48px] bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 hover:shadow-cyan-500/50'
+                className='relative py-3 px-6 flex items-center justify-center gap-2 active:scale-[0.98] duration-200 rounded-lg text-white font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 touch-manipulation select-none min-h-[48px] bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-teal-600 dark:to-sky-700 hover:from-blue-500 hover:to-cyan-500'
               >
                 <FaPaperPlane /> Open email app
               </button>
               <a
                 href={`mailto:${PERSONAL_INFO.email}`}
-                className='relative py-3 px-6 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 duration-300 rounded-lg font-semibold border-2 border-cyan-500 text-cyan-600 dark:text-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800 touch-manipulation select-none min-h-[48px]'
+                className='relative py-3 px-6 flex items-center justify-center gap-2 active:scale-[0.98] duration-200 rounded-lg font-semibold border-2 border-cyan-500 dark:border-teal-400/70 text-cyan-600 dark:text-teal-300 hover:bg-cyan-50 dark:hover:bg-teal-500/10 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 touch-manipulation select-none min-h-[48px]'
               >
                 <FaEnvelope /> Email me
               </a>

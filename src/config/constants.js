@@ -25,7 +25,7 @@ export const PERSONAL_INFO = {
   headline: HEADLINE,
   bio: 'Cloud & Software Engineer. Production AWS where CloudFront is the only public HTTPS edge — SAM, Lambda, DynamoDB, Terraform, Python & Django, React, GitHub Actions. Open to opportunities.',
   intro:
-    'Cloud & Software Engineer building production-style AWS systems. On Event-Connect, CloudFront is the only public HTTPS endpoint — private S3 with OAC, API Gateway as a hidden origin, five Python Lambdas, and DynamoDB tickets. I also ship Terraform, Docker/Kubernetes, Django REST APIs, and GitHub Actions CI/CD with OIDC.',
+    'I build production-style AWS systems. Event-Connect puts CloudFront as the only public HTTPS endpoint — private S3, a hidden API, five Python Lambdas, and tickets in DynamoDB. I also ship Terraform, Django APIs, and GitHub Actions with OIDC.',
   location: 'Available worldwide',
   availability: 'Open to opportunities — freelance, full-time, and collaboration.',
   email: CONTACT_EMAIL,
@@ -75,6 +75,12 @@ export const ROLES = [
   'Full-Stack Developer',
   'DevOps & CI/CD Practitioner',
 ];
+
+export const FLAGSHIP = {
+  name: 'Event-Connect',
+  live: 'https://d3mbqhiwlx08nz.cloudfront.net',
+  repo: 'https://github.com/GeekKwame/event-registration-system-sam/',
+};
 
 export const RESUME = {
   filename: 'Edmund_Blessing_Resume.pdf',

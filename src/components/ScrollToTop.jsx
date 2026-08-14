@@ -39,7 +39,7 @@ function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 bg-gradient-to-r from-cyan-500 to-blue-500 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-cyan-500/50 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group touch-manipulation select-none min-w-[44px] min-h-[44px] ${isVisible
+      className={`fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-teal-600 dark:to-sky-700 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-md active:scale-95 transition-all duration-300 flex items-center justify-center group touch-manipulation select-none min-w-[44px] min-h-[44px] ${isVisible
           ? 'opacity-100 translate-y-0 pointer-events-auto'
           : 'opacity-0 translate-y-4 pointer-events-none'
         }`}

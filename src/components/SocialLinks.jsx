@@ -69,7 +69,7 @@ const SocialLinks = memo(function SocialLinks() {
         {links.map((link) => (
           <li
             key={link.id}
-            className={`tooltip flex justify-between items-center w-32 h-12 px-4 bg-gradient-to-r from-gray-700 to-gray-800 ml-[-80px] hover:ml-[-10px] duration-300 transition-all group border-r-2 border-transparent hover:border-cyan-500 ${link.style} ${link.color} shadow-lg hover:shadow-cyan-500/50`}
+            className={`tooltip flex justify-between items-center w-32 h-12 px-4 bg-slate-800 ml-[-80px] hover:ml-[-10px] duration-300 transition-all group border-r-2 border-transparent hover:border-teal-400 ${link.style} ${link.color} shadow-lg`}
             data-tooltip={link.label}
           >
             {link.isEmail ? (

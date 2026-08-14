@@ -47,14 +47,14 @@ const Education = memo(function Education() {
     <div
       name="education"
       ref={sectionRef}
-      className="bg-gradient-to-b from-slate-50 via-white to-blue-50/30 dark:from-stone-800 dark:to-gray-800 w-full min-h-screen py-12 md:py-20"
+      className="bg-gradient-to-b from-slate-50 via-white to-blue-50/30 dark:bg-slate-950 dark:bg-none dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 w-full min-h-screen py-12 md:py-20"
     >
-      <div className="max-w-screen-lg mx-auto p-4 sm:p-6 flex flex-col justify-center w-full h-full text-gray-900 dark:text-white">
+      <div className="max-w-screen-lg mx-auto p-4 sm:p-6 flex flex-col justify-center w-full h-full text-gray-900 dark:text-slate-200">
         <div
           className={`mb-8 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         >
-          <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Education</p>
-          <p className="py-2 md:py-4 text-gray-600 dark:text-gray-300 text-base sm:text-lg">
+          <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-slate-50">Education</p>
+          <p className="py-2 md:py-4 text-gray-600 dark:text-slate-200 text-base sm:text-lg">
             My academic background and professional training
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
@@ -64,7 +64,7 @@ const Education = memo(function Education() {
           {education.map((entry, index) => (
             <div
               key={entry.id}
-              className={`group relative bg-white/90 dark:bg-gradient-to-br dark:from-gray-700/50 dark:to-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-600/50 rounded-xl p-4 sm:p-6 md:p-8 shadow-md hover:border-cyan-400 dark:hover:border-cyan-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-cyan-400/10 dark:hover:shadow-cyan-500/10 hover:-translate-y-1 ${
+              className={`group relative bg-white/90 dark:bg-slate-800/80 backdrop-blur-sm border border-gray-200 dark:border-slate-700/80 rounded-xl p-4 sm:p-6 md:p-8 shadow-md hover:border-cyan-400 dark:hover:border-teal-400/40 transition-all duration-500 hover:shadow-xl hover:shadow-cyan-400/10 dark:hover:shadow-none ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
@@ -74,7 +74,7 @@ const Education = memo(function Education() {
               <div className="relative z-10 flex flex-col md:flex-row gap-4 md:gap-6">
                 <div className="flex-shrink-0">
                   {entry.logo && !imageErrors[entry.id] ? (
-                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-white/10 backdrop-blur-sm p-2 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-white/20 transition-all duration-300 overflow-hidden border border-gray-600/30">
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-white p-2 flex items-center justify-center shadow-md group-hover:scale-110 transition-all duration-300 overflow-hidden border border-gray-200 dark:border-slate-600">
                       <img
                         src={entry.logo}
                         alt={`${entry.school} logo`}
@@ -96,24 +96,24 @@ const Education = memo(function Education() {
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300 mb-1">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-slate-100 group-hover:text-cyan-600 dark:group-hover:text-teal-300 transition-colors duration-300 mb-1">
                     {entry.degree}
                   </h3>
-                  <p className="text-cyan-700 dark:text-cyan-400 font-semibold text-sm sm:text-base mb-3">{entry.school}</p>
+                  <p className="text-cyan-700 dark:text-teal-300 font-semibold text-sm sm:text-base mb-3">{entry.school}</p>
 
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-slate-300 mb-4">
                     <div className="flex items-center gap-2">
-                      <FaCalendarAlt className="text-cyan-400" />
+                      <FaCalendarAlt className="text-cyan-600 dark:text-teal-300" />
                       <span>{entry.duration}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <FaMapMarkerAlt className="text-cyan-400" />
+                      <FaMapMarkerAlt className="text-cyan-600 dark:text-teal-300" />
                       <span>{entry.location}</span>
                     </div>
                   </div>
 
                   {entry.description && (
-                    <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
+                    <p className="text-gray-600 dark:text-slate-200 text-sm sm:text-base leading-relaxed mb-4">
                       {entry.description}
                     </p>
                   )}
@@ -122,7 +122,7 @@ const Education = memo(function Education() {
                     {entry.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-2 py-1 bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 text-xs rounded-md border border-cyan-500/30"
+                        className="px-2 py-1 bg-cyan-500/10 dark:bg-teal-500/10 text-cyan-800 dark:text-teal-200 text-xs rounded-md border border-cyan-500/30 dark:border-teal-500/25"
                       >
                         {skill}
                       </span>

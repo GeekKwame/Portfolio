@@ -41,6 +41,7 @@ const Toast = ({ id, message, type = 'success', duration = 4000, onClose }) => {
       className={`
         flex items-center gap-3 px-4 py-3 rounded-lg border backdrop-blur-md
         shadow-lg min-w-[280px] max-w-[400px] transition-all duration-300
+        bg-white dark:bg-slate-800
         ${bgColors[type]}
         ${isVisible && !isExiting ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}
       `}
@@ -48,10 +49,10 @@ const Toast = ({ id, message, type = 'success', duration = 4000, onClose }) => {
       aria-live="polite"
     >
       <div className="flex-shrink-0 text-xl">{icons[type]}</div>
-      <p className="flex-1 text-sm text-white font-medium">{message}</p>
+      <p className="flex-1 text-sm text-gray-800 dark:text-slate-100 font-medium">{message}</p>
       <button
         onClick={handleClose}
-        className="flex-shrink-0 text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-white/10"
+        className="flex-shrink-0 text-gray-500 dark:text-slate-300 hover:text-gray-800 dark:hover:text-white transition-colors p-1 rounded hover:bg-gray-100 dark:hover:bg-white/10"
         aria-label="Close notification"
       >
         <FaTimes size={14} />
