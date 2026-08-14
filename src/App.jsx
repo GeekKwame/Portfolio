@@ -1,12 +1,12 @@
-import React, { Suspense, lazy } from "react";
+import React from "react";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import SocialLinks from "./components/SocialLinks";
-const About = lazy(() => import('./components/About'));
-const Education = lazy(() => import('./components/Education'));
-const Portfolio = lazy(() => import('./components/Portfolio'));
-const Experience = lazy(() => import('./components/Experience'));
-const Contact = lazy(() => import('./components/Contact'));
+import About from './components/About';
+import Education from './components/Education';
+import Portfolio from './components/Portfolio';
+import Experience from './components/Experience';
+import Contact from './components/Contact';
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollProgress from "./components/ScrollProgress";
@@ -24,19 +24,15 @@ function App() {
           <SkipToContent />
           <ScrollProgress />
           <NavBar />
-          <Home />
           <SocialLinks />
-          <Suspense fallback={
-            <div className='flex items-center justify-center min-h-[50vh] bg-slate-50 dark:bg-slate-950'>
-              <div className='w-10 h-10 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin'></div>
-            </div>
-          }>
+          <main id="main">
+            <Home />
             <About />
             <Education />
             <Portfolio />
             <Experience />
             <Contact />
-          </Suspense>
+          </main>
           <Footer />
           <ScrollToTop />
         </div>

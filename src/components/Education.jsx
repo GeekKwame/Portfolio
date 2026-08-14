@@ -1,6 +1,5 @@
 import React, { useState, memo } from 'react'
 import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa'
-import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import knustLogo from '../assets/images/companies/knust.png'
 
 const azubiLogo =
@@ -12,7 +11,6 @@ const azubiLogo =
   )[0] ?? null
 
 const Education = memo(function Education() {
-  const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 })
   const [imageErrors, setImageErrors] = useState({})
 
   const education = [
@@ -46,13 +44,10 @@ const Education = memo(function Education() {
   return (
     <div
       name="education"
-      ref={sectionRef}
-      className="bg-gradient-to-b from-slate-50 via-white to-blue-50/30 dark:bg-slate-950 dark:bg-none dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 w-full min-h-screen py-12 md:py-20"
+      className="bg-gradient-to-b from-slate-50 via-white to-blue-50/30 dark:bg-slate-950 dark:bg-none dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 w-full py-12 md:py-20"
     >
       <div className="max-w-screen-lg mx-auto p-4 sm:p-6 flex flex-col justify-center w-full h-full text-gray-900 dark:text-slate-200">
-        <div
-          className={`mb-8 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-        >
+        <div className="mb-8 md:mb-12">
           <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-slate-50">Education</p>
           <p className="py-2 md:py-4 text-gray-600 dark:text-slate-200 text-base sm:text-lg">
             My academic background and professional training
@@ -64,17 +59,14 @@ const Education = memo(function Education() {
           {education.map((entry, index) => (
             <div
               key={entry.id}
-              className={`group relative bg-white/90 dark:bg-slate-800/80 backdrop-blur-sm border border-gray-200 dark:border-slate-700/80 rounded-xl p-4 sm:p-6 md:p-8 shadow-md hover:border-cyan-400 dark:hover:border-teal-400/40 transition-all duration-500 hover:shadow-xl hover:shadow-cyan-400/10 dark:hover:shadow-none ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: `${index * 150}ms` }}
+              className="group relative bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-4 sm:p-6 md:p-8"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
 
               <div className="relative z-10 flex flex-col md:flex-row gap-4 md:gap-6">
                 <div className="flex-shrink-0">
                   {entry.logo && !imageErrors[entry.id] ? (
-                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-white p-2 flex items-center justify-center shadow-md group-hover:scale-110 transition-all duration-300 overflow-hidden border border-gray-200 dark:border-slate-600">
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-white p-2 flex items-center justify-center overflow-hidden border border-gray-200 dark:border-slate-600">
                       <img
                         src={entry.logo}
                         alt={`${entry.school} logo`}
@@ -86,7 +78,7 @@ const Education = memo(function Education() {
                     </div>
                   ) : (
                     <div
-                      className={`w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br ${entry.logoGradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                      className={`w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br ${entry.logoGradient} flex items-center justify-center`}
                     >
                       <span className="text-white font-bold text-sm md:text-base text-center px-1">
                         {entry.logoText}

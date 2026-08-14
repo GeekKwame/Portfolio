@@ -1,8 +1,8 @@
 import React, { useState, memo } from 'react'
 import { FaExternalLinkAlt, FaGithub, FaStickyNote, FaCloud, FaCubes, FaPoll, FaGraduationCap, FaCalendarCheck, FaTasks } from 'react-icons/fa'
-import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import { trackProjectView, trackSocialClick } from '../utils/analytics'
 import eventConnectImage from "../assets/images/portfolio/event-connect.webp"
+import smartTaskImage from "../assets/images/portfolio/smart-task.webp"
 import pulsevoteImage from "../assets/images/portfolio/pulsevote.jpg"
 import terraformedImage from "../assets/images/portfolio/terraformed-webpage.png"
 import student from "../assets/images/portfolio/student-study-planner.png"
@@ -10,7 +10,6 @@ import serverlessImage from "../assets/images/portfolio/serverless-terraform-aws
 import { FLAGSHIP } from '../config/constants'
 
 const Portfolio = memo(function Portfolio() {
-  const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
   const [imageErrors, setImageErrors] = useState({});
   const [imageLoading, setImageLoading] = useState({});
   const [activeFilter, setActiveFilter] = useState('All');
@@ -37,7 +36,7 @@ const Portfolio = memo(function Portfolio() {
     },
     {
       id: 2,
-      src: null,
+      src: smartTaskImage,
       title: "Smart Task Notification System",
       description: "Event-driven serverless task API: a single write fans out to DynamoDB, SNS, SQS, and EventBridge from a Lambda behind API Gateway. SNS/SQS delivery failures are logged without failing the client request. CloudWatch logs, metrics, and a Lambda-error alarm, plus CloudTrail for API audit. Full stack as AWS SAM; pytest + moto in CI.",
       flow: ['API Gateway', 'Lambda', 'DynamoDB + SNS + SQS + EventBridge'],
@@ -46,7 +45,7 @@ const Portfolio = memo(function Portfolio() {
       tags: ["AWS SAM", "API Gateway", "Lambda", "DynamoDB", "SNS", "SQS", "EventBridge", "CloudWatch", "Python", "Pytest"],
       category: "Serverless",
       icon: FaTasks,
-      iconText: "Smart Task Notification System"
+      iconText: "Smart Task Notification System production AWS architecture"
     },
     {
       id: 3,
@@ -145,7 +144,7 @@ const Portfolio = memo(function Portfolio() {
   };
 
   const renderBody = (project, featured) => {
-    const { title, product, system, description, flow, tags, link1, link2 } = project;
+    const { title, product, system, description, tags, link1, link2 } = project;
     return (
       <div className={`p-4 sm:p-6 ${featured ? 'lg:p-8 flex flex-col justify-center' : ''}`}>
         {featured && (
@@ -153,35 +152,8 @@ const Portfolio = memo(function Portfolio() {
             Featured
           </span>
         )}
-        <h3 className='text-lg sm:text-xl md:text-2xl font-bold mb-3 text-gray-900 dark:text-slate-100'>{title}</h3>
-        {product && (
-          <p className='text-gray-700 dark:text-slate-200 text-sm md:text-base mb-2 leading-relaxed'>
-            <span className='font-semibold text-cyan-800 dark:text-teal-300'>Product. </span>
-            {product}
-          </p>
-        )}
-        {system && (
-          <p className='text-gray-600 dark:text-slate-300 text-sm md:text-base mb-3 leading-relaxed'>
-            <span className='font-semibold text-cyan-800 dark:text-teal-300'>Edge & backend. </span>
-            {system}
-          </p>
-        )}
-        {!product && description && (
-          <p className='text-gray-600 dark:text-slate-300 text-sm md:text-base mb-3 leading-relaxed'>{description}</p>
-        )}
-        {featured && flow && (
-          <p className='text-sm font-mono text-gray-600 dark:text-slate-300 mb-4 leading-relaxed'>
-            {flow.join(' → ')}
-          </p>
-        )}
-        <div className='flex flex-wrap gap-1.5 sm:gap-2 mb-4'>
-          {tags.map((tag) => (
-            <span key={tag} className='px-2 py-1 bg-cyan-500/10 dark:bg-teal-500/10 text-cyan-800 dark:text-teal-200 text-xs rounded-md border border-cyan-500/30 dark:border-teal-500/25'>
-              {tag}
-            </span>
-          ))}
-        </div>
-        <div className='flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4'>
+        <h3 className='text-lg sm:text-xl md:text-2xl font-bold mb-4 text-gray-900 dark:text-slate-100'>{title}</h3>
+        <div className='flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-4'>
           {link1 && (
             <a
               href={link1}
@@ -204,18 +176,43 @@ const Portfolio = memo(function Portfolio() {
               }}
               className='flex items-center justify-center gap-2 px-4 py-3 sm:py-2 bg-gray-800 dark:bg-slate-700 hover:bg-gray-700 dark:hover:bg-slate-600 rounded-lg text-white font-semibold transition-colors duration-200 border border-gray-600 dark:border-slate-500 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-teal-400'
             >
-              <FaGithub /> View Code
+              <FaGithub /> Code
             </a>
           )}
+        </div>
+        {product && (
+          <p className='text-gray-700 dark:text-slate-200 text-sm md:text-base mb-3 leading-relaxed'>
+            {product}
+          </p>
+        )}
+        {!product && description && (
+          <p className='text-gray-600 dark:text-slate-300 text-sm md:text-base mb-3 leading-relaxed'>{description}</p>
+        )}
+        {system && (
+          <details className='mb-4 group'>
+            <summary className='cursor-pointer text-sm font-semibold text-cyan-800 dark:text-teal-300 list-none flex items-center gap-2'>
+              <span>Edge and backend</span>
+              <span className='text-gray-500 dark:text-slate-400 font-normal group-open:hidden'>Show</span>
+              <span className='text-gray-500 dark:text-slate-400 font-normal hidden group-open:inline'>Hide</span>
+            </summary>
+            <p className='mt-2 text-gray-600 dark:text-slate-300 text-sm leading-relaxed'>{system}</p>
+          </details>
+        )}
+        <div className='flex flex-wrap gap-1.5 sm:gap-2'>
+          {tags.map((tag) => (
+            <span key={tag} className='px-2 py-1 bg-cyan-500/10 dark:bg-teal-500/10 text-cyan-800 dark:text-teal-200 text-xs rounded-md border border-cyan-500/30 dark:border-teal-500/25'>
+              {tag}
+            </span>
+          ))}
         </div>
       </div>
     );
   };
 
   return (
-    <div name="portfolio" ref={sectionRef} className='bg-gradient-to-b from-white via-slate-50/50 to-blue-50/20 dark:bg-slate-950 dark:bg-none dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 w-full min-h-screen py-12 md:py-20'>
+    <div name="portfolio" className='bg-gradient-to-b from-white via-slate-50/50 to-blue-50/20 dark:bg-slate-950 dark:bg-none dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 w-full py-12 md:py-20'>
       <div className='max-w-screen-xl p-4 mx-auto flex flex-col justify-center w-full h-full'>
-        <div className={`mb-8 md:mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+        <div className='mb-8 md:mb-12'>
           <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-slate-50'>
             Work
           </p>
@@ -225,7 +222,7 @@ const Portfolio = memo(function Portfolio() {
           <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
         </div>
 
-        <div className={`flex flex-wrap gap-2 sm:gap-3 mb-8 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <div className='flex flex-wrap gap-2 sm:gap-3 mb-8'>
           {['All', 'Serverless', 'Cloud / IaC'].map((filter) => (
             <button
               key={filter}
@@ -244,7 +241,7 @@ const Portfolio = memo(function Portfolio() {
           {featuredItems.map((project) => (
             <article
               key={project.id}
-              className={`rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 shadow-lg ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'} transition-all duration-700`}
+              className='rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 shadow-lg'
             >
               <div className='grid lg:grid-cols-2'>
                 <div className='relative overflow-hidden bg-slate-950'>
@@ -259,7 +256,7 @@ const Portfolio = memo(function Portfolio() {
             {otherItems.map((project) => (
               <article
                 key={project.id}
-                className={`rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 shadow-md hover:border-cyan-400 dark:hover:border-teal-400/40 transition-colors duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+                className='rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 shadow-md'
               >
                 <div className='relative overflow-hidden bg-slate-950'>
                   {renderMedia(project)}

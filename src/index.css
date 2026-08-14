@@ -53,6 +53,23 @@
     background-image: none;
   }
 
+  [name="home"],
+  [name="about"],
+  [name="education"],
+  [name="portfolio"],
+  [name="experience"],
+  [name="contact"] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  details > summary {
+    list-style: none;
+  }
+
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
   html.dark ::selection {
     background: rgba(45, 212, 191, 0.28);
     color: #f0fdfa;

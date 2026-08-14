@@ -59,21 +59,11 @@ export const SOCIAL_LINKS = [
 ];
 
 export const NAVIGATION_LINKS = [
-  { id: 1, name: 'Home', to: 'home' },
-  { id: 2, name: 'About', to: 'about' },
-  { id: 3, name: 'Education', to: 'education' },
-  { id: 4, name: 'Portfolio', to: 'portfolio' },
-  { id: 5, name: 'Experience', to: 'experience' },
-  { id: 6, name: 'Contact', to: 'contact' },
-];
-
-/** Rotating roles on the home hero — derived from the LinkedIn headline */
-export const ROLES = [
-  'Cloud & Software Engineer',
-  'AWS Serverless Engineer',
-  'Python & Django Developer',
-  'Full-Stack Developer',
-  'DevOps & CI/CD Practitioner',
+  { id: 1, name: 'About', to: 'about' },
+  { id: 2, name: 'Education', to: 'education' },
+  { id: 3, name: 'Work', to: 'portfolio' },
+  { id: 4, name: 'Experience', to: 'experience' },
+  { id: 5, name: 'Contact', to: 'contact' },
 ];
 
 export const FLAGSHIP = {

@@ -91,7 +91,7 @@ function NavBar() {
         ? 'bg-white/95 dark:bg-slate-950/90 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-slate-800' 
         : 'bg-gradient-to-r from-white via-slate-50/50 to-white dark:bg-slate-950 dark:bg-none dark:from-slate-950 dark:via-slate-950 dark:to-slate-950'
     } text-gray-900 dark:text-slate-100`}>
-      <Link to="home" smooth duration={500} className='cursor-pointer flex items-center gap-2 sm:gap-3 active:scale-[0.98] transition-transform duration-200 group touch-manipulation select-none'>
+      <Link to="home" smooth duration={500} offset={-80} className='cursor-pointer flex items-center gap-2 sm:gap-3 active:scale-[0.98] transition-transform duration-200 group touch-manipulation select-none'>
         <div className='relative flex-shrink-0'>
           <div className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-md opacity-0 group-hover:opacity-30 group-active:opacity-20 transition-opacity duration-300'></div>
           <div className='relative w-9 h-9 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-cyan-500/40 dark:border-slate-600 shadow-lg shadow-cyan-500/20 dark:shadow-none'>
@@ -191,6 +191,7 @@ function NavBar() {
                     to={linkItem.link}
                     smooth
                     duration={500}
+                    offset={-80}
                     className='text-gray-800 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-teal-300 active:text-cyan-600 dark:active:text-teal-300 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-teal-400 rounded-lg px-6 py-4 text-2xl sm:text-3xl min-h-[60px] flex items-center justify-center w-full max-w-xs touch-manipulation select-none'
                   >
                     {linkItem.label}

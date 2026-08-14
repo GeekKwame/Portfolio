@@ -135,7 +135,7 @@ const Footer = memo(function Footer() {
             © {currentYear} {PERSONAL_INFO.name}. All rights reserved.
           </p>
           <p className='text-gray-500 dark:text-slate-400 text-xs sm:text-sm flex items-center gap-1'>
-            Made with <FaHeart className='text-red-500 animate-pulse' /> using React & Tailwind CSS
+            Made with <FaHeart className='text-red-500' /> using React & Tailwind CSS
           </p>
         </div>
       </div>
