@@ -5,6 +5,8 @@ import knustLogo from "../assets/images/companies/knust.png"
 import m365connectLogo from "../assets/images/companies/m365connect.png"
 import hubblemindLogo from "../assets/images/companies/hubblemind.jpeg"
 import leratoLogo from "../assets/images/companies/lerato.png"
+import oneHealthLogo from "../assets/images/companies/onehealthtech.png"
+import happyDaffodilsLogo from "../assets/images/companies/happy-daffodils.png"
 
 const Experience = memo(function Experience() {
   const [imageErrors, setImageErrors] = useState({});
@@ -12,6 +14,36 @@ const Experience = memo(function Experience() {
   const experiences = [
     {
       id: 1,
+      title: "Cloud & DevOps Engineer",
+      company: "One Health Global Technologies",
+      type: "Part-time",
+      duration: "Jul 2026 - Present",
+      period: "2 mos",
+      location: "Greater Accra Region, Ghana",
+      workType: "Remote",
+      description: "Designed and deployed secure cloud infrastructure on AWS using Terraform. Automated application deployment and operational workflows with Docker and GitHub Actions CI/CD. Managed EC2, IAM, S3, VPC, Lambda, CloudWatch, and ECS for production workloads, and implemented monitoring, logging, and alerting. Collaborated with engineering teams on scalable, secure, highly available cloud-native solutions, applying DevOps practices for infrastructure automation, security, and continuous delivery.",
+      skills: ["AWS", "Terraform", "Docker", "GitHub Actions", "EC2", "IAM", "S3", "VPC", "Lambda", "CloudWatch", "ECS"],
+      logo: oneHealthLogo,
+      logoGradient: "from-emerald-600 to-teal-700",
+      logoText: "OH"
+    },
+    {
+      id: 2,
+      title: "Team Lead | Daffodils DataCamp Scholars",
+      company: "Happy Daffodils",
+      type: "Part-time",
+      duration: "Mar 2026 - Present",
+      period: "6 mos",
+      location: "Greater Accra Region, Ghana",
+      workType: "Remote",
+      description: "Facilitate a high-engagement learning environment for scholars and a search-first culture for independent problem-solving. Track Data Literacy progress with DataCamp reporting and weekly XP to identify top performers. Streamline platform UX with visual guides and technical walkthroughs. Manage account escalations with program directors, and drive completion with a nudge system of automated and direct outreach to inactive participants.",
+      skills: ["Team Leadership", "DataCamp", "Data Literacy", "Technical Support", "Community Management"],
+      logo: happyDaffodilsLogo,
+      logoGradient: "from-amber-500 to-yellow-600",
+      logoText: "HD"
+    },
+    {
+      id: 3,
       title: "Information Technology Technician",
       company: "Kwame Nkrumah University of Science and Technology, Kumasi",
       type: "Full-time",
@@ -26,7 +58,7 @@ const Experience = memo(function Experience() {
       logoText: "KNUST"
     },
     {
-      id: 2,
+      id: 4,
       title: "Python Developer (Backend)",
       company: "M365Connect",
       type: "Internship",
@@ -41,7 +73,7 @@ const Experience = memo(function Experience() {
       logoText: "M365"
     },
     {
-      id: 3,
+      id: 5,
       title: "Data Science Intern — Machine Learning & AI",
       company: "HubbleMind",
       type: "Internship",
@@ -56,7 +88,7 @@ const Experience = memo(function Experience() {
       logoText: "HM"
     },
     {
-      id: 4,
+      id: 6,
       title: "OS Technician & IT Support Assistant",
       company: "Lerato Consult",
       type: "Part-time",
@@ -79,7 +111,7 @@ const Experience = memo(function Experience() {
           <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-slate-50'>
             Experience
           </p>
-          <p className='py-2 md:py-4 text-gray-600 dark:text-slate-200 text-base sm:text-lg'>My professional journey and the roles that shaped my expertise</p>
+          <p className='py-2 md:py-4 text-gray-600 dark:text-slate-200 text-base sm:text-lg'>Current roles, then earlier work</p>
           <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
         </div>
 
