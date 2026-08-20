@@ -49,14 +49,14 @@ const SocialLinks = memo(function SocialLinks() {
   ];
 
   return (
-    <nav aria-label="Social links" className='hidden xl:flex flex-col gap-2 fixed top-1/2 left-3 -translate-y-1/2 z-40'>
+    <nav aria-label="Social links" className='hidden 2xl:flex flex-col gap-2 fixed top-1/2 left-3 -translate-y-1/2 z-40'>
       {links.map((link) => (
         link.onClick ? (
           <button
             key={link.id}
             type="button"
             onClick={link.onClick}
-            className='w-11 h-11 flex items-center justify-center rounded-lg bg-slate-800 text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-400'
+            className='w-11 h-11 flex items-center justify-center rounded-md bg-ink dark:bg-stone-100 text-paper dark:text-ink hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent'
             aria-label={link.label}
             title={link.label}
           >
@@ -67,7 +67,7 @@ const SocialLinks = memo(function SocialLinks() {
             key={link.id}
             href={link.href}
             onClick={() => trackSocialClick(link.id)}
-            className='w-11 h-11 flex items-center justify-center rounded-lg bg-slate-800 text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-400'
+            className='w-11 h-11 flex items-center justify-center rounded-md bg-ink dark:bg-stone-100 text-paper dark:text-ink hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent'
             target="_blank"
             rel="noreferrer"
             aria-label={link.label}

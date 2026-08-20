@@ -4,7 +4,7 @@ import Toast from './Toast';
 const ToastContainer = ({ toasts, removeToast }) => {
   return (
     <div
-      className="fixed top-20 right-4 z-[100] flex flex-col gap-2 pointer-events-none"
+      className="fixed top-20 right-4 left-4 sm:left-auto z-[100] flex flex-col gap-2 pointer-events-none"
       aria-live="polite"
       aria-label="Notifications"
     >

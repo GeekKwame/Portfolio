@@ -5,17 +5,17 @@
 
 /** LinkedIn headline — single source of truth for positioning across the site */
 export const HEADLINE =
-  'Cloud & Software Engineer | AWS SAM · Lambda · CloudFront · Terraform | Python · Django · React | CI/CD · DevOps | Open to Opportunities';
+  'Cloud & Software Engineer | AWS · Terraform · Python · Django · React | CI/CD · DevOps | Open to Opportunities';
 
 /** Contact email — single source of truth for mailto, contact form, and footer */
 export const CONTACT_EMAIL = 'dogbeblessingkwame@gmail.com';
 
 export const SEO = {
-  title: 'Edmund Blessing — Cloud & Software Engineer Portfolio',
+  title: 'Edmund Blessing — Cloud & Software Engineer',
   description:
-    'Cloud & Software Engineer building production AWS systems where CloudFront is the only public HTTPS endpoint. AWS SAM, Lambda, DynamoDB, Terraform, Python, Django, React. Open to opportunities.',
+    'Cloud & Software Engineer in Ghana. AWS, Terraform, Python, Django, React, and GitHub Actions. Currently Cloud & DevOps Engineer at One Health Global Technologies. Open to opportunities.',
   keywords:
-    'Cloud Engineer, Software Engineer, AWS SAM, Lambda, CloudFront, DynamoDB, Terraform, Docker, Kubernetes, Python Developer, Django, React, DevOps, CI/CD, GitHub Actions, Full Stack Developer, Ghana, Portfolio',
+    'Cloud Engineer, Software Engineer, AWS, Terraform, Lambda, CloudFront, DynamoDB, Docker, Kubernetes, Python Developer, Django, React, DevOps, CI/CD, GitHub Actions, Ghana, Portfolio',
   ogSiteName: 'Edmund Blessing Portfolio',
 };
 
@@ -23,9 +23,9 @@ export const PERSONAL_INFO = {
   name: 'Edmund Blessing',
   title: 'Cloud & Software Engineer',
   headline: HEADLINE,
-  bio: 'Cloud & Software Engineer. Production AWS where CloudFront is the only public HTTPS edge — SAM, Lambda, DynamoDB, Terraform, Python & Django, React, GitHub Actions. Open to opportunities.',
+  bio: 'Cloud & Software Engineer. AWS, Terraform, Python and Django, React, GitHub Actions. Currently Cloud & DevOps Engineer at One Health Global Technologies. Open to opportunities.',
   intro:
-    'I build production-style AWS systems. Event-Connect puts CloudFront as the only public HTTPS endpoint — private S3, a hidden API, five Python Lambdas, and tickets in DynamoDB. I also ship Terraform, Django APIs, and GitHub Actions with OIDC.',
+    'I design and operate cloud systems, write Python and Django APIs, and ship CI/CD with Terraform and GitHub Actions. Right now I am a Cloud & DevOps Engineer at One Health Global Technologies, and Team Lead for Daffodils DataCamp Scholars.',
   location: 'Available worldwide',
   availability: 'Open to opportunities — freelance, full-time, and collaboration.',
   email: CONTACT_EMAIL,
@@ -37,7 +37,7 @@ export const SOCIAL_LINKS = [
     platform: 'LinkedIn',
     url: 'https://www.linkedin.com/in/edmund-blessing/',
     icon: 'FaLinkedin',
-    color: 'hover:text-blue-400',
+    color: 'hover:text-accent dark:hover:text-accent-muted',
     label: 'Connect on LinkedIn',
   },
   {
@@ -45,7 +45,7 @@ export const SOCIAL_LINKS = [
     platform: 'GitHub',
     url: 'https://github.com/GeekKwame',
     icon: 'FaGithub',
-    color: 'hover:text-gray-300',
+    color: 'hover:text-accent dark:hover:text-accent-muted',
     label: 'View my GitHub',
   },
   {
@@ -53,7 +53,7 @@ export const SOCIAL_LINKS = [
     platform: 'Email',
     url: `mailto:${CONTACT_EMAIL}`,
     icon: 'FaEnvelope',
-    color: 'hover:text-red-400',
+    color: 'hover:text-accent dark:hover:text-accent-muted',
     label: 'Send me an email',
   },
 ];
@@ -66,9 +66,9 @@ export const NAVIGATION_LINKS = [
   { id: 5, name: 'Contact', to: 'contact' },
 ];
 
+/** Event-Connect repo only — live CloudFront URL omitted (stack being torn down). */
 export const FLAGSHIP = {
   name: 'Event-Connect',
-  live: 'https://d3mbqhiwlx08nz.cloudfront.net',
   repo: 'https://github.com/GeekKwame/event-registration-system-sam/',
 };
 

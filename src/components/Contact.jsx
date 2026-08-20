@@ -4,6 +4,9 @@ import { trackSocialClick } from '../utils/analytics'
 import { PERSONAL_INFO, SOCIAL_LINKS } from '../config/constants'
 import { useToastContext } from '../context/ToastContext'
 
+const iconBtn =
+  'inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 shrink-0 rounded-md border border-stone-300 dark:border-stone-600 text-ink dark:text-stone-100 hover:bg-stone-200/70 dark:hover:bg-stone-800 focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-accent-muted';
+
 const Contact = memo(function Contact() {
   const [copied, setCopied] = useState(false);
   const { success } = useToastContext();
@@ -23,67 +26,72 @@ const Contact = memo(function Contact() {
   };
 
   return (
-    <div name="contact" className='bg-gradient-to-b from-white via-slate-50/50 to-blue-50/30 dark:bg-slate-900 dark:bg-none dark:from-slate-900 dark:via-slate-900 dark:to-slate-900 w-full text-gray-900 dark:text-slate-200 py-12 md:py-20'>
-      <div className='flex flex-col p-4 sm:p-6 justify-center max-w-screen-lg mx-auto'>
+    <div name="contact" className='bg-paper dark:bg-ink w-full text-ink dark:text-stone-200 py-14 md:py-20'>
+      <div className='flex flex-col px-4 sm:px-6 justify-center max-w-6xl mx-auto'>
         <div className='mb-8'>
-          <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-slate-50'>
+          <h2 className='font-display text-3xl sm:text-4xl md:text-5xl mb-3 text-ink dark:text-stone-50'>
             Contact
+          </h2>
+          <p className='text-stone-600 dark:text-stone-400 text-base sm:text-lg max-w-2xl'>
+            Cloud, DevOps, or software work. Email is the fastest way to reach me.
           </p>
-          <p className='text-gray-600 dark:text-slate-200 text-base sm:text-lg max-w-2xl'>
-            Cloud, serverless, or full-stack work. Email is the fastest way to reach me.
-          </p>
-          <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mt-4'></div>
+          <div className='accent-rule mt-4'></div>
         </div>
 
-        <div className='w-full md:w-2/3 lg:w-1/2 bg-white dark:bg-slate-800 p-5 sm:p-8 rounded-xl border border-gray-200 dark:border-slate-700'>
-          <p className='text-sm font-semibold text-gray-500 dark:text-slate-400 mb-2'>Email</p>
-          <div className='flex flex-col sm:flex-row sm:items-center gap-3 mb-6'>
+        <div className='w-full max-w-xl bg-surface dark:bg-surface-dark p-5 sm:p-7 rounded-lg border border-stone-200 dark:border-stone-700'>
+          <p className='text-sm font-medium text-stone-500 dark:text-stone-400 mb-3'>Email</p>
+          <div className='flex flex-wrap items-center gap-x-3 gap-y-2 min-w-0'>
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
-              className='text-lg sm:text-xl font-semibold text-cyan-700 dark:text-teal-300 break-all hover:underline underline-offset-4'
+              className='min-w-0 max-w-full text-sm sm:text-base font-semibold text-accent dark:text-accent-muted break-all hover:underline underline-offset-4 py-1'
             >
               {PERSONAL_INFO.email}
             </a>
-            <button
-              type="button"
-              onClick={copyEmail}
-              className='inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-gray-300 dark:border-slate-500 text-sm font-semibold text-gray-800 dark:text-slate-100 hover:bg-gray-100 dark:hover:bg-slate-700 min-h-[44px] shrink-0'
-              aria-label="Copy email address"
-            >
-              {copied ? <FaCheck className='text-green-500' /> : <FaCopy />}
-              {copied ? 'Copied' : 'Copy'}
-            </button>
-          </div>
-
-          <div className='flex flex-col sm:flex-row gap-3'>
-            <a
-              href={`mailto:${PERSONAL_INFO.email}`}
-              className='inline-flex items-center justify-center gap-2 py-3 px-5 rounded-lg text-white font-semibold min-h-[48px] bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-teal-600 dark:to-sky-700 hover:from-blue-500 hover:to-cyan-500'
-            >
-              <FaEnvelope /> Email me
-            </a>
-            {linkedin?.url && (
-              <a
-                href={linkedin.url}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => trackSocialClick('linkedin')}
-                className='inline-flex items-center justify-center gap-2 py-3 px-5 rounded-lg font-semibold border-2 border-gray-300 dark:border-slate-500 text-gray-800 dark:text-slate-100 hover:bg-gray-100 dark:hover:bg-slate-700 min-h-[48px]'
+            <span className='inline-flex items-center gap-1.5 shrink-0'>
+              <button
+                type="button"
+                onClick={copyEmail}
+                className={iconBtn}
+                aria-label={copied ? 'Email copied' : 'Copy email address'}
+                title={copied ? 'Copied' : 'Copy'}
               >
-                <FaLinkedin /> LinkedIn
-              </a>
-            )}
-            {github?.url && (
+                {copied ? <FaCheck className='text-green-600' /> : <FaCopy />}
+              </button>
               <a
-                href={github.url}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => trackSocialClick('github')}
-                className='inline-flex items-center justify-center gap-2 py-3 px-5 rounded-lg font-semibold border-2 border-gray-300 dark:border-slate-500 text-gray-800 dark:text-slate-100 hover:bg-gray-100 dark:hover:bg-slate-700 min-h-[48px]'
+                href={`mailto:${PERSONAL_INFO.email}`}
+                className={iconBtn}
+                aria-label="Open email app"
+                title="Email"
               >
-                <FaGithub /> GitHub
+                <FaEnvelope />
               </a>
-            )}
+              {linkedin?.url && (
+                <a
+                  href={linkedin.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackSocialClick('linkedin')}
+                  className={iconBtn}
+                  aria-label="LinkedIn"
+                  title="LinkedIn"
+                >
+                  <FaLinkedin />
+                </a>
+              )}
+              {github?.url && (
+                <a
+                  href={github.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackSocialClick('github')}
+                  className={iconBtn}
+                  aria-label="GitHub"
+                  title="GitHub"
+                >
+                  <FaGithub />
+                </a>
+              )}
+            </span>
           </div>
         </div>
       </div>

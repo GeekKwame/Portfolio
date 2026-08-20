@@ -3,34 +3,33 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: 'class', // Enable class-based dark mode
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
-        header: ['Suez One', 'cursive'],
-        sans: ['Raleway', 'sans-serif'],
+        sans: ['"Source Sans 3"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Newsreader', 'Georgia', 'serif'],
+      },
+      colors: {
+        paper: '#f6f3ee',
+        ink: '#1a1916',
+        surface: {
+          DEFAULT: '#fffdf9',
+          dark: '#221f1c',
+        },
+        accent: {
+          DEFAULT: '#8c4a2f',
+          muted: '#d4b896',
+        },
       },
       animation: {
-        'fade-in': 'fadeIn 1s ease-in',
-        'float': 'float 6s ease-in-out infinite',
         'slide-in': 'slideIn 0.3s ease-out',
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
         slideIn: {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(0)' },
         },
-      },
-      backdropBlur: {
-        xs: '2px',
       },
     },
   },

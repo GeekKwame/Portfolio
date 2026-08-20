@@ -105,29 +105,28 @@ const Experience = memo(function Experience() {
   ];
 
   return (
-    <div name="experience" className='bg-gradient-to-b from-slate-50 via-white to-blue-50/30 dark:bg-slate-900 dark:bg-none dark:from-slate-900 dark:via-slate-900 dark:to-slate-900 w-full py-12 md:py-20'>
-      <div className='max-w-screen-lg mx-auto p-4 sm:p-6 flex flex-col justify-center w-full h-full text-gray-900 dark:text-slate-200'>
-        <div className='mb-8 md:mb-12'>
-          <p className='text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-slate-50'>
+    <div name="experience" className='bg-paper dark:bg-ink w-full py-14 md:py-20'>
+      <div className='max-w-6xl mx-auto px-4 sm:px-6 flex flex-col justify-center w-full text-ink dark:text-stone-200'>
+        <div className='mb-8'>
+          <h2 className='font-display text-3xl sm:text-4xl md:text-5xl mb-3 text-ink dark:text-stone-50'>
             Experience
-          </p>
-          <p className='py-2 md:py-4 text-gray-600 dark:text-slate-200 text-base sm:text-lg'>Current roles, then earlier work</p>
-          <div className='w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full'></div>
+          </h2>
+          <p className='text-stone-600 dark:text-stone-400 text-base sm:text-lg mb-4'>Current roles, then earlier work</p>
+          <div className='accent-rule'></div>
         </div>
 
         <div className='space-y-6 md:space-y-8'>
           {experiences.map((exp, index) => (
             <div
               key={exp.id}
-              className='group relative bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-4 sm:p-6 md:p-8'
+              className='relative bg-surface dark:bg-surface-dark border border-stone-200 dark:border-stone-700 rounded-lg p-4 sm:p-6'
             >
-              <div className='absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl'></div>
 
               <div className='relative z-10 flex flex-col md:flex-row gap-4 md:gap-6'>
                 {/* Company Logo */}
                 <div className='flex-shrink-0'>
                   {exp.logo && !imageErrors[exp.id] ? (
-                    <div className='w-16 h-16 md:w-20 md:h-20 rounded-xl bg-white p-2 flex items-center justify-center overflow-hidden border border-gray-200 dark:border-slate-600'>
+                    <div className='w-16 h-16 md:w-20 md:h-20 rounded-lg bg-white p-2 flex items-center justify-center overflow-hidden border border-stone-200 dark:border-stone-600'>
                       <img
                         src={exp.logo}
                         alt={`${exp.company} logo`}
@@ -148,29 +147,28 @@ const Experience = memo(function Experience() {
                 <div className='flex-1 min-w-0'>
                   <div className='flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3'>
                     <div>
-                      <h3 className='text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-slate-100 group-hover:text-cyan-600 dark:group-hover:text-teal-300 transition-colors duration-300 mb-1'>
+                      <h3 className='text-lg sm:text-xl font-display text-ink dark:text-stone-100 mb-1'>
                         {exp.title}
                       </h3>
-                      <p className='text-cyan-700 dark:text-teal-300 font-semibold text-sm sm:text-base mb-2'>
+                      <p className='text-accent dark:text-accent-muted font-semibold text-sm sm:text-base mb-2'>
                         {exp.company} · {exp.type}
                       </p>
                     </div>
                   </div>
 
                   {/* Duration and Location */}
-                  <div className='flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-slate-300 mb-4'>
+                  <div className='flex flex-wrap items-center gap-4 text-sm text-stone-600 dark:text-stone-400 mb-4'>
                     <div className='flex items-center gap-2'>
-                      <FaCalendarAlt className='text-cyan-600 dark:text-teal-300' />
+                      <FaCalendarAlt className='text-accent dark:text-accent-muted' />
                       <span>{exp.duration} · {exp.period}</span>
                     </div>
                     <div className='flex items-center gap-2'>
-                      <FaMapMarkerAlt className='text-cyan-600 dark:text-teal-300' />
+                      <FaMapMarkerAlt className='text-accent dark:text-accent-muted' />
                       <span>{exp.location} · {exp.workType}</span>
                     </div>
                   </div>
 
-                  {/* Description */}
-                  <p className='text-gray-600 dark:text-slate-200 text-sm sm:text-base leading-relaxed mb-4'>
+                  <p className='text-stone-600 dark:text-stone-300 text-sm sm:text-base leading-relaxed mb-4'>
                     {exp.description}
                   </p>
 
@@ -179,7 +177,7 @@ const Experience = memo(function Experience() {
                     {exp.skills.map((skill, skillIndex) => (
                       <span
                         key={skillIndex}
-                        className='px-2 py-1 bg-cyan-500/10 dark:bg-teal-500/10 text-cyan-800 dark:text-teal-200 text-xs rounded-md border border-cyan-500/30 dark:border-teal-500/25'
+                        className='px-2 py-1 bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-200 text-xs rounded-md border border-stone-300 dark:border-stone-600'
                       >
                         {skill}
                       </span>
@@ -190,7 +188,7 @@ const Experience = memo(function Experience() {
 
               {/* Timeline connector (for visual flow) */}
               {index < experiences.length - 1 && (
-                <div className='absolute left-8 md:left-10 top-full w-0.5 h-6 md:h-8 bg-gradient-to-b from-cyan-500/50 to-transparent'></div>
+                <div className='absolute left-8 md:left-10 top-full w-px h-6 md:h-8 bg-stone-300 dark:bg-stone-700'></div>
               )}
             </div>
           ))}
