@@ -7,11 +7,34 @@ import hubblemindLogo from "../assets/images/companies/hubblemind.jpeg"
 import leratoLogo from "../assets/images/companies/lerato.png"
 import oneHealthLogo from "../assets/images/companies/onehealthtech.png"
 import happyDaffodilsLogo from "../assets/images/companies/happy-daffodils.png"
+import amalitechLogo from "../assets/images/companies/Amalitech.png"
 
 const Experience = memo(function Experience() {
   const [imageErrors, setImageErrors] = useState({});
 
   const experiences = [
+    {
+      id: 7,
+      title: "Software Engineer",
+      company: "AmaliTech",
+      type: "Internship",
+      duration: "Aug 2026 - Present",
+      period: "1 mo",
+      location: "Accra, Greater Accra Region, Ghana",
+      workType: "Remote",
+      description: "Participating in an intensive, hands-on software development internship focused on strengthening practical engineering and professional skills.",
+      highlights: [
+        "Applying software development fundamentals to real-world technical tasks and projects.",
+        "Working collaboratively with other interns and technical teams to solve problems and deliver assigned tasks.",
+        "Strengthening skills in programming, version control, debugging, software development practices, and collaborative development.",
+        "Continuously learning and adapting to new tools, technologies, and engineering practices within a professional environment.",
+      ],
+      skills: ["Software Deployment", "Back-End Web Development"],
+      logo: amalitechLogo,
+      logoClass: "bg-black",
+      logoGradient: "from-neutral-900 to-orange-700",
+      logoText: "AT"
+    },
     {
       id: 1,
       title: "Cloud & DevOps Engineer",
@@ -126,7 +149,7 @@ const Experience = memo(function Experience() {
                 {/* Company Logo */}
                 <div className='flex-shrink-0'>
                   {exp.logo && !imageErrors[exp.id] ? (
-                    <div className='w-16 h-16 md:w-20 md:h-20 rounded-lg bg-white p-2 flex items-center justify-center overflow-hidden border border-stone-200 dark:border-stone-600'>
+                    <div className={`w-16 h-16 md:w-20 md:h-20 rounded-lg ${exp.logoClass || 'bg-white'} p-2 flex items-center justify-center overflow-hidden border border-stone-200 dark:border-stone-600`}>
                       <img
                         src={exp.logo}
                         alt={`${exp.company} logo`}
@@ -168,9 +191,18 @@ const Experience = memo(function Experience() {
                     </div>
                   </div>
 
-                  <p className='text-stone-600 dark:text-stone-300 text-sm sm:text-base leading-relaxed mb-4'>
-                    {exp.description}
-                  </p>
+                  {exp.description && (
+                    <p className={`text-stone-600 dark:text-stone-300 text-sm sm:text-base leading-relaxed ${exp.highlights ? 'mb-3' : 'mb-4'}`}>
+                      {exp.description}
+                    </p>
+                  )}
+                  {exp.highlights && (
+                    <ul className='list-disc pl-5 space-y-1.5 mb-4 text-stone-600 dark:text-stone-300 text-sm sm:text-base leading-relaxed'>
+                      {exp.highlights.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
 
                   {/* Skills */}
                   <div className='flex flex-wrap gap-2'>

@@ -4,6 +4,11 @@ import { Link } from 'react-scroll';
 const CurrentlyBuilding = memo(function CurrentlyBuilding() {
     const roles = [
         {
+            title: 'Software Engineer',
+            org: 'AmaliTech',
+            meta: 'Internship · Remote',
+        },
+        {
             title: 'Cloud & DevOps Engineer',
             org: 'One Health Global Technologies',
             meta: 'Part-time · Remote',
