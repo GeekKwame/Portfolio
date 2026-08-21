@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-scroll';
 import { trackResumeDownload } from '../utils/analytics'
 import profilePic from "../assets/images/profile/profile-pic.jpeg"
@@ -22,7 +21,7 @@ const Home = () => {
             {PERSONAL_INFO.intro}
           </p>
           <p className='text-sm sm:text-base text-stone-600 dark:text-stone-400 mb-8 max-w-xl leading-relaxed'>
-            AWS, Terraform, Python, Django, and React. Least-privilege IAM, and a clear line between what is public on the internet and what is not.
+            AWS, Terraform, Python, FastAPI, Django, and React. Least-privilege IAM, and a clear line between what is public on the internet and what is not.
           </p>
           <div className='flex flex-col gap-3 sm:flex-row sm:items-center'>
             <Link

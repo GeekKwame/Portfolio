@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import { useState, memo } from 'react'
 import { FaEnvelope, FaCopy, FaCheck, FaLinkedin, FaGithub } from 'react-icons/fa'
 import { trackSocialClick } from '../utils/analytics'
 import { PERSONAL_INFO, SOCIAL_LINKS } from '../config/constants'
@@ -69,7 +69,7 @@ const Contact = memo(function Contact() {
                 <a
                   href={linkedin.url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   onClick={() => trackSocialClick('linkedin')}
                   className={iconBtn}
                   aria-label="LinkedIn"
@@ -82,7 +82,7 @@ const Contact = memo(function Contact() {
                 <a
                   href={github.url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   onClick={() => trackSocialClick('github')}
                   className={iconBtn}
                   aria-label="GitHub"

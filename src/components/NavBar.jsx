@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { FaBars, FaTimes } from "react-icons/fa"
 import { Link } from 'react-scroll'
 import profilePic from "../assets/images/profile/profile-pic.jpeg"
@@ -86,7 +86,7 @@ function NavBar() {
         ? 'bg-paper/95 dark:bg-ink/95 border-b border-stone-200 dark:border-stone-800'
         : 'bg-paper dark:bg-ink'
     } text-ink dark:text-stone-100`}>
-      <Link to="home" smooth duration={500} offset={-80} className='cursor-pointer flex items-center gap-2 min-w-0 touch-manipulation'>
+      <Link to="home" smooth duration={500} offset={-80} aria-label={`${PERSONAL_INFO.name}, home`} className='cursor-pointer flex items-center gap-2 min-w-0 touch-manipulation'>
         <div className='w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-stone-300 dark:border-stone-600 shrink-0'>
           <img
             src={profilePic}
@@ -142,6 +142,7 @@ function NavBar() {
             }}
             aria-label="Toggle menu"
             aria-expanded={nav}
+            aria-controls="mobile-nav"
           >
             {nav ? <FaTimes size={22} /> : <FaBars size={22} />}
           </button>
@@ -154,7 +155,7 @@ function NavBar() {
               onClick={() => setNav(false)}
               aria-hidden="true"
             />
-            <ul data-mobile-nav className='flex flex-col fixed items-stretch top-16 sm:top-20 left-0 w-full bg-paper dark:bg-ink z-40 overflow-y-auto pb-16 border-b border-stone-200 dark:border-stone-800'>
+            <ul id="mobile-nav" data-mobile-nav className='flex flex-col fixed items-stretch top-16 sm:top-20 left-0 w-full bg-paper dark:bg-ink z-40 overflow-y-auto pb-16 border-b border-stone-200 dark:border-stone-800'>
               {links.map((linkItem) => (
                 <li key={linkItem.id}>
                   <Link

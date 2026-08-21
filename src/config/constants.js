@@ -5,7 +5,7 @@
 
 /** LinkedIn headline — single source of truth for positioning across the site */
 export const HEADLINE =
-  'Cloud & Software Engineer | AWS · Terraform · Python · Django · React | CI/CD · DevOps | Open to Opportunities';
+  'Cloud & Software Engineer | AWS · Terraform · Python · FastAPI · Django · React | CI/CD · DevOps | Open to Opportunities';
 
 /** Contact email — single source of truth for mailto, contact form, and footer */
 export const CONTACT_EMAIL = 'dogbeblessingkwame@gmail.com';
@@ -13,9 +13,9 @@ export const CONTACT_EMAIL = 'dogbeblessingkwame@gmail.com';
 export const SEO = {
   title: 'Edmund Blessing — Cloud & Software Engineer',
   description:
-    'Cloud & Software Engineer in Ghana. AWS, Terraform, Python, Django, React, and GitHub Actions. Software Engineer intern at AmaliTech and Cloud & DevOps Engineer at One Health Global Technologies. Open to opportunities.',
+    'Cloud & Software Engineer in Ghana. AWS, Terraform, Python, FastAPI, Django, React, and GitHub Actions. Software Engineer intern at AmaliTech and Cloud & DevOps Engineer at One Health Global Technologies. Open to opportunities.',
   keywords:
-    'Cloud Engineer, Software Engineer, AWS, Terraform, Lambda, CloudFront, DynamoDB, Docker, Kubernetes, Python Developer, Django, React, DevOps, CI/CD, GitHub Actions, Ghana, Portfolio',
+    'Cloud Engineer, Software Engineer, AWS, Terraform, Lambda, CloudFront, DynamoDB, ECS Fargate, RDS, Docker, Python Developer, FastAPI, Django, PostgreSQL, React, DevOps, CI/CD, GitHub Actions, Ghana, Portfolio',
   ogSiteName: 'Edmund Blessing Portfolio',
 };
 
@@ -23,9 +23,9 @@ export const PERSONAL_INFO = {
   name: 'Edmund Blessing',
   title: 'Cloud & Software Engineer',
   headline: HEADLINE,
-  bio: 'Cloud & Software Engineer. AWS, Terraform, Python and Django, React, GitHub Actions. Software Engineer intern at AmaliTech and Cloud & DevOps Engineer at One Health Global Technologies. Open to opportunities.',
+  bio: 'Cloud & Software Engineer. AWS, Terraform, Python, FastAPI, Django, React, GitHub Actions. Software Engineer intern at AmaliTech and Cloud & DevOps Engineer at One Health Global Technologies. Open to opportunities.',
   intro:
-    'I design and operate cloud systems, write Python and Django APIs, and ship CI/CD with Terraform and GitHub Actions. Right now I am a Software Engineer intern at AmaliTech, Cloud & DevOps Engineer at One Health Global Technologies, and Team Lead for Daffodils DataCamp Scholars.',
+    'I design and operate cloud systems, write Python APIs in FastAPI and Django, and ship CI/CD with Terraform and GitHub Actions. Right now I am a Software Engineer intern at AmaliTech, Cloud & DevOps Engineer at One Health Global Technologies, and Team Lead for Daffodils DataCamp Scholars.',
   location: 'Available worldwide',
   availability: 'Open to opportunities — freelance, full-time, and collaboration.',
   email: CONTACT_EMAIL,

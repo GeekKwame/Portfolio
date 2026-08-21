@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import { useState, memo } from 'react'
 import { FaGithub, FaLinkedin, FaCheck } from "react-icons/fa"
 import { HiOutlineMail } from "react-icons/hi"
 import { trackSocialClick } from '../utils/analytics'
@@ -69,7 +69,7 @@ const SocialLinks = memo(function SocialLinks() {
             onClick={() => trackSocialClick(link.id)}
             className='w-11 h-11 flex items-center justify-center rounded-md bg-ink dark:bg-stone-100 text-paper dark:text-ink hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent'
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label={link.label}
             title={link.label}
           >

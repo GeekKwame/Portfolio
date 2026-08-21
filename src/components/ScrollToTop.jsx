@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { FaArrowUp } from 'react-icons/fa'
 
 function ScrollToTop() {
@@ -22,9 +22,10 @@ function ScrollToTop() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    toggleVisibility(); // Initial check
+    const id = window.requestAnimationFrame(() => toggleVisibility());
 
     return () => {
+      window.cancelAnimationFrame(id);
       window.removeEventListener('scroll', handleScroll);
     };
   }, [toggleVisibility]);

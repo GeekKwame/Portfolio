@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import { useState, memo } from 'react'
 import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa'
 import knustLogo from '../assets/images/companies/knust.png'
 

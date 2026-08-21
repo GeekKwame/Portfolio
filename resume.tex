@@ -75,21 +75,21 @@
 
 %-----------PROFESSIONAL SUMMARY-----------
 \section{Professional Summary}
-Cloud \& Software Engineer building production-style systems on AWS. Currently a Software Engineer intern at AmaliTech and Cloud \& DevOps Engineer (part-time) at One Health Global Technologies, shipping AWS infrastructure with Terraform, Docker, and GitHub Actions. Recent project work: Event-Connect, a serverless event-registration app where CloudFront is the only public HTTPS endpoint (private S3 + OAC, API Gateway as a hidden origin, WAF default-deny). Also ships Django REST APIs and GitHub Actions CI/CD with OIDC short-lived credentials. Backed by IT support and systems administration supporting 200+ users across university and enterprise environments.
+Cloud \& Software Engineer building production-style systems on AWS. Currently a Software Engineer intern at AmaliTech and Cloud \& DevOps Engineer (part-time) at One Health Global Technologies, shipping AWS infrastructure with Terraform, Docker, and GitHub Actions. Recent work includes a multi-tenant file service API on FastAPI and ECS Fargate where presigned S3 URLs keep binary payloads off the API tier, and Event-Connect, a serverless event-registration app where CloudFront is the only public HTTPS endpoint (private S3 + OAC, API Gateway as a hidden origin, WAF default-deny). Also ships Django REST APIs and GitHub Actions CI/CD with OIDC short-lived credentials. Backed by IT support and systems administration supporting 200+ users across university and enterprise environments.
 
 %-----------TECHNICAL SKILLS-----------
 \section{Technical Skills}
 \begin{itemize}[leftmargin=0in, label={}, itemsep=2pt]
   \small{
-  \item \textbf{Cloud:} AWS — EC2, S3, IAM, CloudFront, Route~53, ALB, Auto Scaling, ACM, Lambda, API Gateway, WAF, Secrets Manager, SES, CloudWatch, CloudTrail, SNS, SQS, EventBridge, ECS, VPC, OIDC/STS, Budgets
-  \item \textbf{IaC \& Containers:} Terraform, AWS SAM, Docker, Docker Compose, Kubernetes (kubectl, Deployments, Services, ConfigMaps)
-  \item \textbf{Languages:} Python, JavaScript (ES6+), TypeScript, SQL, Bash, HTML5, CSS3
-  \item \textbf{Frameworks:} Django, Django REST Framework, Flask, React, Node.js, Express, Tailwind CSS
-  \item \textbf{DevOps:} GitHub Actions, CI/CD Pipelines, GitOps, Linux (Ubuntu), Bash Scripting, Git
-  \item \textbf{Databases:} DynamoDB, MySQL, SQLite, Supabase (PostgreSQL)
+  \item \textbf{Cloud:} AWS — EC2, ECS Fargate, S3, RDS, IAM, CloudFront, Route~53, ALB, Auto Scaling, ACM, Lambda, API Gateway, WAF, Secrets Manager, SES, CloudWatch, CloudTrail, SNS, SQS, EventBridge, VPC, OIDC/STS, Budgets
+  \item \textbf{IaC \& Containers:} Terraform, AWS SAM, Docker, Docker Compose
+  \item \textbf{Languages:} Python, JavaScript (ES6+), SQL, Bash, HTML5, CSS3
+  \item \textbf{Frameworks:} Django, Django REST Framework, FastAPI, React, Node.js, Tailwind CSS
+  \item \textbf{DevOps:} GitHub Actions, CI/CD Pipelines, Linux (Ubuntu), Bash Scripting, Git, Ruff
+  \item \textbf{Databases:} PostgreSQL, DynamoDB, MySQL, SQLite, Supabase
   \item \textbf{ML \& Data:} Scikit-learn, Pandas, NumPy, Keras, EDA, Feature Engineering, Model Evaluation
   \item \textbf{Security:} DNS, HTTPS/TLS, IAM Least-Privilege, OIDC, Origin Access Control, WAF Default-Deny, Load Balancing, VPC
-  \item \textbf{Testing:} Pytest, Moto (AWS mocking), Unit Testing
+  \item \textbf{Testing:} Pytest, Moto (AWS mocking), Unit \& Integration Testing, Coverage Reporting
   }
 \end{itemize}
 
@@ -101,11 +101,9 @@ Cloud \& Software Engineer building production-style systems on AWS. Currently a
     {AmaliTech}{Aug 2026 -- Present}
     {Software Engineer | Internship | Remote}{Accra, Greater Accra Region, Ghana}
   \resumeItemListStart
-    \resumeItem{Participating in an intensive, hands-on software development internship focused on strengthening practical engineering and professional skills.}
-    \resumeItem{Applying software development fundamentals to real-world technical tasks and projects.}
-    \resumeItem{Working collaboratively with other interns and technical teams to solve problems and deliver assigned tasks.}
-    \resumeItem{Strengthening skills in programming, version control, debugging, software development practices, and collaborative development.}
-    \resumeItem{Continuously learning and adapting to new tools, technologies, and engineering practices within a professional environment.}
+    \resumeItem{Deliver assigned tasks on real-world projects in an intensive, hands-on software engineering programme.}
+    \resumeItem{Collaborate with other interns and technical teams to break down problems and deliver working solutions.}
+    \resumeItem{Apply back-end web development, software deployment, version control, and debugging practices in a professional engineering environment.}
   \resumeItemListEnd
 
   \resumeSubheading
@@ -172,11 +170,21 @@ Cloud \& Software Engineer building production-style systems on AWS. Currently a
 \resumeSubHeadingListStart
 
   \resumeProjectHeading
+    {Multi-Tenant File Service API --- FastAPI on ECS Fargate \textnormal{|} \href{https://github.com/GeekKwame/file-service-server}{\small GitHub}}{2026}
+  \resumeItemListStart
+    \resumeItem{Built a multi-tenant file API on FastAPI where the server never handles binary streams; clients transfer directly against S3 presigned URLs while the API stays a metadata, authentication, and authorization plane.}
+    \resumeItem{Isolated tenants with SHA-256 hashed API keys compared in constant time, UUIDv4 public identifiers that block sequential enumeration, \texttt{app\_id} scoping on every query, and per-tenant S3 key namespacing; cross-tenant reads return 404 to conceal existence.}
+    \resumeItem{Ran FastAPI containers on ECS Fargate in private subnets behind an ALB spanning two availability zones, with metadata in RDS PostgreSQL 16 via SQLAlchemy 2.0.}
+    \resumeItem{Defined the topology in Terraform across 12 modules and 3 environments; GitHub Actions runs Ruff, pytest, and coverage on every push.}
+    \resumeItem{\textit{Stack:} FastAPI (Python), PostgreSQL 16, SQLAlchemy 2.0, AWS (S3, ECS Fargate, RDS, ALB, VPC), Terraform, Docker, Boto3, GitHub Actions, Pytest}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
     {Event-Connect --- Serverless Event Registration \textnormal{|} \href{https://github.com/GeekKwame/event-registration-system-sam}{\small GitHub}}{2026}
   \resumeItemListStart
     \resumeItem{Built a production event-registration system on AWS SAM where CloudFront is the only public HTTPS endpoint; S3 stays private behind OAC and API Gateway is a hidden origin.}
     \resumeItem{Enforced WAF default-deny plus an origin-verify header so requests that skip CloudFront never reach compute; five Python 3.12 Lambdas persist events and tickets in DynamoDB.}
-    \resumeItem{Shipped browse/register with an on-screen ticket receipt, browser-local My tickets, and email lookup. Confirmation is emailed (Gmail may file it as spam); the ticket is DynamoDB plus the receipt, not the inbox.}
+    \resumeItem{Shipped browse and register flows with an on-screen ticket receipt, browser-local My tickets, and DynamoDB-backed email lookup for ticket recovery.}
     \resumeItem{Scoped SNS to an admin topic only; SES sandbox with Resend fallback from a verified domain. Admin session for list-all and cancel; secrets stay in Secrets Manager.}
     \resumeItem{\textit{Stack:} AWS SAM, CloudFront, S3/OAC, API Gateway, WAF, Lambda (Python 3.12), DynamoDB, SNS, SES, Secrets Manager, CloudWatch}
   \resumeItemListEnd

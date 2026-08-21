@@ -1,4 +1,3 @@
-import React from 'react';
 import { PERSONAL_INFO, HEADLINE } from '../config/constants';
 
 function StructuredData() {
@@ -39,12 +38,15 @@ function StructuredData() {
       "AWS Lambda",
       "Amazon DynamoDB",
       "Amazon API Gateway",
+      "Amazon ECS",
+      "Amazon RDS",
       "Terraform",
       "Python",
+      "FastAPI",
       "Django",
+      "PostgreSQL",
       "React",
       "Docker",
-      "Kubernetes",
       "GitHub Actions",
       "CI/CD",
       "Cloud Computing",

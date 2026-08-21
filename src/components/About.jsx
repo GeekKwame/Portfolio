@@ -1,13 +1,13 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { FaCode, FaServer, FaGraduationCap, FaTools, FaRocket } from 'react-icons/fa'
 import CurrentlyBuilding from './CurrentlyBuilding'
 import { PERSONAL_INFO } from '../config/constants'
 
 const About = memo(function About() {
   const skills = [
-    { icon: <FaRocket />, title: 'Cloud & Infrastructure', desc: 'AWS (CloudFront, Lambda, API Gateway, DynamoDB, S3, EC2, ECS, VPC, IAM, WAF), Terraform, AWS SAM, Docker, Kubernetes, GitHub Actions with OIDC' },
-    { icon: <FaServer />, title: 'Python & Backend', desc: 'Python, Django, Django REST Framework, Flask, REST APIs, web scraping pipelines, ORM optimization, Secrets Manager' },
-    { icon: <FaCode />, title: 'Full-Stack Development', desc: 'React, TypeScript, JavaScript (ES6+), Node.js, HTML5, CSS3, Tailwind CSS, responsive web applications' },
+    { icon: <FaRocket />, title: 'Cloud & Infrastructure', desc: 'AWS (CloudFront, Lambda, API Gateway, DynamoDB, S3, EC2, ECS Fargate, RDS, ALB, VPC, IAM, WAF), Terraform, AWS SAM, Docker, GitHub Actions with OIDC' },
+    { icon: <FaServer />, title: 'Python & Backend', desc: 'Python, Django, Django REST Framework, FastAPI, SQLAlchemy, PostgreSQL, REST APIs, web scraping pipelines, ORM optimization, Secrets Manager' },
+    { icon: <FaCode />, title: 'Full-Stack Development', desc: 'React, JavaScript (ES6+), Node.js, HTML5, CSS3, Tailwind CSS, responsive web applications' },
     { icon: <FaGraduationCap />, title: 'DevOps & IT Support', desc: 'GitHub Actions CI/CD, Linux (Ubuntu), Bash, Active Directory, network diagnostics, BSc Applied Mathematics (KNUST), AWS Cloud & AI (Azubi Africa)' }
   ];
 
@@ -23,10 +23,10 @@ const About = memo(function About() {
         <div className='grid md:grid-cols-2 gap-8 md:gap-12 mb-10'>
           <div>
             <p className='text-base sm:text-lg text-stone-700 dark:text-stone-300 leading-relaxed mb-4'>
-              I'm Blessing Edmund Kwame Dogbe. I work across cloud, backend, and delivery: AWS infrastructure as code, Python and Django APIs, React UIs, and GitHub Actions with short-lived OIDC credentials — no long-lived keys.
+              I am Blessing Edmund Kwame Dogbe. I work across cloud, backend, and delivery: AWS infrastructure as code, Python APIs in FastAPI and Django, React UIs, and GitHub Actions with short-lived OIDC credentials — no long-lived keys.
             </p>
             <p className='text-base sm:text-lg text-stone-700 dark:text-stone-300 leading-relaxed mb-4'>
-              At One Health Global Technologies I design and operate AWS with Terraform, Docker, and CI/CD. Selected projects on this site cover serverless APIs, CloudFront edges, and full ALB + EC2 stacks. Docker and Kubernetes show up where the workload is containerized, not as decoration.
+              At One Health Global Technologies I design and operate AWS with Terraform, Docker, and CI/CD. Selected projects on this site cover a FastAPI file service on ECS Fargate, serverless APIs, CloudFront edges, and full ALB + EC2 stacks. Docker shows up where the workload is containerized, not as decoration.
             </p>
             <p className='text-base sm:text-lg text-stone-700 dark:text-stone-300 leading-relaxed mb-6'>
               BSc Applied Mathematics from KNUST and AWS Cloud & AI training through Azubi Africa.
@@ -57,8 +57,8 @@ const About = memo(function About() {
           <div className='flex flex-wrap gap-2'>
             {[
               'AWS SAM', 'CloudFront', 'Lambda', 'API Gateway', 'DynamoDB', 'WAF',
-              'S3 / OAC', 'EC2', 'ECS', 'VPC', 'Terraform', 'OIDC', 'Docker',
-              'Python', 'Django', 'React', 'GitHub Actions', 'CloudWatch',
+              'S3 / OAC', 'EC2', 'ECS Fargate', 'RDS', 'ALB', 'VPC', 'Terraform', 'OIDC', 'Docker',
+              'Python', 'FastAPI', 'SQLAlchemy', 'Django', 'PostgreSQL', 'React', 'GitHub Actions', 'CloudWatch',
             ].map((name) => (
               <span
                 key={name}

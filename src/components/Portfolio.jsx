@@ -1,12 +1,13 @@
-import React, { useState, memo } from 'react'
-import { FaGithub, FaStickyNote, FaCloud, FaCubes, FaPoll, FaGraduationCap, FaCalendarCheck, FaTasks } from 'react-icons/fa'
+import { useState, memo } from 'react'
+import { FaGithub, FaStickyNote, FaCloud, FaCubes, FaPoll, FaGraduationCap, FaCalendarCheck, FaTasks, FaServer } from 'react-icons/fa'
 import { trackProjectView, trackSocialClick } from '../utils/analytics'
 import eventConnectImage from "../assets/images/portfolio/event-connect.webp"
 import smartTaskImage from "../assets/images/portfolio/smart-task.webp"
 import pulsevoteImage from "../assets/images/portfolio/pulsevote.jpg"
 import terraformedImage from "../assets/images/portfolio/terraformed-webpage.png"
-import student from "../assets/images/portfolio/student-study-planner.png"
-import serverlessImage from "../assets/images/portfolio/serverless-terraform-aws.png"
+import student from "../assets/images/portfolio/student-study-planner.jpeg"
+import serverlessImage from "../assets/images/portfolio/serverless-terraform-aws.webp"
+import fileServiceImage from "../assets/images/portfolio/file-server.webp"
 import { FLAGSHIP } from '../config/constants'
 
 const tagClass = 'px-2 py-1 bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-200 text-xs rounded-md border border-stone-300 dark:border-stone-600'
@@ -21,6 +22,19 @@ const Portfolio = memo(function Portfolio() {
   };
 
   const portfolios = [
+    {
+      id: 0,
+      src: fileServiceImage,
+      title: "Multi-Tenant File Service API",
+      product: "Clients request a presigned S3 URL, then PUT the file straight to the bucket. The API never streams bytes: it authenticates the tenant, writes PENDING metadata, and confirms with S3 HeadObject before marking COMPLETED. Tenants send a SHA-256 hashed API key compared in constant time.",
+      system: "An Application Load Balancer across two availability zones fronts FastAPI containers on ECS Fargate in private subnets. Metadata lives in RDS PostgreSQL 16 through SQLAlchemy 2.0; binaries land in S3 namespaced as {app_id}/{uuid}-{filename}. Files are addressed by UUIDv4 rather than sequential IDs, every query is scoped by app_id, and cross-tenant reads return 404 so they cannot confirm a file exists. Terraform defines the topology across 12 modules and 3 environments; GitHub Actions runs Ruff, pytest, and coverage.",
+      flow: ['Client', 'ALB + FastAPI on ECS Fargate', 'RDS PostgreSQL (metadata)', 'S3 presigned PUT/GET (binaries)'],
+      link2: "https://github.com/GeekKwame/file-service-server",
+      tags: ["FastAPI", "Python", "PostgreSQL", "SQLAlchemy", "ECS Fargate", "ALB", "RDS", "S3", "Terraform", "Docker", "Boto3", "GitHub Actions"],
+      category: "Backend / API",
+      icon: FaServer,
+      iconText: "Multi-tenant file service AWS architecture"
+    },
     {
       id: 1,
       src: smartTaskImage,
@@ -144,7 +158,7 @@ const Portfolio = memo(function Portfolio() {
           <a
             href={link2}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             onClick={() => {
               trackProjectView(title);
               trackSocialClick('github');
@@ -189,16 +203,18 @@ const Portfolio = memo(function Portfolio() {
             Work
           </h2>
           <p className='text-stone-600 dark:text-stone-400 text-base sm:text-lg max-w-2xl'>
-            Selected cloud and software work: serverless APIs, Terraform, and full AWS stacks. GitHub for each repo.
+            Selected cloud and software work: a FastAPI file service on ECS, serverless APIs, Terraform, and full AWS stacks. GitHub for each repo.
           </p>
           <div className='accent-rule mt-4'></div>
         </div>
 
-        <div className='flex flex-wrap gap-2 mb-8'>
-          {['All', 'Serverless', 'Cloud / IaC'].map((filter) => (
+        <div className='flex flex-wrap gap-2 mb-8' role="group" aria-label="Filter work by category">
+          {['All', 'Backend / API', 'Serverless', 'Cloud / IaC'].map((filter) => (
             <button
               key={filter}
+              type="button"
               onClick={() => setActiveFilter(filter)}
+              aria-pressed={activeFilter === filter}
               className={`px-4 py-2 rounded-md text-sm font-semibold border min-h-[44px] ${activeFilter === filter
                   ? 'bg-ink dark:bg-stone-100 text-paper dark:text-ink border-ink dark:border-stone-100'
                   : 'bg-transparent text-stone-700 dark:text-stone-300 border-stone-300 dark:border-stone-600'
@@ -210,6 +226,9 @@ const Portfolio = memo(function Portfolio() {
         </div>
 
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6'>
+          {visible.length === 0 && (
+            <p className='text-stone-600 dark:text-stone-400 col-span-full'>No projects in this category.</p>
+          )}
           {visible.map((project) => (
             <article
               key={project.id}

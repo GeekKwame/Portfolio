@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { Link } from 'react-scroll';
 
 const CurrentlyBuilding = memo(function CurrentlyBuilding() {

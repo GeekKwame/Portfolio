@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import { useState, memo } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope, FaCopy, FaCheck } from 'react-icons/fa'
 import { Link } from 'react-scroll'
 import { trackSocialClick } from '../utils/analytics'
@@ -56,7 +56,7 @@ const Footer = memo(function Footer() {
                   key={link.id}
                   href={link.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   onClick={() => trackSocialClick(link.label.toLowerCase().replace(' ', '_'))}
                   aria-label={link.label}
                   className='text-stone-600 dark:text-stone-400 hover:text-accent dark:hover:text-accent-muted text-lg'

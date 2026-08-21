@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FaCheckCircle, FaExclamationCircle, FaInfoCircle, FaTimes } from 'react-icons/fa';
 
 const Toast = ({ id, message, type = 'success', duration = 4000, onClose }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
 
-  useEffect(() => {
-    // Trigger entrance animation
-    setTimeout(() => setIsVisible(true), 10);
-
-    // Auto-dismiss after duration
-    const timer = setTimeout(() => {
-      handleClose();
-    }, duration);
-
-    return () => clearTimeout(timer);
-  }, [duration]);
-
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsExiting(true);
     setTimeout(() => {
       onClose(id);
     }, 300);
-  };
+  }, [id, onClose]);
+
+  useEffect(() => {
+    const show = setTimeout(() => setIsVisible(true), 10);
+    const timer = setTimeout(() => handleClose(), duration);
+    return () => {
+      clearTimeout(show);
+      clearTimeout(timer);
+    };
+  }, [duration, handleClose]);
 
   const icons = {
     success: <FaCheckCircle className="text-green-400" />,

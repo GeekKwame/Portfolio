@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 function ScrollProgress() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -26,9 +26,12 @@ function ScrollProgress() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    updateScrollProgress(); // Initial calculation
+    const id = window.requestAnimationFrame(() => updateScrollProgress());
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.cancelAnimationFrame(id);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [updateScrollProgress]);
 
   return (

@@ -5,9 +5,17 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
-    { ignores: ['dist'] },
+    { ignores: ['dist', 'eslint.config.js'] },
+    {
+        files: ['postcss.config.js', 'tailwind.config.js'],
+        languageOptions: {
+            globals: globals.node,
+            sourceType: 'commonjs',
+        },
+    },
     {
         files: ['**/*.{js,jsx}'],
+        ignores: ['postcss.config.js', 'tailwind.config.js'],
         languageOptions: {
             ecmaVersion: 2020,
             globals: globals.browser,

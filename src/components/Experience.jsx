@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import { useState, memo } from 'react'
 import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa'
 // Import company logos
 import knustLogo from "../assets/images/companies/knust.png"
@@ -22,12 +22,11 @@ const Experience = memo(function Experience() {
       period: "1 mo",
       location: "Accra, Greater Accra Region, Ghana",
       workType: "Remote",
-      description: "Participating in an intensive, hands-on software development internship focused on strengthening practical engineering and professional skills.",
+      description: "Hands-on software engineering internship delivering assigned work on real projects.",
       highlights: [
-        "Applying software development fundamentals to real-world technical tasks and projects.",
-        "Working collaboratively with other interns and technical teams to solve problems and deliver assigned tasks.",
-        "Strengthening skills in programming, version control, debugging, software development practices, and collaborative development.",
-        "Continuously learning and adapting to new tools, technologies, and engineering practices within a professional environment.",
+        "Deliver assigned tasks on real-world projects in an intensive software engineering programme.",
+        "Collaborate with other interns and technical teams to break down problems and deliver working solutions.",
+        "Apply back-end web development, software deployment, version control, and debugging in a professional engineering environment.",
       ],
       skills: ["Software Deployment", "Back-End Web Development"],
       logo: amalitechLogo,
