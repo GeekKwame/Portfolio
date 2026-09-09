@@ -1,0 +1,212 @@
+% TTG / AI Automation Specialist (Healthcare Logistics). Max 2 pages.
+% Archive / full CV is resume.tex — do not replace that file with this one.
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.2in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{\item\small{#1\vspace{-1pt}}}
+
+\newcommand{\resumeSubheading}[4]{%
+  \vspace{-2pt}\item
+  \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textbf{\small #2} \\
+    \textit{\small #3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{%
+  \vspace{-2pt}\item
+  \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textit{\small #2} \\
+  \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%==========================================================================
+\begin{document}
+%==========================================================================
+
+%----------HEADING----------
+\begin{center}
+  {\Huge \scshape Blessing Edmund Kwame Dogbe}\\[5pt]
+  \small
+  \faMapMarker*\ Accra, Ghana \quad
+  \faPhone\ +233 536 064 409 \quad
+  \href{mailto:dogbeblessingkwame@gmail.com}{\faEnvelope\ dogbeblessingkwame@gmail.com}\\[3pt]
+  \href{https://linkedin.com/in/edmund-blessing}{\faLinkedin\ linkedin.com/in/edmund-blessing} \quad
+  \href{https://github.com/GeekKwame}{\faGithub\ github.com/GeekKwame} \quad
+  \href{https://devedmund.vercel.app/}{\faGlobe\ devedmund.vercel.app}
+\end{center}
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{Professional Summary}
+AI Automation Specialist for healthcare operations. I design n8n (and Make/Zapier-equivalent) pipelines that connect intake forms, CRMs, databases, and scheduling APIs; I build custom agents on OpenAI, Claude, Gemini, and Amazon Bedrock; and I ship the REST/webhook layer those workflows call. Currently a Software Engineer intern at AmaliTech and Cloud \& DevOps Engineer at One Health Global Technologies. Proof of work: RenalRoute, a dialysis NEMT stack (intake $\rightarrow$ CRM $\rightarrow$ intelligent dispatch $\rightarrow$ clinic chat), and a self-hosted n8n job-tracker that scores listings with Gemini/OpenAI and writes to Notion/Airtable.
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0in, label={}, itemsep=2pt]
+  \small{
+  \item \textbf{Automation:} n8n (self-hosted, Docker), Make, Zapier, webhooks, REST APIs, scheduled pipelines, Telegram/Slack alerts
+  \item \textbf{AI \& Agents:} OpenAI, Claude, Google Gemini, Amazon Bedrock (Nova Pro), custom agents with tool calling, RAG
+  \item \textbf{Integration:} CRM (Notion, Airtable, custom FastAPI CRM), intake forms, clinic scheduling, SQL/SQLite/PostgreSQL/MongoDB
+  \item \textbf{Languages \& APIs:} Python, JavaScript (ES6+), SQL, FastAPI, Django REST Framework, Express, React
+  \item \textbf{Cloud \& Delivery:} AWS (Lambda, API Gateway, DynamoDB, S3, ECS, Terraform), Docker Compose, GitHub Actions, Pytest
+  }
+\end{itemize}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {One Health Global Technologies}{Jul 2026 -- Present}
+    {Cloud \& DevOps Engineer | Part-time | Remote}{Greater Accra Region, Ghana}
+  \resumeItemListStart
+    \resumeItem{Automate healthcare-platform deploys and operational workflows with Terraform, Docker, and GitHub Actions CI/CD.}
+    \resumeItem{Operate AWS (EC2, ECS, Lambda, S3, VPC, IAM, CloudWatch) with monitoring and alerting for production uptime.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {AmaliTech}{Aug 2026 -- Present}
+    {Software Engineer | Internship | Remote}{Accra, Greater Accra Region, Ghana}
+  \resumeItemListStart
+    \resumeItem{Ship assigned work on real products: back-end APIs, deployment, version control, and debugging in a professional team.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {Happy Daffodils}{Mar 2026 -- Present}
+    {Team Lead | Daffodils DataCamp Scholars | Part-time | Remote}{Greater Accra Region, Ghana}
+  \resumeItemListStart
+    \resumeItem{Built a nudge system of automated plus direct outreach to re-engage inactive scholars and lift completion rates.}
+    \resumeItem{Wrote visual guides and technical walkthroughs so scholars can self-serve; escalate access issues with program directors.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {M365Connect}{Dec 2024 -- Mar 2025}
+    {Python Developer (Backend) | Remote}{Germany}
+  \resumeItemListStart
+    \resumeItem{Designed REST APIs with Django REST Framework for data exchange across 3 client applications.}
+    \resumeItem{Automated Python scraping pipelines and third-party API integrations, removing manual data-gathering work.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {Kwame Nkrumah University of Science and Technology (KNUST)}{Oct 2024 -- Sep 2025}
+    {Information Technology Technician}{Kumasi, Ghana}
+  \resumeItemListStart
+    \resumeItem{Supported 200+ staff and students; introduced scheduled maintenance and a knowledge base of 40+ procedures.}
+    \resumeItem{Standardized troubleshooting documentation, cutting repeat tickets for common hardware, software, and network issues.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {HubbleMind}{Nov 2024 -- Dec 2024}
+    {Data Science Intern --- Machine Learning \& AI}{Remote}
+  \resumeItemListStart
+    \resumeItem{Cleaned 5,000+ multi-country health records and trained classifiers to predict obesity levels at 88\% accuracy.}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {RenalRoute --- Dialysis NEMT Automation \textnormal{|} \href{https://github.com/GeekKwame/renal-route}{\small GitHub}}{2026}
+  \resumeItemListStart
+    \resumeItem{Audited a manual dialysis-transport desk (WhatsApp + spreadsheets) and replaced it with website intake, a FastAPI CRM, and scheduled outbound + return legs after chair time.}
+    \resumeItem{Intelligent routing: hard mobility filters (wheelchair $\neq$ sedan), travel time vs chair window, same-vehicle pair assign; pipeline health reports assignment accuracy.}
+    \resumeItem{Same five-step path in importable n8n JSON, Make and Zapier blueprints, and a local runner: webhook $\rightarrow$ intake $\rightarrow$ dispatch $\rightarrow$ retry/alert $\rightarrow$ audit.}
+    \resumeItem{Clinic communications agent (OpenAI / Claude / Gemini optional; heuristic fallback) with tools to book, status-check, and reschedule against the ops API.}
+    \resumeItem{\textit{Stack:} n8n, Make, Zapier, FastAPI, SQLAlchemy, SQLite, webhooks, REST, Docker Compose, Pytest, OpenAI, Claude, Gemini}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {AI Job Tracker --- n8n + Gemini/OpenAI \textnormal{|} \href{https://github.com/GeekKwame/job-tracker-n8n}{\small GitHub}}{2026}
+  \resumeItemListStart
+    \resumeItem{Self-hosted n8n on Docker: scheduled RSS intake, keyword pre-filter, Gemini 2.0 Flash / OpenAI match scoring, duplicate check, then Notion or Airtable as the CRM.}
+    \resumeItem{Telegram/Slack webhooks for $\ge$70\% matches; on-demand AI assistant drafts CV bullets and cover letters so token use stays off the alert path.}
+    \resumeItem{\textit{Stack:} n8n, Docker Compose, Google Gemini, OpenAI, Notion, Airtable, Telegram Bot API, Slack}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {YenCare --- Clinic Scheduling \& Virtual Queue \textnormal{|} \href{https://github.com/GeekKwame/yencare-platform}{\small GitHub}}{2026}
+  \resumeItemListStart
+    \resumeItem{Outpatient booking and live virtual queue for KNUST Students' Clinic: 6-step intake, speakable reference codes, SMS-ready notifications, walk-in and no-show recovery.}
+    \resumeItem{Reception check-in, room assignment, and emergency triage gate in one ops workstation --- clinic communications without a password wall for students.}
+    \resumeItem{\textit{Stack:} Node.js, Express, React, MongoDB, Tailwind CSS}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {Cloud Ops Copilot --- Custom Agent with Tools \textnormal{|} \href{https://github.com/GeekKwame/cloud-ops-copilot}{\small GitHub}}{2026}
+  \resumeItemListStart
+    \resumeItem{Conversational agent (Amazon Bedrock / Nova Pro) that chooses RAG or tool calls: EC2 status, S3 inventory, CloudWatch alarms --- the same agent-plus-tools pattern as clinic dispatch chat.}
+    \resumeItem{API Gateway JWT authorizer, DynamoDB session history, Lambda action-group router; React chat UI with Cognito login.}
+    \resumeItem{\textit{Stack:} Amazon Bedrock Agents, Lambda, API Gateway, DynamoDB, OpenSearch Serverless, Cognito, Terraform, React}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Azubi Africa}{Apr 2026 -- July 2026}
+    {Cloud Computing \& Artificial Intelligence Program}{Remote}
+
+  \resumeSubheading
+    {Kwame Nkrumah University of Science and Technology (KNUST)}{Jan 2021 -- Aug 2024}
+    {Bachelor of Science in Applied Mathematics}{Kumasi, Ghana}
+
+\resumeSubHeadingListEnd
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+\begin{itemize}[leftmargin=0.15in, itemsep=1pt]
+  \small{
+  \item \textbf{AWS Knowledge: Cloud Essentials} --- Amazon Web Services \hfill \href{https://www.credly.com/badges/a6873d6c-a6b8-4af8-a4c1-faa677eb6602/linked_in_profile}{View}
+  \item \textbf{Machine Learning With Python} --- IBM / Coursera \hfill \href{https://coursera.org/share/889f0defc13b05fa370f87561e547991}{View}
+  \item \textbf{Django Web Framework} --- Meta / Coursera \hfill \href{https://coursera.org/share/a9ceefb50c30e1fae57f3363aac4797b}{View}
+  \item \textbf{System Administration \& IT Infrastructure Services} --- Google / Coursera \hfill \href{https://coursera.org/share/b3f928e0d724604cc613efa2dd1c5ce1}{View}
+  }
+\end{itemize}
+
+%==========================================================================
+\end{document}
