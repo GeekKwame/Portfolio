@@ -8,16 +8,6 @@ const CurrentlyBuilding = memo(function CurrentlyBuilding() {
             org: 'AmaliTech',
             meta: 'Internship · Remote',
         },
-        {
-            title: 'Cloud & DevOps Engineer',
-            org: 'One Health Global Technologies',
-            meta: 'Part-time · Remote',
-        },
-        {
-            title: 'Team Lead, Daffodils DataCamp Scholars',
-            org: 'Happy Daffodils',
-            meta: 'Part-time · Remote',
-        },
     ];
 
     return (

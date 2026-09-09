@@ -26,7 +26,7 @@ const About = memo(function About() {
               I am Blessing Edmund Kwame Dogbe. I work across cloud, backend, and delivery: AWS infrastructure as code, Python APIs in FastAPI and Django, React UIs, and GitHub Actions with short-lived OIDC credentials — no long-lived keys.
             </p>
             <p className='text-base sm:text-lg text-stone-700 dark:text-stone-300 leading-relaxed mb-4'>
-              At One Health Global Technologies I design and operate AWS with Terraform, Docker, and CI/CD. Selected projects on this site cover a FastAPI file service on ECS Fargate, serverless APIs, CloudFront edges, and full ALB + EC2 stacks. Docker shows up where the workload is containerized, not as decoration.
+              At One Health Global Technologies I designed and operated AWS with Terraform, Docker, and CI/CD. Selected projects on this site cover a FastAPI file service on ECS Fargate, serverless APIs, CloudFront edges, and full ALB + EC2 stacks. Docker shows up where the workload is containerized, not as decoration.
             </p>
             <p className='text-base sm:text-lg text-stone-700 dark:text-stone-300 leading-relaxed mb-6'>
               BSc Applied Mathematics from KNUST and AWS Cloud & AI training through Azubi Africa.
