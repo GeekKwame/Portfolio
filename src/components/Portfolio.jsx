@@ -1,6 +1,7 @@
 import { useState, memo } from 'react'
-import { FaGithub, FaStickyNote, FaCloud, FaCubes, FaPoll, FaGraduationCap, FaCalendarCheck, FaTasks, FaServer } from 'react-icons/fa'
+import { FaGithub, FaStickyNote, FaCloud, FaCubes, FaPoll, FaGraduationCap, FaCalendarCheck, FaTasks, FaServer, FaExternalLinkAlt, FaClinicMedical, FaLock } from 'react-icons/fa'
 import { trackProjectView, trackSocialClick } from '../utils/analytics'
+import yencareImage from "../assets/images/portfolio/yencare_platform.png"
 import eventConnectImage from "../assets/images/portfolio/event-connect.webp"
 import smartTaskImage from "../assets/images/portfolio/smart-task.webp"
 import pulsevoteImage from "../assets/images/portfolio/pulsevote.jpg"
@@ -22,6 +23,20 @@ const Portfolio = memo(function Portfolio() {
   };
 
   const portfolios = [
+    {
+      id: 8,
+      src: yencareImage,
+      title: "YɛnCare — Outpatient Clinic & Virtual Queue Platform",
+      product: "Full-stack outpatient clinic platform handling patient triage, appointment rosters, and real-time waiting room dispatch across 70+ responsive views. Built for campus clinics to eliminate waiting-room congestion through self-service booking without password friction and live queue updates.",
+      system: "The Express REST backend guards public arrival check-ins against reference-code brute forcing using tiered IP/reference rate limiting (HTTP 429), coordinates atomic queue status transitions through Prisma ORM, and isolates clinical workstation actions behind role-based JWT auth. 270+ automated Jest/Supertest specs run on GitHub Actions across client and server suites.",
+      flow: ['Patient / Student Web UI (React)', 'Express REST API + Tiered Rate Limiting', 'Prisma ORM + PostgreSQL', 'Real-Time Queue Dispatch & Role Workstation'],
+      link: "https://yencare-platform.vercel.app/",
+      isPrivate: true,
+      tags: ["React", "Express", "Node.js", "Prisma", "PostgreSQL", "REST APIs", "JWT Auth", "Jest", "Supertest", "GitHub Actions", "Tailwind CSS", "Vercel"],
+      category: "Full-Stack",
+      icon: FaClinicMedical,
+      iconText: "YɛnCare Outpatient Healthcare & Virtual Queue Platform"
+    },
     {
       id: 0,
       src: fileServiceImage,
@@ -150,23 +165,46 @@ const Portfolio = memo(function Portfolio() {
   };
 
   const renderBody = (project) => {
-    const { title, product, system, description, tags, link2 } = project;
+    const { title, product, system, description, tags, link, link2, isPrivate } = project;
     return (
       <div className='p-4 sm:p-5 flex flex-col flex-1'>
         <h3 className='text-lg sm:text-xl font-display mb-3 text-ink dark:text-stone-100'>{title}</h3>
-        {link2 && (
-          <a
-            href={link2}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => {
-              trackProjectView(title);
-              trackSocialClick('github');
-            }}
-            className='self-start inline-flex items-center gap-2 mb-3 text-sm font-semibold text-ink dark:text-stone-100 border border-stone-300 dark:border-stone-600 rounded-md px-3 py-2 min-h-[44px] hover:bg-stone-100 dark:hover:bg-stone-800'
-          >
-            <FaGithub /> Code
-          </a>
+        {(link || link2 || isPrivate) && (
+          <div className='flex flex-wrap items-center gap-2 mb-3'>
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  trackProjectView(title);
+                  trackSocialClick('external');
+                }}
+                className='inline-flex items-center gap-2 text-sm font-semibold text-paper dark:text-ink bg-ink dark:bg-stone-100 rounded-md px-3 py-2 min-h-[44px] hover:opacity-90 transition-opacity'
+              >
+                <FaExternalLinkAlt className='text-xs' /> Live Demo
+              </a>
+            )}
+            {link2 && (
+              <a
+                href={link2}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  trackProjectView(title);
+                  trackSocialClick('github');
+                }}
+                className='inline-flex items-center gap-2 text-sm font-semibold text-ink dark:text-stone-100 border border-stone-300 dark:border-stone-600 rounded-md px-3 py-2 min-h-[44px] hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors'
+              >
+                <FaGithub /> Code
+              </a>
+            )}
+            {isPrivate && (
+              <span className='inline-flex items-center gap-1.5 text-xs font-medium text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-700 rounded-md px-3 py-2 min-h-[44px] bg-stone-50/60 dark:bg-stone-800/40'>
+                <FaLock className='text-[10px]' /> Private Repository
+              </span>
+            )}
+          </div>
         )}
         {product && (
           <p className='text-stone-700 dark:text-stone-300 text-sm mb-3 leading-relaxed'>
@@ -203,13 +241,13 @@ const Portfolio = memo(function Portfolio() {
             Work
           </h2>
           <p className='text-stone-600 dark:text-stone-400 text-base sm:text-lg max-w-2xl'>
-            Selected cloud and software work: a FastAPI file service on ECS, serverless APIs, Terraform, and full AWS stacks. GitHub for each repo.
+            Selected software and cloud work: a full-stack outpatient clinic platform, a FastAPI file service, serverless APIs, and AWS infrastructure. GitHub for each repo.
           </p>
           <div className='accent-rule mt-4'></div>
         </div>
 
         <div className='flex flex-wrap gap-2 mb-8' role="group" aria-label="Filter work by category">
-          {['All', 'Backend / API', 'Serverless', 'Cloud / IaC'].map((filter) => (
+          {['All', 'Backend / API', 'Full-Stack', 'Serverless', 'Cloud / IaC'].map((filter) => (
             <button
               key={filter}
               type="button"

@@ -5,8 +5,8 @@ const CurrentlyBuilding = memo(function CurrentlyBuilding() {
     const roles = [
         {
             title: 'Software Engineer',
-            org: 'AmaliTech',
-            meta: 'Internship · Remote',
+            org: 'Afarinick Company Limited',
+            meta: 'Full-time · On-site',
         },
     ];
 

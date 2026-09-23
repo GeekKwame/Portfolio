@@ -5,27 +5,27 @@
 
 /** LinkedIn headline — single source of truth for positioning across the site */
 export const HEADLINE =
-  'Cloud & Software Engineer | AWS · Terraform · Python · FastAPI · Django · React | CI/CD · DevOps | Open to Opportunities';
+  'Software Engineer | Python · FastAPI · Django · React | AWS · Terraform · CI/CD | Open to Opportunities';
 
 /** Contact email — single source of truth for mailto, contact form, and footer */
 export const CONTACT_EMAIL = 'dogbeblessingkwame@gmail.com';
 
 export const SEO = {
-  title: 'Edmund Blessing — Cloud & Software Engineer',
+  title: 'Edmund Blessing — Software Engineer',
   description:
-    'Cloud & Software Engineer in Ghana. AWS, Terraform, Python, FastAPI, Django, React, and GitHub Actions. Software Engineer at Afarinick Company Limited. Open to opportunities.',
+    'Software Engineer in Ghana. Python, FastAPI, Django, React, AWS, Terraform, and GitHub Actions. Software Engineer at Afarinick Company Limited. Open to opportunities.',
   keywords:
-    'Cloud Engineer, Software Engineer, AWS, Terraform, Lambda, CloudFront, DynamoDB, ECS Fargate, RDS, Docker, Python Developer, FastAPI, Django, PostgreSQL, React, DevOps, CI/CD, GitHub Actions, Ghana, Portfolio',
+    'Software Engineer, Python Developer, FastAPI, Django, React, PostgreSQL, REST APIs, AWS, Terraform, Docker, DevOps, CI/CD, GitHub Actions, Cloud Engineer, Ghana, Portfolio',
   ogSiteName: 'Edmund Blessing Portfolio',
 };
 
 export const PERSONAL_INFO = {
   name: 'Edmund Blessing',
-  title: 'Cloud & Software Engineer',
+  title: 'Software Engineer',
   headline: HEADLINE,
-  bio: 'Cloud & Software Engineer. AWS, Terraform, Python, FastAPI, Django, React, GitHub Actions. Software Engineer at Afarinick Company Limited. Open to opportunities.',
+  bio: 'Software Engineer building Python APIs, Django apps, and React UIs — backed by AWS infrastructure and CI/CD. Software Engineer at Afarinick Company Limited. Open to opportunities.',
   intro:
-    'I design and operate cloud systems, write Python APIs in FastAPI and Django, and ship CI/CD with Terraform and GitHub Actions. Right now I am a Software Engineer at Afarinick Company Limited.',
+    'I build software — Python APIs in FastAPI and Django, React frontends, and the AWS infrastructure underneath. Right now I am a Software Engineer at Afarinick Company Limited.',
   location: 'Available worldwide',
   availability: 'Open to opportunities — freelance, full-time, and collaboration.',
   email: CONTACT_EMAIL,

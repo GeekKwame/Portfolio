@@ -5,10 +5,10 @@ import { PERSONAL_INFO } from '../config/constants'
 
 const About = memo(function About() {
   const skills = [
-    { icon: <FaRocket />, title: 'Cloud & Infrastructure', desc: 'AWS (CloudFront, Lambda, API Gateway, DynamoDB, S3, EC2, ECS Fargate, RDS, ALB, VPC, IAM, WAF), Terraform, AWS SAM, Docker, GitHub Actions with OIDC' },
-    { icon: <FaServer />, title: 'Python & Backend', desc: 'Python, Django, Django REST Framework, FastAPI, SQLAlchemy, PostgreSQL, REST APIs, web scraping pipelines, ORM optimization, Secrets Manager' },
+    { icon: <FaServer />, title: 'Python & Backend', desc: 'Python, FastAPI, Django, Django REST Framework, SQLAlchemy, PostgreSQL, REST APIs, web scraping pipelines, ORM optimization, Secrets Manager' },
     { icon: <FaCode />, title: 'Full-Stack Development', desc: 'React, JavaScript (ES6+), Node.js, HTML5, CSS3, Tailwind CSS, responsive web applications' },
-    { icon: <FaGraduationCap />, title: 'DevOps & IT Support', desc: 'GitHub Actions CI/CD, Linux (Ubuntu), Bash, Active Directory, network diagnostics, BSc Applied Mathematics (KNUST), AWS Cloud & AI (Azubi Africa)' }
+    { icon: <FaRocket />, title: 'Cloud & Infrastructure', desc: 'AWS (CloudFront, Lambda, API Gateway, DynamoDB, S3, EC2, ECS Fargate, RDS, ALB, VPC, IAM, WAF), Terraform, AWS SAM, Docker' },
+    { icon: <FaGraduationCap />, title: 'DevOps & Education', desc: 'GitHub Actions CI/CD with OIDC, Linux (Ubuntu), Bash, Docker, BSc Applied Mathematics (KNUST), AWS Cloud & AI (Azubi Africa)' }
   ];
 
   return (
@@ -23,10 +23,10 @@ const About = memo(function About() {
         <div className='grid md:grid-cols-2 gap-8 md:gap-12 mb-10'>
           <div>
             <p className='text-base sm:text-lg text-stone-700 dark:text-stone-300 leading-relaxed mb-4'>
-              I am Blessing Edmund Kwame Dogbe. I work across cloud, backend, and delivery: AWS infrastructure as code, Python APIs in FastAPI and Django, React UIs, and GitHub Actions with short-lived OIDC credentials — no long-lived keys.
+              I am Blessing Edmund Kwame Dogbe. I build full-stack web applications and backend services with React, Node.js, Express, FastAPI, and Django — and operate the cloud infrastructure underneath with AWS, Terraform, Docker, and GitHub Actions CI/CD.
             </p>
             <p className='text-base sm:text-lg text-stone-700 dark:text-stone-300 leading-relaxed mb-4'>
-              At One Health Global Technologies I designed and operated AWS with Terraform, Docker, and CI/CD. Selected projects on this site cover a FastAPI file service on ECS Fargate, serverless APIs, CloudFront edges, and full ALB + EC2 stacks. Docker shows up where the workload is containerized, not as decoration.
+              Currently a Software Engineer at Afarinick Company Limited, developing and maintaining software applications and backend services. Previously led a team of interns at AmaliTech and built cloud infrastructure at One Health Global Technologies.
             </p>
             <p className='text-base sm:text-lg text-stone-700 dark:text-stone-300 leading-relaxed mb-6'>
               BSc Applied Mathematics from KNUST and AWS Cloud & AI training through Azubi Africa.
@@ -56,9 +56,10 @@ const About = memo(function About() {
           </h3>
           <div className='flex flex-wrap gap-2'>
             {[
-              'AWS SAM', 'CloudFront', 'Lambda', 'API Gateway', 'DynamoDB', 'WAF',
-              'S3 / OAC', 'EC2', 'ECS Fargate', 'RDS', 'ALB', 'VPC', 'Terraform', 'OIDC', 'Docker',
-              'Python', 'FastAPI', 'SQLAlchemy', 'Django', 'PostgreSQL', 'React', 'GitHub Actions', 'CloudWatch',
+              'React', 'JavaScript', 'Node.js', 'Express', 'Prisma', 'Python', 'FastAPI', 'Django', 'SQLAlchemy', 'PostgreSQL', 'Jest',
+              'Docker', 'GitHub Actions', 'Terraform',
+              'AWS SAM', 'CloudFront', 'Lambda', 'API Gateway', 'DynamoDB', 'S3 / OAC',
+              'EC2', 'ECS Fargate', 'RDS', 'ALB', 'VPC', 'WAF', 'CloudWatch',
             ].map((name) => (
               <span
                 key={name}

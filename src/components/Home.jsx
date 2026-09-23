@@ -21,7 +21,7 @@ const Home = () => {
             {PERSONAL_INFO.intro}
           </p>
           <p className='text-sm sm:text-base text-stone-600 dark:text-stone-400 mb-8 max-w-xl leading-relaxed'>
-            AWS, Terraform, Python, FastAPI, Django, and React. Least-privilege IAM, and a clear line between what is public on the internet and what is not.
+            Python, FastAPI, Django, React, AWS, and Terraform. Building software that works — and the infrastructure to run it.
           </p>
           <div className='flex flex-col gap-3 sm:flex-row sm:items-center'>
             <Link
@@ -36,7 +36,8 @@ const Home = () => {
             <div className='grid grid-cols-2 gap-3 sm:contents'>
               <a
                 href={RESUME.path}
-                download={RESUME.filename}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => trackResumeDownload()}
                 className={`${ctaClass} border border-stone-400 dark:border-stone-500 text-ink dark:text-stone-100 hover:bg-stone-200/60 dark:hover:bg-stone-800`}
               >
