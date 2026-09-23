@@ -25,7 +25,7 @@ export const PERSONAL_INFO = {
   headline: HEADLINE,
   bio: 'Software Engineer building Python APIs, Django apps, and React UIs — backed by AWS infrastructure and CI/CD. Software Engineer at Afarinick Company Limited. Open to opportunities.',
   intro:
-    'I build software — Python APIs in FastAPI and Django, React frontends, and the AWS infrastructure underneath. Right now I am a Software Engineer at Afarinick Company Limited.',
+    'I build scalable and secure systems — Python APIs in FastAPI and Django, React frontends, and the AWS infrastructure underneath. Right now I am a Software Engineer at Afarinick Company Limited.',
   location: 'Available worldwide',
   availability: 'Open to opportunities — freelance, full-time, and collaboration.',
   email: CONTACT_EMAIL,
