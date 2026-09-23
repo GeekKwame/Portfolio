@@ -13,7 +13,7 @@ const About = memo(function About() {
 
   return (
     <div name="about" className='w-full bg-paper dark:bg-ink text-ink dark:text-stone-200 py-14 md:py-20'>
-      <div className='max-w-6xl px-4 sm:px-6 mx-auto flex flex-col justify-center w-full'>
+      <div className='max-w-6xl px-4 sm:px-6 lg:px-14 xl:px-8 mx-auto flex flex-col justify-center w-full'>
         <div className='mb-8 md:mb-10'>
           <h2 className='font-display text-3xl sm:text-4xl md:text-5xl mb-3 text-ink dark:text-stone-50'>About</h2>
           <p className='text-stone-600 dark:text-stone-400 text-base sm:text-lg mb-4'>{PERSONAL_INFO.title}</p>

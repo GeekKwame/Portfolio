@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div name="home" className='min-h-[100svh] w-full bg-paper dark:bg-ink relative overflow-x-hidden'>
-      <div className='flex flex-col lg:flex-row justify-center items-center min-h-[100svh] mx-auto w-full max-w-6xl text-ink dark:text-stone-200 px-4 sm:px-6 lg:px-8 relative z-10 pt-24 pb-16 lg:py-0 gap-8 lg:gap-16'>
+      <div className='flex flex-col lg:flex-row justify-center items-center min-h-[100svh] mx-auto w-full max-w-6xl text-ink dark:text-stone-200 px-4 sm:px-6 lg:px-14 xl:px-8 relative z-10 pt-24 pb-16 lg:py-0 gap-8 lg:gap-16'>
         <div className='w-full lg:flex-1 min-w-0 order-2 lg:order-1'>
           <p className='text-sm font-medium text-accent dark:text-accent-muted mb-3'>
             {PERSONAL_INFO.title}

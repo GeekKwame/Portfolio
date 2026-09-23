@@ -49,7 +49,7 @@ const SocialLinks = memo(function SocialLinks() {
   ];
 
   return (
-    <nav aria-label="Social links" className='hidden 2xl:flex flex-col gap-2 fixed top-1/2 left-3 -translate-y-1/2 z-40'>
+    <nav aria-label="Social links" className='hidden lg:flex flex-col gap-2 fixed top-1/2 left-3 -translate-y-1/2 z-40'>
       {links.map((link) => (
         link.onClick ? (
           <button
