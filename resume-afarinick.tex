@@ -1,0 +1,195 @@
+% Afarinick Company Ltd — Junior Software Engineer (Accra). Max 2 pages.
+% Archive / full CV is resume.tex — do not replace that file with this one.
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.2in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{\item\small{#1\vspace{-1pt}}}
+
+\newcommand{\resumeSubheading}[4]{%
+  \vspace{-2pt}\item
+  \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textbf{\small #2} \\
+    \textit{\small #3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{%
+  \vspace{-2pt}\item
+  \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textit{\small #2} \\
+  \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%==========================================================================
+\begin{document}
+%==========================================================================
+
+%----------HEADING----------
+\begin{center}
+  {\Huge \scshape Blessing Edmund Kwame Dogbe}\\[5pt]
+  \small
+  \faMapMarker*\ Accra, Ghana \quad
+  \faPhone\ +233 536 064 409 \quad
+  \href{mailto:dogbeblessingkwame@gmail.com}{\faEnvelope\ dogbeblessingkwame@gmail.com}\\[3pt]
+  \href{https://linkedin.com/in/edmund-blessing}{\faLinkedin\ linkedin.com/in/edmund-blessing} \quad
+  \href{https://github.com/GeekKwame}{\faGithub\ github.com/GeekKwame} \quad
+  \href{https://devedmund.vercel.app/}{\faGlobe\ devedmund.vercel.app}
+\end{center}
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{Professional Summary}
+Junior Software Engineer in Accra focused on Python backends: Django, REST APIs, relational SQL, and GIS. I design schemas, write testable APIs, and plug internal pipelines and third-party feeds into the same stack. Currently a Software Engineer intern at AmaliTech. Previously Python Developer (Backend) at M365Connect, shipping Django REST Framework APIs and scraping pipelines. Proof of work: Asase GIS (GeoDjango + PostGIS + Leaflet WebGIS for Ghana farm/forest parcels), plus Django CRUD APIs in Books Website and Notes App.
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0in, label={}, itemsep=2pt]
+  \small{
+  \item \textbf{Languages:} Python, SQL, JavaScript (ES6+), HTML5, CSS3
+  \item \textbf{Backend:} Django, Django REST Framework, GeoDjango, REST APIs, Pytest
+  \item \textbf{GIS:} PostGIS, GeoJSON, Leaflet WebGIS, polygon geodatabases (EPSG:4326; area in UTM 30N)
+  \item \textbf{Databases:} PostgreSQL, MySQL, SQLite --- schema design, ORM queries, SQL
+  \item \textbf{Tools:} Git, GitHub, GitHub Actions, Docker Compose, Linux
+  \item \textbf{Pipelines:} GeoJSON ingest, Python scraping, third-party API integrations
+  }
+\end{itemize}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {AmaliTech}{Aug 2026 -- Present}
+    {Software Engineer | Internship | Remote}{Accra, Greater Accra Region, Ghana}
+  \resumeItemListStart
+    \resumeItem{Ship assigned work on real products: back-end APIs, version control, debugging, and code review in a professional team.}
+    \resumeItem{Collaborate with interns and technical staff to break down problems and deliver working, documented solutions.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {One Health Global Technologies}{Jul 2026 -- Sep 2026}
+    {Cloud \& DevOps Engineer | Part-time | Remote}{Greater Accra Region, Ghana}
+  \resumeItemListStart
+    \resumeItem{Automated deploys and operational workflows with Docker and GitHub Actions; Git as the source of truth for app and infrastructure changes.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {Kwame Nkrumah University of Science and Technology (KNUST)}{Oct 2024 -- Sep 2025}
+    {Information Technology Technician}{Kumasi, Ghana}
+  \resumeItemListStart
+    \resumeItem{Troubleshot hardware, software, and network issues for 200+ staff and students; documented 40+ procedures so repeats were faster to close.}
+    \resumeItem{Worked with academic and administrative teams on day-to-day systems --- debugging existing tools, not only greenfield code.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {M365Connect}{Dec 2024 -- Mar 2025}
+    {Python Developer (Backend) | Remote}{Germany}
+  \resumeItemListStart
+    \resumeItem{Designed REST APIs with Django REST Framework for data exchange across 3 client applications.}
+    \resumeItem{Worked with relational data via the Django ORM: schema changes, query cleanup, and more efficient reads.}
+    \resumeItem{Integrated third-party APIs and automated Python scraping pipelines so internal apps were not waiting on manual collection.}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {Asase GIS --- GeoDjango WebGIS \textnormal{|} \href{https://github.com/GeekKwame/asase-gis}{\small GitHub}}{2026}
+  \resumeItemListStart
+    \resumeItem{Built a Ghana farm/forest parcel geodatabase in Django + GeoDjango on PostGIS: polygons, land-use filters (farm, forest, nursery, restoration), and hectare area via UTM zone 30N.}
+    \resumeItem{Exposed a GeoJSON REST API (Django REST Framework + \texttt{djangorestframework-gis}), a Leaflet map, Django GIS admin, and \texttt{POST /api/import/geojson/} for internal pipeline ingest.}
+    \resumeItem{Wrote Pytest coverage for list/filter/import/stats; Docker Compose (PostGIS 16 + GDAL) and GitHub Actions for Ruff + tests.}
+    \resumeItem{\textit{Stack:} Python, Django 5, DRF, GeoDjango, PostGIS, PostgreSQL, GeoJSON, Leaflet, Docker Compose, Pytest, GitHub Actions}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {Books Website --- Django REST + React CRUD \textnormal{|} \href{https://github.com/GeekKwame/books-website}{\small GitHub}}{2025}
+  \resumeItemListStart
+    \resumeItem{Backend in Django 6 + Django REST Framework: create, list, inline title edit, and delete, with CORS for a Vite/React client and tests for API behaviour.}
+    \resumeItem{Clean, documented endpoints (\texttt{/api/books/} and create/update/delete routes) --- the same REST style used to keep a UI and a database in sync.}
+    \resumeItem{\textit{Stack:} Python, Django, Django REST Framework, SQLite, React, Vite, Git}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {Notes App --- Django REST + React \textnormal{|} \href{https://github.com/GeekKwame/notes-app}{\small GitHub}}{2025}
+  \resumeItemListStart
+    \resumeItem{Full-stack notes CRUD on Django REST Framework and React: models, serializers, views, and a small REST surface for create/read/update/delete.}
+    \resumeItem{\textit{Stack:} Python, Django, Django REST Framework, React, Git}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {Crop Feature Selection --- Ghana Agriculture ML \textnormal{|} \href{https://github.com/GeekKwame/crop-feature-selection-ml}{\small GitHub}}{2025}
+  \resumeItemListStart
+    \resumeItem{Used Ghana crop-recommendation / soil metric data to find the single most predictive field under a budget constraint --- agriculture and land-use thinking, not a GIS map, but the same domain as farm and restoration work.}
+    \resumeItem{\textit{Stack:} Python, Pandas, Scikit-learn}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Kwame Nkrumah University of Science and Technology (KNUST)}{Jan 2021 -- Aug 2024}
+    {Bachelor of Science in Applied Mathematics}{Kumasi, Ghana}
+
+  \resumeSubheading
+    {Azubi Africa}{Apr 2026 -- July 2026}
+    {Cloud Computing \& Artificial Intelligence Program}{Remote}
+
+\resumeSubHeadingListEnd
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+\begin{itemize}[leftmargin=0.15in, itemsep=1pt]
+  \small{
+  \item \textbf{Django Web Framework} --- Meta / Coursera \hfill \href{https://coursera.org/share/a9ceefb50c30e1fae57f3363aac4797b}{View}
+  \item \textbf{The Full Stack} --- Meta / Coursera \hfill \href{https://coursera.org/share/19541a26ae104d66db8cfc78accfed1a}{View}
+  \item \textbf{Machine Learning With Python} --- IBM / Coursera \hfill \href{https://coursera.org/share/889f0defc13b05fa370f87561e547991}{View}
+  }
+\end{itemize}
+
+%==========================================================================
+\end{document}

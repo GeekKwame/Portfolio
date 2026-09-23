@@ -1,7 +1,7 @@
 {
   "short_name": "Edmund Blessing",
-  "name": "Edmund Blessing — AI & Cloud Engineer Portfolio",
-  "description": "Aspiring AI & Cloud Engineer | Python, SQL, Machine Learning | Full-Stack Dev | IT Support | Open to Opportunities",
+  "name": "Edmund Blessing — Cloud & Software Engineer Portfolio",
+  "description": "Cloud & Software Engineer | AWS · Terraform · Docker | Python · FastAPI · Django · React | Open to Opportunities",
   "icons": [
     {
       "src": "favicon.ico",
@@ -25,8 +25,8 @@
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "theme_color": "#0f172a",
-  "background_color": "#1e293b",
+  "theme_color": "#161513",
+  "background_color": "#f6f3ee",
   "categories": ["portfolio", "developer", "web"],
   "lang": "en",
   "dir": "ltr",

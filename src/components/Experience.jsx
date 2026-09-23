@@ -7,25 +7,40 @@ import hubblemindLogo from "../assets/images/companies/hubblemind.jpeg"
 import leratoLogo from "../assets/images/companies/lerato.png"
 import oneHealthLogo from "../assets/images/companies/onehealthtech.png"
 import amalitechLogo from "../assets/images/companies/Amalitech.png"
+import afarinickLogo from "../assets/images/companies/afarinick_company_limited_logo.jpg"
 
 const Experience = memo(function Experience() {
   const [imageErrors, setImageErrors] = useState({});
 
   const experiences = [
     {
-      id: 7,
+      id: 8,
       title: "Software Engineer",
+      company: "Afarinick Company Limited",
+      type: "Full-time",
+      duration: "Sep 2026 - Present",
+      period: "1 mo",
+      location: "Accra, Greater Accra Region, Ghana",
+      workType: "On-site",
+      description: "Working as a Software Engineer, contributing to the development and maintenance of software applications and backend services.",
+      skills: ["Software Engineering", "Backend Development", "Software Maintenance"],
+      logo: afarinickLogo,
+      logoGradient: "from-green-700 to-emerald-600",
+      logoText: "AF"
+    },
+    {
+      id: 7,
+      title: "Software Engineering Team Lead",
       company: "AmaliTech",
       type: "Internship",
-      duration: "Aug 2026 - Present",
+      duration: "Aug 2026 - Sep 2026",
       period: "2 mos",
       location: "Accra, Greater Accra Region, Ghana",
       workType: "Remote",
-      description: "Hands-on software engineering internship delivering assigned work on real projects.",
+      description: "Participated in an intensive, hands-on software development internship focused on strengthening practical engineering and professional skills.",
       highlights: [
-        "Deliver assigned tasks on real-world projects in an intensive software engineering programme.",
-        "Collaborate with other interns and technical teams to break down problems and deliver working solutions.",
-        "Apply back-end web development, software deployment, version control, and debugging in a professional engineering environment.",
+        "Led a team of interns on real-world projects, coordinating task breakdown and delivery of working solutions.",
+        "Applied back-end web development, software deployment, version control, and debugging in a professional engineering environment.",
       ],
       skills: ["Software Deployment", "Back-End Web Development"],
       logo: amalitechLogo,
