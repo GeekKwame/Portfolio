@@ -119,7 +119,7 @@ const Home = memo(function Home() {
                   {PERSONAL_INFO.name}
                 </h2>
                 <p className="font-mono text-xs text-accent mb-1">
-                  BSc Applied Math · KNUST
+                  {PERSONAL_INFO.title}
                 </p>
                 <p className="text-xs text-slate-400 leading-tight">
                   Software Engineer @ Afarinick Co. Ltd
