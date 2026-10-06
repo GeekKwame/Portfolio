@@ -1,10 +1,12 @@
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
+import TechTicker from "./components/TechTicker";
+import TelemetryMetrics from "./components/TelemetryMetrics";
 import SocialLinks from "./components/SocialLinks";
 import About from './components/About';
-import Education from './components/Education';
 import Portfolio from './components/Portfolio';
 import Experience from './components/Experience';
+import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -18,7 +20,7 @@ function App() {
   return (
     <ErrorBoundary>
       <ToastProvider>
-        <div className="App">
+        <div className="App bg-canvas min-h-screen text-slate-100 selection:bg-accent selection:text-canvas">
           <StructuredData />
           <SkipToContent />
           <ScrollProgress />
@@ -26,10 +28,12 @@ function App() {
           <SocialLinks />
           <main id="main">
             <Home />
+            <TechTicker />
+            <TelemetryMetrics />
             <About />
-            <Education />
             <Portfolio />
             <Experience />
+            <Education />
             <Contact />
           </main>
           <Footer />

@@ -28,20 +28,13 @@ The portfolio has been enhanced with modern features, improved code organization
 - Auto-dismiss with customizable durations
 - Smooth animations and transitions
 
-### 3. **Theme Toggle** (`ThemeToggle.jsx`)
-- Dark/Light mode toggle with system preference detection
-- Theme persistence using localStorage
-- Smooth transitions between themes
-- Accessible with proper ARIA labels
-- Integrated into NavBar (desktop and mobile)
-
-### 4. **Enhanced Footer Component**
+### 3. **Enhanced Footer Component**
 - Now uses centralized constants
 - Improved email copy feedback with toast notifications
 - Better accessibility
 - Consistent with rest of the application
 
-### 5. **Improved Contact Form**
+### 4. **Improved Contact Form**
 - Enhanced error handling with toast notifications
 - Uses centralized email constant
 - Better user feedback for form submissions
@@ -51,14 +44,13 @@ The portfolio has been enhanced with modern features, improved code organization
 
 ### Component Updates
 - **Footer.jsx**: Uses constants, toast notifications, improved accessibility
-- **NavBar.jsx**: Added theme toggle, uses constants for navigation
+- **NavBar.jsx**: Uses constants for navigation
 - **Contact.jsx**: Enhanced with toast notifications, uses constants
 - **Home.jsx**: Uses constants for roles and resume info
 - **SocialLinks.jsx**: Uses constants, toast notifications for email copy
 
 ### New Hooks
 - **useToast.js**: Custom hook for managing toast notifications
-- **useTheme.js**: Custom hook for theme management with persistence
 
 ### Context Providers
 - **ToastContext.jsx**: Provides toast functionality throughout the app
@@ -71,22 +63,17 @@ src/
 │   └── constants.js          # Centralized configuration
 ├── components/
 │   ├── Toast.jsx             # Individual toast component
-│   ├── ToastContainer.jsx    # Toast container/wrapper
-│   └── ThemeToggle.jsx       # Theme toggle button
+│   └── ToastContainer.jsx    # Toast container/wrapper
 ├── context/
 │   └── ToastContext.jsx      # Toast context provider
 └── hooks/
-    ├── useToast.js           # Toast hook
-    └── useTheme.js           # Theme hook
+    └── useToast.js           # Toast hook
 ```
 
-## 🎨 Styling Enhancements
+## 🎨 Styling
 
-### Light Theme Support
-- Added light theme styles to `index.css`
-- Smooth transitions between themes
-- Proper color scheme declarations
-- Maintains accessibility in both themes
+- Consistent warm editorial paper theme (`#f6f3ee`, `#1a1916`, `#8c4a2f`)
+- Clean typography with Newsreader and Source Sans 3
 
 ## 🚀 Usage Examples
 
@@ -100,21 +87,6 @@ const MyComponent = () => {
   const handleAction = () => {
     success('Operation completed successfully!');
   };
-};
-```
-
-### Using Theme Toggle
-```jsx
-import { useTheme } from '../hooks/useTheme';
-
-const MyComponent = () => {
-  const { theme, toggleTheme, isDark } = useTheme();
-  
-  return (
-    <button onClick={toggleTheme}>
-      Switch to {isDark ? 'light' : 'dark'} mode
-    </button>
-  );
 };
 ```
 

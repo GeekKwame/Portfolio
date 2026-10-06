@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react';
 
 function ScrollProgress() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -35,14 +35,13 @@ function ScrollProgress() {
   }, [updateScrollProgress]);
 
   return (
-    <div className='fixed top-0 left-0 w-full h-0.5 bg-stone-200 dark:bg-stone-800 z-50'>
+    <div className="fixed top-0 left-0 w-full h-1 bg-border/40 z-50 pointer-events-none">
       <div
-        className='h-full bg-accent dark:bg-accent-muted transition-all duration-150 ease-out'
+        className="h-full bg-accent transition-all duration-150 ease-out shadow-sm shadow-accent/50"
         style={{ width: `${scrollProgress}%` }}
       />
     </div>
   );
 }
 
-export default ScrollProgress
-
+export default ScrollProgress;

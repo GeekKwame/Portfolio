@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react'
-import { FaArrowUp } from 'react-icons/fa'
+import { useState, useEffect, useCallback } from 'react';
+import { FaArrowUp } from 'react-icons/fa';
 
 function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -40,16 +40,17 @@ function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 bg-ink dark:bg-stone-100 text-paper dark:text-ink p-3 rounded-full shadow-md active:scale-95 flex items-center justify-center touch-manipulation min-w-[44px] min-h-[44px] ${isVisible
+      className={`fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 bg-surface/90 backdrop-blur-md text-slate-200 border border-border hover:border-accent/40 hover:text-accent p-3 rounded-lg shadow-xl active:scale-95 flex items-center justify-center touch-manipulation min-w-[44px] min-h-[44px] transition-all duration-300 ${
+        isVisible
           ? 'opacity-100 translate-y-0 pointer-events-auto'
           : 'opacity-0 translate-y-4 pointer-events-none'
-        }`}
+      }`}
       aria-label="Back to top"
       title="Back to top"
     >
-      <FaArrowUp className='group-hover:-translate-y-1 transition-transform duration-300 text-sm sm:text-base' />
+      <FaArrowUp className="text-sm sm:text-base" />
     </button>
   );
 }
 
-export default ScrollToTop
+export default ScrollToTop;

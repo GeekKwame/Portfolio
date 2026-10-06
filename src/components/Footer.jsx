@@ -1,9 +1,9 @@
-import { useState, memo } from 'react'
-import { FaGithub, FaLinkedin, FaEnvelope, FaCopy, FaCheck } from 'react-icons/fa'
-import { Link } from 'react-scroll'
-import { trackSocialClick } from '../utils/analytics'
-import { PERSONAL_INFO, SOCIAL_LINKS, NAVIGATION_LINKS } from '../config/constants'
-import { useToastContext } from '../context/ToastContext'
+import { useState, memo } from 'react';
+import { FaGithub, FaLinkedin, FaEnvelope, FaCopy, FaCheck } from 'react-icons/fa';
+import { Link } from 'react-scroll';
+import { trackSocialClick } from '../utils/analytics';
+import { PERSONAL_INFO, SOCIAL_LINKS, NAVIGATION_LINKS } from '../config/constants';
+import { useToastContext } from '../context/ToastContext';
 
 const Footer = memo(function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,8 +14,8 @@ const Footer = memo(function Footer() {
     try {
       await navigator.clipboard.writeText(PERSONAL_INFO.email);
       setEmailCopied(true);
-      trackSocialClick('email');
-      success('Email copied');
+      trackSocialClick('email_footer');
+      success('Email copied to clipboard');
       setTimeout(() => setEmailCopied(false), 2000);
     } catch (err) {
       console.error('Failed to copy email:', err);
@@ -25,11 +25,11 @@ const Footer = memo(function Footer() {
   const getIcon = (iconName) => {
     switch (iconName) {
       case 'FaLinkedin':
-        return <FaLinkedin />;
+        return <FaLinkedin size={16} />;
       case 'FaGithub':
-        return <FaGithub />;
+        return <FaGithub size={16} />;
       default:
-        return <FaEnvelope />;
+        return <FaEnvelope size={16} />;
     }
   };
 
@@ -40,17 +40,27 @@ const Footer = memo(function Footer() {
   }));
 
   return (
-    <footer className='bg-paper dark:bg-ink text-ink dark:text-stone-200 border-t border-stone-200 dark:border-stone-800'>
-      <div className='max-w-6xl mx-auto px-4 sm:px-6 py-10 md:py-12'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8'>
-          <div>
-            <h3 className='font-display text-xl text-ink dark:text-stone-100 mb-3'>
-              {PERSONAL_INFO.name}
-            </h3>
-            <p className='text-stone-600 dark:text-stone-400 text-sm leading-relaxed mb-4'>
+    <footer className="bg-surface border-t border-border text-slate-400 py-12 lg:py-16 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 mb-12">
+          
+          {/* Brand & Positioning */}
+          <div className="md:col-span-5 space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-base font-extrabold text-white tracking-wider">
+                EB<span className="text-accent">_</span>SYSTEMS
+              </span>
+              <span className="font-mono text-[10px] text-emerald bg-emerald/10 border border-emerald/20 px-2 py-0.5 rounded">
+                v2026.1
+              </span>
+            </div>
+
+            <p className="font-sans text-sm text-slate-300 leading-relaxed max-w-sm">
               {PERSONAL_INFO.bio}
             </p>
-            <div className='flex gap-3'>
+
+            <div className="flex items-center gap-2.5 pt-2">
               {socialLinks.map((link) => (
                 <a
                   key={link.id}
@@ -59,7 +69,7 @@ const Footer = memo(function Footer() {
                   rel="noopener noreferrer"
                   onClick={() => trackSocialClick(link.label.toLowerCase().replace(' ', '_'))}
                   aria-label={link.label}
-                  className='text-stone-600 dark:text-stone-400 hover:text-accent dark:hover:text-accent-muted text-lg'
+                  className="w-9 h-9 rounded bg-canvas border border-border flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 transition-colors"
                 >
                   {link.icon}
                 </a>
@@ -67,9 +77,12 @@ const Footer = memo(function Footer() {
             </div>
           </div>
 
-          <div>
-            <h4 className='font-semibold mb-3 text-ink dark:text-stone-100'>On this site</h4>
-            <ul className='space-y-2'>
+          {/* Navigation Matrix */}
+          <div className="md:col-span-3 space-y-3">
+            <h4 className="font-mono text-xs uppercase tracking-wider text-accent font-bold">
+              Site Navigation
+            </h4>
+            <ul className="space-y-2 font-mono text-xs">
               {NAVIGATION_LINKS.map((link) => (
                 <li key={link.id}>
                   <Link
@@ -77,46 +90,65 @@ const Footer = memo(function Footer() {
                     smooth
                     duration={500}
                     offset={-80}
-                    className='text-stone-600 dark:text-stone-400 hover:text-accent dark:hover:text-accent-muted cursor-pointer text-sm'
+                    className="text-slate-400 hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1.5"
                   >
-                    {link.name}
+                    <span className="text-accent/60">›</span>
+                    <span>{link.name}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div>
-            <h4 className='font-semibold mb-3 text-ink dark:text-stone-100'>Get in touch</h4>
-            <div className='flex items-center gap-2 text-sm text-stone-600 dark:text-stone-400'>
-              <a
-                href={`mailto:${PERSONAL_INFO.email}`}
-                className='hover:text-accent dark:hover:text-accent-muted break-all min-w-0'
-              >
-                {PERSONAL_INFO.email}
-              </a>
-              <button
-                onClick={copyEmailToClipboard}
-                className='p-2 rounded-md hover:bg-stone-200 dark:hover:bg-stone-800 shrink-0'
-                aria-label="Copy email"
-              >
-                {emailCopied ? <FaCheck className='text-green-600' /> : <FaCopy />}
-              </button>
+          {/* Telemetry Status & Direct Dispatch */}
+          <div className="md:col-span-4 space-y-3">
+            <h4 className="font-mono text-xs uppercase tracking-wider text-accent font-bold">
+              Direct Route
+            </h4>
+            <div className="p-3.5 rounded bg-canvas border border-border space-y-2 font-mono text-xs">
+              <div className="flex items-center justify-between text-slate-300">
+                <span className="text-slate-400">ROUTER:</span>
+                <span className="text-emerald">ACTIVE · TLS 1.3</span>
+              </div>
+              <div className="flex items-center justify-between gap-2 pt-1 border-t border-border/80">
+                <a
+                  href={`mailto:${PERSONAL_INFO.email}`}
+                  className="text-white hover:text-accent truncate"
+                >
+                  {PERSONAL_INFO.email}
+                </a>
+                <button
+                  type="button"
+                  onClick={copyEmailToClipboard}
+                  className="p-1.5 rounded hover:bg-surface text-slate-400 hover:text-white transition-colors shrink-0"
+                  aria-label="Copy email"
+                >
+                  {emailCopied ? <FaCheck className="text-emerald" size={12} /> : <FaCopy size={12} />}
+                </button>
+              </div>
             </div>
-            <p className='text-stone-500 dark:text-stone-500 text-xs mt-4'>
-              {PERSONAL_INFO.availability}
+            <p className="font-sans text-xs text-slate-400">
+              {PERSONAL_INFO.currentRole}
             </p>
           </div>
+
         </div>
 
-        <div className='border-t border-stone-200 dark:border-stone-800 pt-6'>
-          <p className='text-stone-500 text-xs sm:text-sm'>
-            © {currentYear} {PERSONAL_INFO.name}
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-border/80 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-400">
+          <p>
+            © {currentYear} {PERSONAL_INFO.name}. All systems operational.
+          </p>
+          <p className="flex items-center gap-2 text-slate-400">
+            <span>BUILT WITH REACT + TAILWIND</span>
+            <span>·</span>
+            <span>AWS CLOUD INFRASTRUCTURE</span>
           </p>
         </div>
+
       </div>
     </footer>
-  )
-})
+  );
+});
 
-export default Footer
+export default Footer;

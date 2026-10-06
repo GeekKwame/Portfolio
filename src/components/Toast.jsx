@@ -22,41 +22,40 @@ const Toast = ({ id, message, type = 'success', duration = 4000, onClose }) => {
   }, [duration, handleClose]);
 
   const icons = {
-    success: <FaCheckCircle className="text-green-400" />,
-    error: <FaExclamationCircle className="text-red-400" />,
-    info: <FaInfoCircle className="text-blue-400" />,
+    success: <FaCheckCircle className="text-emerald shrink-0" />,
+    error: <FaExclamationCircle className="text-rose-400 shrink-0" />,
+    info: <FaInfoCircle className="text-accent shrink-0" />,
   };
 
-  const bgColors = {
-    success: 'bg-green-500/10 border-green-500/30',
-    error: 'bg-red-500/10 border-red-500/30',
-    info: 'bg-blue-500/10 border-blue-500/30',
+  const borderStyles = {
+    success: 'border-emerald/40',
+    error: 'border-rose-500/40',
+    info: 'border-accent/40',
   };
 
   return (
     <div
       className={`
         flex items-center gap-3 px-4 py-3 rounded-lg border backdrop-blur-md
-        shadow-lg w-full max-w-[calc(100vw-2rem)] sm:min-w-[280px] sm:max-w-[400px] sm:w-auto transition-all duration-300
-        bg-surface dark:bg-surface-dark
-        ${bgColors[type]}
+        shadow-2xl w-full max-w-[calc(100vw-2rem)] sm:min-w-[280px] sm:max-w-[400px] sm:w-auto transition-all duration-300
+        bg-surface/95 text-slate-100
+        ${borderStyles[type] || 'border-border'}
         ${isVisible && !isExiting ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}
       `}
       role="alert"
       aria-live="polite"
     >
-      <div className="flex-shrink-0 text-xl">{icons[type]}</div>
-      <p className="flex-1 text-sm text-ink dark:text-stone-100 font-medium">{message}</p>
+      <div className="text-lg">{icons[type]}</div>
+      <p className="flex-1 font-mono text-xs text-slate-200 font-medium">{message}</p>
       <button
         onClick={handleClose}
-        className="flex-shrink-0 text-stone-500 dark:text-stone-400 hover:text-ink dark:hover:text-stone-100 p-1 rounded hover:bg-stone-100 dark:hover:bg-stone-800"
+        className="text-slate-400 hover:text-white p-1 rounded hover:bg-surface-elevated transition-colors"
         aria-label="Close notification"
       >
-        <FaTimes size={14} />
+        <FaTimes size={12} />
       </button>
     </div>
   );
 };
 
 export default Toast;
-

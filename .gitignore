@@ -32,3 +32,6 @@ yarn-error.log*
 # OS
 .DS_Store
 Thumbs.db
+
+#untracked files
+tonu-next.netlify.app/

@@ -4,6 +4,16 @@ import './index.css';
 import App from './App';
 import { initAnalytics, trackPageView } from './utils/analytics';
 
+// Ensure light mode and clear legacy theme preference
+if (typeof window !== 'undefined') {
+  document.documentElement.classList.remove('dark');
+  try {
+    localStorage.removeItem('portfolio-theme');
+  } catch {
+    /* ignore */
+  }
+}
+
 // Initialize analytics
 initAnalytics();
 

@@ -1,6 +1,6 @@
-import { useState, memo } from 'react'
-import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa'
-import knustLogo from '../assets/images/companies/knust.png'
+import { useState, memo } from 'react';
+import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa';
+import knustLogo from '../assets/images/companies/knust.png';
 
 const azubiLogo =
   Object.values(
@@ -8,129 +8,130 @@ const azubiLogo =
       eager: true,
       import: 'default',
     })
-  )[0] ?? null
+  )[0] ?? null;
+
+const EDUCATION = [
+  {
+    id: 1,
+    school: 'Kwame Nkrumah University of Science and Technology (KNUST)',
+    degree: 'Bachelor of Science in Applied Mathematics',
+    duration: 'Jan 2021 - Aug 2024',
+    location: 'Kumasi, Ghana',
+    description:
+      'Rigorous foundation in numerical analysis, abstract algebra, discrete mathematics, statistical modeling, algorithmic structures, and computational logic. Provides the analytical backbone for scalable backend software and systems engineering.',
+    skills: ['Applied Mathematics', 'Algorithm Design', 'Data Structures', 'Statistical Analysis', 'Computational Logic'],
+    logo: knustLogo,
+    logoText: 'KNUST',
+  },
+  {
+    id: 2,
+    school: 'Azubi Africa (in partnership with Generation & AWS)',
+    degree: 'Cloud Computing & Artificial Intelligence Program',
+    duration: 'Apr 2026 - Jul 2026',
+    location: 'Remote',
+    description:
+      'Intensive cloud computing and AI program covering AWS core services (VPC, EC2, ECS, S3, IAM, CloudWatch), infrastructure automation, container orchestration, and serverless architectures.',
+    skills: ['AWS Cloud Architecture', 'IAM & Security', 'Docker Containers', 'Linux Systems', 'Cloud Networking'],
+    logo: azubiLogo,
+    logoText: 'Azubi',
+  },
+];
 
 const Education = memo(function Education() {
-  const [imageErrors, setImageErrors] = useState({})
-
-  const education = [
-    {
-      id: 1,
-      school: 'Kwame Nkrumah University of Science and Technology, Kumasi',
-      degree: 'Bachelor of Science, Applied Mathematics',
-      duration: 'Jan 2021 - Aug 2024',
-      location: 'Kumasi, Ashanti Region, Ghana',
-      description: null,
-      skills: ['Applied Mathematics', 'Problem Solving', 'Algorithm Design', 'Data Structures', 'Statistical Analysis'],
-      logo: knustLogo,
-      logoGradient: 'from-blue-600 to-blue-800',
-      logoText: 'KNUST',
-    },
-    {
-      id: 2,
-      school: 'Azubi Africa',
-      degree: 'Cloud Computing & Artificial Intelligence Training Program',
-      duration: 'Apr 2026 - July 2026',
-      location: 'Remote',
-      description:
-        'Selected participant in the AWS Cloud Computing and Artificial Intelligence Program delivered by Generation.',
-      skills: ['Cloud Computing', 'Artificial Intelligence', 'AWS'],
-      logo: azubiLogo,
-      logoGradient: 'from-emerald-600 to-teal-700',
-      logoText: 'Azubi',
-    },
-  ]
+  const [imageErrors, setImageErrors] = useState({});
 
   return (
-    <div
-      name="education"
-      className="bg-paper dark:bg-ink w-full py-14 md:py-20"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col justify-center w-full text-ink dark:text-stone-200">
-        <div className="mb-8">
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-3 text-ink dark:text-stone-50">Education</h2>
-          <p className="text-stone-600 dark:text-stone-400 text-base sm:text-lg mb-4">
-            Academic background and professional training
+    <section name="education" className="bg-canvas w-full py-20 lg:py-28 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="flex flex-col mb-12 sm:mb-16">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="font-mono text-xs uppercase tracking-widest text-accent font-semibold">
+              {"// 05. ACADEMIC FOUNDATIONS & SPECIALIZED TRAINING"}
+            </span>
+          </div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+            Education & Certifications
+          </h2>
+          <p className="text-slate-400 font-sans text-base sm:text-lg max-w-2xl mt-2">
+            Mathematical theory paired with intensive hands-on cloud and software engineering programs.
           </p>
-          <div className="accent-rule"></div>
+          <div className="w-16 h-0.5 bg-accent mt-4" />
         </div>
 
-        <div className="space-y-6 md:space-y-8">
-          {education.map((entry, index) => (
+        {/* Education Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          {EDUCATION.map((entry) => (
             <div
               key={entry.id}
-              className="relative bg-surface dark:bg-surface-dark border border-stone-200 dark:border-stone-700 rounded-lg p-4 sm:p-6"
+              className="tech-card border-border bg-surface/90 p-6 sm:p-8 flex flex-col justify-between group hover:border-slate-600 transition-all duration-300"
             >
-
-              <div className="relative z-10 flex flex-col md:flex-row gap-4 md:gap-6">
-                <div className="flex-shrink-0">
-                  {entry.logo && !imageErrors[entry.id] ? (
-                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-lg bg-white p-2 flex items-center justify-center overflow-hidden border border-stone-200 dark:border-stone-600">
+              <div>
+                <div className="flex items-start justify-between gap-4 mb-5">
+                  <div className="w-14 h-14 rounded-lg bg-white border border-border p-2 shrink-0 flex items-center justify-center overflow-hidden">
+                    {entry.logo && !imageErrors[entry.id] ? (
                       <img
                         src={entry.logo}
                         alt={`${entry.school} logo`}
                         className="w-full h-full object-contain"
-                        onError={() => {
-                          setImageErrors((prev) => ({ ...prev, [entry.id]: true }))
-                        }}
+                        onError={() => setImageErrors(prev => ({ ...prev, [entry.id]: true }))}
                       />
-                    </div>
-                  ) : (
-                    <div
-                      className={`w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br ${entry.logoGradient} flex items-center justify-center`}
-                    >
-                      <span className="text-white font-bold text-sm md:text-base text-center px-1">
+                    ) : (
+                      <div className="w-full h-full bg-surface-elevated text-white font-mono font-bold text-xs flex items-center justify-center">
                         {entry.logoText}
-                      </span>
-                    </div>
-                  )}
-                </div>
+                      </div>
+                    )}
+                  </div>
 
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-lg sm:text-xl font-display text-ink dark:text-stone-100 mb-1">
-                    {entry.degree}
-                  </h3>
-                  <p className="text-accent dark:text-accent-muted font-semibold text-sm sm:text-base mb-3">{entry.school}</p>
-
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-stone-600 dark:text-stone-400 mb-4">
-                    <div className="flex items-center gap-2">
-                      <FaCalendarAlt className="text-accent dark:text-accent-muted" />
+                  <div className="flex flex-col items-end font-mono text-xs text-slate-400 gap-1.5">
+                    <span className="inline-flex items-center gap-1.5 bg-canvas px-2.5 py-1 rounded border border-border">
+                      <FaCalendarAlt className="text-accent" size={10} />
                       <span>{entry.duration}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <FaMapMarkerAlt className="text-accent dark:text-accent-muted" />
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 bg-canvas px-2.5 py-1 rounded border border-border">
+                      <FaMapMarkerAlt className="text-slate-400" size={10} />
                       <span>{entry.location}</span>
-                    </div>
-                  </div>
-
-                  {entry.description && (
-                    <p className="text-stone-600 dark:text-stone-300 text-sm sm:text-base leading-relaxed mb-4">
-                      {entry.description}
-                    </p>
-                  )}
-
-                  <div className="flex flex-wrap gap-2">
-                    {entry.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-2 py-1 bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-200 text-xs rounded-md border border-stone-300 dark:border-stone-600"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+                    </span>
                   </div>
                 </div>
+
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-white mb-1 group-hover:text-accent transition-colors">
+                  {entry.degree}
+                </h3>
+                <p className="text-accent font-sans text-sm sm:text-base font-semibold mb-4">
+                  {entry.school}
+                </p>
+
+                {entry.description && (
+                  <p className="font-sans text-sm text-slate-300 leading-relaxed mb-6">
+                    {entry.description}
+                  </p>
+                )}
               </div>
 
-              {index < education.length - 1 && (
-                <div className="absolute left-8 md:left-10 top-full w-px h-6 md:h-8 bg-stone-300 dark:bg-stone-700"></div>
-              )}
+              <div className="border-t border-border/80 pt-4">
+                <p className="font-mono text-[11px] uppercase tracking-wider text-slate-400 mb-2 font-semibold">
+                  Core Disciplines & Topics:
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {entry.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="font-mono text-[11px] px-2.5 py-0.5 rounded bg-canvas border border-border text-slate-300"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           ))}
         </div>
-      </div>
-    </div>
-  )
-})
 
-export default Education
+      </div>
+    </section>
+  );
+});
+
+export default Education;
