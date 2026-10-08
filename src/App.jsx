@@ -1,8 +1,5 @@
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
-import TechTicker from "./components/TechTicker";
-import TelemetryMetrics from "./components/TelemetryMetrics";
-import SocialLinks from "./components/SocialLinks";
 import About from './components/About';
 import Portfolio from './components/Portfolio';
 import Experience from './components/Experience';
@@ -20,16 +17,13 @@ function App() {
   return (
     <ErrorBoundary>
       <ToastProvider>
-        <div className="App bg-canvas min-h-screen text-slate-100 selection:bg-accent selection:text-canvas">
+        <div className="App bg-paper min-h-screen text-ink selection:bg-accent/20 selection:text-ink">
           <StructuredData />
           <SkipToContent />
           <ScrollProgress />
           <NavBar />
-          <SocialLinks />
           <main id="main">
             <Home />
-            <TechTicker />
-            <TelemetryMetrics />
             <About />
             <Portfolio />
             <Experience />

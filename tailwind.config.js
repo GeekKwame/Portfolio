@@ -6,55 +6,50 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        display: ['Newsreader', 'Georgia', 'serif'],
+        sans: ['"IBM Plex Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       colors: {
-        canvas: {
-          DEFAULT: '#090a0f',
-          subtle: '#0c0e15',
+        paper: {
+          DEFAULT: '#F2F0EB',
+          elevated: '#FAF9F6',
+        },
+        ink: {
+          DEFAULT: '#12141A',
+          muted: '#5C6170',
+          faint: '#8A8F9C',
+        },
+        rule: {
+          DEFAULT: '#D4D0C8',
+          strong: '#B8B3A8',
         },
         surface: {
-          DEFAULT: '#11141d',
-          muted: '#0d1017',
-          card: '#131722',
-          elevated: '#171b28',
-          hover: '#1b2030',
-        },
-        border: {
-          DEFAULT: '#1e2333',
-          subtle: '#151924',
-          bright: '#2d374d',
+          DEFAULT: '#FAF9F6',
+          muted: '#EBE8E1',
+          card: '#FFFFFF',
         },
         accent: {
-          DEFAULT: '#00d2df',
-          hover: '#26e2ee',
-          glow: 'rgba(0, 210, 223, 0.25)',
-          muted: '#67e8f9',
+          DEFAULT: '#C45C26',
+          ink: '#8B3A12',
+          soft: 'rgba(196, 92, 38, 0.12)',
         },
-        emerald: {
-          DEFAULT: '#10b981',
-          glow: 'rgba(16, 185, 129, 0.25)',
+        signal: {
+          DEFAULT: '#1F6B4A',
+          soft: 'rgba(31, 107, 74, 0.12)',
         },
+      },
+      maxWidth: {
+        content: '72rem',
+        prose: '40rem',
       },
       animation: {
         'slide-in': 'slideIn 0.3s ease-out',
-        'marquee': 'marquee 30s linear infinite',
-        'pulse-slow': 'pulseSlow 3s ease-in-out infinite',
       },
       keyframes: {
         slideIn: {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(0)' },
-        },
-        marquee: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
-        pulseSlow: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.4' },
         },
       },
     },

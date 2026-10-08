@@ -1,9 +1,17 @@
 import { memo } from 'react';
 import { Link } from 'react-scroll';
-import { FaArrowRight, FaGithub, FaTerminal } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 import profilePic from '../assets/images/profile/profile-pic.jpeg';
-import { PERSONAL_INFO, SOCIAL_LINKS } from '../config/constants';
-import { trackSocialClick } from '../utils/analytics';
+import { PERSONAL_INFO, SOCIAL_LINKS, RESUME } from '../config/constants';
+import { trackSocialClick, trackResumeDownload } from '../utils/analytics';
+
+const CORE_STACK = [
+  { label: 'Languages', value: 'Python · JavaScript' },
+  { label: 'Backend', value: 'FastAPI · Django' },
+  { label: 'Cloud', value: 'AWS · Terraform · Docker' },
+  { label: 'Data', value: 'PostgreSQL · DynamoDB' },
+  { label: 'Delivery', value: 'GitHub Actions · Linux' },
+];
 
 const Home = memo(function Home() {
   const githubLink = SOCIAL_LINKS.find((l) => l.platform === 'GitHub');
@@ -11,155 +19,146 @@ const Home = memo(function Home() {
   return (
     <section
       name="home"
-      className="relative min-h-[92svh] lg:min-h-screen w-full bg-canvas flex items-center justify-center pt-24 pb-16 lg:py-0 overflow-hidden"
+      className="relative w-full min-h-[88svh] lg:min-h-screen flex items-center pt-24 pb-16 lg:pt-28 lg:pb-20"
     >
-      {/* Background blueprint grid & architectural watermark */}
-      <div className="absolute inset-0 bg-grid-blueprint pointer-events-none opacity-40" />
-      <div
-        className="watermark-text text-[14vw] font-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        aria-hidden="true"
-      >
-        SYSTEMS
-      </div>
+      <div className="section-inner w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Brand column */}
+          <div className="lg:col-span-7 flex flex-col">
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted mb-5">
+              <span className="text-accent font-medium">00 — Systems & Cloud Engineering</span>
+              <span className="text-rule-strong" aria-hidden="true">/</span>
+              <span>Accra, Ghana (GMT)</span>
+            </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
-        {/* Left Column: Technical Narrative & Positioning */}
-        <div className="w-full lg:max-w-2xl flex flex-col items-start">
-          {/* Status Kicker */}
-          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-border bg-surface/90 backdrop-blur-sm mb-6">
-            <span className="w-2 h-2 rounded-full bg-emerald animate-pulse-slow shrink-0" />
-            <span className="font-mono text-xs text-slate-300 tracking-wider uppercase">
-              Production Software & Cloud Architecture
-            </span>
-          </div>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.75rem] text-ink tracking-tight leading-[1.08] mb-5">
+              {PERSONAL_INFO.name}
+            </h1>
 
-          {/* Headline */}
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-extrabold text-white leading-[1.08] tracking-tight mb-6">
-            Architecting <span className="text-accent underline decoration-accent/30 underline-offset-8">Production Systems</span> with Cloud Precision.
-          </h1>
+            <div className="border-l-2 border-accent pl-4 sm:pl-5 my-5 max-w-xl">
+              <p className="font-display text-xl sm:text-2xl text-ink leading-snug tracking-tight">
+                {PERSONAL_INFO.intro}
+              </p>
+            </div>
 
-          {/* Subtitle / Positioning Statement */}
-          <p className="font-sans text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl mb-4">
-            I am <strong className="text-white font-semibold">{PERSONAL_INFO.name}</strong>, a Software Engineer building high-throughput Python APIs (FastAPI & Django), responsive React interfaces, and declarative AWS infrastructure with Terraform, Docker, and automated CI/CD pipelines.
-          </p>
+            <p className="font-sans text-[15px] sm:text-base text-ink-muted leading-relaxed max-w-prose mb-8">
+              Currently software engineer at <span className="text-ink font-medium">Afarinick Company Limited</span>, building backend services and system architecture. Focused on correctness, zero-secret OIDC deployments, and infrastructure that stays maintainable in production.
+            </p>
 
-          <p className="font-sans text-sm sm:text-base text-slate-400 leading-relaxed max-w-xl mb-8">
-            Currently engineering backend services and application architecture at <span className="text-slate-200 font-medium">Afarinick Company Limited</span>. I focus on reliability, clean system design, and production operations.
-          </p>
-
-          {/* Calls to Action */}
-          <div className="flex flex-wrap items-center gap-3.5 w-full sm:w-auto">
-            <Link
-              to="portfolio"
-              smooth
-              duration={500}
-              offset={-80}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md bg-accent text-canvas font-mono text-xs uppercase tracking-wider font-bold hover:bg-accent-hover transition-all duration-200 shadow-lg shadow-accent/10 cursor-pointer min-h-[48px]"
-            >
-              <span>Explore Architecture & Work</span>
-              <FaArrowRight size={12} />
-            </Link>
-
-            {githubLink && (
-              <a
-                href={githubLink.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackSocialClick('github_hero')}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-md border border-border hover:border-slate-500 bg-surface hover:bg-surface-elevated text-slate-200 hover:text-white font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-200 min-h-[48px]"
+            <div className="flex flex-wrap items-center gap-3">
+              <Link
+                to="portfolio"
+                smooth
+                duration={500}
+                offset={-80}
+                className="group inline-flex items-center gap-3 px-5 py-3 bg-ink text-paper hover:bg-accent hover:text-paper transition-all duration-150 cursor-pointer min-h-[44px]"
               >
-                <FaGithub size={15} />
-                <span>GitHub Repos</span>
-              </a>
-            )}
-
-            <Link
-              to="contact"
-              smooth
-              duration={500}
-              offset={-80}
-              className="inline-flex items-center justify-center px-5 py-3.5 rounded-md text-slate-400 hover:text-white font-mono text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer min-h-[48px]"
-            >
-              Contact Me
-            </Link>
-          </div>
-        </div>
-
-        {/* Right Column: Interactive Blueprint & System Telemetry Card */}
-        <div className="w-full lg:max-w-md shrink-0">
-          <div className="tech-card p-4 sm:p-5 border-border bg-surface/90 backdrop-blur-md relative overflow-hidden shadow-2xl">
-            {/* Terminal Window Header */}
-            <div className="flex items-center justify-between border-b border-border/80 pb-3 mb-4">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald/80" />
-                <span className="font-mono text-xs text-slate-400 ml-2">system_telemetry.yaml</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-accent font-mono text-[11px]">
-                <FaTerminal size={10} />
-                <span>v2026.1</span>
-              </div>
-            </div>
-
-            {/* Photo & Identity Section */}
-            <div className="flex items-center gap-4 mb-5">
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden border border-border shrink-0 bg-surface-muted">
-                <img
-                  src={profilePic}
-                  alt={`${PERSONAL_INFO.name} - Software & Cloud Systems Engineer`}
-                  className="w-full h-full object-cover contrast-110"
-                  loading="eager"
-                  decoding="async"
-                  style={{ objectPosition: 'center 25%' }}
-                />
-              </div>
-              <div>
-                <h2 className="font-display font-bold text-lg text-white">
-                  {PERSONAL_INFO.name}
-                </h2>
-                <p className="font-mono text-xs text-accent mb-1">
-                  {PERSONAL_INFO.title}
-                </p>
-                <p className="text-xs text-slate-400 leading-tight">
-                  Software Engineer @ Afarinick Co. Ltd
-                </p>
-              </div>
-            </div>
-
-            {/* Telemetry Key-Value Pairs */}
-            <div className="space-y-2.5 font-mono text-xs border-t border-border/80 pt-4">
-              <div className="flex justify-between items-center py-1 border-b border-border/40">
-                <span className="text-slate-400">STATUS</span>
-                <span className="text-emerald font-semibold flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald" />
-                  ONLINE · AVAILABLE
+                <span className="font-mono text-xs uppercase tracking-wider">Explore selected systems</span>
+                <span className="text-paper/70 group-hover:text-paper group-hover:translate-x-0.5 transition-transform duration-150" aria-hidden="true">
+                  →
                 </span>
-              </div>
-              <div className="flex justify-between items-center py-1 border-b border-border/40">
-                <span className="text-slate-400">CORE_STACK</span>
-                <span className="text-slate-200">Python · FastAPI · Django</span>
-              </div>
-              <div className="flex justify-between items-center py-1 border-b border-border/40">
-                <span className="text-slate-400">INFRASTRUCTURE</span>
-                <span className="text-slate-200">AWS · Terraform · Docker</span>
-              </div>
-              <div className="flex justify-between items-center py-1 border-b border-border/40">
-                <span className="text-slate-400">PIPELINES</span>
-                <span className="text-slate-200">GitHub Actions (OIDC)</span>
-              </div>
-              <div className="flex justify-between items-center py-1">
-                <span className="text-slate-400">LOCATION</span>
-                <span className="text-slate-200">Accra, GH · Global Remote</span>
-              </div>
-            </div>
+              </Link>
 
-            {/* Bottom Status Ticker */}
-            <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-[11px] font-mono text-slate-400">
-              <span className="text-slate-400">LATENCY: 12ms</span>
-              <span className="text-accent">ENCRYPTED // TLS 1.3</span>
+              {githubLink && (
+                <a
+                  href={githubLink.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackSocialClick('github_hero')}
+                  className="inline-flex items-center gap-2 px-4 py-3 border border-rule bg-paper-elevated text-ink hover:border-ink hover:text-accent font-mono text-xs uppercase tracking-wider transition-colors min-h-[44px]"
+                >
+                  <FaGithub size={13} className="text-ink-muted" />
+                  <span>GitHub</span>
+                  <span className="text-[10px] text-ink-faint" aria-hidden="true">↗</span>
+                </a>
+              )}
+
+              <Link
+                to="experience"
+                smooth
+                duration={500}
+                offset={-80}
+                className="inline-flex items-center gap-1.5 font-mono text-xs text-ink-muted hover:text-ink uppercase tracking-wider cursor-pointer ml-1 py-2"
+              >
+                <span>Record</span>
+                <span className="text-ink-faint" aria-hidden="true">↓</span>
+              </Link>
             </div>
           </div>
+
+          {/* Meta rail */}
+          <aside className="lg:col-span-5 lg:pt-2">
+            <div className="border-t border-rule lg:border-t-0 lg:border-l lg:pl-10 pt-8 lg:pt-0">
+              <div className="flex items-center justify-between pb-3 mb-6 border-b border-rule">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-ink-faint">
+                  ENGINEERING DOSSIER {'//'} EB-01
+                </span>
+                <span className="font-mono text-[10px] text-ink-faint">ACCRA / GMT</span>
+              </div>
+
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 overflow-hidden border border-rule shrink-0 bg-surface-muted">
+                  <img
+                    src={profilePic}
+                    alt={`${PERSONAL_INFO.name} — ${PERSONAL_INFO.title}`}
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    style={{ objectPosition: 'center 25%' }}
+                  />
+                </div>
+                <div className="pt-0.5">
+                  <p className="font-sans text-sm font-semibold text-ink">
+                    {PERSONAL_INFO.title}
+                  </p>
+                  <p className="meta-mono mt-1">
+                    {PERSONAL_INFO.location} · Remote worldwide
+                  </p>
+                  <div className="mt-2.5 inline-flex items-center gap-2 px-2 py-0.5 border border-signal/30 bg-signal-soft/40">
+                    <span className="w-1.5 h-1.5 rounded-full bg-signal shrink-0" aria-hidden="true" />
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-signal font-medium">Open to opportunities</span>
+                  </div>
+                </div>
+              </div>
+
+              <dl className="space-y-3 border-t border-rule pt-5">
+                {CORE_STACK.map((row) => (
+                  <div key={row.label} className="flex justify-between gap-4 items-baseline">
+                    <dt className="meta-mono shrink-0">{row.label}</dt>
+                    <dd className="font-mono text-xs text-ink text-right">{row.value}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <ul className="mt-6 pt-5 border-t border-rule space-y-2">
+                <li className="flex justify-between gap-4 meta-mono">
+                  <span>YɛnCare clinic views</span>
+                  <span className="text-ink font-medium">70+</span>
+                </li>
+                <li className="flex justify-between gap-4 meta-mono">
+                  <span>Production services</span>
+                  <span className="text-ink font-medium">8+</span>
+                </li>
+                <li className="flex justify-between gap-4 meta-mono">
+                  <span>Cloud / IaC architectures</span>
+                  <span className="text-ink font-medium">10+</span>
+                </li>
+              </ul>
+
+              <div className="mt-6 pt-5 border-t border-rule">
+                <a
+                  href={RESUME.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackResumeDownload()}
+                  className="w-full inline-flex items-center justify-between px-3.5 py-2.5 border border-rule bg-paper-elevated hover:border-ink hover:text-accent font-mono text-xs uppercase tracking-wider text-ink transition-colors"
+                >
+                  <span>Engineering Resume</span>
+                  <span className="text-[11px] text-ink-faint">PDF ↗</span>
+                </a>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
