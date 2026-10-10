@@ -9,6 +9,7 @@ import terraformedImage from "../assets/images/portfolio/terraformed-webpage.png
 import student from "../assets/images/portfolio/student-study-planner.jpeg";
 import serverlessImage from "../assets/images/portfolio/serverless-terraform-aws.webp";
 import fileServiceImage from "../assets/images/portfolio/file-server.webp";
+import koraImage from "../assets/images/portfolio/kora-music-player.png";
 import { FLAGSHIP } from '../config/constants';
 
 const PROJECTS = [
@@ -39,6 +40,20 @@ const PROJECTS = [
     flow: ['Client', 'ALB + FastAPI / ECS', 'RDS PostgreSQL', 'S3 Presigned I/O'],
     link2: "https://github.com/GeekKwame/file-service-server",
     tags: ["FastAPI", "ECS Fargate", "RDS", "S3", "Terraform", "Docker", "GitHub Actions"],
+  },
+  {
+    id: 7,
+    src: koraImage,
+    title: "KORA Music Player",
+    category: "Full-Stack",
+    featured: true,
+    problem: "Third-party music platforms deprecated 30-second audio previews, disrupting web playback — while African and diaspora genres lacked dedicated discovery interfaces paired with authentic soundscapes.",
+    architecture: "Django backend on Gunicorn with WhiteNoise compressed static delivery, PostgreSQL persistence with automatic SQLite fallback, and RapidAPI Spotify23 catalogue integration with in-memory caching. Embedded HTML5 audio engine with persistent global dock, custom event bus (window.koraPlayer), and deterministic audio hashing across 5 lossless African soundscapes. CI/CD via GitHub Actions and Render blueprint.",
+    decisions: "Deterministic character hashing maps catalogue queries to lossless genre soundscapes to guarantee continuous playback despite Spotify preview deprecation; client-side event bus decouples the global audio dock from page navigation.",
+    flow: ['Browser / Audio Dock', 'Django + WhiteNoise', 'RapidAPI Spotify', 'HTML5 Soundscape Engine'],
+    link: "https://kora-music-player.onrender.com",
+    link2: "https://github.com/GeekKwame/kora-music-player",
+    tags: ["Django", "Python", "PostgreSQL", "HTML5 Audio", "RapidAPI", "WhiteNoise", "Render", "GitHub Actions"],
   },
   {
     id: 3,
