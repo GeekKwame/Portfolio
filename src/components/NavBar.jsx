@@ -1,233 +1,201 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-scroll';
-import { PERSONAL_INFO, NAVIGATION_LINKS, RESUME } from '../config/constants';
-import { trackResumeDownload } from '../utils/analytics';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { PERSONAL_INFO, NAVIGATION_LINKS, SECTION_INDEX, RESUME, SOCIAL_LINKS } from '../config/constants';
+import { trackResumeDownload, trackSocialClick } from '../utils/analytics';
 
-function NavBar() {
-  const [nav, setNav] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-  const menuButtonRef = useRef(null);
-  const firstMenuLinkRef = useRef(null);
+const SECTION_IDS = ['work', 'experience', 'about', 'skills', 'education', 'contact'];
+
+function useActiveSection() {
+  const [active, setActive] = useState('');
 
   useEffect(() => {
-    let ticking = false;
+    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(Boolean);
+    if (!sections.length) return undefined;
 
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 16);
-          ticking = false;
+    // A section is "active" while it crosses a thin band just below the header.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
         });
-        ticking = true;
-      }
+      },
+      { rootMargin: '-20% 0px -75% 0px' }
+    );
+    sections.forEach((s) => observer.observe(s));
+
+    const onScroll = () => {
+      if (window.scrollY < window.innerHeight * 0.5) setActive('');
     };
+    window.addEventListener('scroll', onScroll, { passive: true });
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape' && nav) {
-        setNav(false);
-      }
-    };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, [nav]);
+  return active;
+}
+
+function NavBar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const active = useActiveSection();
+  const menuButtonRef = useRef(null);
+  const firstLinkRef = useRef(null);
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (nav) {
-        const menu = document.querySelector('ul[data-mobile-nav]');
-        const button = document.querySelector('button[aria-label="Toggle menu"]');
-        if (menu && button && !menu.contains(e.target) && !button.contains(e.target)) {
-          setNav(false);
-        }
-      }
-    };
-    if (nav) {
-      setTimeout(() => document.addEventListener('click', handleClickOutside), 100);
-      return () => document.removeEventListener('click', handleClickOutside);
-    }
-  }, [nav]);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
+  const close = useCallback((restoreFocus = true) => {
+    setOpen(false);
+    if (restoreFocus) requestAnimationFrame(() => menuButtonRef.current?.focus());
+  }, []);
+
+  // While the menu is open: lock scroll, make the page behind it inert, close on Escape.
   useEffect(() => {
-    if (nav) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    if (!open) return undefined;
+    const background = [...document.querySelectorAll('#main, footer, [data-menu-inert]')];
+    background.forEach((el) => el.setAttribute('inert', ''));
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => firstLinkRef.current?.focus());
+
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+    const onResize = () => { if (window.innerWidth >= 1024) close(false); };
+    window.addEventListener('keydown', onKey);
+    window.addEventListener('resize', onResize);
+
     return () => {
-      document.body.style.overflow = 'unset';
+      background.forEach((el) => el.removeAttribute('inert'));
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+      window.removeEventListener('resize', onResize);
     };
-  }, [nav]);
+  }, [open, close]);
 
-  useEffect(() => {
-    if (nav && firstMenuLinkRef.current) {
-      setTimeout(() => firstMenuLinkRef.current?.focus(), 100);
-    }
-  }, [nav]);
-
-  const links = NAVIGATION_LINKS.map((link, index) => ({
-    id: link.id,
-    link: link.to,
-    label: link.name,
-    number: `0${index + 1}`,
-  }));
+  const github = SOCIAL_LINKS.find((l) => l.platform === 'GitHub');
+  const linkedin = SOCIAL_LINKS.find((l) => l.platform === 'LinkedIn');
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-200 ${
-        scrolled
-          ? 'bg-paper/95 border-b border-rule backdrop-blur-sm'
-          : 'bg-transparent border-b border-transparent'
+      className={`fixed inset-x-0 top-0 z-50 bg-paper transition-[border-color] duration-200 border-b ${
+        scrolled || open ? 'border-rule' : 'border-transparent'
       }`}
     >
-      <div className="section-inner h-16 sm:h-[4.25rem] flex items-center justify-between gap-4">
-        <Link
-          to="home"
-          smooth
-          duration={500}
-          offset={-80}
-          aria-label={`${PERSONAL_INFO.name}, back to top`}
-          className="cursor-pointer group focus:outline-none inline-flex items-baseline gap-2.5"
-        >
-          <span className="font-display text-lg sm:text-xl text-ink tracking-tight group-hover:text-accent transition-colors">
-            {PERSONAL_INFO.name}
-          </span>
-          <span className="hidden sm:inline-block font-mono text-[11px] uppercase tracking-wider text-ink-faint border-l border-rule pl-2.5">
-            Systems & Cloud
-          </span>
-        </Link>
+      <div className="shell flex h-16 items-center justify-between gap-6">
+        <a href="#home" className="inline-flex min-h-[44px] items-center font-display text-[1.3125rem] leading-none text-ink hover:text-accent-strong transition-colors">
+          {PERSONAL_INFO.name}
+        </a>
 
-        <nav aria-label="Primary" className="hidden lg:flex items-center gap-1">
-          {links.map((linkItem) => (
-            <Link
-              key={linkItem.id}
-              to={linkItem.link}
-              smooth
-              duration={500}
-              spy={true}
-              offset={-80}
-              onSetActive={() => setActiveSection(linkItem.link)}
-              className={`relative px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer ${
-                activeSection === linkItem.link
-                  ? 'text-ink font-medium'
-                  : 'text-ink-muted hover:text-ink'
-              }`}
-              aria-current={activeSection === linkItem.link ? 'true' : undefined}
-            >
-              {linkItem.label}
-              {activeSection === linkItem.link && (
-                <span
-                  className="absolute left-3 right-3 -bottom-1 h-0.5 bg-accent"
-                  aria-hidden="true"
-                />
-              )}
-            </Link>
-          ))}
+        <nav aria-label="Primary" className="hidden lg:block">
+          <ul className="flex items-center gap-1">
+            {NAVIGATION_LINKS.map((link) => {
+              const isActive = active === link.to;
+              return (
+                <li key={link.id}>
+                  <a
+                    href={`#${link.to}`}
+                    aria-current={isActive ? 'location' : undefined}
+                    className={`relative inline-flex items-center min-h-[44px] px-3 text-[0.9375rem] transition-colors ${
+                      isActive ? 'text-ink' : 'text-ink-muted hover:text-ink'
+                    }`}
+                  >
+                    {link.name}
+                    <span
+                      aria-hidden="true"
+                      className={`absolute inset-x-3 bottom-2 h-px bg-accent origin-left transition-transform duration-200 ${
+                        isActive ? 'scale-x-100' : 'scale-x-0'
+                      }`}
+                    />
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <a
             href={RESUME.path}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackResumeDownload()}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase tracking-wider text-ink border border-rule bg-paper-elevated hover:border-ink hover:text-accent transition-all duration-150 min-h-[34px]"
+            className="hidden sm:inline-flex btn-secondary !min-h-[40px] !px-4 !text-sm"
+            aria-label="Resume, PDF (opens in a new tab)"
           >
-            <span>Resume</span>
-            <span className="text-[10px] text-ink-faint" aria-hidden="true">↗</span>
+            Resume <span aria-hidden="true">↗</span>
           </a>
 
           <button
             ref={menuButtonRef}
-            className="lg:hidden text-ink px-2.5 py-1.5 border border-rule bg-paper-elevated hover:border-ink focus:outline-none min-h-[38px] flex items-center gap-2"
-            onClick={() => {
-              const wasOpen = nav;
-              setNav(!nav);
-              if (wasOpen && menuButtonRef.current) {
-                setTimeout(() => menuButtonRef.current?.focus(), 100);
-              }
-            }}
-            aria-label={nav ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={nav}
-            aria-controls="mobile-nav"
+            type="button"
+            onClick={() => (open ? close() : setOpen(true))}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            className="lg:hidden inline-flex items-center gap-2.5 min-h-[44px] px-3 -mr-3 text-[0.9375rem] text-ink"
           >
-            <span className="font-mono text-[11px] uppercase tracking-wider text-ink">
-              {nav ? 'Close' : 'Menu'}
+            {open ? 'Close' : 'Menu'}
+            <span aria-hidden="true" className="relative block h-2.5 w-4">
+              <span className={`absolute left-0 top-0 h-px w-4 bg-ink transition-transform duration-200 ${open ? 'translate-y-[5px] rotate-45' : ''}`} />
+              <span className={`absolute left-0 bottom-0 h-px w-4 bg-ink transition-transform duration-200 ${open ? '-translate-y-[4px] -rotate-45' : ''}`} />
             </span>
-            <div className="w-3.5 h-2.5 flex flex-col justify-between py-[1px]" aria-hidden="true">
-              <span
-                className={`block h-[1.5px] w-full bg-ink transition-all duration-200 origin-center ${
-                  nav ? 'rotate-45 translate-y-[3.5px]' : ''
-                }`}
-              />
-              <span
-                className={`block h-[1.5px] w-full bg-ink transition-all duration-200 origin-center ${
-                  nav ? '-rotate-45 -translate-y-[3.5px]' : ''
-                }`}
-              />
-            </div>
           </button>
         </div>
       </div>
 
-      {nav && (
-        <>
-          <div
-            className="fixed inset-0 bg-ink/30 z-40 top-16 sm:top-[4.25rem]"
-            onClick={() => setNav(false)}
-            aria-hidden="true"
-          />
-          <ul
-            id="mobile-nav"
-            data-mobile-nav
-            className="flex flex-col fixed top-16 sm:top-[4.25rem] left-0 w-full bg-paper-elevated border-b border-rule z-40 px-5 py-5 space-y-1 shadow-lg"
-          >
-            {links.map((linkItem) => (
-              <li key={linkItem.id}>
-                <Link
-                  ref={linkItem.id === 1 ? firstMenuLinkRef : undefined}
-                  onClick={() => {
-                    setNav(false);
-                    setTimeout(() => menuButtonRef.current?.focus(), 600);
-                  }}
-                  to={linkItem.link}
-                  smooth
-                  duration={500}
-                  offset={-80}
-                  className={`flex items-center justify-between py-3 px-3 font-mono text-xs uppercase tracking-wider ${
-                    activeSection === linkItem.link
-                      ? 'text-accent font-medium border-l-2 border-accent pl-[10px]'
-                      : 'text-ink-muted hover:text-ink'
-                  }`}
-                >
-                  <span>{linkItem.number} — {linkItem.label}</span>
-                </Link>
+      {open && (
+        <div id="mobile-menu" className="lg:hidden fixed inset-x-0 top-16 bottom-0 overflow-y-auto bg-paper border-t border-rule">
+          <nav aria-label="Site menu" className="shell py-6">
+            <ol>
+              {NAVIGATION_LINKS.map((link, i) => (
+                <li key={link.id} className="border-b border-rule">
+                  <a
+                    ref={i === 0 ? firstLinkRef : undefined}
+                    href={`#${link.to}`}
+                    onClick={() => close(false)}
+                    aria-current={active === link.to ? 'location' : undefined}
+                    className="flex items-baseline gap-4 py-4"
+                  >
+                    <span className="font-mono text-meta text-accent-strong">{SECTION_INDEX.find((s) => s.to === link.to)?.number}</span>
+                    <span className={`font-display text-[1.75rem] leading-tight ${active === link.to ? 'text-accent-strong' : 'text-ink'}`}>
+                      {link.name}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+
+            <ul className="mt-8 space-y-1 text-[0.9375rem]">
+              <li>
+                <a href={RESUME.path} target="_blank" rel="noopener noreferrer"
+                  onClick={() => { trackResumeDownload(); close(false); }}
+                  className="flex min-h-[44px] items-center justify-between text-ink">
+                  Resume (PDF) <span aria-hidden="true" className="text-ink-muted">↗</span>
+                </a>
               </li>
-            ))}
-            <li className="pt-4 border-t border-rule mt-2">
-              <a
-                href={RESUME.path}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  setNav(false);
-                  trackResumeDownload();
-                }}
-                className="flex items-center justify-between py-2.5 px-3 border border-rule bg-paper text-ink font-mono text-xs uppercase tracking-wider hover:border-ink hover:text-accent transition-colors"
-              >
-                <span>Download Resume (PDF)</span>
-                <span className="text-ink-faint">↗</span>
-              </a>
-            </li>
-          </ul>
-        </>
+              <li>
+                <a href={github.url} target="_blank" rel="noopener noreferrer" onClick={() => trackSocialClick('github_menu')}
+                  className="flex min-h-[44px] items-center justify-between text-ink">
+                  GitHub <span aria-hidden="true" className="text-ink-muted">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href={linkedin.url} target="_blank" rel="noopener noreferrer" onClick={() => trackSocialClick('linkedin_menu')}
+                  className="flex min-h-[44px] items-center justify-between text-ink">
+                  LinkedIn <span aria-hidden="true" className="text-ink-muted">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${PERSONAL_INFO.email}`} className="flex min-h-[44px] items-center text-ink-muted break-all">
+                  {PERSONAL_INFO.email}
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       )}
     </header>
   );

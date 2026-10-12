@@ -1,165 +1,120 @@
 import { memo } from 'react';
-import { Link } from 'react-scroll';
-import { FaGithub } from 'react-icons/fa';
-import profilePic from '../assets/images/profile/profile-pic.jpeg';
+import profilePic from '../assets/images/profile/profile-pic.webp';
 import { PERSONAL_INFO, SOCIAL_LINKS, RESUME } from '../config/constants';
+import { FEATURED_PROJECTS, PROJECTS, projectAnchor } from '../data/projects';
 import { trackSocialClick, trackResumeDownload } from '../utils/analytics';
 
-const CORE_STACK = [
-  { label: 'Languages', value: 'Python · JavaScript' },
-  { label: 'Backend', value: 'FastAPI · Django' },
-  { label: 'Cloud', value: 'AWS · Terraform · Docker' },
-  { label: 'Data', value: 'PostgreSQL · DynamoDB' },
-  { label: 'Delivery', value: 'GitHub Actions · Linux' },
-];
+const github = SOCIAL_LINKS.find((l) => l.platform === 'GitHub');
+const linkedin = SOCIAL_LINKS.find((l) => l.platform === 'LinkedIn');
+
+function Availability() {
+  return (
+    <span className="inline-flex items-center gap-2 text-signal">
+      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-signal" />
+      Open to new roles
+    </span>
+  );
+}
 
 const Home = memo(function Home() {
-  const githubLink = SOCIAL_LINKS.find((l) => l.platform === 'GitHub');
-
   return (
-    <section
-      name="home"
-      className="relative w-full min-h-[88svh] lg:min-h-screen flex items-center pt-24 pb-16 lg:pt-28 lg:pb-20"
-    >
-      <div className="section-inner w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Brand column */}
-          <div className="lg:col-span-7 flex flex-col">
-            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted mb-5">
-              <span className="text-accent font-medium">00 — Systems & Cloud Engineering</span>
-              <span className="text-rule-strong" aria-hidden="true">/</span>
-              <span>Accra, Ghana (GMT)</span>
-            </div>
-
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.75rem] text-ink tracking-tight leading-[1.08] mb-5">
-              {PERSONAL_INFO.name}
-            </h1>
-
-            <div className="border-l-2 border-accent pl-4 sm:pl-5 my-5 max-w-xl">
-              <p className="font-display text-xl sm:text-2xl text-ink leading-snug tracking-tight">
-                {PERSONAL_INFO.intro}
+    <section id="home" aria-label="Introduction" className="pt-28 sm:pt-32 lg:pt-40">
+      <div className="shell">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-end">
+          <div className="lg:col-span-8">
+            <div className="flex items-center gap-4">
+              <img
+                src={profilePic}
+                alt=""
+                width="48"
+                height="48"
+                className="lg:hidden h-12 w-12 object-cover border border-rule-strong"
+                style={{ objectPosition: 'center 22%' }}
+              />
+              <p className="text-[0.9375rem] leading-snug text-ink-muted">
+                {PERSONAL_INFO.title} · {PERSONAL_INFO.location}
+                <span className="block lg:hidden text-meta mt-0.5"><Availability /></span>
               </p>
             </div>
 
-            <p className="font-sans text-[15px] sm:text-base text-ink-muted leading-relaxed max-w-prose mb-8">
-              Currently software engineer at <span className="text-ink font-medium">Afarinick Company Limited</span>, building backend services and system architecture. Focused on correctness, zero-secret OIDC deployments, and infrastructure that stays maintainable in production.
+            <h1 className="mt-6 sm:mt-8 text-ink text-[clamp(2.75rem,1.5rem+5.4vw,6rem)] leading-[0.98] tracking-[-0.03em]">
+              {PERSONAL_INFO.name}
+            </h1>
+
+            <p className="mt-7 sm:mt-9 max-w-[34ch] font-display text-ink text-[clamp(1.375rem,1.1rem+1vw,1.875rem)] leading-[1.32] tracking-[-0.01em]">
+              {PERSONAL_INFO.intro}
             </p>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <Link
-                to="portfolio"
-                smooth
-                duration={500}
-                offset={-80}
-                className="group inline-flex items-center gap-3 px-5 py-3 bg-ink text-paper hover:bg-accent hover:text-paper transition-all duration-150 cursor-pointer min-h-[44px]"
-              >
-                <span className="font-mono text-xs uppercase tracking-wider">Explore selected systems</span>
-                <span className="text-paper/70 group-hover:text-paper group-hover:translate-x-0.5 transition-transform duration-150" aria-hidden="true">
-                  →
-                </span>
-              </Link>
+            <p className="mt-6 max-w-prose text-ink-muted">
+              Software Engineer at Afarinick Company Limited, working on backend services and application
+              architecture. Previously cloud and DevOps engineering at One Health Global Technologies, and
+              engineering team lead at AmaliTech.
+            </p>
 
-              {githubLink && (
-                <a
-                  href={githubLink.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackSocialClick('github_hero')}
-                  className="inline-flex items-center gap-2 px-4 py-3 border border-rule bg-paper-elevated text-ink hover:border-ink hover:text-accent font-mono text-xs uppercase tracking-wider transition-colors min-h-[44px]"
-                >
-                  <FaGithub size={13} className="text-ink-muted" />
-                  <span>GitHub</span>
-                  <span className="text-[10px] text-ink-faint" aria-hidden="true">↗</span>
-                </a>
-              )}
-
-              <Link
-                to="experience"
-                smooth
-                duration={500}
-                offset={-80}
-                className="inline-flex items-center gap-1.5 font-mono text-xs text-ink-muted hover:text-ink uppercase tracking-wider cursor-pointer ml-1 py-2"
-              >
-                <span>Record</span>
-                <span className="text-ink-faint" aria-hidden="true">↓</span>
-              </Link>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a href="#work" className="btn-primary">
+                See selected work <span aria-hidden="true">↓</span>
+              </a>
+              <a href="#contact" className="btn-secondary">Get in touch</a>
             </div>
+
+            <p className="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem]">
+              <a href={RESUME.path} target="_blank" rel="noopener noreferrer" onClick={() => trackResumeDownload()} className="link"
+                aria-label="Resume, PDF (opens in a new tab)">
+                Resume (PDF) <span aria-hidden="true">↗</span>
+              </a>
+              <a href={github.url} target="_blank" rel="noopener noreferrer" onClick={() => trackSocialClick('github_hero')} className="link"
+                aria-label="GitHub profile (opens in a new tab)">
+                GitHub <span aria-hidden="true">↗</span>
+              </a>
+              <a href={linkedin.url} target="_blank" rel="noopener noreferrer" onClick={() => trackSocialClick('linkedin_hero')} className="link"
+                aria-label="LinkedIn profile (opens in a new tab)">
+                LinkedIn <span aria-hidden="true">↗</span>
+              </a>
+            </p>
           </div>
 
-          {/* Meta rail */}
-          <aside className="lg:col-span-5 lg:pt-2">
-            <div className="border-t border-rule lg:border-t-0 lg:border-l lg:pl-10 pt-8 lg:pt-0">
-              <div className="flex items-center justify-between pb-3 mb-6 border-b border-rule">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-ink-faint">
-                  ENGINEERING DOSSIER {'//'} EB-01
-                </span>
-                <span className="font-mono text-[10px] text-ink-faint">ACCRA / GMT</span>
-              </div>
-
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 overflow-hidden border border-rule shrink-0 bg-surface-muted">
-                  <img
-                    src={profilePic}
-                    alt={`${PERSONAL_INFO.name} — ${PERSONAL_INFO.title}`}
-                    className="w-full h-full object-cover"
-                    loading="eager"
-                    decoding="async"
-                    style={{ objectPosition: 'center 25%' }}
-                  />
-                </div>
-                <div className="pt-0.5">
-                  <p className="font-sans text-sm font-semibold text-ink">
-                    {PERSONAL_INFO.title}
-                  </p>
-                  <p className="meta-mono mt-1">
-                    {PERSONAL_INFO.location} · Remote worldwide
-                  </p>
-                  <div className="mt-2.5 inline-flex items-center gap-2 px-2 py-0.5 border border-signal/30 bg-signal-soft/40">
-                    <span className="w-1.5 h-1.5 rounded-full bg-signal shrink-0" aria-hidden="true" />
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-signal font-medium">Open to opportunities</span>
-                  </div>
-                </div>
-              </div>
-
-              <dl className="space-y-3 border-t border-rule pt-5">
-                {CORE_STACK.map((row) => (
-                  <div key={row.label} className="flex justify-between gap-4 items-baseline">
-                    <dt className="meta-mono shrink-0">{row.label}</dt>
-                    <dd className="font-mono text-xs text-ink text-right">{row.value}</dd>
-                  </div>
-                ))}
-              </dl>
-
-              <ul className="mt-6 pt-5 border-t border-rule space-y-2">
-                <li className="flex justify-between gap-4 meta-mono">
-                  <span>YɛnCare clinic views</span>
-                  <span className="text-ink font-medium">70+</span>
-                </li>
-                <li className="flex justify-between gap-4 meta-mono">
-                  <span>Production services</span>
-                  <span className="text-ink font-medium">8+</span>
-                </li>
-                <li className="flex justify-between gap-4 meta-mono">
-                  <span>Cloud / IaC architectures</span>
-                  <span className="text-ink font-medium">10+</span>
-                </li>
-              </ul>
-
-              <div className="mt-6 pt-5 border-t border-rule">
-                <a
-                  href={RESUME.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackResumeDownload()}
-                  className="w-full inline-flex items-center justify-between px-3.5 py-2.5 border border-rule bg-paper-elevated hover:border-ink hover:text-accent font-mono text-xs uppercase tracking-wider text-ink transition-colors"
-                >
-                  <span>Engineering Resume</span>
-                  <span className="text-[11px] text-ink-faint">PDF ↗</span>
-                </a>
-              </div>
-            </div>
-          </aside>
+          <figure className="hidden lg:block lg:col-span-4 m-0">
+            <img
+              src={profilePic}
+              alt={`Portrait of ${PERSONAL_INFO.name}`}
+              width="800"
+              height="800"
+              className="block w-full aspect-[4/5] object-cover border border-rule-strong bg-paper-sunk"
+              style={{ objectPosition: 'center 22%' }}
+            />
+            <figcaption className="mt-3 flex items-center justify-between gap-4 font-mono text-meta text-ink-muted">
+              <span>{PERSONAL_INFO.location} · {PERSONAL_INFO.timezone}</span>
+              <Availability />
+            </figcaption>
+          </figure>
         </div>
+
+        <nav aria-label="Selected work" className="mt-20 sm:mt-24 lg:mt-28">
+          <div className="flex items-baseline justify-between gap-4 border-b border-ink pb-3">
+            <p className="label">Selected work</p>
+            <a href="#work" className="label inline-flex min-h-[32px] items-center hover:text-ink transition-colors">
+              All {PROJECTS.length} projects <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+          <ol className="grid sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-4">
+            {FEATURED_PROJECTS.map((project, i) => (
+              <li key={project.slug} className="border-b border-rule">
+                <a
+                  href={`#${projectAnchor(project.slug)}`}
+                  className="group flex h-full flex-col py-6"
+                >
+                  <span className="font-mono text-meta text-accent-strong">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="mt-2 font-display text-[1.375rem] leading-tight text-ink group-hover:text-accent-strong transition-colors">
+                    {project.shortTitle}
+                  </span>
+                  <span className="mt-2 text-sm leading-snug text-ink-muted">{project.summary}</span>
+                  <span className="stack mt-auto pt-4">{project.stack.slice(0, 3).join(' · ')}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
       </div>
     </section>
   );

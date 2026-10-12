@@ -1,8 +1,9 @@
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
-import About from './components/About';
 import Portfolio from './components/Portfolio';
 import Experience from './components/Experience';
+import About from './components/About';
+import Skills from './components/Skills';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from "./components/Footer";
@@ -17,22 +18,21 @@ function App() {
   return (
     <ErrorBoundary>
       <ToastProvider>
-        <div className="App bg-paper min-h-screen text-ink selection:bg-accent/20 selection:text-ink">
-          <StructuredData />
-          <SkipToContent />
-          <ScrollProgress />
-          <NavBar />
-          <main id="main">
-            <Home />
-            <About />
-            <Portfolio />
-            <Experience />
-            <Education />
-            <Contact />
-          </main>
-          <Footer />
-          <ScrollToTop />
-        </div>
+        <StructuredData />
+        <SkipToContent />
+        <ScrollProgress />
+        <NavBar />
+        <main id="main" tabIndex={-1} className="outline-none">
+          <Home />
+          <Portfolio />
+          <Experience />
+          <About />
+          <Skills />
+          <Education />
+          <Contact />
+        </main>
+        <Footer />
+        <ScrollToTop />
       </ToastProvider>
     </ErrorBoundary>
   );

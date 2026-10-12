@@ -38,21 +38,20 @@ const Toast = ({ id, message, type = 'success', duration = 4000, onClose }) => {
       className={`
         flex items-center gap-3 px-4 py-3 border
         shadow-lg w-full max-w-[calc(100vw-2rem)] sm:min-w-[280px] sm:max-w-[400px] sm:w-auto transition-all duration-300
-        bg-paper-elevated text-ink
+        bg-paper-raised text-ink
         ${borderStyles[type] || 'border-rule'}
         ${isVisible && !isExiting ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}
       `}
-      role="alert"
-      aria-live="polite"
     >
-      <div className="text-lg">{icons[type]}</div>
+      <div className="text-lg" aria-hidden="true">{icons[type]}</div>
       <p className="flex-1 font-sans text-sm text-ink font-medium">{message}</p>
       <button
+        type="button"
         onClick={handleClose}
-        className="text-ink-muted hover:text-ink p-1 transition-colors"
+        className="inline-flex h-8 w-8 items-center justify-center text-ink-muted hover:text-ink transition-colors"
         aria-label="Close notification"
       >
-        <FaTimes size={12} />
+        <FaTimes size={12} aria-hidden="true" />
       </button>
     </div>
   );

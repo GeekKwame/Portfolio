@@ -1,161 +1,93 @@
 import { memo } from 'react';
-import { Link } from 'react-scroll';
+import Section from './Section';
 import { PERSONAL_INFO } from '../config/constants';
 
 const PRINCIPLES = [
   {
-    title: 'Immutable infrastructure',
-    body: 'Production resources declared in Terraform or AWS SAM — no manual drift in the environments that matter.',
+    title: 'Infrastructure is declared, not clicked',
+    body: 'Production resources live in Terraform or AWS SAM, so every environment can be reviewed, reproduced, and rolled back — no manual drift.',
   },
   {
-    title: 'Zero-secret CI/CD',
-    body: 'Deployments authenticate to AWS with short-lived STS tokens via OpenID Connect, not long-lived access keys.',
+    title: 'No long-lived secrets in CI/CD',
+    body: 'Deployments authenticate to AWS with short-lived STS tokens through OpenID Connect instead of stored access keys.',
   },
   {
-    title: 'Tenant isolation by default',
-    body: 'Queries scoped by tenant identity; sensitive comparisons done in constant time where it counts.',
+    title: 'Isolation by default',
+    body: 'Every query is scoped to its tenant, and sensitive comparisons run in constant time where it matters.',
   },
   {
-    title: 'Tests in the pipeline',
-    body: 'Unit, integration, lint, and coverage gates run on every change before anything reaches production.',
+    title: 'Tests gate the pipeline',
+    body: 'Unit tests, integration tests, linting, and coverage run on every change before anything reaches production.',
   },
 ];
 
-const CAPABILITY_GROUPS = [
-  {
-    category: 'Cloud Infrastructure',
-    items: ['AWS ECS Fargate', 'Lambda', 'API Gateway', 'S3 + CloudFront OAC', 'VPC & ALB', 'AWS WAF', 'Terraform', 'AWS SAM'],
-  },
-  {
-    category: 'Backend Engineering',
-    items: ['Python', 'FastAPI', 'Django / DRF', 'Pydantic', 'SQLAlchemy 2.0', 'Boto3', 'REST API design', 'Auth & rate limiting'],
-  },
-  {
-    category: 'DevOps & CI/CD',
-    items: ['Docker', 'GitHub Actions', 'IAM & OIDC', 'CloudWatch', 'Multi-stage builds', 'Pytest', 'Ruff'],
-  },
-  {
-    category: 'Databases',
-    items: ['PostgreSQL', 'DynamoDB', 'Redis', 'Schema design', 'Indexing', 'Prisma ORM'],
-  },
-  {
-    category: 'Systems & Linux',
-    items: ['Ubuntu / Linux', 'Bash', 'systemd', 'SSH', 'Networking basics', 'Active Directory'],
-  },
-  {
-    category: 'Developer Tooling',
-    items: ['Git', 'React', 'Vite', 'Tailwind CSS', 'Jest', 'ESLint'],
-  },
+const GLANCE = [
+  ['Based in', `${PERSONAL_INFO.location} (${PERSONAL_INFO.timezone})`],
+  ['Currently', 'Software Engineer, Afarinick Company Limited'],
+  ['Degree', 'BSc Applied Mathematics, KNUST'],
+  ['Training', 'Azubi Africa — Cloud Computing & AI program (AWS)'],
+  ['Open to', 'Full-time roles and freelance infrastructure work'],
+  ['Full name', PERSONAL_INFO.fullName],
 ];
 
 const About = memo(function About() {
   return (
-    <section name="about" className="section rule bg-paper-elevated">
-      <div className="section-inner">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-20 lg:mb-28">
-          <div className="lg:col-span-4">
-            <p className="section-label mb-3">01 — About</p>
-            <h2 className="section-title mb-4">Engineering identity</h2>
-            <p className="section-lede">
-              Applied mathematics, campus IT operations, then production software and cloud infrastructure.
-            </p>
-          </div>
-
-          <div className="lg:col-span-8 space-y-5 font-sans text-base sm:text-lg text-ink-muted leading-relaxed">
-            <p>
-              I am <span className="text-ink font-medium">{PERSONAL_INFO.fullName}</span>.
-              I build reliable software services and the cloud infrastructure that keeps them secure, scalable, and automated.
-            </p>
-            <p>
-              A BSc in Applied Mathematics from{' '}
-              <span className="text-ink">Kwame Nkrumah University of Science and Technology (KNUST)</span>{' '}
-              shaped how I think about systems — correctness, structured data flow, and measurable reliability.
-              Years in campus IT support and retail POS operations taught me what breaks in the real world before I ever wrote a Terraform module.
-            </p>
-            <p>
-              Today that path shows up as FastAPI and Django services, declarative AWS environments, and deployment pipelines
-              that prefer short-lived credentials over hope. Infrastructure is not an afterthought; it is part of the product.
-            </p>
-
-            <div className="pt-4 border-t border-rule mt-8">
-              <p className="meta-mono mb-2">Current focus</p>
-              <p className="font-sans text-base text-ink">
-                Software Engineer at Afarinick Company Limited — backend services, application architecture, and production features.
-              </p>
-              <Link
-                to="experience"
-                smooth
-                duration={500}
-                offset={-80}
-                className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-ink hover:text-accent transition-colors cursor-pointer mt-3"
-              >
-                <span>View career timeline</span>
-                <span className="text-ink-faint">→</span>
-              </Link>
-            </div>
-          </div>
+    <Section
+      id="about"
+      number="03"
+      label="About"
+      title="From campus IT support to production cloud systems"
+    >
+      <div className="grid gap-12 xl:grid-cols-[minmax(0,1fr)_17rem] xl:gap-16">
+        <div className="space-y-5 max-w-prose text-[1.0625rem] leading-[1.7] text-ink-soft">
+          <p>
+            I studied Applied Mathematics at Kwame Nkrumah University of Science and Technology, and the habit
+            stuck: I like systems I can reason about — clear data flow, explicit failure modes, and reliability
+            I can measure.
+          </p>
+          <p>
+            My first technical work was hands-on. I configured POS systems for retail and hospitality clients at
+            Lerato Consult, then provided Tier-1 and Tier-2 support for more than 200 staff and students at KNUST,
+            where I also wrote over 40 standard operating procedures. That is where I learned what actually breaks
+            in production, and how much good documentation is worth.
+          </p>
+          <p>
+            Alongside that I moved into backend engineering, building Django REST APIs at M365Connect, and then
+            into the cloud: the Azubi Africa AWS program, Terraform and ECS Fargate at One Health Global
+            Technologies, and leading an intern engineering team at AmaliTech.
+          </p>
+          <p>
+            Today I am a Software Engineer at Afarinick Company Limited. The thread through all of it is that
+            infrastructure is part of the product, not something bolted on after it.
+          </p>
         </div>
 
-        {/* Principles */}
-        <div className="mb-20 lg:mb-28">
-          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3 mb-8">
-            <p className="section-label">Engineering convictions</p>
-            <p className="font-mono text-xs text-ink-muted">Principles verified across production deployments</p>
-          </div>
-          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10">
-            {PRINCIPLES.map((item, index) => (
-              <div key={item.title} className="border-t border-rule pt-5">
-                <span className="font-mono text-[11px] text-accent font-medium mb-2 block tracking-wider">
-                  0{index + 1} / PRACTICE
-                </span>
-                <dt className="font-display text-xl sm:text-2xl text-ink mb-2 tracking-tight">
-                  {item.title}
-                </dt>
-                <dd className="font-sans text-sm text-ink-muted leading-relaxed max-w-prose">
-                  {item.body}
-                </dd>
+        <aside aria-labelledby="glance-title" className="xl:border-l xl:border-rule xl:pl-8">
+          <h3 id="glance-title" className="label">At a glance</h3>
+          <dl className="mt-4 divide-y divide-rule border-y border-rule xl:border-t-0">
+            {GLANCE.map(([term, value]) => (
+              <div key={term} className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-4 py-3 xl:block xl:first:pt-0">
+                <dt className="text-sm text-ink-muted">{term}</dt>
+                <dd className="text-[0.9375rem] text-ink xl:mt-0.5">{value}</dd>
               </div>
             ))}
           </dl>
-        </div>
-
-        {/* Skills */}
-        <div id="skills" name="skills" className="scroll-mt-24">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
-            <div>
-              <p className="section-label mb-3">02 — Capabilities</p>
-              <h3 className="section-title">Tools grouped by how I use them</h3>
-            </div>
-            <p className="section-lede sm:text-right sm:max-w-xs">
-              Competence over keyword walls — technologies from active production work.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
-            {CAPABILITY_GROUPS.map((group, groupIdx) => (
-              <div key={group.category} className="border-t border-rule pt-4">
-                <div className="flex items-center justify-between mb-3">
-                  <h4 className="font-sans text-sm font-semibold text-ink">
-                    {group.category}
-                  </h4>
-                  <span className="font-mono text-[10px] text-ink-faint">
-                    GRP-0{groupIdx + 1}
-                  </span>
-                </div>
-                <ul className="space-y-1.5">
-                  {group.items.map((item) => (
-                    <li key={item} className="font-mono text-xs text-ink-muted flex items-baseline gap-2">
-                      <span className="text-accent text-[9px]" aria-hidden="true">▪</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
+        </aside>
       </div>
-    </section>
+
+      <div className="mt-20 sm:mt-24">
+        <h3 className="text-2xl text-ink border-b border-ink pb-4">How I work</h3>
+        <ol className="grid sm:grid-cols-2 sm:gap-x-10">
+          {PRINCIPLES.map((item, i) => (
+            <li key={item.title} className="border-b border-rule py-6">
+              <p className="font-mono text-meta text-accent-strong">{String(i + 1).padStart(2, '0')}</p>
+              <h4 className="mt-2 text-[1.375rem] text-ink">{item.title}</h4>
+              <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted max-w-prose">{item.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </Section>
   );
 });
 

@@ -1,4 +1,4 @@
-import { PERSONAL_INFO, HEADLINE } from '../config/constants';
+import { PERSONAL_INFO, HEADLINE, SITE_URL, SOCIAL_LINKS } from '../config/constants';
 
 function StructuredData() {
   const structuredData = {
@@ -9,13 +9,10 @@ function StructuredData() {
     "jobTitle": PERSONAL_INFO.title,
     "description": PERSONAL_INFO.bio,
     "disambiguatingDescription": HEADLINE,
-    "url": "https://github.com/GeekKwame",
-    "sameAs": [
-      "https://www.linkedin.com/in/edmund-blessing/",
-      "https://github.com/GeekKwame",
-      "https://devedmund.vercel.app/"
-    ],
-    "email": "dogbeblessingkwame@gmail.com",
+    "url": SITE_URL,
+    "image": `${SITE_URL}og-image.png`,
+    "sameAs": SOCIAL_LINKS.filter((link) => link.platform !== 'Email').map((link) => link.url),
+    "email": `mailto:${PERSONAL_INFO.email}`,
     "alumniOf": [
       {
         "@type": "EducationalOrganization",

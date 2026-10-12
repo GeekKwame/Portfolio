@@ -1,56 +1,60 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        display: ['Newsreader', 'Georgia', 'serif'],
+        display: ['"Newsreader Variable"', 'Georgia', 'serif'],
         sans: ['"IBM Plex Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       colors: {
         paper: {
           DEFAULT: '#F2F0EB',
-          elevated: '#FAF9F6',
+          raised: '#FAF9F6',
+          sunk: '#E9E6DF',
         },
         ink: {
           DEFAULT: '#12141A',
-          muted: '#5C6170',
+          soft: '#2E313A',
+          muted: '#575C69',
+          // Decorative glyphs only — fails AA as text on paper.
           faint: '#8A8F9C',
         },
         rule: {
-          DEFAULT: '#D4D0C8',
-          strong: '#B8B3A8',
-        },
-        surface: {
-          DEFAULT: '#FAF9F6',
-          muted: '#EBE8E1',
-          card: '#FFFFFF',
+          DEFAULT: '#D6D2C9',
+          strong: '#B9B4A9',
+          dark: '#2E313A',
         },
         accent: {
-          DEFAULT: '#C45C26',
-          ink: '#8B3A12',
-          soft: 'rgba(196, 92, 38, 0.12)',
+          DEFAULT: '#A8481A',
+          strong: '#8B3A12',
+          soft: 'rgba(168, 72, 26, 0.10)',
+          // For text and focus rings on ink backgrounds.
+          light: '#E58A57',
         },
         signal: {
           DEFAULT: '#1F6B4A',
-          soft: 'rgba(31, 107, 74, 0.12)',
         },
       },
       maxWidth: {
-        content: '72rem',
+        content: '76rem',
         prose: '40rem',
       },
-      animation: {
-        'slide-in': 'slideIn 0.3s ease-out',
+      fontSize: {
+        meta: ['0.8125rem', { lineHeight: '1.4' }],
       },
       keyframes: {
         slideIn: {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(0)' },
         },
+      },
+      animation: {
+        'slide-in': 'slideIn 0.3s ease-out',
       },
     },
   },
