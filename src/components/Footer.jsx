@@ -36,10 +36,7 @@ const Footer = memo(function Footer() {
             </nav>
 
             <p className="mt-4 text-sm leading-relaxed">
-              Built with React, Vite, and Tailwind CSS. Design inspired by{' '}
-              <a href="https://binay-shaw.onrender.com/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-paper-raised transition-colors">
-                Binay Shaw
-              </a>.
+              Designed and built by {PERSONAL_INFO.name} with React, Vite, and Tailwind CSS.
             </p>
           </div>
         </div>
