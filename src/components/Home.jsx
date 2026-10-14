@@ -4,6 +4,7 @@ import { PERSONAL_INFO, RESUME } from '../config/constants';
 import { FEATURED_PROJECTS, PROJECTS, projectAnchor } from '../data/projects';
 import { trackResumeDownload } from '../utils/analytics';
 import SocialIcons from './SocialIcons';
+import ScribblePortrait from './ScribblePortrait';
 
 function Availability() {
   return (
@@ -26,7 +27,7 @@ const Home = memo(function Home() {
                 alt=""
                 width="48"
                 height="48"
-                className="lg:hidden h-12 w-12 object-cover border border-rule-strong"
+                className="lg:hidden h-12 w-12 rounded-full object-cover border border-rule-strong"
                 style={{ objectPosition: 'center 22%' }}
               />
               <p className="text-[0.9375rem] leading-snug text-ink-muted">
@@ -67,18 +68,9 @@ const Home = memo(function Home() {
             </div>
           </div>
 
-          <figure className="hidden lg:block lg:col-span-4 m-0">
-            <div className="overflow-hidden rounded-3xl">
-              <img
-                src={profilePic}
-                alt={`Portrait of ${PERSONAL_INFO.name}`}
-                width="800"
-                height="800"
-                className="grayscale-hover block w-full aspect-[4/5] object-cover bg-paper-sunk"
-                style={{ objectPosition: 'center 22%' }}
-              />
-            </div>
-            <figcaption className="mt-3 flex items-center justify-between gap-4 font-mono text-meta text-ink-muted">
+          <figure className="mx-auto mt-14 max-w-[20rem] lg:mt-0 lg:max-w-none lg:col-span-4">
+            <ScribblePortrait src={profilePic} alt={`Portrait of ${PERSONAL_INFO.name}`} />
+            <figcaption className="mt-3 hidden lg:flex items-center justify-between gap-4 font-mono text-meta text-ink-muted">
               <span>{PERSONAL_INFO.location} · {PERSONAL_INFO.timezone}</span>
               <Availability />
             </figcaption>

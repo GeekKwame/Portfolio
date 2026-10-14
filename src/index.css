@@ -193,6 +193,16 @@
     transform: rotate(3deg) scale(1.03);
   }
 
+  /* Cycles one of three ring frames into view every 130ms */
+  .scribble-frame {
+    animation: scribble-boil 390ms steps(1, end) infinite;
+  }
+
+  @keyframes scribble-boil {
+    0% { opacity: 1; }
+    33.333%, 100% { opacity: 0; }
+  }
+
   [data-reveal] {
     opacity: 0;
     transform: translateY(2rem);
