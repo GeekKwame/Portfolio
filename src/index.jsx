@@ -1,24 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '@fontsource-variable/newsreader/opsz.css';
-import '@fontsource/ibm-plex-sans/400.css';
-import '@fontsource/ibm-plex-sans/500.css';
-import '@fontsource/ibm-plex-sans/600.css';
-import '@fontsource/ibm-plex-mono/400.css';
-import '@fontsource/ibm-plex-mono/500.css';
+import '@fontsource-variable/inter/wght.css';
+import '@fontsource/cal-sans/400.css';
+import '@fontsource-variable/syne/wght.css';
+import '@fontsource-variable/darker-grotesque/wght.css';
 import './index.css';
 import App from './App';
 import { initAnalytics, trackPageView } from './utils/analytics';
-
-// Ensure light mode and clear legacy theme preference
-if (typeof window !== 'undefined') {
-  document.documentElement.classList.remove('dark');
-  try {
-    localStorage.removeItem('portfolio-theme');
-  } catch {
-    /* ignore */
-  }
-}
 
 // Initialize analytics
 initAnalytics();

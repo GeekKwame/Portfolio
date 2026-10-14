@@ -75,8 +75,7 @@ function Figure({ image, number, compact = false, eager = false }) {
               type="button"
               onClick={close}
               autoFocus
-              className="inline-flex items-center gap-2 min-h-[40px] px-3 border border-paper/30 hover:border-paper text-sm"
-              style={{ outlineColor: '#E58A57' }}
+              className="inline-flex items-center gap-2 min-h-[40px] px-3 border border-paper/30 hover:border-paper text-sm focus-visible:outline-paper-raised"
             >
               <FaTimes size={12} aria-hidden="true" /> Close
             </button>

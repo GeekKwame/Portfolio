@@ -37,7 +37,7 @@ function ScrollProgress() {
   return (
     <div className="fixed top-0 left-0 w-full h-0.5 bg-transparent z-50 pointer-events-none" aria-hidden="true">
       <div
-        className="h-full bg-accent transition-[width] duration-150 ease-out"
+        className="h-full bg-ink transition-[width] duration-150 ease-out"
         style={{ width: `${scrollProgress}%` }}
       />
     </div>

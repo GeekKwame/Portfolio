@@ -25,7 +25,10 @@ const Footer = memo(function Footer() {
           </nav>
 
           <p className="lg:col-span-4 mt-6 lg:mt-0 text-sm leading-relaxed lg:text-right">
-            Set in Newsreader and IBM Plex. Built with React, Vite, and Tailwind CSS.
+            Built with React, Vite, and Tailwind CSS. Design inspired by{' '}
+            <a href="https://binay-shaw.onrender.com/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-paper-raised transition-colors">
+              Binay Shaw
+            </a>.
           </p>
         </div>
       </div>

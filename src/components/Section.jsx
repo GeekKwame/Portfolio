@@ -17,7 +17,7 @@ function Section({ id, number, label, title, lede, aside, tone = 'paper', childr
           <div className="lg:sticky lg:top-28">
             <p className={`flex items-baseline gap-3 lg:block font-mono text-meta ${isInk ? 'text-paper/70' : 'text-ink-muted'}`}>
               <span className={isInk ? 'text-accent-light' : 'text-accent-strong'}>{number}</span>
-              <span className={`lg:block lg:mt-1.5 font-sans text-[0.9375rem] font-medium ${isInk ? 'text-paper-raised' : 'text-ink'}`}>
+              <span className={`lg:block lg:mt-1.5 font-sans text-[0.8125rem] font-bold uppercase tracking-[0.08em] ${isInk ? 'text-paper-raised' : 'text-ink'}`}>
                 {label}
               </span>
             </p>
@@ -28,7 +28,8 @@ function Section({ id, number, label, title, lede, aside, tone = 'paper', childr
         <div className="lg:col-span-9 min-w-0">
           <h2
             id={`${id}-title`}
-            className={`section-title max-w-[22ch] ${isInk ? '!text-paper-raised' : ''}`}
+            data-reveal
+            className={`section-title max-w-[18ch] ${isInk ? '!text-paper-raised' : ''}`}
           >
             {title}
           </h2>

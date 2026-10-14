@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { PERSONAL_INFO, NAVIGATION_LINKS, SECTION_INDEX, RESUME, SOCIAL_LINKS } from '../config/constants';
 import { trackResumeDownload, trackSocialClick } from '../utils/analytics';
+import ThemeToggle from './ThemeToggle';
 
 const SECTION_IDS = ['work', 'experience', 'about', 'skills', 'education', 'contact'];
 
@@ -81,13 +82,17 @@ function NavBar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 bg-paper transition-[border-color] duration-200 border-b ${
+      className={`fixed inset-x-0 top-0 z-50 bg-paper/85 backdrop-blur-md transition-[border-color] duration-200 border-b ${
         scrolled || open ? 'border-rule' : 'border-transparent'
       }`}
     >
       <div className="shell flex h-16 items-center justify-between gap-6">
-        <a href="#home" className="inline-flex min-h-[44px] items-center font-display text-[1.3125rem] leading-none text-ink hover:text-accent-strong transition-colors">
-          {PERSONAL_INFO.name}
+        <a
+          href="#home"
+          aria-label={`${PERSONAL_INFO.name}, back to top`}
+          className="inline-flex min-h-[44px] items-center font-display text-[1.75rem] leading-none text-ink transition-opacity hover:opacity-70"
+        >
+          {PERSONAL_INFO.name.split(' ').map((part) => part[0]).join('')}
         </a>
 
         <nav aria-label="Primary" className="hidden lg:block">
@@ -129,6 +134,8 @@ function NavBar() {
             Resume <span aria-hidden="true">↗</span>
           </a>
 
+          <ThemeToggle />
+
           <button
             ref={menuButtonRef}
             type="button"
@@ -160,7 +167,7 @@ function NavBar() {
                     className="flex items-baseline gap-4 py-4"
                   >
                     <span className="font-mono text-meta text-accent-strong">{SECTION_INDEX.find((s) => s.to === link.to)?.number}</span>
-                    <span className={`font-display text-[1.75rem] leading-tight ${active === link.to ? 'text-accent-strong' : 'text-ink'}`}>
+                    <span className={`font-sans font-black tracking-[-0.03em] text-[2rem] leading-tight ${active === link.to ? 'text-ink-muted' : 'text-ink'}`}>
                       {link.name}
                     </span>
                   </a>

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { FaArrowUp } from 'react-icons/fa';
 
 function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,14 +16,14 @@ function ScrollToTop() {
       data-menu-inert
       tabIndex={isVisible ? 0 : -1}
       aria-hidden={!isVisible}
-      className={`fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-40 inline-flex h-11 w-11 items-center justify-center
-        border border-ink bg-paper text-ink hover:bg-ink hover:text-paper-raised transition-[opacity,transform,background-color,color] duration-200 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
+      className={`fixed bottom-5 right-5 sm:bottom-10 sm:right-10 z-40 inline-flex h-[52px] w-[52px] items-center justify-center rounded-full
+        bg-ink text-paper text-[1.4rem] font-light shadow-lg transition-[opacity,transform] duration-200 hover:-translate-y-2.5 ${
+        isVisible ? 'opacity-100' : 'opacity-0 translate-y-2 pointer-events-none'
       }`}
       aria-label="Back to top"
       title="Back to top"
     >
-      <FaArrowUp size={13} aria-hidden="true" />
+      <span aria-hidden="true">↑</span>
     </a>
   );
 }

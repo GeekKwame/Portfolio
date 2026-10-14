@@ -5,29 +5,36 @@ function RecordEntry({ title, organization, type, duration, location, isCurrent,
   const [logoFailed, setLogoFailed] = useState(false);
 
   return (
-    <li className="grid gap-4 py-9 md:grid-cols-[11rem_minmax(0,1fr)] md:gap-10">
+    <li className="group grid gap-4 py-9 md:grid-cols-[11rem_minmax(0,1fr)] md:gap-10">
       <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 md:block">
-        <p className="font-mono text-meta text-ink">{duration}</p>
+        <p className="font-grotesque text-[1.375rem] font-bold leading-tight text-ink opacity-80 transition-opacity duration-500 group-hover:opacity-100">
+          {duration}
+        </p>
         <p className="text-sm text-ink-muted md:mt-1.5">{location}</p>
         {isCurrent && (
-          <p className="text-sm font-medium text-signal md:mt-2">Current role</p>
+          <p className="inline-flex items-center gap-2 text-sm font-medium text-signal md:mt-2">
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-signal" />
+            Current role
+          </p>
         )}
       </div>
 
       <div className="min-w-0">
         <div className="flex items-start gap-4">
-          <div className="hidden sm:flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden border border-rule bg-white p-1.5">
+          <div className="grayscale-hover hidden sm:flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-rule bg-white p-1.5">
             {logo && !logoFailed ? (
-              <img src={logo} alt="" width="44" height="44" loading="lazy" className="h-full w-full object-contain" onError={() => setLogoFailed(true)} />
+              <img src={logo} alt="" width="56" height="56" loading="lazy" className="h-full w-full object-contain" onError={() => setLogoFailed(true)} />
             ) : (
-              <span aria-hidden="true" className="font-mono text-[0.6875rem] text-ink-muted">{logoText}</span>
+              <span aria-hidden="true" className="font-mono text-[0.6875rem] text-neutral-500">{logoText}</span>
             )}
           </div>
           <div className="min-w-0">
-            <h3 className="text-[1.5rem] text-ink">{title}</h3>
-            <p className="mt-1 text-[0.9375rem] text-ink-soft">
-              <span className="font-medium text-ink">{organization}</span>
-              {type && <span className="text-ink-muted"> · {type}</span>}
+            <h3 className="text-[clamp(1.375rem,1.1rem+1vw,2rem)] font-bold text-ink opacity-85 transition-opacity duration-300 group-hover:opacity-100">
+              {title}
+            </h3>
+            <p className="mt-1 font-grotesque text-[1.1875rem] font-semibold text-ink-muted">
+              <span className="text-ink">{organization}</span>
+              {type && <span> · {type}</span>}
             </p>
           </div>
         </div>

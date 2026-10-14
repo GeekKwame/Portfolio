@@ -1,5 +1,10 @@
 /** @type {import('tailwindcss').Config} */
+
+/** Colors resolve to CSS variables (space-separated RGB) defined per theme in index.css. */
+const themed = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 module.exports = {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -7,37 +12,39 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Newsreader Variable"', 'Georgia', 'serif'],
-        sans: ['"IBM Plex Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        display: ['"Cal Sans"', '"Inter Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['"Inter Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        syne: ['"Syne Variable"', '"Inter Variable"', 'sans-serif'],
+        grotesque: ['"Darker Grotesque Variable"', '"Inter Variable"', 'sans-serif'],
+        mono: ['"Inter Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       colors: {
         paper: {
-          DEFAULT: '#F2F0EB',
-          raised: '#FAF9F6',
-          sunk: '#E9E6DF',
+          DEFAULT: themed('paper'),
+          raised: themed('paper-raised'),
+          sunk: themed('paper-sunk'),
         },
         ink: {
-          DEFAULT: '#12141A',
-          soft: '#2E313A',
-          muted: '#575C69',
-          // Decorative glyphs only — fails AA as text on paper.
-          faint: '#8A8F9C',
+          DEFAULT: themed('ink'),
+          soft: themed('ink-soft'),
+          muted: themed('ink-muted'),
+          // Decorative glyphs only — fails AA as text.
+          faint: themed('ink-faint'),
         },
         rule: {
-          DEFAULT: '#D6D2C9',
-          strong: '#B9B4A9',
-          dark: '#2E313A',
+          DEFAULT: themed('rule'),
+          strong: themed('rule-strong'),
+          dark: themed('rule-dark'),
         },
         accent: {
-          DEFAULT: '#A8481A',
-          strong: '#8B3A12',
-          soft: 'rgba(168, 72, 26, 0.10)',
+          DEFAULT: themed('accent'),
+          strong: themed('accent-strong'),
+          soft: 'rgb(var(--accent) / 0.10)',
           // For text and focus rings on ink backgrounds.
-          light: '#E58A57',
+          light: themed('accent-light'),
         },
         signal: {
-          DEFAULT: '#1F6B4A',
+          DEFAULT: themed('signal'),
         },
       },
       maxWidth: {
@@ -52,9 +59,19 @@ module.exports = {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(0)' },
         },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        shine: {
+          '0%': { backgroundPosition: '0 50%' },
+          '60%, 100%': { backgroundPosition: '180px 50%' },
+        },
       },
       animation: {
         'slide-in': 'slideIn 0.3s ease-out',
+        marquee: 'marquee 28s linear infinite',
+        shine: 'shine 3s linear infinite',
       },
     },
   },

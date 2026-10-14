@@ -3,11 +3,55 @@
 @tailwind utilities;
 
 @layer base {
+  /* Theme palettes as space-separated RGB so Tailwind opacity modifiers work. */
+  :root {
+    --paper: 255 255 255;
+    --paper-raised: 247 247 247;
+    --paper-sunk: 239 239 239;
+    --ink: 10 10 10;
+    --ink-soft: 38 38 38;
+    --ink-muted: 92 92 92;
+    --ink-faint: 154 154 154;
+    --rule: 229 229 229;
+    --rule-strong: 199 199 199;
+    --rule-dark: 42 42 42;
+    --accent: 115 115 115;
+    --accent-strong: 82 82 82;
+    --accent-light: 163 163 163;
+    --signal: 21 128 61;
+    color-scheme: light;
+  }
+
+  .dark {
+    --paper: 10 10 10;
+    --paper-raised: 20 20 20;
+    --paper-sunk: 26 26 26;
+    --ink: 245 245 245;
+    --ink-soft: 212 212 212;
+    --ink-muted: 163 163 163;
+    --ink-faint: 92 92 92;
+    --rule: 38 38 38;
+    --rule-strong: 58 58 58;
+    --rule-dark: 42 42 42;
+    --accent: 163 163 163;
+    --accent-strong: 212 212 212;
+    --accent-light: 163 163 163;
+    --signal: 74 222 128;
+    color-scheme: dark;
+  }
+
+  /* Inverted blocks stay dark in dark mode instead of flipping to white. */
+  .dark .tone-ink {
+    --ink: 20 20 20;
+    --paper: 245 245 245;
+    --paper-raised: 255 255 255;
+    border-top: 1px solid rgb(38 38 38);
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 4.5rem;
-    color-scheme: light;
-    background-color: #F2F0EB;
+    background-color: rgb(var(--paper));
     -webkit-text-size-adjust: 100%;
   }
 
@@ -18,19 +62,25 @@
     line-height: 1.65;
     font-feature-settings: 'kern' 1, 'liga' 1;
     -webkit-tap-highlight-color: transparent;
+    transition: background-color 200ms ease, color 200ms ease;
   }
 
-  h1, h2, h3, h4, .font-display {
-    font-family: 'Newsreader Variable', Georgia, serif;
-    font-optical-sizing: auto;
-    font-weight: 450;
-    letter-spacing: -0.015em;
+  h1, h2, h3, h4 {
+    font-family: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
     line-height: 1.12;
     text-wrap: balance;
   }
 
-  code, pre, kbd, .font-mono {
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  .font-display {
+    font-family: 'Cal Sans', 'Inter Variable', ui-sans-serif, sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .font-mono {
+    font-variant-numeric: tabular-nums;
   }
 
   p {
@@ -42,26 +92,21 @@
   }
 
   :focus-visible {
-    outline: 2px solid #A8481A;
+    outline: 2px solid rgb(var(--ink));
     outline-offset: 3px;
   }
 
   .tone-ink :focus-visible {
-    outline-color: #E58A57;
+    outline-color: rgb(var(--paper-raised));
   }
 
   ::selection {
-    background-color: rgba(168, 72, 26, 0.2);
-    color: #12141A;
-  }
-
-  .tone-ink ::selection {
-    background-color: rgba(229, 138, 87, 0.35);
-    color: #FAF9F6;
+    background-color: rgb(var(--ink));
+    color: rgb(var(--paper));
   }
 
   dialog::backdrop {
-    background-color: rgba(18, 20, 26, 0.88);
+    background-color: rgb(10 10 10 / 0.88);
   }
 }
 
@@ -70,42 +115,93 @@
     @apply max-w-content mx-auto px-5 sm:px-8 lg:px-12;
   }
 
-  /* Index numerals and small structural labels */
+  /* Small structural labels: uppercase, tracked, quiet */
   .label {
-    @apply font-mono text-meta text-ink-muted;
+    @apply font-sans text-[0.75rem] font-bold uppercase text-ink-muted;
+    letter-spacing: 0.08em;
   }
 
   .section-title {
-    @apply font-display text-ink;
-    font-size: clamp(2rem, 1.4rem + 2.2vw, 2.875rem);
+    @apply font-sans text-ink;
+    font-size: clamp(2.25rem, 1.3rem + 3.4vw, 4.25rem);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
   }
 
   .lede {
-    @apply text-lg text-ink-muted leading-relaxed max-w-prose;
+    @apply font-syne text-lg font-semibold text-ink-muted leading-relaxed max-w-prose;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 min-h-[44px] px-5
-      font-sans text-[0.9375rem] font-medium
-      transition-colors duration-150;
+    @apply inline-flex items-center justify-center gap-2 min-h-[44px] px-5 rounded-full
+      font-sans text-[0.9375rem] font-semibold
+      transition-[background-color,color,padding,border-color] duration-300;
   }
 
   .btn-primary {
-    @apply btn bg-ink text-paper-raised hover:bg-accent-strong;
+    @apply btn bg-ink text-paper hover:px-7;
   }
 
   .btn-secondary {
-    @apply btn border border-ink/80 text-ink hover:bg-ink hover:text-paper-raised;
+    @apply btn border border-ink/80 text-ink hover:bg-ink hover:text-paper;
   }
 
-  /* Inline text link with a quiet underline that warms on hover */
+  /* Inline text link: underline grows from the centre on hover */
   .link {
-    @apply text-ink underline decoration-rule-strong decoration-1 underline-offset-[5px]
-      hover:text-accent-strong hover:decoration-accent transition-colors duration-150;
+    @apply relative text-ink;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    background-size: 0% 1px;
+    transition: background-size 300ms ease;
+    padding-bottom: 2px;
+  }
+
+  .link:hover {
+    background-size: 100% 1px;
   }
 
   .stack {
-    @apply font-mono text-meta text-ink-muted leading-relaxed;
+    @apply font-grotesque text-base font-bold text-ink-muted leading-relaxed;
+  }
+
+  /* Animated sheen across text, used for the resume call to action */
+  .text-shine {
+    @apply animate-shine;
+    background: linear-gradient(
+        to right,
+        rgb(var(--ink-faint)) 0%,
+        rgb(var(--ink)) 10%,
+        rgb(var(--ink-faint)) 20%
+      )
+      0 50% / auto repeat-x;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Monochrome until hovered, then a slight tilt into colour */
+  .grayscale-hover {
+    filter: grayscale(100%);
+    transition: filter 500ms ease, transform 500ms ease;
+  }
+
+  .grayscale-hover:hover,
+  .group:hover .grayscale-hover {
+    filter: grayscale(0%);
+    transform: rotate(3deg) scale(1.03);
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -120,5 +216,10 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
   }
 }

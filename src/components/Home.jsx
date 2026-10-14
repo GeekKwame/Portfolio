@@ -1,11 +1,9 @@
 import { memo } from 'react';
 import profilePic from '../assets/images/profile/profile-pic.webp';
-import { PERSONAL_INFO, SOCIAL_LINKS, RESUME } from '../config/constants';
+import { PERSONAL_INFO, RESUME } from '../config/constants';
 import { FEATURED_PROJECTS, PROJECTS, projectAnchor } from '../data/projects';
-import { trackSocialClick, trackResumeDownload } from '../utils/analytics';
-
-const github = SOCIAL_LINKS.find((l) => l.platform === 'GitHub');
-const linkedin = SOCIAL_LINKS.find((l) => l.platform === 'LinkedIn');
+import { trackResumeDownload } from '../utils/analytics';
+import SocialIcons from './SocialIcons';
 
 function Availability() {
   return (
@@ -37,11 +35,13 @@ const Home = memo(function Home() {
               </p>
             </div>
 
-            <h1 className="mt-6 sm:mt-8 text-ink text-[clamp(2.75rem,1.5rem+5.4vw,6rem)] leading-[0.98] tracking-[-0.03em]">
-              {PERSONAL_INFO.name}
+            <h1 className="mt-6 sm:mt-8 font-display font-normal text-ink text-[clamp(2.5rem,1rem+6.5vw,6.25rem)] leading-[1.02] tracking-[-0.01em]">
+              <span className="block">Hi, I&apos;m</span>
+              <span className="block">{PERSONAL_INFO.name}.</span>
             </h1>
+            <p className="mt-3 text-lg text-ink-muted">Nice to meet you.</p>
 
-            <p className="mt-7 sm:mt-9 max-w-[34ch] font-display text-ink text-[clamp(1.375rem,1.1rem+1vw,1.875rem)] leading-[1.32] tracking-[-0.01em]">
+            <p className="mt-8 sm:mt-10 max-w-[38ch] font-syne font-semibold text-ink text-[clamp(1.125rem,0.95rem+0.8vw,1.5rem)] leading-[1.45]">
               {PERSONAL_INFO.intro}
             </p>
 
@@ -58,31 +58,26 @@ const Home = memo(function Home() {
               <a href="#contact" className="btn-secondary">Get in touch</a>
             </div>
 
-            <p className="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem]">
-              <a href={RESUME.path} target="_blank" rel="noopener noreferrer" onClick={() => trackResumeDownload()} className="link"
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <SocialIcons source="hero" />
+              <a href={RESUME.path} target="_blank" rel="noopener noreferrer" onClick={() => trackResumeDownload()} className="link text-[0.9375rem] font-semibold"
                 aria-label="Resume, PDF (opens in a new tab)">
                 Resume (PDF) <span aria-hidden="true">↗</span>
               </a>
-              <a href={github.url} target="_blank" rel="noopener noreferrer" onClick={() => trackSocialClick('github_hero')} className="link"
-                aria-label="GitHub profile (opens in a new tab)">
-                GitHub <span aria-hidden="true">↗</span>
-              </a>
-              <a href={linkedin.url} target="_blank" rel="noopener noreferrer" onClick={() => trackSocialClick('linkedin_hero')} className="link"
-                aria-label="LinkedIn profile (opens in a new tab)">
-                LinkedIn <span aria-hidden="true">↗</span>
-              </a>
-            </p>
+            </div>
           </div>
 
           <figure className="hidden lg:block lg:col-span-4 m-0">
-            <img
-              src={profilePic}
-              alt={`Portrait of ${PERSONAL_INFO.name}`}
-              width="800"
-              height="800"
-              className="block w-full aspect-[4/5] object-cover border border-rule-strong bg-paper-sunk"
-              style={{ objectPosition: 'center 22%' }}
-            />
+            <div className="overflow-hidden rounded-3xl">
+              <img
+                src={profilePic}
+                alt={`Portrait of ${PERSONAL_INFO.name}`}
+                width="800"
+                height="800"
+                className="grayscale-hover block w-full aspect-[4/5] object-cover bg-paper-sunk"
+                style={{ objectPosition: 'center 22%' }}
+              />
+            </div>
             <figcaption className="mt-3 flex items-center justify-between gap-4 font-mono text-meta text-ink-muted">
               <span>{PERSONAL_INFO.location} · {PERSONAL_INFO.timezone}</span>
               <Availability />
@@ -102,10 +97,10 @@ const Home = memo(function Home() {
               <li key={project.slug} className="border-b border-rule">
                 <a
                   href={`#${projectAnchor(project.slug)}`}
-                  className="group flex h-full flex-col py-6"
+                  className="group flex h-full flex-col py-6 transition-transform duration-300 hover:-translate-y-1"
                 >
                   <span className="font-mono text-meta text-accent-strong">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="mt-2 font-display text-[1.375rem] leading-tight text-ink group-hover:text-accent-strong transition-colors">
+                  <span className="mt-2 font-sans font-extrabold tracking-[-0.02em] text-[1.375rem] leading-tight text-ink">
                     {project.shortTitle}
                   </span>
                   <span className="mt-2 text-sm leading-snug text-ink-muted">{project.summary}</span>
