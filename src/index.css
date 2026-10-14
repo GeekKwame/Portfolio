@@ -166,21 +166,6 @@
     @apply font-grotesque text-base font-bold text-ink-muted leading-relaxed;
   }
 
-  /* Animated sheen across text, used for the resume call to action */
-  .text-shine {
-    @apply animate-shine;
-    background: linear-gradient(
-        to right,
-        rgb(var(--ink-faint)) 0%,
-        rgb(var(--ink)) 10%,
-        rgb(var(--ink-faint)) 20%
-      )
-      0 50% / auto repeat-x;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
   /* Monochrome until hovered, then a slight tilt into colour */
   .grayscale-hover {
     filter: grayscale(100%);
@@ -191,6 +176,28 @@
   .group:hover .grayscale-hover {
     filter: grayscale(0%);
     transform: rotate(3deg) scale(1.03);
+  }
+
+  /* Text sits at 20% and a solid fill sweeps across it left to right */
+  .text-reveal {
+    color: rgb(var(--ink) / 0.2);
+    background: linear-gradient(rgb(var(--ink)), rgb(var(--ink))) 0 0 / 0% 100% no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: text-reveal 1.1s ease-out forwards;
+  }
+
+  @keyframes text-reveal {
+    to { background-size: 100% 100%; }
+  }
+
+  .text-rise {
+    animation: text-rise 1s ease-in-out both;
+  }
+
+  @keyframes text-rise {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: none; }
   }
 
   /* Cycles one of three ring frames into view every 130ms */

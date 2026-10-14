@@ -27,11 +27,11 @@ export const PROJECTS = [
       width: 1508,
       height: 1024,
       kind: 'diagram',
-      caption: 'Production architecture — ALB, ECS Fargate, RDS PostgreSQL, S3',
+      caption: 'Production architecture: ALB, ECS Fargate, RDS PostgreSQL, S3',
       alt: 'Architecture diagram: an Application Load Balancer routes requests to FastAPI containers on Amazon ECS Fargate, which query RDS PostgreSQL and issue presigned URLs for an S3 bucket.',
     },
     problem:
-      'Clients need to upload and retrieve files without the API ever streaming bytes — while keeping tenants strictly isolated.',
+      'Clients need to upload and retrieve files without the API ever streaming bytes, while keeping tenants strictly isolated.',
     approach:
       'An ALB across two availability zones fronts FastAPI on ECS Fargate in private subnets. Metadata lives in RDS PostgreSQL 16 through SQLAlchemy 2.0; binaries land in S3 as {app_id}/{uuid}-{filename} via presigned PUT and GET. Terraform defines the topology across 12 modules and 3 environments.',
     decision:
@@ -42,7 +42,7 @@ export const PROJECTS = [
   },
   {
     slug: 'yencare',
-    title: 'YɛnCare — Outpatient Clinic & Virtual Queue',
+    title: 'YɛnCare: Outpatient Clinic & Virtual Queue',
     shortTitle: 'YɛnCare',
     summary: 'Clinic booking and a live virtual queue for KNUST students',
     category: 'Full-stack',
@@ -56,7 +56,7 @@ export const PROJECTS = [
       alt: 'YɛnCare home screen for the KNUST Students’ Clinic, with booking actions and live queue status.',
     },
     problem:
-      'Campus clinics needed self-service booking and live waiting-room updates without password friction — across 70+ responsive views for triage, appointments, and dispatch.',
+      'Campus clinics needed self-service booking and live waiting-room updates without password friction, across 70+ responsive views for triage, appointments, and dispatch.',
     approach:
       'An Express REST backend coordinates atomic queue transitions through Prisma and PostgreSQL, and isolates clinical workstation actions behind role-based JWT auth. 270+ Jest and Supertest specs run on GitHub Actions across client and server.',
     decision:
@@ -70,7 +70,7 @@ export const PROJECTS = [
   },
   {
     slug: 'event-connect',
-    title: 'Event-Connect — Serverless Event Registration',
+    title: 'Event-Connect: Serverless Event Registration',
     shortTitle: 'Event-Connect',
     summary: 'Serverless registration behind CloudFront and AWS WAF',
     category: 'Serverless',
@@ -80,7 +80,7 @@ export const PROJECTS = [
       width: 1536,
       height: 1024,
       kind: 'diagram',
-      caption: 'Production architecture — CloudFront, WAF, API Gateway, Lambda, DynamoDB',
+      caption: 'Production architecture: CloudFront, WAF, API Gateway, Lambda, DynamoDB',
       alt: 'Architecture diagram: CloudFront serves a private S3 site and routes API calls to API Gateway behind AWS WAF, which invokes Lambda functions backed by DynamoDB, with SNS and SES notifications.',
     },
     problem:
@@ -88,14 +88,14 @@ export const PROJECTS = [
     approach:
       'CloudFront is the only public HTTPS endpoint. The UI is served from a private S3 bucket through Origin Access Control, and API Gateway sits behind it as a hidden origin. Five Python 3.12 Lambdas persist tickets in DynamoDB; SES sends confirmations and SNS notifies the admin topic.',
     decision:
-      'Ticket validity lives in DynamoDB — the browser’s localStorage is a convenience, never the source of truth. The API origin sits behind a default-deny WAF.',
+      'Ticket validity lives in DynamoDB. The browser’s localStorage is a convenience, never the source of truth. The API origin sits behind a default-deny WAF.',
     flow: ['Browser', 'CloudFront', 'WAF + API Gateway', 'Lambda × 5', 'DynamoDB'],
     stack: ['AWS SAM', 'CloudFront', 'Lambda', 'DynamoDB', 'WAF', 'SES', 'SNS', 'Python'],
     links: { source: FLAGSHIP.repo },
   },
   {
     slug: 'kora',
-    title: 'KORA — Music Player for African Genres',
+    title: 'KORA: Music Player for African Genres',
     shortTitle: 'KORA',
     summary: 'Django music player with continuous playback across genres',
     category: 'Full-stack',
@@ -109,7 +109,7 @@ export const PROJECTS = [
       alt: 'KORA music player interface showing featured African artists, genre soundscapes in the sidebar, and a persistent playback dock.',
     },
     problem:
-      'Spotify deprecated 30-second previews, which broke continuous web playback — and African and diaspora genres had few dedicated discovery interfaces.',
+      'Spotify deprecated 30-second previews, which broke continuous web playback, and African and diaspora genres had few dedicated discovery interfaces.',
     approach:
       'A Django backend on Gunicorn serves compressed static assets through WhiteNoise, persists to PostgreSQL with an automatic SQLite fallback, and caches RapidAPI Spotify catalogue lookups in memory. A global HTML5 audio dock plays five lossless genre soundscapes. CI/CD runs on GitHub Actions with a Render blueprint.',
     decision:
@@ -132,7 +132,7 @@ export const PROJECTS = [
       width: 1536,
       height: 1024,
       kind: 'diagram',
-      caption: 'Production architecture — API Gateway, Lambda, DynamoDB, SNS, SQS, EventBridge',
+      caption: 'Production architecture: API Gateway, Lambda, DynamoDB, SNS, SQS, EventBridge',
       alt: 'Architecture diagram: API Gateway invokes a Python Lambda that writes to DynamoDB and fans out to SNS, SQS, and EventBridge, with CloudWatch and CloudTrail for observability.',
     },
     problem:
@@ -145,7 +145,7 @@ export const PROJECTS = [
   },
   {
     slug: 'study-planner',
-    title: 'Student Study Planner — AWS Capstone',
+    title: 'Student Study Planner: AWS Capstone',
     shortTitle: 'Study Planner',
     summary: 'Highly available EC2 web tier behind CloudFront',
     category: 'Cloud infrastructure',
@@ -154,7 +154,7 @@ export const PROJECTS = [
       width: 1280,
       height: 853,
       kind: 'diagram',
-      caption: 'Production architecture — Route 53, CloudFront, ALB, EC2 Auto Scaling',
+      caption: 'Production architecture: Route 53, CloudFront, ALB, EC2 Auto Scaling',
       alt: 'Architecture diagram: Route 53 and CloudFront in front of an Application Load Balancer and an EC2 Auto Scaling group running Nginx, with static assets in S3 behind Origin Access Control.',
     },
     problem:
@@ -167,7 +167,7 @@ export const PROJECTS = [
   },
   {
     slug: 'pulsevote',
-    title: 'PulseVote — Live Polling',
+    title: 'PulseVote: Live Polling',
     shortTitle: 'PulseVote',
     summary: 'Real-time polling with zero-downtime deploys',
     category: 'Cloud infrastructure',
@@ -189,7 +189,7 @@ export const PROJECTS = [
   },
   {
     slug: 'terraformed',
-    title: 'Terraformed — Static Site with Zero-Secret Deploys',
+    title: 'Terraformed: Static Site with Zero-Secret Deploys',
     shortTitle: 'Terraformed',
     summary: 'OIDC-federated GitHub Actions deploys, no stored AWS keys',
     category: 'Infrastructure as code',
@@ -220,7 +220,7 @@ export const PROJECTS = [
       width: 1536,
       height: 1024,
       kind: 'diagram',
-      caption: 'Production architecture — API Gateway, Lambda, S3, remote state',
+      caption: 'Production architecture: API Gateway, Lambda, S3, remote state',
       alt: 'Architecture diagram: API Gateway invokes a Python 3.12 Lambda that reads and writes an S3 bucket, with Terraform remote state stored in S3 and locked with DynamoDB.',
     },
     problem:

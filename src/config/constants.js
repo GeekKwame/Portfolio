@@ -13,7 +13,7 @@ export const HEADLINE =
 export const CONTACT_EMAIL = 'dogbeblessingkwame@gmail.com';
 
 export const SEO = {
-  title: 'Edmund Blessing — Cloud & Backend Engineer',
+  title: 'Edmund Blessing | Cloud & Backend Engineer',
   description:
     'Cloud & Backend Engineer in Ghana building Python APIs (FastAPI & Django) and AWS infrastructure with Terraform, Docker, and CI/CD. Software Engineer at Afarinick Company Limited.',
   keywords:
@@ -28,7 +28,7 @@ export const PERSONAL_INFO = {
   headline: HEADLINE,
   bio: 'Cloud and backend engineer building production Python APIs and AWS infrastructure with Terraform, Docker, and CI/CD.',
   intro:
-    'I build Python backends and the AWS infrastructure they run on — declared in Terraform, shipped through CI/CD, and designed to stay boring in production.',
+    'I build Python backends and the AWS infrastructure they run on, declared in Terraform, shipped through CI/CD, and built to run reliably, without surprises.',
   currentRole: 'Software Engineer at Afarinick Company Limited',
   location: 'Accra, Ghana',
   timezone: 'GMT',

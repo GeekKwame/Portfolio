@@ -51,7 +51,7 @@ const ScribblePortrait = memo(function ScribblePortrait({ src, alt, className = 
           alt={alt}
           width="800"
           height="800"
-          className="grayscale-hover h-full w-full object-cover"
+          className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.04]"
           style={{ objectPosition: 'center 22%' }}
         />
       </div>
@@ -59,7 +59,7 @@ const ScribblePortrait = memo(function ScribblePortrait({ src, alt, className = 
       <svg
         aria-hidden="true"
         viewBox={`0 0 ${SIZE} ${SIZE}`}
-        className="pointer-events-none absolute inset-0 h-full w-full text-ink-muted"
+        className="pointer-events-none absolute inset-0 h-full w-full text-ink-soft"
       >
         <defs>
           <filter id="pencil" x="-5%" y="-5%" width="110%" height="110%">
@@ -73,9 +73,9 @@ const ScribblePortrait = memo(function ScribblePortrait({ src, alt, className = 
             d={d}
             fill="none"
             stroke="currentColor"
-            strokeWidth="2.4"
+            strokeWidth="2.8"
             strokeLinecap="round"
-            strokeOpacity="0.55"
+            strokeOpacity="0.7"
             filter="url(#pencil)"
             className="scribble-frame"
             style={{ animationDelay: `${i * 130}ms`, opacity: i === 0 ? 1 : 0 }}

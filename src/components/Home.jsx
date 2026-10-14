@@ -4,7 +4,6 @@ import { PERSONAL_INFO, RESUME } from '../config/constants';
 import { FEATURED_PROJECTS, PROJECTS, projectAnchor } from '../data/projects';
 import { trackResumeDownload } from '../utils/analytics';
 import SocialIcons from './SocialIcons';
-import ScribblePortrait from './ScribblePortrait';
 
 function Availability() {
   return (
@@ -27,20 +26,20 @@ const Home = memo(function Home() {
                 alt=""
                 width="48"
                 height="48"
-                className="lg:hidden h-12 w-12 rounded-full object-cover border border-rule-strong"
+                className="h-12 w-12 rounded-full object-cover border border-rule-strong"
                 style={{ objectPosition: 'center 22%' }}
               />
               <p className="text-[0.9375rem] leading-snug text-ink-muted">
                 {PERSONAL_INFO.title} · {PERSONAL_INFO.location}
-                <span className="block lg:hidden text-meta mt-0.5"><Availability /></span>
+                <span className="block text-meta mt-0.5"><Availability /></span>
               </p>
             </div>
 
             <h1 className="mt-6 sm:mt-8 font-display font-normal text-ink text-[clamp(2.5rem,1rem+6.5vw,6.25rem)] leading-[1.02] tracking-[-0.01em]">
-              <span className="block">Hi, I&apos;m</span>
-              <span className="block">{PERSONAL_INFO.name}.</span>
+              <span className="block"><span className="text-reveal">Hi, I&apos;m</span></span>
+              <span className="block"><span className="text-reveal [animation-delay:150ms]">{PERSONAL_INFO.name}.</span></span>
             </h1>
-            <p className="mt-3 text-lg text-ink-muted">Nice to meet you.</p>
+            <p className="text-rise mt-3 text-lg text-ink-muted">Nice to meet you.</p>
 
             <p className="mt-8 sm:mt-10 max-w-[38ch] font-syne font-semibold text-ink text-[clamp(1.125rem,0.95rem+0.8vw,1.5rem)] leading-[1.45]">
               {PERSONAL_INFO.intro}
@@ -67,14 +66,6 @@ const Home = memo(function Home() {
               </a>
             </div>
           </div>
-
-          <figure className="mx-auto mt-14 max-w-[20rem] lg:mt-0 lg:max-w-none lg:col-span-4">
-            <ScribblePortrait src={profilePic} alt={`Portrait of ${PERSONAL_INFO.name}`} />
-            <figcaption className="mt-3 hidden lg:flex items-center justify-between gap-4 font-mono text-meta text-ink-muted">
-              <span>{PERSONAL_INFO.location} · {PERSONAL_INFO.timezone}</span>
-              <Availability />
-            </figcaption>
-          </figure>
         </div>
 
         <nav aria-label="Selected work" className="mt-20 sm:mt-24 lg:mt-28">

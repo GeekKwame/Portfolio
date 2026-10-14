@@ -12,7 +12,7 @@ const EDUCATION = [
     duration: 'Jan 2021 – Aug 2024',
     location: 'Kumasi, Ghana',
     description:
-      'Numerical analysis, discrete mathematics, statistical modeling, and algorithmic structures — the analytical backbone for backend and systems work.',
+      'Numerical analysis, discrete mathematics, statistical modeling, and algorithmic structures, the analytical backbone for backend and systems work.',
     skills: ['Applied Mathematics', 'Algorithm Design', 'Statistical Analysis'],
     logo: knustLogo,
     logoText: 'KNUST',

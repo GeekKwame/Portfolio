@@ -14,7 +14,6 @@ import StructuredData from "./components/StructuredData";
 import ErrorBoundary from "./components/ErrorBoundary";
 import CursorDot from "./components/CursorDot";
 import Marquee from "./components/Marquee";
-import ResumeBanner from "./components/ResumeBanner";
 import { ToastProvider } from "./context/ToastContext";
 import useReveal from "./hooks/useReveal";
 
@@ -37,7 +36,6 @@ function App() {
           <About />
           <Skills />
           <Education />
-          <ResumeBanner />
           <Contact />
         </main>
         <Footer />

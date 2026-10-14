@@ -17,7 +17,7 @@ function ScrollToTop() {
       tabIndex={isVisible ? 0 : -1}
       aria-hidden={!isVisible}
       className={`fixed bottom-5 right-5 sm:bottom-10 sm:right-10 z-40 inline-flex h-[52px] w-[52px] items-center justify-center rounded-full
-        bg-ink text-paper text-[1.4rem] font-light shadow-lg transition-[opacity,transform] duration-200 hover:-translate-y-2.5 ${
+        bg-ink text-paper text-[1.4rem] font-light shadow-lg ring-1 ring-paper/25 transition-[opacity,transform] duration-200 hover:-translate-y-2.5 ${
         isVisible ? 'opacity-100' : 'opacity-0 translate-y-2 pointer-events-none'
       }`}
       aria-label="Back to top"

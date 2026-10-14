@@ -3,6 +3,7 @@ import { FaGithub } from 'react-icons/fa';
 import Section from './Section';
 import Figure from './Figure';
 import RequestPath from './RequestPath';
+import Tags from './Tags';
 import { PROJECTS, FEATURED_PROJECTS, OTHER_PROJECTS, projectAnchor } from '../data/projects';
 import { trackProjectView, trackSocialClick } from '../utils/analytics';
 
@@ -68,7 +69,7 @@ function CaseStudy({ project, number }) {
             <span aria-hidden="true" className="mx-2 text-ink-faint">/</span>
             {project.category}
           </p>
-          <h3 id={`${projectAnchor(project.slug)}-title`} className="mt-2 text-ink text-[clamp(1.625rem,1.15rem+1.5vw,2.25rem)]">
+          <h3 id={`${projectAnchor(project.slug)}-title`} className="mt-2 text-ink text-[clamp(2rem,1.2rem+2.6vw,3.75rem)] tracking-[-0.03em]">
             {project.title}
           </h3>
         </div>
@@ -88,7 +89,7 @@ function CaseStudy({ project, number }) {
         ))}
         <div className="grid gap-2 py-5 md:grid-cols-[10rem_minmax(0,1fr)] md:gap-8">
           <dt className="text-[0.9375rem] font-semibold text-ink">Stack</dt>
-          <dd className="stack !text-ink-soft">{project.stack.join(' · ')}</dd>
+          <dd><Tags items={project.stack} /></dd>
         </div>
       </dl>
 
@@ -114,7 +115,7 @@ function CompactProject({ project, number }) {
         <h3 id={`${projectAnchor(project.slug)}-title`} className="mt-2 text-2xl text-ink">{project.title}</h3>
         <p className="mt-3 text-ink-soft leading-relaxed max-w-prose">{project.problem}</p>
         <p className="mt-3 text-[0.9375rem] text-ink-muted leading-relaxed max-w-prose">{project.approach}</p>
-        <p className="stack mt-4">{project.stack.join(' · ')}</p>
+        <Tags items={project.stack} className="mt-5" />
         <div className="mt-5">
           <ProjectLinks project={project} compact />
         </div>

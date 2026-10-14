@@ -63,15 +63,10 @@ module.exports = {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
-        shine: {
-          '0%': { backgroundPosition: '0 50%' },
-          '60%, 100%': { backgroundPosition: '180px 50%' },
-        },
       },
       animation: {
         'slide-in': 'slideIn 0.3s ease-out',
         marquee: 'marquee 28s linear infinite',
-        shine: 'shine 3s linear infinite',
       },
     },
   },

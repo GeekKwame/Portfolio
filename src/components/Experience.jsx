@@ -63,7 +63,7 @@ const EXPERIENCES = [
     type: "Full-time",
     duration: "Oct 2024 – Sep 2025",
     location: "Kumasi, Ghana · On-site",
-    description: "Tier-1 and Tier-2 support for 200+ academic staff and students — hardware, software, and networking incidents.",
+    description: "Tier-1 and Tier-2 support for 200+ academic staff and students, covering hardware, software, and networking incidents.",
     highlights: [
       "Administered Active Directory and network resources across 5+ departments.",
       "Authored 40+ standardized SOPs that accelerated onboarding for IT personnel.",

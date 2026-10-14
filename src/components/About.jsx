@@ -1,11 +1,15 @@
 import { memo } from 'react';
 import Section from './Section';
-import { PERSONAL_INFO } from '../config/constants';
+import ScribblePortrait from './ScribblePortrait';
+import RollButton from './RollButton';
+import profilePic from '../assets/images/profile/profile-pic.webp';
+import { PERSONAL_INFO, RESUME } from '../config/constants';
+import { trackResumeDownload } from '../utils/analytics';
 
 const PRINCIPLES = [
   {
     title: 'Infrastructure is declared, not clicked',
-    body: 'Production resources live in Terraform or AWS SAM, so every environment can be reviewed, reproduced, and rolled back — no manual drift.',
+    body: 'Production resources live in Terraform or AWS SAM, so every environment can be reviewed, reproduced, and rolled back, with no manual drift.',
   },
   {
     title: 'No long-lived secrets in CI/CD',
@@ -25,7 +29,7 @@ const GLANCE = [
   ['Based in', `${PERSONAL_INFO.location} (${PERSONAL_INFO.timezone})`],
   ['Currently', 'Software Engineer, Afarinick Company Limited'],
   ['Degree', 'BSc Applied Mathematics, KNUST'],
-  ['Training', 'Azubi Africa — Cloud Computing & AI program (AWS)'],
+  ['Training', 'Azubi Africa: Cloud Computing & AI program (AWS)'],
   ['Open to', 'Full-time roles and freelance infrastructure work'],
   ['Full name', PERSONAL_INFO.fullName],
 ];
@@ -38,11 +42,29 @@ const About = memo(function About() {
       label="About"
       title="From campus IT support to production cloud systems"
     >
+      <div className="mb-16 grid items-center gap-10 sm:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] sm:gap-14">
+        <ScribblePortrait src={profilePic} alt={`Portrait of ${PERSONAL_INFO.name}`} className="mx-auto w-full max-w-[17rem]" />
+        <div>
+          <p className="label">About me.</p>
+          <p className="mt-3 max-w-[32ch] font-syne text-[clamp(1.25rem,1rem+1vw,1.625rem)] font-semibold leading-snug text-ink">
+            {PERSONAL_INFO.bio}
+          </p>
+          <div className="mt-8">
+            <RollButton
+              text="My Resume"
+              href={RESUME.path}
+              onClick={() => trackResumeDownload()}
+              ariaLabel="My resume, PDF (opens in a new tab)"
+            />
+          </div>
+        </div>
+      </div>
+
       <div className="grid gap-12 xl:grid-cols-[minmax(0,1fr)_17rem] xl:gap-16">
         <div className="space-y-5 max-w-prose text-[1.0625rem] leading-[1.7] text-ink-soft">
           <p>
             I studied Applied Mathematics at Kwame Nkrumah University of Science and Technology, and the habit
-            stuck: I like systems I can reason about — clear data flow, explicit failure modes, and reliability
+            stuck: I like systems I can reason about: clear data flow, explicit failure modes, and reliability
             I can measure.
           </p>
           <p>
