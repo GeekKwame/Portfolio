@@ -130,7 +130,7 @@
   }
 
   .lede {
-    @apply font-syne text-lg font-semibold text-ink-muted leading-relaxed max-w-prose;
+    @apply font-sans text-lg text-ink-muted leading-relaxed max-w-prose;
   }
 
   .btn {
@@ -163,7 +163,7 @@
   }
 
   .stack {
-    @apply font-grotesque text-base font-bold text-ink-muted leading-relaxed;
+    @apply font-sans text-sm font-medium text-ink-muted leading-relaxed;
   }
 
   /* Monochrome until hovered, then a slight tilt into colour */
@@ -208,6 +208,14 @@
   @keyframes scribble-boil {
     0% { opacity: 1; }
     33.333%, 100% { opacity: 0; }
+  }
+
+  .schematic-flow {
+    animation: schematic-flow 1.2s linear infinite;
+  }
+
+  @keyframes schematic-flow {
+    to { stroke-dashoffset: -12; }
   }
 
   [data-reveal] {

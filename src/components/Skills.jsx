@@ -11,28 +11,18 @@ const CAPABILITY_GROUPS = [
   },
   {
     category: 'Backend engineering',
-    items: ['Python', 'FastAPI', 'Django / Django REST Framework', 'Pydantic', 'SQLAlchemy 2.0', 'Boto3', 'REST API design', 'Auth and rate limiting'],
+    items: ['Python', 'FastAPI', 'Django + DRF', 'Pydantic', 'SQLAlchemy 2.0', 'Boto3', 'REST API design', 'Auth and rate limiting'],
     evidence: ['file-service', 'yencare', 'kora'],
   },
   {
     category: 'DevOps & CI/CD',
-    items: ['Docker', 'GitHub Actions', 'IAM and OIDC federation', 'CloudWatch', 'Multi-stage builds', 'Pytest', 'Ruff'],
+    items: ['Docker', 'GitHub Actions', 'IAM and OIDC federation', 'CloudWatch', 'Linux, Bash, Nginx', 'Pytest and Jest'],
     evidence: ['terraformed', 'smart-task', 'pulsevote', 'serverless-api'],
   },
   {
     category: 'Databases',
     items: ['PostgreSQL', 'DynamoDB', 'Redis', 'Schema design and indexing', 'Prisma ORM'],
     evidence: ['file-service', 'yencare', 'event-connect', 'smart-task'],
-  },
-  {
-    category: 'Systems & Linux',
-    items: ['Ubuntu / Linux', 'Bash', 'systemd', 'SSH', 'Nginx', 'Networking fundamentals', 'Active Directory'],
-    evidence: ['pulsevote', 'study-planner'],
-  },
-  {
-    category: 'Developer tooling',
-    items: ['Git', 'React', 'Vite', 'Tailwind CSS', 'Jest and Supertest', 'ESLint'],
-    evidence: ['yencare'],
   },
 ];
 
@@ -47,7 +37,7 @@ const Skills = memo(function Skills() {
       title="What I work with, and where it shows up"
       lede="Grouped by capability rather than listed as logos. Each group links to the projects that use it."
     >
-      <div className="grid gap-x-10 gap-y-12 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-x-10 gap-y-12 sm:grid-cols-2 xl:grid-cols-4 xl:gap-x-8">
         {CAPABILITY_GROUPS.map((group) => (
           <div key={group.category} className="flex flex-col border-t border-ink pt-4">
             <h3 className="text-[1.375rem] text-ink">{group.category}</h3>

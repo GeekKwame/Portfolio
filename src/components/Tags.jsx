@@ -5,7 +5,7 @@ function Tags({ items, className = '' }) {
       {items.map((item) => (
         <li
           key={item}
-          className="rounded-full border border-ink/60 px-3 py-1.5 font-syne text-sm font-medium leading-none text-ink"
+          className="rounded-full border border-ink/60 px-3 py-1.5 text-sm font-medium leading-none text-ink"
         >
           {item}
         </li>

@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import Section from './Section';
 import ScribblePortrait from './ScribblePortrait';
-import RollButton from './RollButton';
 import profilePic from '../assets/images/profile/profile-pic.webp';
-import { PERSONAL_INFO, RESUME } from '../config/constants';
-import { trackResumeDownload } from '../utils/analytics';
+import { PERSONAL_INFO } from '../config/constants';
 
 const PRINCIPLES = [
   {
@@ -25,13 +23,9 @@ const PRINCIPLES = [
   },
 ];
 
-const GLANCE = [
-  ['Based in', `${PERSONAL_INFO.location} (${PERSONAL_INFO.timezone})`],
-  ['Currently', 'Software Engineer, Afarinick Company Limited'],
-  ['Degree', 'BSc Applied Mathematics, KNUST'],
-  ['Training', 'Azubi Africa: Cloud Computing & AI program (AWS)'],
-  ['Open to', 'Full-time roles and freelance infrastructure work'],
-  ['Full name', PERSONAL_INFO.fullName],
+const EDUCATION = [
+  { what: 'BSc Applied Mathematics', where: 'KNUST, Kumasi', when: '2021 – 2024' },
+  { what: 'Cloud Computing & AI Program (AWS)', where: 'Azubi Africa', when: '2026' },
 ];
 
 const About = memo(function About() {
@@ -42,59 +36,34 @@ const About = memo(function About() {
       label="About"
       title="From campus IT support to production cloud systems"
     >
-      <div className="mb-16 grid items-center gap-10 sm:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] sm:gap-14">
-        <ScribblePortrait src={profilePic} alt={`Portrait of ${PERSONAL_INFO.name}`} className="mx-auto w-full max-w-[17rem]" />
-        <div>
-          <p className="label">About me.</p>
-          <p className="mt-3 max-w-[32ch] font-syne text-[clamp(1.25rem,1rem+1vw,1.625rem)] font-semibold leading-snug text-ink">
+      <div className="grid items-start gap-10 sm:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] sm:gap-14">
+        <ScribblePortrait src={profilePic} alt={`Portrait of ${PERSONAL_INFO.name}`} className="mx-auto w-full max-w-[15rem]" />
+        <div className="space-y-5 max-w-prose text-[1.0625rem] leading-[1.7] text-ink-soft">
+          <p className="font-semibold text-ink text-[clamp(1.125rem,1rem+0.6vw,1.375rem)] leading-snug">
             {PERSONAL_INFO.bio}
           </p>
-          <div className="mt-8">
-            <RollButton
-              text="My Resume"
-              href={RESUME.path}
-              onClick={() => trackResumeDownload()}
-              ariaLabel="My resume, PDF (opens in a new tab)"
-            />
+          <p>
+            I studied Applied Mathematics, and the habit stuck: I like systems I can reason about, with clear
+            data flow, explicit failure modes, and reliability I can measure.
+          </p>
+          <p>
+            I started in hands-on IT support, which taught me what actually breaks in production and how much
+            good documentation is worth. From there I moved into backend engineering, then into the cloud. The
+            thread through all of it: infrastructure is part of the product, not something bolted on after it.
+          </p>
+
+          <div className="pt-4">
+            <h3 className="label">Education</h3>
+            <ul className="mt-3 divide-y divide-rule border-y border-rule">
+              {EDUCATION.map((item) => (
+                <li key={item.what} className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-3 text-[0.9375rem]">
+                  <span className="text-ink">{item.what} <span className="text-ink-muted">· {item.where}</span></span>
+                  <span className="font-mono text-meta text-ink-muted">{item.when}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </div>
-
-      <div className="grid gap-12 xl:grid-cols-[minmax(0,1fr)_17rem] xl:gap-16">
-        <div className="space-y-5 max-w-prose text-[1.0625rem] leading-[1.7] text-ink-soft">
-          <p>
-            I studied Applied Mathematics at Kwame Nkrumah University of Science and Technology, and the habit
-            stuck: I like systems I can reason about: clear data flow, explicit failure modes, and reliability
-            I can measure.
-          </p>
-          <p>
-            My first technical work was hands-on. I configured POS systems for retail and hospitality clients at
-            Lerato Consult, then provided Tier-1 and Tier-2 support for more than 200 staff and students at KNUST,
-            where I also wrote over 40 standard operating procedures. That is where I learned what actually breaks
-            in production, and how much good documentation is worth.
-          </p>
-          <p>
-            Alongside that I moved into backend engineering, building Django REST APIs at M365Connect, and then
-            into the cloud: the Azubi Africa AWS program, Terraform and ECS Fargate at One Health Global
-            Technologies, and leading an intern engineering team at AmaliTech.
-          </p>
-          <p>
-            Today I am a Software Engineer at Afarinick Company Limited. The thread through all of it is that
-            infrastructure is part of the product, not something bolted on after it.
-          </p>
-        </div>
-
-        <aside aria-labelledby="glance-title" className="xl:border-l xl:border-rule xl:pl-8">
-          <h3 id="glance-title" className="label">At a glance</h3>
-          <dl className="mt-4 divide-y divide-rule border-y border-rule xl:border-t-0">
-            {GLANCE.map(([term, value]) => (
-              <div key={term} className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-4 py-3 xl:block xl:first:pt-0">
-                <dt className="text-sm text-ink-muted">{term}</dt>
-                <dd className="text-[0.9375rem] text-ink xl:mt-0.5">{value}</dd>
-              </div>
-            ))}
-          </dl>
-        </aside>
       </div>
 
       <div className="mt-20 sm:mt-24">

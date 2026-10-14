@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-/** One row in the experience or education record: logo, organisation and role, dates on the right, details below. */
+/** One row in the experience record: logo, organisation and role, dates on the right, details below. */
 function RecordEntry({ title, organization, type, duration, location, isCurrent, description, highlights, skills, logo, logoText }) {
   const [logoFailed, setLogoFailed] = useState(false);
 
@@ -15,16 +15,16 @@ function RecordEntry({ title, organization, type, duration, location, isCurrent,
           )}
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="font-syne text-[clamp(1.25rem,1rem+1vw,2rem)] font-bold text-ink [@media(hover:hover)]:opacity-85 transition-opacity duration-300 group-hover:opacity-100">
+          <h3 className="text-[clamp(1.25rem,1rem+0.8vw,1.75rem)] text-ink [@media(hover:hover)]:opacity-85 transition-opacity duration-300 group-hover:opacity-100">
             {organization}
           </h3>
-          <p className="mt-1 font-grotesque text-[clamp(1rem,0.9rem+0.4vw,1.25rem)] font-semibold text-ink-muted">
+          <p className="mt-1 text-[0.9375rem] font-medium text-ink-muted">
             {title}
             {type && <span> · {type}</span>}
           </p>
         </div>
         <div className="w-full sm:w-auto sm:text-right">
-          <p className="font-grotesque text-[clamp(1.125rem,0.9rem+0.8vw,1.75rem)] font-bold leading-tight text-ink [@media(hover:hover)]:opacity-80 transition-opacity duration-500 group-hover:opacity-100">
+          <p className="font-mono text-[0.9375rem] font-semibold leading-tight text-ink [@media(hover:hover)]:opacity-80 transition-opacity duration-500 group-hover:opacity-100">
             {duration}
           </p>
           <p className="text-sm text-ink-muted mt-1">{location}</p>

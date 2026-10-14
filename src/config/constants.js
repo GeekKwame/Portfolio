@@ -1,6 +1,6 @@
 /**
  * Application Constants
- * Centralized configuration for Edmund Blessing's Engineering Portfolio
+ * Centralized configuration for Blessing Edmund's Engineering Portfolio
  */
 
 export const SITE_URL = 'https://devedmund.vercel.app/';
@@ -13,16 +13,17 @@ export const HEADLINE =
 export const CONTACT_EMAIL = 'dogbeblessingkwame@gmail.com';
 
 export const SEO = {
-  title: 'Edmund Blessing | Cloud & Backend Engineer',
+  title: 'Blessing Edmund | Cloud & Backend Engineer',
   description:
     'Cloud & Backend Engineer in Ghana building Python APIs (FastAPI & Django) and AWS infrastructure with Terraform, Docker, and CI/CD. Software Engineer at Afarinick Company Limited.',
   keywords:
     'Software Engineer, Cloud Engineer, AWS, Terraform, Docker, FastAPI, Django, Python Developer, PostgreSQL, React, Linux, DevOps, CI/CD, GitHub Actions, Ghana, Portfolio',
-  ogSiteName: 'Edmund Blessing Portfolio',
+  ogSiteName: 'Blessing Edmund Portfolio',
 };
 
 export const PERSONAL_INFO = {
-  name: 'Edmund Blessing',
+  name: 'Blessing Edmund',
+  initials: 'BEKD',
   fullName: 'Blessing Edmund Kwame Dogbe',
   title: 'Cloud & Backend Engineer',
   headline: HEADLINE,
@@ -78,8 +79,7 @@ export const SECTION_INDEX = [
   { number: '02', name: 'Experience', to: 'experience' },
   { number: '03', name: 'About', to: 'about' },
   { number: '04', name: 'Skills', to: 'skills' },
-  { number: '05', name: 'Education', to: 'education' },
-  { number: '06', name: 'Contact', to: 'contact' },
+  { number: '05', name: 'Contact', to: 'contact' },
 ];
 
 /** Flagship project link */
@@ -89,7 +89,7 @@ export const FLAGSHIP = {
 };
 
 export const RESUME = {
-  filename: 'Edmund_Blessing_Resume.pdf',
+  filename: 'Blessing_Edmund_Kwame_Dogbe_Resume.pdf',
   path: '/resume.pdf',
 };
 

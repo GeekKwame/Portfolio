@@ -1,10 +1,7 @@
 import { memo } from 'react';
 import Section from './Section';
 import RecordEntry from './RecordEntry';
-import knustLogo from "../assets/images/companies/knust.png";
 import m365connectLogo from "../assets/images/companies/m365connect.png";
-import hubblemindLogo from "../assets/images/companies/hubblemind.jpeg";
-import leratoLogo from "../assets/images/companies/lerato.png";
 import oneHealthLogo from "../assets/images/companies/onehealthtech.png";
 import amalitechLogo from "../assets/images/companies/Amalitech.png";
 import afarinickLogo from "../assets/images/companies/afarinick_company_limited_logo.jpg";
@@ -57,23 +54,6 @@ const EXPERIENCES = [
     logoText: "OH",
   },
   {
-    id: 3,
-    title: "Information Technology Technician",
-    company: "KNUST",
-    type: "Full-time",
-    duration: "Oct 2024 – Sep 2025",
-    location: "Kumasi, Ghana · On-site",
-    description: "Tier-1 and Tier-2 support for 200+ academic staff and students, covering hardware, software, and networking incidents.",
-    highlights: [
-      "Administered Active Directory and network resources across 5+ departments.",
-      "Authored 40+ standardized SOPs that accelerated onboarding for IT personnel.",
-      "Preventive hardware maintenance reduced recurring tickets for core lab infrastructure.",
-    ],
-    skills: ["Active Directory", "Networking", "Tier-1/2 Support", "SOP Documentation"],
-    logo: knustLogo,
-    logoText: "KNUST",
-  },
-  {
     id: 4,
     title: "Python Developer (Backend)",
     company: "M365Connect",
@@ -90,30 +70,12 @@ const EXPERIENCES = [
     logo: m365connectLogo,
     logoText: "M365",
   },
-  {
-    id: 5,
-    title: "Data Science Intern",
-    company: "HubbleMind",
-    type: "Internship",
-    duration: "Nov 2024 – Dec 2024",
-    location: "India · Remote",
-    description: "Cleaned and processed 5,000+ health records with IQR outlier treatment and feature encoding; trained predictive models with Scikit-learn at 88% accuracy.",
-    skills: ["Python", "Pandas", "Scikit-Learn", "Feature Engineering"],
-    logo: hubblemindLogo,
-    logoText: "HM",
-  },
-  {
-    id: 6,
-    title: "OS Technician & IT Support Assistant",
-    company: "Lerato Consult",
-    type: "Part-time",
-    duration: "Nov 2022 – Dec 2024",
-    location: "Accra, Ghana · On-site",
-    description: "Configured POS systems for 10+ retail and hospitality clients. Standardized 50+ troubleshooting procedures to maintain uptime.",
-    skills: ["POS Systems", "Network Diagnostics", "Client Support"],
-    logo: leratoLogo,
-    logoText: "LC",
-  },
+];
+
+const EARLIER = [
+  { role: 'IT Technician', org: 'KNUST', duration: '2024 – 2025' },
+  { role: 'Data Science Intern', org: 'HubbleMind', duration: '2024' },
+  { role: 'OS Technician & IT Support', org: 'Lerato Consult', duration: '2022 – 2024' },
 ];
 
 const Experience = memo(function Experience() {
@@ -123,13 +85,25 @@ const Experience = memo(function Experience() {
       number="02"
       label="Experience"
       title="Professional record"
-      lede="Most recent first. Software and cloud engineering roles, with the IT operations work that came before and alongside them."
+      lede="Most recent first."
     >
       <ol className="divide-y divide-rule border-y border-rule">
         {EXPERIENCES.map((exp) => (
           <RecordEntry key={exp.id} organization={exp.company} {...exp} />
         ))}
       </ol>
+
+      <div className="mt-10">
+        <h3 className="label">Earlier</h3>
+        <ul className="mt-3 divide-y divide-rule border-y border-rule">
+          {EARLIER.map((item) => (
+            <li key={item.org} className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-3 text-[0.9375rem]">
+              <span className="text-ink">{item.role} <span className="text-ink-muted">· {item.org}</span></span>
+              <span className="font-mono text-meta text-ink-muted">{item.duration}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </Section>
   );
 });

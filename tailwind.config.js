@@ -14,8 +14,6 @@ module.exports = {
       fontFamily: {
         display: ['"Cal Sans"', '"Inter Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         sans: ['"Inter Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        syne: ['"Syne Variable"', '"Inter Variable"', 'sans-serif'],
-        grotesque: ['"Darker Grotesque Variable"', '"Inter Variable"', 'sans-serif'],
         mono: ['"Inter Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       colors: {
@@ -59,14 +57,9 @@ module.exports = {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(0)' },
         },
-        marquee: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
       },
       animation: {
         'slide-in': 'slideIn 0.3s ease-out',
-        marquee: 'marquee 28s linear infinite',
       },
     },
   },

@@ -2,9 +2,8 @@ import { memo } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import Section from './Section';
 import Figure from './Figure';
-import RequestPath from './RequestPath';
 import Tags from './Tags';
-import { PROJECTS, FEATURED_PROJECTS, OTHER_PROJECTS, projectAnchor } from '../data/projects';
+import { FEATURED_PROJECTS, OTHER_PROJECTS, projectAnchor } from '../data/projects';
 import { trackProjectView, trackSocialClick } from '../utils/analytics';
 
 const pad = (n) => String(n).padStart(2, '0');
@@ -18,7 +17,7 @@ function ProjectLinks({ project, compact = false }) {
 
   if (compact) {
     return (
-      <p className="flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem]">
+      <p className="flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem] md:justify-end">
         {live && (
           <a href={live} target="_blank" rel="noopener noreferrer" onClick={track('live_demo')} className="link"
             aria-label={`${project.shortTitle} live site (opens in a new tab)`}>
@@ -28,7 +27,7 @@ function ProjectLinks({ project, compact = false }) {
         {source && (
           <a href={source} target="_blank" rel="noopener noreferrer" onClick={track('github_repo')} className="link"
             aria-label={`${project.shortTitle} source on GitHub (opens in a new tab)`}>
-            Source on GitHub <span aria-hidden="true">↗</span>
+            Source <span aria-hidden="true">↗</span>
           </a>
         )}
       </p>
@@ -92,53 +91,21 @@ function CaseStudy({ project, number }) {
           <dd><Tags items={project.stack} /></dd>
         </div>
       </dl>
-
-      <div className="mt-8">
-        <RequestPath steps={project.flow} />
-      </div>
     </article>
   );
 }
 
 function CompactProject({ project, number }) {
   return (
-    <article id={projectAnchor(project.slug)} aria-labelledby={`${projectAnchor(project.slug)}-title`} className="scroll-mt-6 grid gap-6 py-10 md:grid-cols-[15rem_minmax(0,1fr)] md:gap-10">
-      <div className="max-w-sm md:max-w-none">
-        <Figure image={project.image} number={pad(number)} compact />
-      </div>
+    <li id={projectAnchor(project.slug)} className="scroll-mt-6 grid gap-x-8 gap-y-2 py-6 md:grid-cols-[2.5rem_minmax(0,1fr)_auto] md:items-baseline">
+      <span className="font-mono text-meta text-accent-strong">{pad(number)}</span>
       <div className="min-w-0">
-        <p className="label">
-          <span className="text-accent-strong">{pad(number)}</span>
-          <span aria-hidden="true" className="mx-2 text-ink-faint">/</span>
-          {project.category}
-        </p>
-        <h3 id={`${projectAnchor(project.slug)}-title`} className="mt-2 text-2xl text-ink">{project.title}</h3>
-        <p className="mt-3 text-ink-soft leading-relaxed max-w-prose">{project.problem}</p>
-        <p className="mt-3 text-[0.9375rem] text-ink-muted leading-relaxed max-w-prose">{project.approach}</p>
-        <Tags items={project.stack} className="mt-5" />
-        <div className="mt-5">
-          <ProjectLinks project={project} compact />
-        </div>
+        <h4 className="text-xl text-ink">{project.shortTitle}</h4>
+        <p className="mt-1 text-[0.9375rem] leading-relaxed text-ink-muted">{project.summary}</p>
+        <p className="stack mt-2">{project.stack.slice(0, 4).join(' · ')}</p>
       </div>
-    </article>
-  );
-}
-
-function ProjectIndex() {
-  return (
-    <nav aria-label="Projects in this section">
-      <p className="label mb-4">Index</p>
-      <ol className="space-y-0.5 border-l border-rule pl-4">
-        {PROJECTS.map((project, i) => (
-          <li key={project.slug}>
-            <a href={`#${projectAnchor(project.slug)}`} className="group flex items-baseline gap-3 py-1.5 text-sm text-ink-muted hover:text-ink transition-colors">
-              <span className="font-mono text-meta pt-px group-hover:text-accent-strong">{pad(i + 1)}</span>
-              <span>{project.shortTitle}</span>
-            </a>
-          </li>
-        ))}
-      </ol>
-    </nav>
+      <ProjectLinks project={project} compact />
+    </li>
   );
 }
 
@@ -149,8 +116,7 @@ const Portfolio = memo(function Portfolio() {
       number="01"
       label="Work"
       title="Systems I’ve designed, built, and shipped"
-      lede="Four case studies in depth, then five smaller cloud and serverless builds. Diagrams open at full size."
-      aside={<ProjectIndex />}
+      lede={`${FEATURED_PROJECTS.length} case studies in depth, then ${OTHER_PROJECTS.length} smaller builds. Diagrams open at full size.`}
     >
       <div className="space-y-20 sm:space-y-24">
         {FEATURED_PROJECTS.map((project, i) => (
@@ -158,16 +124,16 @@ const Portfolio = memo(function Portfolio() {
         ))}
       </div>
 
-      <div className="mt-24 sm:mt-32">
+      <div className="mt-24 sm:mt-28">
         <div className="flex items-baseline justify-between gap-4 border-b border-ink pb-4">
           <h3 className="text-2xl text-ink">More builds</h3>
           <p className="label">{OTHER_PROJECTS.length} projects</p>
         </div>
-        <div className="divide-y divide-rule">
+        <ol className="divide-y divide-rule">
           {OTHER_PROJECTS.map((project, i) => (
             <CompactProject key={project.slug} project={project} number={FEATURED_PROJECTS.length + i + 1} />
           ))}
-        </div>
+        </ol>
       </div>
     </Section>
   );

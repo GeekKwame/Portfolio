@@ -5,7 +5,7 @@ function StructuredData() {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": PERSONAL_INFO.name,
-    "alternateName": "Edmund Blessing Kwame Dogbe",
+    "alternateName": PERSONAL_INFO.fullName,
     "jobTitle": PERSONAL_INFO.title,
     "description": PERSONAL_INFO.bio,
     "disambiguatingDescription": HEADLINE,

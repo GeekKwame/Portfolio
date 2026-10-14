@@ -32,7 +32,7 @@ const Contact = memo(function Contact() {
   return (
     <Section
       id="contact"
-      number="06"
+      number="05"
       label="Contact"
       tone="ink"
       title="Hiring for backend, cloud, or platform work? Let’s talk."

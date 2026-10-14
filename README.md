@@ -1,4 +1,4 @@
-# Edmund Blessing — Portfolio
+# Blessing Edmund — Portfolio
 
 A modern, responsive portfolio website built with React and Tailwind CSS. Showcasing projects, experience, skills, and contact information with beautiful animations and interactive elements.
 
@@ -139,4 +139,4 @@ This project is open source and available for personal use.
 
 ---
 
-Built with ❤️ by Edmund Blessing
+Built with ❤️ by Blessing Edmund

@@ -3,7 +3,7 @@ import { PERSONAL_INFO, NAVIGATION_LINKS, SECTION_INDEX, RESUME, SOCIAL_LINKS } 
 import { trackResumeDownload, trackSocialClick } from '../utils/analytics';
 import ThemeToggle from './ThemeToggle';
 
-const SECTION_IDS = ['work', 'experience', 'about', 'skills', 'education', 'contact'];
+const SECTION_IDS = ['work', 'experience', 'about', 'skills', 'contact'];
 
 function useActiveSection() {
   const [active, setActive] = useState('');
@@ -92,7 +92,7 @@ function NavBar() {
           aria-label={`${PERSONAL_INFO.name}, back to top`}
           className="inline-flex min-h-[44px] items-center font-display text-[1.75rem] leading-none text-ink transition-opacity hover:opacity-70"
         >
-          {PERSONAL_INFO.name.split(' ').map((part) => part[0]).join('')}
+          {PERSONAL_INFO.initials}
         </a>
 
         <nav aria-label="Primary" className="hidden lg:block">
