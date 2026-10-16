@@ -5,44 +5,51 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
-    { ignores: ['dist', 'eslint.config.js', 'tonu-next.netlify.app/**'] },
-    {
-        files: ['postcss.config.js', 'tailwind.config.js'],
-        languageOptions: {
-            globals: globals.node,
-            sourceType: 'commonjs',
-        },
+  { ignores: ['dist/**'] },
+  {
+    files: ['postcss.config.js', 'tailwind.config.js'],
+    languageOptions: {
+      globals: globals.node,
+      sourceType: 'commonjs',
     },
-    {
-        files: ['**/*.{js,jsx}'],
-        ignores: ['postcss.config.js', 'tailwind.config.js'],
-        languageOptions: {
-            ecmaVersion: 2020,
-            globals: globals.browser,
-            parserOptions: {
-                ecmaVersion: 'latest',
-                ecmaFeatures: { jsx: true },
-                sourceType: 'module',
-            },
-        },
-        settings: { react: { version: '18.3' } },
-        plugins: {
-            react,
-            'react-hooks': reactHooks,
-            'react-refresh': reactRefresh,
-        },
-        rules: {
-            ...js.configs.recommended.rules,
-            ...react.configs.recommended.rules,
-            ...react.configs['jsx-runtime'].rules,
-            ...reactHooks.configs.recommended.rules,
-            'react/jsx-no-target-blank': 'off',
-            'react-refresh/only-export-components': [
-                'warn',
-                { allowConstantExport: true },
-            ],
-            'no-unused-vars': 'warn',
-            'react/prop-types': 'off',
-        },
+  },
+  {
+    files: ['vite.config.js', 'eslint.config.mjs'],
+    languageOptions: {
+      globals: globals.node,
+      sourceType: 'module',
     },
+  },
+  {
+    files: ['**/*.{js,jsx}'],
+    ignores: ['postcss.config.js', 'tailwind.config.js', 'vite.config.js'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    settings: { react: { version: '18.3' } },
+    plugins: {
+      react,
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...react.configs.recommended.rules,
+      ...react.configs['jsx-runtime'].rules,
+      ...reactHooks.configs.recommended.rules,
+      'react/jsx-no-target-blank': 'off',
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+      'no-unused-vars': 'warn',
+      'react/prop-types': 'off',
+    },
+  },
 ];

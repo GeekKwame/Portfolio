@@ -1,10 +1,11 @@
-import { memo } from 'react';
+import { lazy, memo, Suspense } from 'react';
 import profilePic from '../assets/images/profile/profile-pic.webp';
 import { PERSONAL_INFO, RESUME } from '../config/constants';
 import { FEATURED_PROJECTS, PROJECTS, projectAnchor } from '../data/projects';
 import { trackResumeDownload } from '../utils/analytics';
-import HeroSchematic from './HeroSchematic';
 import SocialIcons from './SocialIcons';
+
+const HeroGlobe = lazy(() => import('./HeroGlobe'));
 
 function Availability() {
   return (
@@ -19,8 +20,8 @@ const Home = memo(function Home() {
   return (
     <section id="home" aria-label="Introduction" className="pt-28 sm:pt-32 lg:pt-40">
       <div className="shell">
-        <div className="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-end">
-          <div className="lg:col-span-8">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12 lg:items-center">
+          <div className="lg:col-span-7 min-w-0">
             <div className="flex items-center gap-4">
               <img
                 src={profilePic}
@@ -68,16 +69,11 @@ const Home = memo(function Home() {
             </div>
           </div>
 
-          <a
-            href={`#${projectAnchor(FEATURED_PROJECTS[0].slug)}`}
-            className="group hidden lg:block lg:col-span-4 lg:self-center text-rise [animation-delay:300ms]"
-          >
-            <HeroSchematic className="max-w-[340px] ml-auto" />
-            <p className="mt-4 ml-auto max-w-[340px] flex items-baseline justify-between gap-4 text-meta text-ink-muted group-hover:text-ink transition-colors">
-              <span><span className="font-mono text-ink">Fig. 01</span> · {FEATURED_PROJECTS[0].shortTitle} architecture</span>
-              <span aria-hidden="true">↓</span>
-            </p>
-          </a>
+          <div className="hidden lg:block lg:col-span-5 text-rise [animation-delay:300ms] lg:-mr-4 xl:-mr-8">
+            <Suspense fallback={<div className="aspect-square w-full rounded-full bg-paper-sunk" aria-hidden="true" />}>
+              <HeroGlobe />
+            </Suspense>
+          </div>
         </div>
 
         <nav aria-label="Selected work" className="mt-20 sm:mt-24 lg:mt-28">

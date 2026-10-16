@@ -210,14 +210,6 @@
     33.333%, 100% { opacity: 0; }
   }
 
-  .schematic-flow {
-    animation: schematic-flow 1.2s linear infinite;
-  }
-
-  @keyframes schematic-flow {
-    to { stroke-dashoffset: -12; }
-  }
-
   [data-reveal] {
     opacity: 0;
     transform: translateY(2rem);
