@@ -1,82 +1,62 @@
 import { lazy, memo, Suspense } from 'react';
-import profilePic from '../assets/images/profile/profile-pic.webp';
-import { PERSONAL_INFO, RESUME } from '../config/constants';
+import { PERSONAL_INFO } from '../config/constants';
 import { FEATURED_PROJECTS, PROJECTS, projectAnchor } from '../data/projects';
-import { trackResumeDownload } from '../utils/analytics';
 import SocialIcons from './SocialIcons';
 
 const HeroGlobe = lazy(() => import('./HeroGlobe'));
 
-function Availability() {
-  return (
-    <span className="inline-flex items-center gap-2 text-signal">
-      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-signal" />
-      Open to new roles
-    </span>
-  );
-}
-
 const Home = memo(function Home() {
   return (
-    <section id="home" aria-label="Introduction" className="pt-28 sm:pt-32 lg:pt-40">
-      <div className="shell">
-        <div className="lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12 lg:items-center">
-          <div className="lg:col-span-7 min-w-0">
-            <div className="flex items-center gap-4">
-              <img
-                src={profilePic}
-                alt=""
-                width="48"
-                height="48"
-                className="h-12 w-12 rounded-full object-cover border border-rule-strong"
-                style={{ objectPosition: 'center 22%' }}
-              />
-              <p className="text-[0.9375rem] leading-snug text-ink-muted">
-                {PERSONAL_INFO.title} · {PERSONAL_INFO.location}
-                <span className="block text-meta mt-0.5"><Availability /></span>
-              </p>
-            </div>
+    <section id="home" aria-label="Introduction" className="hero-plane relative overflow-hidden">
+      <div className="shell relative pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24">
+        <div className="flex flex-col gap-12 lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14 lg:items-center">
+          <div className="lg:col-span-6 xl:col-span-7 min-w-0">
+            <p className="text-rise text-[0.9375rem] leading-snug text-ink-muted">
+              {PERSONAL_INFO.title}
+              <span className="text-ink-faint" aria-hidden="true"> · </span>
+              {PERSONAL_INFO.location}
+              <span className="mt-1.5 flex items-center gap-2 text-signal">
+                <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-signal" />
+                Open to new roles
+              </span>
+            </p>
 
-            <h1 className="mt-6 sm:mt-8 font-display font-normal text-ink text-[clamp(2.5rem,1rem+6.5vw,6.25rem)] leading-[1.02] tracking-[-0.01em]">
+            <h1 className="mt-5 sm:mt-6 font-display font-normal text-ink text-[clamp(2.75rem,1.1rem+7vw,6rem)] leading-[1.02] tracking-[-0.01em]">
               <span className="block"><span className="text-reveal">Hi, I&apos;m</span></span>
               <span className="block"><span className="text-reveal [animation-delay:150ms]">{PERSONAL_INFO.name}.</span></span>
             </h1>
-            <p className="text-rise mt-3 text-lg text-ink-muted">Nice to meet you.</p>
 
-            <p className="mt-8 sm:mt-10 max-w-[38ch] font-semibold text-ink text-[clamp(1.125rem,0.95rem+0.8vw,1.5rem)] leading-[1.45]">
+            <p className="text-rise mt-6 sm:mt-8 max-w-[36ch] text-[clamp(1.0625rem,0.95rem+0.55vw,1.3125rem)] leading-[1.5] text-ink-soft [animation-delay:120ms]">
               {PERSONAL_INFO.intro}
             </p>
 
-            <p className="mt-6 max-w-prose text-ink-muted">
-              Software Engineer at Afarinick Company Limited, working on backend services and application
-              architecture. Previously cloud and DevOps engineering at One Health Global Technologies, and
-              engineering team lead at AmaliTech.
-            </p>
-
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="text-rise mt-8 sm:mt-10 flex flex-wrap gap-3 [animation-delay:200ms]">
               <a href="#work" className="btn-primary">
                 See selected work <span aria-hidden="true">↓</span>
               </a>
               <a href="#contact" className="btn-secondary">Get in touch</a>
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <div className="text-rise mt-8 [animation-delay:280ms]">
               <SocialIcons source="hero" />
-              <a href={RESUME.path} target="_blank" rel="noopener noreferrer" onClick={() => trackResumeDownload()} className="link text-[0.9375rem] font-semibold"
-                aria-label="Resume, PDF (opens in a new tab)">
-                Resume (PDF) <span aria-hidden="true">↗</span>
-              </a>
             </div>
           </div>
 
-          <div className="hidden lg:block lg:col-span-5 text-rise [animation-delay:300ms] lg:-mr-4 xl:-mr-8">
-            <Suspense fallback={<div className="aspect-square w-full rounded-full bg-paper-sunk" aria-hidden="true" />}>
+          <div className="mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:max-w-none lg:col-span-6 xl:col-span-5 text-rise [animation-delay:200ms]">
+            <Suspense
+              fallback={
+                <div
+                  className="aspect-square w-full rounded-full bg-paper-sunk/80"
+                  aria-hidden="true"
+                />
+              }
+            >
               <HeroGlobe />
             </Suspense>
           </div>
         </div>
 
-        <nav aria-label="Selected work" className="mt-20 sm:mt-24 lg:mt-28">
+        <nav aria-label="Selected work" className="mt-16 sm:mt-20 lg:mt-24">
           <div className="flex items-baseline justify-between gap-4 border-b border-ink pb-3">
             <p className="label">Selected work</p>
             <a href="#work" className="label inline-flex min-h-[32px] items-center hover:text-ink transition-colors">

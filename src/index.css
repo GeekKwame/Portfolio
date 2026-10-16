@@ -115,6 +115,28 @@
     @apply max-w-content mx-auto px-5 sm:px-8 lg:px-12;
   }
 
+  /* First-viewport plane: soft atmosphere so the globe sits in the composition */
+  .hero-plane {
+    background:
+      radial-gradient(ellipse 70% 55% at 82% 38%, rgb(var(--paper-sunk) / 0.95), transparent 58%),
+      radial-gradient(ellipse 45% 35% at 12% 72%, rgb(var(--paper-raised)), transparent 55%),
+      rgb(var(--paper));
+  }
+
+  .hero-globe-stage::before {
+    content: '';
+    position: absolute;
+    inset: 6%;
+    border-radius: 9999px;
+    background: radial-gradient(
+      circle at 45% 40%,
+      rgb(var(--paper-raised)) 0%,
+      rgb(var(--paper-sunk) / 0.55) 55%,
+      transparent 72%
+    );
+    pointer-events: none;
+  }
+
   /* Small structural labels: uppercase, tracked, quiet */
   .label {
     @apply font-sans text-[0.75rem] font-bold uppercase text-ink-muted;

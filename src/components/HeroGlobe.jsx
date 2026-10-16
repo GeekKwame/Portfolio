@@ -8,8 +8,8 @@ const CLOUDS_ROTATION_SPEED = 0.006;
 const POLY_ALT = 0.01;
 
 const LOOKS = [
-  { id: 'night', label: 'Night lights' },
   { id: 'day', label: 'True colour' },
+  { id: 'night', label: 'Night' },
   { id: 'clouds', label: 'Clouds' },
   { id: 'countries', label: 'Countries' },
 ];
@@ -27,13 +27,13 @@ const CONTINENT_COLORS = {
 const SELECTED_COLOR = new THREE.Color('#22c55e');
 const HOVER_COLOR = new THREE.Color('#ffffff');
 
-function buildArcs(count = 10) {
-  const colors = ['#ef4444', '#fafafa', '#3b82f6', '#22c55e'];
+function buildArcs(count = 5) {
+  const colors = ['#a3a3a3', '#737373', '#525252'];
   return Array.from({ length: count }, () => ({
-    startLat: (Math.random() - 0.5) * 180,
-    startLng: (Math.random() - 0.5) * 360,
-    endLat: (Math.random() - 0.5) * 180,
-    endLng: (Math.random() - 0.5) * 360,
+    startLat: (Math.random() - 0.5) * 140,
+    startLng: (Math.random() - 0.5) * 320,
+    endLat: (Math.random() - 0.5) * 140,
+    endLng: (Math.random() - 0.5) * 320,
     color: colors[Math.floor(Math.random() * colors.length)],
   }));
 }
@@ -51,11 +51,8 @@ function summarizeCountry(feature) {
   const p = feature?.properties || {};
   return {
     name: p.NAME || p.ADMIN || 'Unknown',
-    formal: p.FORMAL_EN || null,
     continent: p.CONTINENT || null,
-    region: p.SUBREGION || null,
     population: formatPopulation(p.POP_EST),
-    income: p.INCOME_GRP ? String(p.INCOME_GRP).replace(/^\d+\.\s*/, '') : null,
     iso: p.ISO_A2 && p.ISO_A2 !== '-99' ? p.ISO_A2 : null,
   };
 }
@@ -97,14 +94,14 @@ function applyCapStyle(cap, color, opacity) {
 }
 
 /**
- * Fast interactive globe: look switcher + country picking (Countries mode).
- * Avoids rebuilding polygon geometry on hover — paints materials in place.
+ * Interactive globe for the hero: look modes + country picking.
+ * Paints polygon materials in place — no geometry rebuild on hover.
  */
 const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
   const containerRef = useRef(null);
   const apiRef = useRef(null);
 
-  const [look, setLook] = useState('night');
+  const [look, setLook] = useState('day');
   const [selected, setSelected] = useState(null);
   const [countriesReady, setCountriesReady] = useState(false);
 
@@ -122,18 +119,18 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
     const pointer = { downX: 0, downY: 0, dragging: false };
     const hoverRef = { current: null };
     const selectedRef = { current: null };
-    const lookRef = { current: 'night' };
+    const lookRef = { current: 'day' };
     const pendingPointer = { x: 0, y: 0, dirty: false };
 
     const arcsData = buildArcs();
     const Globe = new ThreeGlobe({ animateIn: !reduceMotion })
-      .globeImageUrl('/earth-night.jpg')
-      .arcsData(arcsData)
+      .globeImageUrl('/earth-blue-marble.jpg')
+      .arcsData([])
       .arcColor('color')
-      .arcDashLength(0.4)
-      .arcDashGap(4)
+      .arcDashLength(0.35)
+      .arcDashGap(5)
       .arcDashInitialGap(() => Math.random() * 5)
-      .arcDashAnimateTime(reduceMotion ? 0 : 1200)
+      .arcDashAnimateTime(reduceMotion ? 0 : 1400)
       .arcsTransitionDuration(0)
       .polygonsData([])
       .polygonGeoJsonGeometry('geometry')
@@ -182,7 +179,6 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
     controls.dynamicDampingFactor = 0.15;
 
     const raycaster = new THREE.Raycaster();
-    // Fewer precision checks — countries are large
     raycaster.params.Line = { threshold: 0.2 };
     const pointerNdc = new THREE.Vector2();
 
@@ -234,7 +230,6 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
       const countries = await ensureCountries();
       if (cancelled || lookRef.current !== 'countries') return;
       Globe.polygonsData(countries);
-      // After digest, re-apply selection highlight if any
       requestAnimationFrame(() => {
         if (selectedRef.current) {
           highlightCap(selectedRef.current, SELECTED_COLOR, 0.7);
@@ -253,7 +248,6 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
       } else if (lookId === 'countries') {
         Globe.globeImageUrl('/earth-dark.jpg').bumpImageUrl(null);
       } else {
-        // Skip bump map — big win for day/clouds responsiveness
         Globe.globeImageUrl('/earth-blue-marble.jpg').bumpImageUrl(null);
       }
 
@@ -269,7 +263,6 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
       if (showCountries) {
         showCountriesLayer();
       } else {
-        // Drop polygons when not needed — largest FPS win
         Globe.polygonsData([]);
         hoverRef.current = null;
       }
@@ -339,7 +332,6 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
         pointer.dragging = true;
       }
 
-      // Defer raycasts to the animation frame (max once per frame)
       if (lookRef.current !== 'countries') {
         renderer.domElement.style.cursor = 'grab';
         return;
@@ -356,7 +348,6 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
       renderer.domElement.style.cursor = feature ? 'pointer' : 'grab';
       if (feature === hoverRef.current) return;
 
-      // Paint only the previous + next country materials (no geometry rebuild)
       if (hoverRef.current && hoverRef.current !== selectedRef.current) {
         restoreCap(hoverRef.current);
       }
@@ -456,75 +447,33 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
     if (!api?.selectedRef.current) return;
     const feature = api.selectedRef.current;
     api.selectedRef.current = null;
-    // Restore base continent paint if still in countries mode
     if (api.lookRef.current === 'countries') {
       const style = baseCapStyle(feature);
       forEachPolygonMesh(api.Globe, feature, (cap) => applyCapStyle(cap, style.color, style.opacity));
     }
   };
 
+  const hint =
+    look === 'countries'
+      ? (countriesReady ? 'Click a country for details' : 'Loading countries…')
+      : 'Drag to explore';
+
   return (
     <div className={`relative w-full ${className}`}>
+      <div className="hero-globe-stage relative mx-auto aspect-square w-full">
+        <div
+          ref={containerRef}
+          className="relative z-[1] h-full w-full cursor-grab overflow-hidden rounded-full active:cursor-grabbing"
+          role="img"
+          aria-label="Interactive 3D Earth. Drag to explore. Switch to Countries to select a country."
+        />
+      </div>
+
       <div
-        ref={containerRef}
-        className="relative aspect-square w-full cursor-grab overflow-hidden rounded-full active:cursor-grabbing"
-        role="img"
-        aria-label="Interactive 3D Earth. Drag to explore. Open Countries mode to select a country."
-      />
-
-      {selected && (
-        <div className="mt-3 rounded-xl border border-rule bg-paper-raised p-3 text-left shadow-sm">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="font-sans text-[0.9375rem] font-extrabold tracking-[-0.02em] text-ink">
-                {selected.name}
-                {selected.iso ? (
-                  <span className="ml-2 font-mono text-meta font-normal text-ink-faint">{selected.iso}</span>
-                ) : null}
-              </p>
-              {selected.formal && selected.formal !== selected.name && (
-                <p className="mt-0.5 text-sm text-ink-muted">{selected.formal}</p>
-              )}
-            </div>
-            <button
-              type="button"
-              onClick={clearSelection}
-              className="shrink-0 rounded-md px-2 py-1 text-meta text-ink-muted hover:bg-paper-sunk hover:text-ink"
-              aria-label="Clear country selection"
-            >
-              ✕
-            </button>
-          </div>
-          <dl className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 text-sm">
-            {selected.continent && (
-              <div>
-                <dt className="text-meta text-ink-faint">Continent</dt>
-                <dd className="text-ink-soft">{selected.continent}</dd>
-              </div>
-            )}
-            {selected.region && (
-              <div>
-                <dt className="text-meta text-ink-faint">Region</dt>
-                <dd className="text-ink-soft">{selected.region}</dd>
-              </div>
-            )}
-            {selected.population && (
-              <div>
-                <dt className="text-meta text-ink-faint">Population</dt>
-                <dd className="text-ink-soft">{selected.population}</dd>
-              </div>
-            )}
-            {selected.income && (
-              <div>
-                <dt className="text-meta text-ink-faint">Income group</dt>
-                <dd className="text-ink-soft">{selected.income}</dd>
-              </div>
-            )}
-          </dl>
-        </div>
-      )}
-
-      <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5" role="toolbar" aria-label="Globe appearance">
+        className="mt-5 flex flex-wrap items-end justify-center gap-x-1 border-b border-rule"
+        role="toolbar"
+        aria-label="Globe appearance"
+      >
         {LOOKS.map((item) => {
           const active = look === item.id;
           return (
@@ -532,10 +481,10 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
               key={item.id}
               type="button"
               onClick={() => handleLookChange(item.id)}
-              className={`rounded-full px-3 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] transition-colors ${
+              className={`min-h-[40px] px-3 py-2 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] transition-colors border-b-2 -mb-px ${
                 active
-                  ? 'bg-ink text-paper'
-                  : 'text-ink-muted hover:bg-paper-sunk hover:text-ink'
+                  ? 'border-ink text-ink'
+                  : 'border-transparent text-ink-muted hover:text-ink'
               }`}
               aria-pressed={active}
             >
@@ -545,13 +494,25 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
         })}
       </div>
 
-      <p className="mt-2 text-center text-meta text-ink-muted">
-        <span className="font-mono text-ink">Fig. 01</span>
-        {' · '}
-        {look === 'countries'
-          ? (countriesReady ? 'Drag to explore · click a country' : 'Loading countries…')
-          : 'Drag to explore · open Countries to select'}
-      </p>
+      <div className="mt-3 min-h-[1.25rem] text-center text-meta text-ink-muted" aria-live="polite">
+        {selected ? (
+          <p>
+            <span className="font-semibold text-ink">{selected.name}</span>
+            {selected.iso ? <span className="font-mono text-ink-faint"> · {selected.iso}</span> : null}
+            {selected.continent ? <span> · {selected.continent}</span> : null}
+            {selected.population ? <span> · {selected.population}</span> : null}
+            <button
+              type="button"
+              onClick={clearSelection}
+              className="ml-2 text-ink-muted underline-offset-2 hover:text-ink hover:underline"
+            >
+              Clear
+            </button>
+          </p>
+        ) : (
+          <p>{hint}</p>
+        )}
+      </div>
     </div>
   );
 });
