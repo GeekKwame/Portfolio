@@ -2,10 +2,13 @@ import { memo, useEffect, useRef, useState } from 'react';
 import ThreeGlobe from 'three-globe';
 import * as THREE from 'three';
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
+import { HOME_BASE } from '../config/constants';
 
 const CLOUDS_ALT = 0.004;
 const CLOUDS_ROTATION_SPEED = 0.006;
 const POLY_ALT = 0.01;
+const HOME_MARKER = [HOME_BASE];
+const HOME_POINT_COLOR = '#15803d';
 
 const LOOKS = [
   { id: 'day', label: 'True colour' },
@@ -132,6 +135,29 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
       .arcDashInitialGap(() => Math.random() * 5)
       .arcDashAnimateTime(reduceMotion ? 0 : 1400)
       .arcsTransitionDuration(0)
+      .pointsData(HOME_MARKER)
+      .pointLat('lat')
+      .pointLng('lng')
+      .pointColor(() => HOME_POINT_COLOR)
+      .pointAltitude(0.012)
+      .pointRadius(0.55)
+      .pointsMerge(false)
+      .ringsData(reduceMotion ? [] : HOME_MARKER)
+      .ringLat('lat')
+      .ringLng('lng')
+      .ringColor(() => (t) => `rgba(21,128,61,${Math.max(0, 1 - t)})`)
+      .ringMaxRadius(2.8)
+      .ringPropagationSpeed(1.1)
+      .ringRepeatPeriod(1600)
+      .labelsData(HOME_MARKER)
+      .labelLat('lat')
+      .labelLng('lng')
+      .labelText((d) => d.label)
+      .labelSize(1.55)
+      .labelDotRadius(0.4)
+      .labelColor(() => HOME_POINT_COLOR)
+      .labelAltitude(0.018)
+      .labelResolution(2)
       .polygonsData([])
       .polygonGeoJsonGeometry('geometry')
       .polygonAltitude(POLY_ALT)
@@ -167,9 +193,13 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
     scene.add(new THREE.DirectionalLight(0xffffff, 0.55 * Math.PI));
 
     const camera = new THREE.PerspectiveCamera();
-    camera.position.z = 320;
+    // Frame Accra on first paint (three-globe has no pointOfView — that's globe.gl)
+    const homeCam = Globe.getCoords(HOME_BASE.lat, HOME_BASE.lng, 2.15);
+    camera.position.set(homeCam.x, homeCam.y, homeCam.z);
+    camera.lookAt(0, 0, 0);
 
     const controls = new TrackballControls(camera, renderer.domElement);
+    controls.target.set(0, 0, 0);
     controls.minDistance = 220;
     controls.maxDistance = 520;
     controls.rotateSpeed = 4;
@@ -177,6 +207,7 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
     controls.noPan = true;
     controls.staticMoving = true;
     controls.dynamicDampingFactor = 0.15;
+    controls.update();
 
     const raycaster = new THREE.Raycaster();
     raycaster.params.Line = { threshold: 0.2 };
@@ -230,9 +261,17 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
       const countries = await ensureCountries();
       if (cancelled || lookRef.current !== 'countries') return;
       Globe.polygonsData(countries);
+
+      const ghana = countries.find((f) => f.properties?.ISO_A2 === HOME_BASE.iso);
       requestAnimationFrame(() => {
         if (selectedRef.current) {
           highlightCap(selectedRef.current, SELECTED_COLOR, 0.7);
+          return;
+        }
+        if (ghana) {
+          selectedRef.current = ghana;
+          highlightCap(ghana, SELECTED_COLOR, 0.7);
+          setSelected(summarizeCountry(ghana));
         }
       });
     };
@@ -453,10 +492,11 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
     }
   };
 
+  const homeLine = `Based in ${HOME_BASE.city}, ${HOME_BASE.country}`;
   const hint =
     look === 'countries'
-      ? (countriesReady ? 'Click a country for details' : 'Loading countries…')
-      : 'Drag to explore';
+      ? (countriesReady ? `${homeLine} · click another country` : 'Loading countries…')
+      : `${homeLine} · drag to explore`;
 
   return (
     <div className={`relative w-full ${className}`}>
@@ -465,7 +505,7 @@ const HeroGlobe = memo(function HeroGlobe({ className = '' }) {
           ref={containerRef}
           className="relative z-[1] h-full w-full cursor-grab overflow-hidden rounded-full active:cursor-grabbing"
           role="img"
-          aria-label="Interactive 3D Earth. Drag to explore. Switch to Countries to select a country."
+          aria-label={`Interactive 3D Earth centred on ${HOME_BASE.city}, ${HOME_BASE.country}. Drag to explore. Switch to Countries to select a country.`}
         />
       </div>
 

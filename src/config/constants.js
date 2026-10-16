@@ -37,6 +37,16 @@ export const PERSONAL_INFO = {
   email: CONTACT_EMAIL,
 };
 
+/** Home base shown on the hero globe (Accra, Ghana) */
+export const HOME_BASE = {
+  lat: 5.6037,
+  lng: -0.187,
+  city: 'Accra',
+  country: 'Ghana',
+  iso: 'GH',
+  label: 'Accra',
+};
+
 export const SOCIAL_LINKS = [
   {
     id: 1,
